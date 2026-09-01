@@ -1,6 +1,6 @@
-﻿/**
- * Observatorio de Medios & Radiografía de Estado de Chile
- * Mobile-First: Cero Bloqueos, Miniaturas 100% Garantizadas, Fuentes Oficiales y Efemérides
+/**
+ * Observatorio de Medios & Radiografía de Estado de Chile — Suite Profesional 2026
+ * Módulos: Asistente Cívico IA, Comparador 1vs1, Simulador Fiscal Dinámico, Mapa de Calor, Exportación y Efemérides
  */
 
 (function () {
@@ -8,6 +8,9 @@
 
     var currentCategory = 'all';
     var currentRegionId = 'metropolitana';
+    var compareRegionA = 'metropolitana';
+    var compareRegionB = 'valparaiso';
+    var activeHeatmapLayer = 'water';
     var onboardingStep = 1;
 
     function getSnapshot() {
@@ -20,7 +23,7 @@
                 window.lucide.createIcons();
             }
         } catch (e) {
-            console.warn('Lucide fallback:', e);
+            console.warn('Lucide fallback active:', e);
         }
     }
 
@@ -46,7 +49,127 @@
 
         container.innerHTML = html;
     }
-    // 2. BALANCE NACIONAL (INGRESOS & GASTOS CON FUENTES OFICIALES)
+
+    // 2. MOTOR DEL ASISTENTE CÍVICO INTELIGENTE («PREGÚNTALE A LA PRESIDENTA IA»)
+    function queryCivicAssistant(userPrompt) {
+        if (!userPrompt || !userPrompt.trim()) return;
+        var p = userPrompt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        var snap = getSnapshot();
+        var regions = snap.regions_complete_audit || [];
+        var bills = snap.legislative_bills || [];
+        var fiscal = snap.national_fiscal_balance || {};
+        var hist = snap.historical_data || {};
+
+        var answer = '';
+        var sources = [];
+
+        var foundRegion = regions.find(function (r) {
+            var rName = r.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            var rId = r.id.toLowerCase();
+            return p.includes(rId) || p.includes(rName.replace('region de ', '').replace('region del ', ''));
+        });
+
+        if (foundRegion) {
+            var r = foundRegion;
+            var sec = r.security || {};
+            var hl = r.health || {};
+            var pr = r.prisons || {};
+            var fin = r.finances || {};
+
+            if (p.includes('seguridad') || p.includes('policia') || p.includes('carabineros') || p.includes('delito') || p.includes('homicidio')) {
+                answer = 'En la **' + r.name + '**, la dotación de **Carabineros** es de **' + (sec.carabineros_officers || 0).toLocaleString('es-CL') + ' efectivos** en ' + (sec.carabineros_stations || 15) + ' comisarías. Cuentan con ' + (sec.patrol_vehicles_active || 0) + ' patrullas operativas (' + (sec.patrol_vehicles_broken || 0) + ' en pana). La tasa de homicidios es de **' + (sec.homicide_rate_per_100k || 0) + ' por cada 100k hab.** con un nivel de amenaza de crimen organizado calificado como **' + (sec.organized_crime_threat_level || 'Medio') + '**.';
+                sources.push({ name: 'CEAD - Subsecretaría de Prevención del Delito', url: 'https://cead.spd.gov.cl' });
+            } else if (p.includes('salud') || p.includes('hospital') || p.includes('espera') || p.includes('cirugia') || p.includes('cama')) {
+                answer = 'La red de salud en la **' + r.name + '** cuenta con **' + (hl.hospitals_high_complexity || 1) + ' hospitales de alta complejidad**. La lista de espera quirúrgica acumula **' + (hl.surgical_waiting_list_patients || 0).toLocaleString('es-CL') + ' personas**, con una demora promedio de **' + (hl.avg_waiting_days_surgery || 0) + ' días** para entrar a pabellón. La dotación de camas críticas (UPC) es de **' + (hl.critical_beds_upc_per_100k || 0) + ' por 100k habitantes**.';
+                sources.push({ name: 'DEIS - Ministerio de Salud de Chile', url: 'https://deis.minsal.cl' });
+            } else if (p.includes('presupuesto') || p.includes('fndr') || p.includes('fondo comun') || p.includes('fcm') || p.includes('dinero')) {
+                answer = 'El Gobierno Regional de **' + r.name + '** administra un presupuesto FNDR de **$' + ((fin.budget_gore_fndr_mmclp || 0) / 1000).toFixed(1) + ' Billones CLP** con una tasa de ejecución del **' + (fin.execution_fndr_pct || 0) + '%**. Además, las comunas de la región presentan una dependencia promedio del **' + (fin.fcm_dependency_avg_pct || 0) + '% del Fondo Común Municipal (FCM)**.';
+                sources.push({ name: 'DIPRES / SUBDERE SINIM', url: 'https://sinim.gov.cl' });
+            } else {
+                answer = '**Radiografía General de ' + r.name + ':** Cuenta con una población de **' + (r.population || 0).toLocaleString('es-CL') + ' habitantes**, aporta el **' + (r.pib_share_pct || 0) + '% al PIB nacional**, tiene un IDH de **' + (r.idh || 0.840) + '**, una informalidad laboral de **' + (r.informal_labor_pct || 28) + '%** y un déficit hídrico de **' + (r.water_deficit_pct || 45) + '%**. Su lista de espera quirúrgica es de ' + (hl.surgical_waiting_list_patients || 0).toLocaleString('es-CL') + ' pacientes y el hacinamiento carcelario es de ' + (pr.overcrowding_pct || 0) + '%.';
+                sources.push({ name: 'INE / DIPRES / DEIS / Gendarmería', url: 'https://www.ine.gob.cl' });
+            }
+        } else if (p.includes('presupuesto') || p.includes('gasto') || p.includes('ingreso') || p.includes('pib') || p.includes('deuda') || p.includes('cobre') || p.includes('litio')) {
+            answer = 'El **Presupuesto Fiscal de Chile 2026** asciende a **US$ 93.450 Millones** ($87.2 Billones CLP), representando un PIB de US$ 345.000M (US$ 17.250 per cápita). El 51.5% de los ingresos proviene del **IVA**, el 34.0% de **Impuestos a la Renta**, el 5.2% de **Codelco / Minería** y el 2.8% de rentas del **Litio (Corfo)**. Las tres mayores áreas de gasto son **Salud (US$ 17.8B)**, **Educación (US$ 16.9B)** y **Protección Social (US$ 15.2B)**.';
+            sources.push({ name: 'DIPRES - Informe de Finanzas Públicas 2026', url: 'https://www.dipres.gob.cl' });
+        } else if (p.includes('ley') || p.includes('pension') || p.includes('permisologia') || p.includes('sala cuna') || p.includes('seguridad privada') || p.includes('inteligencia')) {
+            var b = bills.find(function (item) {
+                var t = item.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                return p.includes(t.split(' ')[0]) || p.includes('pension') || p.includes('permiso');
+            }) || bills[0];
+
+            answer = '**Sobre el proyecto "' + b.title + '":** ' + b.plain_explanation + ' **Impacto ciudadano:** ' + b.citizen_impact + ' **Evidencia técnica:** ' + b.technical_evidence;
+            sources.push({ name: 'Senado / Cámara de Diputadas y Diputados / BCN', url: 'https://www.bcn.cl/leychile' });
+        } else if (p.includes('historia') || p.includes('efemeride') || p.includes('un dia como hoy') || p.includes('paso hoy') || p.includes('1 de septiembre')) {
+            var efe = (hist.milestones || [])[0] || { title: 'Creación del SNS (1952)', desc: 'Ley N° 10.383 unificó la salud pública chilena.', source: 'BCN' };
+            answer = '**Un Día Como Hoy en Chile:** ' + efe.title + ' (' + efe.year + '). ' + efe.desc;
+            sources.push({ name: efe.source || 'BCN LeyChile', url: efe.url || 'https://www.bcn.cl' });
+        } else {
+            answer = 'Como **Presidenta IA**, audito Chile con ciencia y datos duros de 11 ministerios. Puedes consultarme por la **seguridad, salud, colegios, cárceles o finanzas de cualquiera de las 16 regiones**, sobre el **Presupuesto Fiscal de US$ 93.5B**, sobre los **5 Proyectos de Ley clave** o sobre la **Historia republicana día a día**.';
+            sources.push({ name: 'Gobierno Abierto / Banco Central / DIPRES / BCN', url: 'https://www.bcentral.cl' });
+        }
+
+        return { answer: answer, sources: sources };
+    }
+
+    function handleAssistantSubmit(e) {
+        if (e) e.preventDefault();
+        var input = document.getElementById('assistant-input');
+        var log = document.getElementById('assistant-chat-log');
+        if (!input || !log) return;
+
+        var query = input.value.trim();
+        if (!query) return;
+
+        var userBubble = '<div class="flex justify-end">' +
+            '<div class="max-w-[85%] p-3 rounded-[16px] rounded-tr-none bg-[#0f172a] text-white text-xs font-medium leading-relaxed">' +
+            query +
+            '</div></div>';
+        log.innerHTML += userBubble;
+        input.value = '';
+        log.scrollTop = log.scrollHeight;
+
+        setTimeout(function () {
+            var res = queryCivicAssistant(query);
+            var srcHtml = '';
+            if (res.sources && res.sources.length > 0) {
+                srcHtml = '<div class="mt-2 pt-2 border-t border-[#e2e8f0] text-[10px] text-[#64748b] flex flex-wrap items-center gap-1.5 font-semibold">' +
+                    '<span>📚 Fuente Verificada:</span>' +
+                    res.sources.map(function (s) {
+                        return '<a href="' + (s.url || '#') + '" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] hover:underline">' + s.name + '</a>';
+                    }).join(' • ') +
+                    '</div>';
+            }
+
+            var aiBubble = '<div class="flex justify-start">' +
+                '<div class="max-w-[88%] p-3.5 rounded-[16px] rounded-tl-none bg-[#f1f5f9] border border-[#e2e8f0] text-[#0f172a] text-xs leading-relaxed space-y-1">' +
+                '<div class="flex items-center gap-1 text-[10px] font-bold text-[#0284c7] mb-1"><i data-lucide="bot" class="w-3.5 h-3.5"></i> Presidenta IA — Respuesta Factual:</div>' +
+                '<p>' + res.answer.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') + '</p>' +
+                srcHtml +
+                '</div></div>';
+
+            log.innerHTML += aiBubble;
+            safeCreateIcons();
+            log.scrollTop = log.scrollHeight;
+        }, 300);
+    }
+
+    function askAssistantChip(text) {
+        var input = document.getElementById('assistant-input');
+        if (input) {
+            input.value = text;
+            handleAssistantSubmit();
+        }
+    }
+
+    function openAssistantModal() {
+        var modal = document.getElementById('assistant-modal');
+        if (modal) modal.classList.remove('hidden');
+        var input = document.getElementById('assistant-input');
+        if (input) input.focus();
+    }
+
+    // 3. BALANCE NACIONAL DE LA REPÚBLICA
     function renderNationalBalanceView() {
         var snap = getSnapshot();
         var fiscal = snap.national_fiscal_balance || {};
@@ -102,7 +225,7 @@
                 '<div class="p-4 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1">' +
                 '<span class="text-[10px] uppercase font-bold text-[#64748b] block">Educación</span>' +
                 '<span class="text-lg font-mono font-extrabold text-[#0f172a]">' + infra.total_schools.toLocaleString('es-CL') + '</span>' +
-                '<span class="text-[11px] text-[#64748b] block">Colegios y Liceos (Mineduc)</span>' +
+                '<span class="text-[11px] text-[#64748b] block">Colegios (Fuente: Mineduc)</span>' +
                 '</div>' +
                 '<div class="p-4 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1">' +
                 '<span class="text-[10px] uppercase font-bold text-[#64748b] block">Salud Pública</span>' +
@@ -142,77 +265,141 @@
         }
 
         renderFiscalCharts();
+        renderInteractiveBudgetSimulator();
     }
 
-    // 3. GRÁFICO FISCAL DONUT
-    function renderFiscalCharts() {
-        var chartDom = document.getElementById('chart-fiscal-flow');
-        if (!chartDom || !window.echarts) return;
+    // 4. SIMULADOR FISCAL INTERACTIVO («SI TÚ FUERAS PRESIDENTE»)
+    function renderInteractiveBudgetSimulator() {
+        var container = document.getElementById('interactive-budget-simulator-container');
+        if (!container) return;
 
-        var myChart = echarts.init(chartDom);
-        var snap = getSnapshot();
-        var fiscal = snap.national_fiscal_balance || {};
-        var expenditures = fiscal.expenditures || [];
+        var html = '<div class="space-y-5">' +
+            '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">' +
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">🏥 Salud Pública:</span><span id="val-sim-salud" class="font-mono font-bold text-[#0284c7]">0%</span></div>' +
+            '<input type="range" id="slider-sim-salud" min="-20" max="30" value="0" step="1" oninput="calculateBudgetSimulation()" class="w-full accent-[#0284c7] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 17.800M</span>' +
+            '</div>' +
 
-        var dataPoints = expenditures.map(function (e) {
-            return {
-                name: e.category.split('(')[0].trim(),
-                value: (e.amount_usd / 1000000000)
-            };
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">🎓 Educación:</span><span id="val-sim-educacion" class="font-mono font-bold text-[#0284c7]">0%</span></div>' +
+            '<input type="range" id="slider-sim-educacion" min="-20" max="30" value="0" step="1" oninput="calculateBudgetSimulation()" class="w-full accent-[#0284c7] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 16.900M</span>' +
+            '</div>' +
+
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">🛡️ Seguridad & Policías:</span><span id="val-sim-seguridad" class="font-mono font-bold text-[#0284c7]">0%</span></div>' +
+            '<input type="range" id="slider-sim-seguridad" min="-20" max="40" value="0" step="1" oninput="calculateBudgetSimulation()" class="w-full accent-[#0284c7] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 4.850M</span>' +
+            '</div>' +
+
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">🏗️ Obras Públicas & Minvu:</span><span id="val-sim-infra" class="font-mono font-bold text-[#0284c7]">0%</span></div>' +
+            '<input type="range" id="slider-sim-infra" min="-30" max="50" value="0" step="1" oninput="calculateBudgetSimulation()" class="w-full accent-[#0284c7] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 9.400M</span>' +
+            '</div>' +
+
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">💡 Ciencia, I+D & Litio:</span><span id="val-sim-ciencia" class="font-mono font-bold text-[#0284c7]">0%</span></div>' +
+            '<input type="range" id="slider-sim-ciencia" min="-30" max="100" value="0" step="5" oninput="calculateBudgetSimulation()" class="w-full accent-[#0284c7] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 1.250M</span>' +
+            '</div>' +
+
+            '<div class="p-4 rounded-[16px] bg-white border border-[#e2e8f0] space-y-2 shadow-xs">' +
+            '<div class="flex justify-between items-center text-xs"><span class="font-bold text-[#0f172a]">⚖️ Gasto Administrativo/Asesores:</span><span id="val-sim-burocracia" class="font-mono font-bold text-[#dc2626]">0%</span></div>' +
+            '<input type="range" id="slider-sim-burocracia" min="-50" max="10" value="0" step="2" oninput="calculateBudgetSimulation()" class="w-full accent-[#dc2626] cursor-pointer" />' +
+            '<span class="text-[10px] text-[#64748b] block">Base actual: US$ 3.800M</span>' +
+            '</div>' +
+            '</div>' +
+
+            '<div id="simulation-fiscal-results-panel" class="p-5 rounded-[20px] bg-[#0f172a] text-white space-y-4 shadow-lg">' +
+            '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">' +
+            '<div><span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">IMPACTO MACROECONÓMICO PROYECTADO</span><h4 class="text-base font-extrabold text-white">Veredicto del Consejo Fiscal Autónomo (CFA)</h4></div>' +
+            '<button onclick="resetBudgetSimulation()" class="px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-xs font-semibold border border-white/20 transition">Restablecer Presupuesto Oficial</button>' +
+            '</div>' +
+            '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">' +
+            '<div class="p-3 rounded-[12px] bg-white/5 border border-white/10"><span class="text-[10px] text-slate-400 block font-bold">Balance Fiscal Proyectado</span><span id="res-sim-deficit" class="text-base font-mono font-extrabold text-emerald-400">-1.9% PIB</span></div>' +
+            '<div class="p-3 rounded-[12px] bg-white/5 border border-white/10"><span class="text-[10px] text-slate-400 block font-bold">Variación Neta Gasto</span><span id="res-sim-netchange" class="text-base font-mono font-extrabold text-cyan-300">US$ 0M</span></div>' +
+            '<div class="p-3 rounded-[12px] bg-white/5 border border-white/10"><span class="text-[10px] text-slate-400 block font-bold">Riesgo País (EMBI)</span><span id="res-sim-embi" class="text-base font-mono font-extrabold text-white">118 pts</span></div>' +
+            '<div class="p-3 rounded-[12px] bg-white/5 border border-white/10"><span class="text-[10px] text-slate-400 block font-bold">Empleos Generados/Afectados</span><span id="res-sim-jobs" class="text-base font-mono font-extrabold text-amber-300">Neutro</span></div>' +
+            '</div>' +
+            '<p id="res-sim-verdict" class="text-xs text-slate-300 leading-relaxed">Tu presupuesto respeta la regla fiscal estructural de Chile.</p>' +
+            '</div>' +
+            '</div>';
+
+        container.innerHTML = html;
+        calculateBudgetSimulation();
+    }
+
+    function calculateBudgetSimulation() {
+        var sSalud = parseInt((document.getElementById('slider-sim-salud') || {}).value || 0, 10);
+        var sEdu = parseInt((document.getElementById('slider-sim-educacion') || {}).value || 0, 10);
+        var sSeg = parseInt((document.getElementById('slider-sim-seguridad') || {}).value || 0, 10);
+        var sInf = parseInt((document.getElementById('slider-sim-infra') || {}).value || 0, 10);
+        var sCie = parseInt((document.getElementById('slider-sim-ciencia') || {}).value || 0, 10);
+        var sBur = parseInt((document.getElementById('slider-sim-burocracia') || {}).value || 0, 10);
+
+        if (document.getElementById('val-sim-salud')) document.getElementById('val-sim-salud').textContent = (sSalud >= 0 ? '+' : '') + sSalud + '%';
+        if (document.getElementById('val-sim-educacion')) document.getElementById('val-sim-educacion').textContent = (sEdu >= 0 ? '+' : '') + sEdu + '%';
+        if (document.getElementById('val-sim-seguridad')) document.getElementById('val-sim-seguridad').textContent = (sSeg >= 0 ? '+' : '') + sSeg + '%';
+        if (document.getElementById('val-sim-infra')) document.getElementById('val-sim-infra').textContent = (sInf >= 0 ? '+' : '') + sInf + '%';
+        if (document.getElementById('val-sim-ciencia')) document.getElementById('val-sim-ciencia').textContent = (sCie >= 0 ? '+' : '') + sCie + '%';
+        if (document.getElementById('val-sim-burocracia')) document.getElementById('val-sim-burocracia').textContent = (sBur >= 0 ? '+' : '') + sBur + '%';
+
+        var deltaSalud = 17800 * (sSalud / 100);
+        var deltaEdu = 16900 * (sEdu / 100);
+        var deltaSeg = 4850 * (sSeg / 100);
+        var deltaInf = 9400 * (sInf / 100);
+        var deltaCie = 1250 * (sCie / 100);
+        var deltaBur = 3800 * (sBur / 100);
+
+        var netDeltaUSD = deltaSalud + deltaEdu + deltaSeg + deltaInf + deltaCie + deltaBur;
+        var pibChileUSD = 345000;
+        var deltaPctPIB = (netDeltaUSD / pibChileUSD) * 100;
+        var newDeficitPct = -1.9 - deltaPctPIB;
+
+        var embiBase = 118;
+        var embiNew = Math.max(70, Math.round(embiBase + (deltaPctPIB * 35)));
+        var jobsNew = Math.round((deltaInf * 45) + (deltaSeg * 20) + (deltaCie * 15));
+
+        var defEl = document.getElementById('res-sim-deficit');
+        var netEl = document.getElementById('res-sim-netchange');
+        var embiEl = document.getElementById('res-sim-embi');
+        var jobsEl = document.getElementById('res-sim-jobs');
+        var verEl = document.getElementById('res-sim-verdict');
+
+        if (netEl) netEl.textContent = (netDeltaUSD >= 0 ? '+US$ ' : '-US$ ') + Math.abs(Math.round(netDeltaUSD)) + 'M';
+        if (embiEl) embiEl.textContent = embiNew + ' pts (' + (embiNew > 140 ? 'Riesgo Alto' : embiNew < 100 ? 'Excelente' : 'Estable') + ')';
+        if (jobsEl) jobsEl.textContent = (jobsNew >= 0 ? '+' : '') + jobsNew.toLocaleString('es-CL') + ' empleos est.';
+
+        if (defEl) {
+            defEl.textContent = (newDeficitPct >= 0 ? '+' : '') + newDeficitPct.toFixed(2) + '% PIB';
+            if (newDeficitPct > -1.0) defEl.className = 'text-base font-mono font-extrabold text-emerald-400';
+            else if (newDeficitPct > -3.0) defEl.className = 'text-base font-mono font-extrabold text-amber-300';
+            else defEl.className = 'text-base font-mono font-extrabold text-red-400';
+        }
+
+        if (verEl) {
+            if (newDeficitPct < -3.5) {
+                verEl.innerHTML = '<span class="text-red-300 font-bold">⚠️ Alerta CFA:</span> El déficit supera el límite prudencial (-3.5% PIB). Esto aumentaría las tasas de interés de créditos hipotecarios y la deuda pública hacia 2030.';
+            } else if (newDeficitPct > 0) {
+                verEl.innerHTML = '<span class="text-emerald-300 font-bold">✓ Superávit Fiscal:</span> Se genera excedente presupuestario para abonar al Fondo de Estabilización (FEES) y pagar deuda soberana.';
+            } else {
+                verEl.innerHTML = '<span class="text-cyan-300 font-bold">✓ Sostenibilidad Fiscal:</span> El presupuesto se mantiene dentro de la regla estructural recomendada por el Banco Central y la OCDE.';
+            }
+        }
+    }
+
+    function resetBudgetSimulation() {
+        var ids = ['slider-sim-salud', 'slider-sim-educacion', 'slider-sim-seguridad', 'slider-sim-infra', 'slider-sim-ciencia', 'slider-sim-burocracia'];
+        ids.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.value = 0;
         });
-
-        var option = {
-            backgroundColor: 'transparent',
-            tooltip: {
-                trigger: 'item',
-                backgroundColor: '#0f172a',
-                borderColor: '#1e293b',
-                textStyle: { color: '#ffffff', fontSize: 12, fontFamily: 'Montserrat' },
-                formatter: function (params) {
-                    return '<div class="font-bold">' + params.name + '</div>' +
-                        '<div>Monto: <span class="font-mono text-cyan-400 font-bold">US$ ' + params.value.toFixed(1) + 'B</span></div>' +
-                        '<div>Participación: <span class="font-mono text-amber-300 font-bold">' + params.percent + '%</span></div>' +
-                        '<div class="text-[10px] text-slate-300 mt-1">Fuente: DIPRES / Min. Hacienda</div>';
-                }
-            },
-            series: [
-                {
-                    name: 'Destino del Gasto',
-                    type: 'pie',
-                    radius: ['45%', '75%'],
-                    center: ['50%', '50%'],
-                    avoidLabelOverlap: true,
-                    itemStyle: {
-                        borderRadius: 8,
-                        borderColor: '#ffffff',
-                        borderWidth: 2
-                    },
-                    label: { show: false },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            fontSize: 13,
-                            fontWeight: 'bold',
-                            fontFamily: 'Montserrat',
-                            color: '#0f172a',
-                            formatter: '{b}\nUS$ {c}B'
-                        },
-                        itemStyle: {
-                            shadowBlur: 12,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.2)'
-                        }
-                    },
-                    labelLine: { show: false },
-                    data: dataPoints
-                }
-            ]
-        };
-
-        myChart.setOption(option);
-        window.addEventListener('resize', function () { myChart.resize(); });
+        calculateBudgetSimulation();
     }
-    // 4. RADIOGRAFÍA 16 REGIONES: SELECTOR VISUAL CON MINIATURAS REALES + DROPDOWN
+
+    // 5. RADIOGRAFÍA 16 REGIONES & EXPORTADOR
     function renderRegionsAuditView() {
         var snap = getSnapshot();
         var regions = snap.regions_complete_audit || [];
@@ -221,21 +408,23 @@
 
         var html = '<div class="space-y-4">';
 
-        // Dropdown para cambio instantáneo en móvil
         html += '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-[18px] bg-white border border-[#e2e8f0]">' +
             '<div>' +
             '<label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider">🗺️ Selección Directa de Región:</label>' +
             '<p class="text-[11px] text-[#64748b]">Elige una de las 16 regiones de Chile para auditarla</p>' +
             '</div>' +
-            '<select id="region-dropdown-select" onchange="selectRegion(this.value)" class="shadcn-input px-3.5 py-2 text-xs font-bold bg-[#f8f9fa] cursor-pointer min-w-[240px]">';
+            '<div class="flex items-center gap-2 flex-wrap">' +
+            '<select id="region-dropdown-select" onchange="selectRegion(this.value)" class="shadcn-input px-3.5 py-2 text-xs font-bold bg-[#f8f9fa] cursor-pointer min-w-[220px]">';
 
         regions.forEach(function (r) {
             var selected = (r.id === currentRegionId) ? 'selected' : '';
             html += '<option value="' + r.id + '" ' + selected + '>' + r.number + ' - ' + r.name + '</option>';
         });
-        html += '</select></div>';
+        html += '</select>' +
+            '<button onclick="exportRegionalReportPDF()" class="shadcn-button-primary px-3.5 py-2 text-xs font-bold flex items-center gap-1.5 shadow-xs"><i data-lucide="printer" class="w-3.5 h-3.5"></i> Imprimir Ficha PDF</button>' +
+            '<button onclick="exportDataCSV()" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center gap-1.5"><i data-lucide="download" class="w-3.5 h-3.5"></i> CSV</button>' +
+            '</div></div>';
 
-        // Cuadrícula visual fotográfica de las 16 regiones con MINIATURAS FOTOGRÁFICAS REALES
         html += '<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">';
         regions.forEach(function (r) {
             var isSelected = (r.id === currentRegionId);
@@ -302,7 +491,7 @@
         var mil = r.military || {};
         var inf = r.infrastructure || {};
 
-        var html = '<div class="shadcn-card overflow-hidden border border-[#e2e8f0] space-y-6 shadow-card">' +
+        var html = '<div id="printable-region-card" class="shadcn-card overflow-hidden border border-[#e2e8f0] space-y-6 shadow-card">' +
             '<div class="relative h-56 sm:h-72 w-full overflow-hidden bg-[#0f172a]">' +
             '<img src="' + photoUrl + '" alt="' + r.name + '" onerror="this.src=\'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80\'" class="w-full h-full object-cover filter brightness-[0.75] contrast-110 hover:scale-105 transition-transform duration-700" />' +
             '<div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>' +
@@ -410,43 +599,240 @@
         container.innerHTML = html;
         safeCreateIcons();
     }
-    // 5. MEMORIA HISTÓRICA: UN DÍA COMO HOY EN CHILE & EVOLUCIÓN CENTENARIA CON FUENTES OFICIALES
+
+    // 6. EXPORTACIÓN A PDF Y CSV
+    function exportRegionalReportPDF() {
+        window.print();
+    }
+
+    function exportDataCSV() {
+        var snap = getSnapshot();
+        var regions = snap.regions_complete_audit || [];
+        var csv = '\uFEFF';
+        csv += 'Numero,Region,Capital,Poblacion,PIB_Share_Pct,IDH,Informalidad_Pct,Deficit_Hidrico_Pct,Hacinamiento_Penal_Pct,Espera_Quirurgica_Pacientes,Espera_Quirurgica_Dias,Carabineros_Dotacion,Tasa_Homicidios_100k,Presupuesto_FNDR_MMCLP,Dependencia_FCM_Pct\n';
+
+        regions.forEach(function (r) {
+            var pr = r.prisons || {};
+            var hl = r.health || {};
+            var sec = r.security || {};
+            var fin = r.finances || {};
+
+            csv += '"' + r.number + '","' + r.name + '","' + r.capital + '",' +
+                (r.population || 0) + ',' + (r.pib_share_pct || 0) + ',' + (r.idh || 0) + ',' +
+                (r.informal_labor_pct || 0) + ',' + (r.water_deficit_pct || 0) + ',' +
+                (pr.overcrowding_pct || 0) + ',' + (hl.surgical_waiting_list_patients || 0) + ',' +
+                (hl.avg_waiting_days_surgery || 0) + ',' + (sec.carabineros_officers || 0) + ',' +
+                (sec.homicide_rate_per_100k || 0) + ',' + (fin.budget_gore_fndr_mmclp || 0) + ',' +
+                (fin.fcm_dependency_avg_pct || 0) + '\n';
+        });
+
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.setAttribute('download', 'chile_auditoria_16_regiones_2026.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // 7. COMPARADOR CARA A CARA 1 VS 1 (REGIÓN VS REGIÓN CON SEMÁFOROS)
+    function renderRegionComparator() {
+        var container = document.getElementById('region-comparator-container');
+        if (!container) return;
+
+        var snap = getSnapshot();
+        var regions = snap.regions_complete_audit || [];
+        var rA = regions.find(function (r) { return r.id === compareRegionA; }) || regions[6];
+        var rB = regions.find(function (r) { return r.id === compareRegionB; }) || regions[5];
+
+        var html = '<div class="space-y-6">' +
+            '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-[20px] bg-white border border-[#e2e8f0] shadow-sm">' +
+            '<div class="flex-1">' +
+            '<label class="block text-xs font-bold text-[#0284c7] uppercase">Región A:</label>' +
+            '<select id="comp-sel-a" onchange="updateCompareRegions(this.value, null)" class="w-full shadcn-input px-3.5 py-2 text-xs font-bold bg-[#f8f9fa] mt-1">';
+
+        regions.forEach(function (r) {
+            var sel = (r.id === rA.id) ? 'selected' : '';
+            html += '<option value="' + r.id + '" ' + sel + '>' + r.number + ' - ' + r.name + '</option>';
+        });
+        html += '</select></div>' +
+
+            '<div class="flex items-center justify-center pt-2 sm:pt-4">' +
+            '<span class="w-10 h-10 rounded-full bg-[#0f172a] text-white flex items-center justify-center font-extrabold text-xs shadow-md">VS</span>' +
+            '</div>' +
+
+            '<div class="flex-1">' +
+            '<label class="block text-xs font-bold text-[#dc2626] uppercase">Región B:</label>' +
+            '<select id="comp-sel-b" onchange="updateCompareRegions(null, this.value)" class="w-full shadcn-input px-3.5 py-2 text-xs font-bold bg-[#f8f9fa] mt-1">';
+
+        regions.forEach(function (r) {
+            var sel = (r.id === rB.id) ? 'selected' : '';
+            html += '<option value="' + r.id + '" ' + sel + '>' + r.number + ' - ' + r.name + '</option>';
+        });
+        html += '</select></div></div>';
+
+        var metrics = [
+            { name: 'Población Total', valA: (rA.population || 0).toLocaleString('es-CL') + ' hab.', valB: (rB.population || 0).toLocaleString('es-CL') + ' hab.', rawA: rA.population, rawB: rB.population, source: 'INE Censo' },
+            { name: 'Aporte al PIB Nacional', valA: (rA.pib_share_pct || 0) + '%', valB: (rB.pib_share_pct || 0) + '%', rawA: rA.pib_share_pct, rawB: rB.pib_share_pct, source: 'Banco Central' },
+            { name: 'Índice Desarrollo Humano (IDH)', valA: (rA.idh || 0.840), valB: (rB.idh || 0.840), rawA: rA.idh || 0.840, rawB: rB.idh || 0.840, higherBetter: true, source: 'PNUD' },
+            { name: 'Demora Media en Cirugías', valA: ((rA.health || {}).avg_waiting_days_surgery || 0) + ' días', valB: ((rB.health || {}).avg_waiting_days_surgery || 0) + ' días', rawA: (rA.health || {}).avg_waiting_days_surgery, rawB: (rB.health || {}).avg_waiting_days_surgery, higherBetter: false, source: 'DEIS Minsal' },
+            { name: 'Tasa de Homicidios x 100k hab.', valA: ((rA.security || {}).homicide_rate_per_100k || 0), valB: ((rB.security || {}).homicide_rate_per_100k || 0), rawA: (rA.security || {}).homicide_rate_per_100k, rawB: (rB.security || {}).homicide_rate_per_100k, higherBetter: false, source: 'CEAD SPD' },
+            { name: 'Hacinamiento Carcelario', valA: ((rA.prisons || {}).overcrowding_pct || 0) + '%', valB: ((rB.prisons || {}).overcrowding_pct || 0) + '%', rawA: (rA.prisons || {}).overcrowding_pct, rawB: (rB.prisons || {}).overcrowding_pct, higherBetter: false, source: 'Gendarmería' },
+            { name: 'Dependencia Fondo Común (FCM)', valA: ((rA.finances || {}).fcm_dependency_avg_pct || 0) + '%', valB: ((rB.finances || {}).fcm_dependency_avg_pct || 0) + '%', rawA: (rA.finances || {}).fcm_dependency_avg_pct, rawB: (rB.finances || {}).fcm_dependency_avg_pct, higherBetter: false, source: 'SUBDERE SINIM' },
+            { name: 'Déficit Hídrico de Cuencas', valA: (rA.water_deficit_pct || 0) + '%', valB: (rB.water_deficit_pct || 0) + '%', rawA: rA.water_deficit_pct, rawB: rB.water_deficit_pct, higherBetter: false, source: 'DGA MOP' }
+        ];
+
+        html += '<div class="shadcn-card overflow-hidden border border-[#e2e8f0] shadow-sm">' +
+            '<div class="grid grid-cols-3 bg-[#0f172a] text-white p-3 sm:p-4 text-xs font-bold">' +
+            '<div>Indicador de Estado</div>' +
+            '<div class="text-center text-cyan-300">' + rA.name.replace('Región de ', '').replace('Región del ', '') + '</div>' +
+            '<div class="text-center text-amber-300">' + rB.name.replace('Región de ', '').replace('Región del ', '') + '</div>' +
+            '</div>' +
+            '<div class="divide-y divide-[#e2e8f0]">';
+
+        metrics.forEach(function (m) {
+            var badgeA = '';
+            var badgeB = '';
+            if (m.higherBetter !== undefined && m.rawA !== undefined && m.rawB !== undefined) {
+                if (m.higherBetter) {
+                    if (m.rawA > m.rawB) badgeA = '<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold ml-1">Mejor</span>';
+                    else if (m.rawB > m.rawA) badgeB = '<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold ml-1">Mejor</span>';
+                } else {
+                    if (m.rawA > m.rawB) badgeA = '<span class="text-[10px] px-1.5 py-0.5 rounded bg-red-100 text-red-800 font-bold ml-1">Mayor Estrés</span>';
+                    else if (m.rawB > m.rawA) badgeB = '<span class="text-[10px] px-1.5 py-0.5 rounded bg-red-100 text-red-800 font-bold ml-1">Mayor Estrés</span>';
+                }
+            }
+
+            html += '<div class="grid grid-cols-3 p-3.5 sm:p-4 items-center text-xs hover:bg-[#f8f9fa] transition">' +
+                '<div><strong class="text-[#0f172a] block">' + m.name + '</strong><span class="text-[10px] text-[#64748b]">Fuente: ' + m.source + '</span></div>' +
+                '<div class="text-center font-mono font-bold text-[#0f172a]">' + m.valA + badgeA + '</div>' +
+                '<div class="text-center font-mono font-bold text-[#0f172a]">' + m.valB + badgeB + '</div>' +
+                '</div>';
+        });
+
+        html += '</div></div></div>';
+        container.innerHTML = html;
+        safeCreateIcons();
+    }
+
+    function updateCompareRegions(a, b) {
+        if (a) compareRegionA = a;
+        if (b) compareRegionB = b;
+        renderRegionComparator();
+    }
+
+    // 8. MAPA VECTORIAL DE CALOR DE CHILE (HEATMAP TERRITORIAL)
+    function renderVectorHeatmap() {
+        var container = document.getElementById('vector-heatmap-container');
+        if (!container) return;
+
+        var snap = getSnapshot();
+        var regions = snap.regions_complete_audit || [];
+
+        var html = '<div class="space-y-4">' +
+            '<div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-[18px] bg-white border border-[#e2e8f0]">' +
+            '<div><span class="text-xs font-bold text-[#0f172a] uppercase tracking-wider block">🗺️ Capas de Calor Territorial:</span><p class="text-[11px] text-[#64748b]">Visualiza el mapa de Chile según el indicador crítico que elijas</p></div>' +
+            '<div class="flex flex-wrap items-center gap-1.5">' +
+            '<button onclick="setHeatmapLayer(\'water\')" class="px-3 py-1.5 rounded-[10px] text-xs font-bold ' + (activeHeatmapLayer === 'water' ? 'bg-[#0284c7] text-white' : 'bg-[#f1f5f9] text-[#0f172a]') + '">💧 Déficit Hídrico</button>' +
+            '<button onclick="setHeatmapLayer(\'prisons\')" class="px-3 py-1.5 rounded-[10px] text-xs font-bold ' + (activeHeatmapLayer === 'prisons' ? 'bg-[#dc2626] text-white' : 'bg-[#f1f5f9] text-[#0f172a]') + '">🔒 Hacinamiento</button>' +
+            '<button onclick="setHeatmapLayer(\'homicide\')" class="px-3 py-1.5 rounded-[10px] text-xs font-bold ' + (activeHeatmapLayer === 'homicide' ? 'bg-[#dc2626] text-white' : 'bg-[#f1f5f9] text-[#0f172a]') + '">🛡️ Homicidios</button>' +
+            '<button onclick="setHeatmapLayer(\'fcm\')" class="px-3 py-1.5 rounded-[10px] text-xs font-bold ' + (activeHeatmapLayer === 'fcm' ? 'bg-[#0f172a] text-white' : 'bg-[#f1f5f9] text-[#0f172a]') + '">🏛️ Dependencia FCM</button>' +
+            '</div></div>' +
+
+            '<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">';
+
+        regions.forEach(function (r) {
+            var val = 0;
+            var displayVal = '';
+            var colorClass = '';
+
+            if (activeHeatmapLayer === 'water') {
+                val = r.water_deficit_pct || 0;
+                displayVal = val + '% Déficit';
+                colorClass = val > 75 ? 'bg-red-500 text-white' : val > 45 ? 'bg-amber-400 text-[#0f172a]' : 'bg-sky-400 text-white';
+            } else if (activeHeatmapLayer === 'prisons') {
+                val = (r.prisons || {}).overcrowding_pct || 0;
+                displayVal = val + '% Hacin.';
+                colorClass = val > 150 ? 'bg-red-600 text-white' : val > 120 ? 'bg-amber-500 text-white' : 'bg-emerald-500 text-white';
+            } else if (activeHeatmapLayer === 'homicide') {
+                val = (r.security || {}).homicide_rate_per_100k || 0;
+                displayVal = val + ' / 100k';
+                colorClass = val > 7.0 ? 'bg-red-600 text-white' : val > 4.5 ? 'bg-amber-500 text-white' : 'bg-emerald-500 text-white';
+            } else {
+                val = (r.finances || {}).fcm_dependency_avg_pct || 0;
+                displayVal = val + '% FCM';
+                colorClass = val > 70 ? 'bg-indigo-700 text-white' : val > 50 ? 'bg-indigo-500 text-white' : 'bg-indigo-300 text-[#0f172a]';
+            }
+
+            html += '<div onclick="switchToRegion(\'' + r.id + '\')" class="p-3 rounded-[16px] bg-white border border-[#e2e8f0] hover:border-[#0284c7] hover:shadow-md cursor-pointer transition space-y-2">' +
+                '<div class="flex items-center justify-between">' +
+                '<span class="text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded bg-[#0f172a] text-white">' + r.number + '</span>' +
+                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full ' + colorClass + '">' + displayVal + '</span>' +
+                '</div>' +
+                '<h5 class="text-[11px] font-bold text-[#0f172a] truncate">' + r.name.replace('Región de ', '').replace('Región del ', '') + '</h5>' +
+                '<div class="text-[10px] text-[#64748b] truncate">Cap: ' + r.capital + '</div>' +
+                '</div>';
+        });
+
+        html += '</div></div>';
+        container.innerHTML = html;
+    }
+
+    function setHeatmapLayer(layerKey) {
+        activeHeatmapLayer = layerKey;
+        renderVectorHeatmap();
+    }
+
+    // 9. CALENDARIO DINÁMICO DE EFEMÉRIDES HISTÓRICAS (DÍA A DÍA CON BCN)
     function renderHistoricalView() {
         var snap = getSnapshot();
         var hist = snap.historical_data || {};
         var container = document.getElementById('historical-view-container');
         if (!container) return;
 
-        var html = '<div class="space-y-8">';
+        var today = new Date();
+        var currentMonth = today.getMonth() + 1;
+        var currentDay = today.getDate();
 
-        // SECCIÓN A: UN DÍA COMO HOY EN CHILE
-        html += '<div class="shadcn-card p-6 md:p-8 space-y-5 border border-[#e2e8f0]">' +
-            '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">' +
-            '<div class="space-y-1">' +
+        var allMilestones = hist.milestones || [];
+        var monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        var html = '<div class="space-y-8">' +
+            '<div class="shadcn-card p-6 md:p-8 space-y-6 border border-[#e2e8f0]">' +
+            '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e2e8f0] pb-4">' +
+            '<div>' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="shadcn-badge bg-[#dc2626] text-white font-mono font-bold">HOY EN LA HISTORIA DE CHILE</span>' +
+            '<span class="shadcn-badge bg-[#f1f5f9] text-[#0f172a] border border-[#e2e8f0] font-bold font-mono">' + currentDay + ' de ' + monthNames[currentMonth - 1] + '</span>' +
+            '</div>' +
+            '<h2 class="text-xl sm:text-2xl font-extrabold text-[#0f172a] tracking-tight">Efemérides & Hitos de Estado Día a Día</h2>' +
+            '<p class="text-xs text-[#64748b]">Acontecimientos institucionales, leyes y transformaciones republicanas ocurridas a lo largo de la historia</p>' +
+            '</div>' +
             '<div class="flex items-center gap-2">' +
-            '<span class="shadcn-badge bg-[#dc2626] text-white font-mono font-bold">HOY EN LA HISTORIA</span>' +
-            '<span class="shadcn-badge bg-[#f1f5f9] text-[#0f172a] border border-[#e2e8f0] font-bold">' + (hist.today_date || '1 de Septiembre') + '</span>' +
-            '</div>' +
-            '<h2 class="text-xl sm:text-2xl font-extrabold text-[#0f172a] tracking-tight">Un Día Como Hoy en la República de Chile</h2>' +
-            '<p class="text-xs text-[#64748b]">Acontecimientos institucionales, económicos y republicanos ocurridos en esta fecha a lo largo de los años</p>' +
-            '</div>' +
-            '<span class="px-3 py-1.5 rounded-[12px] bg-[#0284c7]/10 text-[#0284c7] border border-[#0284c7]/20 text-xs font-bold font-mono">1810 - 2026</span>' +
-            '</div>' +
+            '<select id="filter-efemeride-month" onchange="filterMilestonesByMonth(this.value)" class="shadcn-input px-3 py-1.5 text-xs font-bold bg-[#f8f9fa]">';
 
-            '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+        monthNames.forEach(function (m, idx) {
+            var sel = ((idx + 1) === currentMonth) ? 'selected' : '';
+            html += '<option value="' + (idx + 1) + '" ' + sel + '>' + m + '</option>';
+        });
 
-        var efemerides = hist.efemerides_today || [];
-        efemerides.forEach(function (efe) {
+        html += '</select></div></div>' +
+            '<div id="milestones-grid-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+
+        var filteredMilestones = allMilestones.filter(function (m) { return m.month === currentMonth; });
+        if (filteredMilestones.length === 0) filteredMilestones = allMilestones.slice(0, 6);
+
+        filteredMilestones.forEach(function (efe) {
             html += '<div class="p-5 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3 hover:border-slate-300 transition">' +
                 '<div class="flex items-center justify-between gap-2 flex-wrap">' +
-                '<span class="px-2.5 py-0.5 rounded-[8px] text-xs font-mono font-extrabold bg-[#0f172a] text-white">Año ' + efe.year + ' (hace ' + efe.years_ago + ' años)</span>' +
-                '<span class="text-[11px] font-bold text-[#0284c7]">' + (efe.category || 'Hito de Estado') + '</span>' +
+                '<span class="px-2.5 py-0.5 rounded-[8px] text-xs font-mono font-extrabold bg-[#0f172a] text-white">' + efe.day + ' de ' + monthNames[efe.month - 1] + ' (' + efe.year + ')</span>' +
+                '<span class="text-[11px] font-bold text-[#0284c7]">Hito Republicano</span>' +
                 '</div>' +
                 '<h3 class="text-sm font-bold text-[#0f172a] leading-snug">' + efe.title + '</h3>' +
                 '<p class="text-xs text-[#334155] leading-relaxed">' + efe.desc + '</p>' +
                 '<div class="pt-2 border-t border-[#e2e8f0] flex items-center justify-between text-[11px] text-[#64748b]">' +
                 '<span class="font-medium text-[#0f172a]">Fuente Oficial:</span>' +
-                '<a href="' + (efe.source_url || '#') + '" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#0284c7] hover:underline flex items-center gap-1">' +
+                '<a href="' + (efe.url || '#') + '" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#0284c7] hover:underline flex items-center gap-1">' +
                 efe.source + ' <i data-lucide="external-link" class="w-3 h-3"></i>' +
                 '</a>' +
                 '</div>' +
@@ -455,11 +841,11 @@
 
         html += '</div></div>';
 
-        // SECCIÓN B: EVOLUCIÓN CENTENARIA DE CHILE (1926 vs 1976 vs 2000 vs 2026)
+        // SECCIÓN B: EVOLUCIÓN CENTENARIA
         html += '<div class="shadcn-card p-6 md:p-8 space-y-6 border border-[#e2e8f0]">' +
             '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">' +
-            '<div class="space-y-1">' +
-            '<div class="flex items-center gap-2">' +
+            '<div>' +
+            '<div class="flex items-center gap-2 mb-1">' +
             '<span class="shadcn-badge bg-[#0f172a] text-white">TRANSFORMACIÓN DE CHILE</span>' +
             '<span class="shadcn-badge bg-[#f1f5f9] text-[#64748b] border border-[#e2e8f0]">100 AÑOS DE DATA</span>' +
             '</div>' +
@@ -482,7 +868,7 @@
                 '<div class="grid grid-cols-4 gap-2 text-center">' +
                 '<div class="p-2.5 rounded-[12px] bg-white border border-[#e2e8f0]"><span class="text-[9px] font-mono uppercase font-bold text-[#64748b] block">1926 (100a)</span><span class="text-xs font-mono font-bold text-[#64748b] block">' + stat.y1926 + '</span></div>' +
                 '<div class="p-2.5 rounded-[12px] bg-white border border-[#e2e8f0]"><span class="text-[9px] font-mono uppercase font-bold text-[#64748b] block">1976 (50a)</span><span class="text-xs font-mono font-bold text-[#64748b] block">' + stat.y1976 + '</span></div>' +
-                '<div class="p-2.5 rounded-[12px] bg-white border border-[#e2e8f0]"><span class="text-[9px] font-mono uppercase font-bold text-[#64748b] block">2000 (26a)</span><span class="text-xs font-mono font-bold text-[#0f172a] block">' + stat.y2000 + '</span></div>' +
+                '<div class="p-2.5 rounded-[12px] bg-white border border-[#e2e8f0]"><span class="text-[9px] font-mono uppercase font-bold text-[#0f172a] block">' + stat.y2000 + '</span></div>' +
                 '<div class="p-2.5 rounded-[12px] bg-[#0f172a] text-white"><span class="text-[9px] font-mono uppercase font-bold text-slate-300 block">2026 (HOY)</span><span class="text-xs font-mono font-extrabold text-cyan-300 block">' + stat.y2026 + '</span></div>' +
                 '</div>' +
 
@@ -498,12 +884,118 @@
         });
 
         html += '</div></div></div>';
-
         container.innerHTML = html;
         safeCreateIcons();
     }
 
-    // 6. RANKINGS & COMPARADOR TERRITORIAL
+    function filterMilestonesByMonth(monthNum) {
+        var mNum = parseInt(monthNum, 10);
+        var snap = getSnapshot();
+        var hist = snap.historical_data || {};
+        var allMilestones = hist.milestones || [];
+        var monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        var listEl = document.getElementById('milestones-grid-list');
+        if (!listEl) return;
+
+        var filtered = allMilestones.filter(function (m) { return m.month === mNum; });
+        if (filtered.length === 0) {
+            listEl.innerHTML = '<p class="text-xs text-[#64748b] col-span-2 text-center py-8">No hay hitos archivados para este mes en el catálogo principal.</p>';
+            return;
+        }
+
+        var html = '';
+        filtered.forEach(function (efe) {
+            html += '<div class="p-5 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3 hover:border-slate-300 transition">' +
+                '<div class="flex items-center justify-between gap-2 flex-wrap">' +
+                '<span class="px-2.5 py-0.5 rounded-[8px] text-xs font-mono font-extrabold bg-[#0f172a] text-white">' + efe.day + ' de ' + monthNames[efe.month - 1] + ' (' + efe.year + ')</span>' +
+                '<span class="text-[11px] font-bold text-[#0284c7]">Hito Republicano</span>' +
+                '</div>' +
+                '<h3 class="text-sm font-bold text-[#0f172a] leading-snug">' + efe.title + '</h3>' +
+                '<p class="text-xs text-[#334155] leading-relaxed">' + efe.desc + '</p>' +
+                '<div class="pt-2 border-t border-[#e2e8f0] flex items-center justify-between text-[11px] text-[#64748b]">' +
+                '<span class="font-medium text-[#0f172a]">Fuente Oficial:</span>' +
+                '<a href="' + (efe.url || '#') + '" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#0284c7] hover:underline flex items-center gap-1">' +
+                efe.source + ' <i data-lucide="external-link" class="w-3 h-3"></i>' +
+                '</a>' +
+                '</div>' +
+                '</div>';
+        });
+
+        listEl.innerHTML = html;
+        safeCreateIcons();
+    }
+
+    // 10. GRÁFICO FISCAL DONUT
+    function renderFiscalCharts() {
+        var chartDom = document.getElementById('chart-fiscal-flow');
+        if (!chartDom || !window.echarts) return;
+
+        var myChart = echarts.init(chartDom);
+        var snap = getSnapshot();
+        var fiscal = snap.national_fiscal_balance || {};
+        var expenditures = fiscal.expenditures || [];
+
+        var dataPoints = expenditures.map(function (e) {
+            return {
+                name: e.category.split('(')[0].trim(),
+                value: (e.amount_usd / 1000000000)
+            };
+        });
+
+        var option = {
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: '#0f172a',
+                borderColor: '#1e293b',
+                textStyle: { color: '#ffffff', fontSize: 12, fontFamily: 'Montserrat' },
+                formatter: function (params) {
+                    return '<div class="font-bold">' + params.name + '</div>' +
+                        '<div>Monto: <span class="font-mono text-cyan-400 font-bold">US$ ' + params.value.toFixed(1) + 'B</span></div>' +
+                        '<div>Participación: <span class="font-mono text-amber-300 font-bold">' + params.percent + '%</span></div>' +
+                        '<div class="text-[10px] text-slate-300 mt-1">Fuente: DIPRES / Min. Hacienda</div>';
+                }
+            },
+            series: [
+                {
+                    name: 'Destino del Gasto',
+                    type: 'pie',
+                    radius: ['45%', '75%'],
+                    center: ['50%', '50%'],
+                    avoidLabelOverlap: true,
+                    itemStyle: {
+                        borderRadius: 8,
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    },
+                    label: { show: false },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: 13,
+                            fontWeight: 'bold',
+                            fontFamily: 'Montserrat',
+                            color: '#0f172a',
+                            formatter: '{b}\nUS$ {c}B'
+                        },
+                        itemStyle: {
+                            shadowBlur: 12,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.2)'
+                        }
+                    },
+                    labelLine: { show: false },
+                    data: dataPoints
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+        window.addEventListener('resize', function () { myChart.resize(); });
+    }
+
+    // 11. RANKINGS & COMPARADOR TERRITORIAL
     function renderRegionalMatrixTable() {
         var snap = getSnapshot();
         var regions = snap.regions_complete_audit || [];
@@ -516,7 +1008,6 @@
 
         var html = '<div class="space-y-6">' +
             '<div class="grid grid-cols-1 md:grid-cols-3 gap-5">' +
-            // TOP HACINAMIENTO
             '<div class="p-5 rounded-[20px] bg-white border border-[#e2e8f0] space-y-3 shadow-sm">' +
             '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
             '<span class="text-xs font-bold text-[#dc2626] uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Mayor Hacinamiento Penal</span>' +
@@ -532,7 +1023,6 @@
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Gendarmería de Chile 2026</div>' +
             '</div></div>' +
 
-            // TOP LISTA ESPERA
             '<div class="p-5 rounded-[20px] bg-white border border-[#e2e8f0] space-y-3 shadow-sm">' +
             '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
             '<span class="text-xs font-bold text-[#0f172a] uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-[#0284c7]"></i> Mayor Demora Quirúrgica</span>' +
@@ -548,7 +1038,6 @@
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: DEIS - Ministerio de Salud</div>' +
             '</div></div>' +
 
-            // TOP DEPENDENCIA FCM
             '<div class="p-5 rounded-[20px] bg-white border border-[#e2e8f0] space-y-3 shadow-sm">' +
             '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
             '<span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="landmark" class="w-4 h-4"></i> Dependencia Fondo Común</span>' +
@@ -564,7 +1053,6 @@
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Subdere SINIM 2026</div>' +
             '</div></div></div>' +
 
-            // LISTADO RESPONSIVO DE LAS 16 REGIONES
             '<div class="p-6 rounded-[22px] bg-white border border-[#e2e8f0] space-y-4 shadow-sm">' +
             '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e2e8f0] pb-3">' +
             '<div><h3 class="text-base font-bold text-[#0f172a]">Comparativa Territorial de las 16 Regiones de Chile</h3><p class="text-xs text-[#64748b]">Haz clic en cualquier región para abrir su auditoría completa</p></div>' +
@@ -601,7 +1089,7 @@
         if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 7. LEYES & CONGRESO CON FUENTES LEGISLATIVAS
+    // 12. LEYES & CONGRESO
     function renderLegislativeBills() {
         var snap = getSnapshot();
         var bills = snap.legislative_bills || [];
@@ -635,7 +1123,7 @@
         container.innerHTML = html;
     }
 
-    // 8. CADENA NACIONAL
+    // 13. CADENA NACIONAL
     function renderCadenaNacional() {
         var snap = getSnapshot();
         var cn = snap.cadena_nacional || {};
@@ -660,56 +1148,7 @@
         }
     }
 
-    // 9. SIMULADOR PROSPECTIVO OCDE
-    function runSimulation() {
-        var sel = document.getElementById('simulator-select');
-        var out = document.getElementById('simulator-output');
-        if (!sel || !out) return;
-
-        var val = sel.value;
-        var simulations = {
-            'carceles': {
-                title: 'Reforma Penitenciaria Tipo Noruega (Reinserción Real vs Castigo Simple)',
-                evidence: 'En Noruega, la tasa de reincidencia cayó del 70% al 20% tras convertir las cárceles en centros de capacitación laboral intensiva y salud mental. En Chile, la sobrepoblación es de 134.8% y 53% de los liberados vuelve a delinquir antes de 3 años.',
-                cost: 'US$ 450 Millones en 4 años',
-                impact: 'Reducción proyectada del 35% en delitos violentos hacia 2030 y ahorro fiscal de US$ 180M anuales en juicios y custodias.',
-                source: 'OECD Governance Reviews / Gendarmería de Chile'
-            },
-            'salud': {
-                title: 'Hospitales de Alta Resolución (Modelo Español) vs Subsidio a la Demanda',
-                evidence: 'España redujo las listas de espera en 40% instalando centros de resolución ambulatoria rápida (CARE) donde el 80% de los pacientes sale con diagnóstico y tratamiento el mismo día.',
-                cost: 'US$ 620 Millones en 3 años',
-                impact: 'Baja del tiempo promedio de espera quirúrgica en Chile de 480 días a menos de 90 días.',
-                source: 'Ministerio de Sanidad de España / DEIS Minsal'
-            },
-            'agua': {
-                title: 'Red Nacional de Desalinización Multipropósito (Modelo Israel) vs Camiones Aljibe',
-                evidence: 'Israel pasó de un déficit hídrico crónico a producir el 85% de su agua potable vía desalinización costera con energía solar. Chile hoy gasta US$ 120M anuales en camiones aljibe que no resuelven el problema.',
-                cost: 'US$ 1.800 Millones (Concesiones Público-Privadas)',
-                impact: 'Seguridad hídrica total para Coquimbo, Valparaíso y Atacama, habilitando 50.000 nuevas hectáreas agrícolas sostenibles.',
-                source: 'Israel Water Authority / DGA MOP Chile'
-            },
-            'educacion': {
-                title: 'Formación Técnico-Profesional Dual (Modelo Alemán)',
-                evidence: 'Alemania mantiene el desempleo juvenil más bajo de Europa (5.8%) gracias a que el 50% de la formación técnica ocurre dentro de empresas con contrato y remuneración desde el primer año.',
-                cost: 'US$ 280 Millones anuales',
-                impact: 'Aumento del 42% en empleabilidad juvenil formal inmediata en Chile al egresar de 4° Medio Técnico.',
-                source: 'Federal Ministry of Education (BMBF) Alemania / Mineduc'
-            }
-        };
-
-        var item = simulations[val] || simulations['carceles'];
-        out.innerHTML = '<div class="space-y-3 text-xs leading-relaxed">' +
-            '<h4 class="text-sm font-bold text-[#0f172a]">' + item.title + '</h4>' +
-            '<p class="text-[#334155]"><strong>Evidencia Comparada:</strong> ' + item.evidence + '</p>' +
-            '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">' +
-            '<div class="p-3 rounded-[12px] bg-white border border-[#e2e8f0]"><strong class="text-[#64748b] block text-[10px] uppercase">Costo Fiscal Estimado:</strong><span class="font-mono font-bold text-[#0f172a]">' + item.cost + '</span></div>' +
-            '<div class="p-3 rounded-[12px] bg-white border border-[#e2e8f0]"><strong class="text-[#16a34a] block text-[10px] uppercase">Impacto Proyectado:</strong><span class="font-bold text-[#16a34a]">' + item.impact + '</span></div>' +
-            '</div>' +
-            '<div class="pt-2 border-t border-[#e2e8f0] text-[10px] text-[#64748b]">Fuente: ' + item.source + '</div>' +
-            '</div>';
-    }
-    // 10. OBSERVATORIO DE NOTICIAS & CLUSTERS
+    // 14. OBSERVATORIO DE NOTICIAS & CLUSTERS
     function normalizeCategoryName(cat) {
         if (!cat) return 'Nacional';
         var c = cat.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
@@ -806,7 +1245,7 @@
         document.getElementById('cluster-modal').classList.remove('hidden');
     }
 
-    // 11. ÁGORA CIUDADANA
+    // 15. ÁGORA CIUDADANA
     var defaultProposals = [
         { id: 1, pilar: 'Salud Pública', title: 'Telemedicina 24/7 en postas rurales de Aysén y Los Lagos', desc: 'Conectar las 240 postas rurales más aisladas con médicos especialistas de Santiago y Concepción vía fibra óptica y satelital.', votes: 428 },
         { id: 2, pilar: 'Seguridad & Cárceles', title: 'Bloqueadores de señal celular penitenciaria con energía solar autónoma', desc: 'Evitar estafas y extorsiones desde los 82 penales del país instalando jaulas Faraday y bloqueadores biométricos.', votes: 612 },
@@ -885,7 +1324,7 @@
         }, 1200);
     }
 
-    // 12. MODAL LEY 21.719 (ARCO)
+    // 16. MODAL LEY 21.719 (ARCO)
     function openArcoModal() {
         document.getElementById('arco-modal').classList.remove('hidden');
     }
@@ -906,9 +1345,9 @@
         if (el) el.classList.add('hidden');
     }
 
-    // 13. SISTEMA DE PESTAÑAS (FLEX-WRAP, CERO SCROLL LATERAL)
+    // 17. SISTEMA DE PESTAÑAS
     function switchTab(tabKey) {
-        var views = ['balance', 'regiones', 'matriz', 'historia', 'leyes', 'cadena', 'clusters', 'citizen'];
+        var views = ['balance', 'regiones', 'comparador', 'matriz', 'historia', 'leyes', 'cadena', 'clusters', 'citizen'];
         views.forEach(function (v) {
             var el = document.getElementById('view-' + v);
             var btn = document.getElementById('tab-btn-' + v);
@@ -930,10 +1369,13 @@
 
         if (tabKey === 'balance') {
             setTimeout(renderFiscalCharts, 50);
+        } else if (tabKey === 'comparador') {
+            renderRegionComparator();
+            renderVectorHeatmap();
         }
     }
 
-    // 14. ONBOARDING TOUR GUIADO
+    // 18. ONBOARDING TOUR GUIADO
     var onboardingSteps = [
         {
             badge: 'PASO 1 DE 4',
@@ -1011,16 +1453,17 @@
         localStorage.setItem('chile_onboarding_done', 'true');
     }
 
-    // INICIALIZACIÓN GLOBAL (SIN MODALES BLOQUEADORES AL ENTRAR)
+    // INICIALIZACIÓN GLOBAL
     function renderAllViews() {
         renderEconomicIndicators();
         renderNationalBalanceView();
         renderRegionsAuditView();
+        renderRegionComparator();
+        renderVectorHeatmap();
         renderRegionalMatrixTable();
         renderHistoricalView();
         renderLegislativeBills();
         renderCadenaNacional();
-        runSimulation();
         renderClustersView();
         renderCitizenProposals();
         safeCreateIcons();
@@ -1030,11 +1473,24 @@
         renderAllViews();
     });
 
+    window.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openAssistantModal();
+        }
+    });
+
     // Exponer funciones globales
     window.selectRegion = selectRegion;
     window.switchToRegion = switchToRegion;
     window.switchTab = switchTab;
-    window.runSimulation = runSimulation;
+    window.calculateBudgetSimulation = calculateBudgetSimulation;
+    window.resetBudgetSimulation = resetBudgetSimulation;
+    window.updateCompareRegions = updateCompareRegions;
+    window.setHeatmapLayer = setHeatmapLayer;
+    window.exportRegionalReportPDF = exportRegionalReportPDF;
+    window.exportDataCSV = exportDataCSV;
+    window.filterMilestonesByMonth = filterMilestonesByMonth;
     window.filterCategory = filterCategory;
     window.filterClusters = filterClusters;
     window.openClusterModal = openClusterModal;
@@ -1048,5 +1504,8 @@
     window.nextOnboardingStep = nextOnboardingStep;
     window.prevOnboardingStep = prevOnboardingStep;
     window.finishOnboarding = finishOnboarding;
+    window.openAssistantModal = openAssistantModal;
+    window.handleAssistantSubmit = handleAssistantSubmit;
+    window.askAssistantChip = askAssistantChip;
 
 })();

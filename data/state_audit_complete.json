@@ -2882,77 +2882,231 @@
     }
   ],
   "historical_data": {
-    "today_date": "1 de Septiembre",
-    "efemerides_today": [
+    "milestones": [
       {
-        "year": 1952,
-        "years_ago": 74,
-        "title": "Creación del Servicio Nacional de Salud (SNS) de Chile",
-        "desc": "Se promulga la Ley N° 10.383 durante el gobierno de Gabriel González Videla, fusionando el Servicio Médico Nacional de Empleados, la Junta Central de Beneficencia y el Seguro Obrero Obligatorio. Este hito unificó la medicina curativa y preventiva en Chile, sentando las bases del actual Fondo Nacional de Salud (Fonasa) y la red de 206 hospitales públicos.",
-        "source": "Biblioteca del Congreso Nacional de Chile (BCN) - Ley N° 10.383",
-        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=27027",
-        "category": "Salud Pública & Bienestar"
+        "month": 1,
+        "day": 8,
+        "year": 1949,
+        "title": "Promulgación del Voto Femenino Pleno en Chile",
+        "desc": "Ley N° 9.292 consagró el sufragio universal para mujeres en elecciones presidenciales y parlamentarias.",
+        "source": "Biblioteca del Congreso Nacional (BCN)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=26655"
       },
       {
-        "year": 1925,
-        "years_ago": 101,
-        "title": "Fundación del Banco Central de Chile",
-        "desc": "Mediante el Decreto Ley N° 486 se crea el Banco Central de Chile bajo la presidencia de Arturo Alessandri Palma, siguiendo las recomendaciones técnicas de la Misión Kemmerer para poner fin a décadas de inestabilidad monetaria y emisión inorgánica de billetes fiscales.",
-        "source": "Banco Central de Chile - Archivo Institucional & Leyes Fundacionales",
-        "source_url": "https://www.bcentral.cl",
-        "category": "Economía & Soberanía Monetaria"
+        "month": 1,
+        "day": 15,
+        "year": 1934,
+        "title": "Voto Femenino Municipal (Ley N° 5.357)",
+        "desc": "Se concedió por primera vez el voto municipal a mujeres mayores de 21 años.",
+        "source": "BCN LeyChile",
+        "url": "https://www.bcn.cl/leychile"
       },
       {
-        "year": 1989,
-        "years_ago": 37,
-        "title": "Autonomía Constitucional del Banco Central de Chile",
-        "desc": "Se promulga la Ley Orgánica Constitucional N° 18.840, consagrando la autonomía técnica y patrimonial del Banco Central, con la misión exclusiva de velar por la estabilidad de la moneda y el normal funcionamiento de los pagos internos y externos.",
-        "source": "Diario Oficial de la República de Chile - Ley N° 18.840",
-        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=30219",
-        "category": "Institucionalidad"
+        "month": 1,
+        "day": 25,
+        "year": 1966,
+        "title": "Chilenización del Cobre (Ley N° 16.425)",
+        "desc": "El Estado adquiere el 51% de los grandes yacimientos cupríferos (El Teniente, Chuquicamata).",
+        "source": "BCN / Cochilco",
+        "url": "https://www.bcn.cl"
       },
       {
-        "year": 1812,
-        "years_ago": 214,
-        "title": "Primer Reglamento Militar de la República Libre",
-        "desc": "Durante la Patria Vieja, la Junta de Gobierno presidida por José Miguel Carrera decreta las primeras ordenanzas militares republicanas para organizar las milicias patriotas frente a la reconquista.",
-        "source": "Archivo Histórico Nacional de Chile - Fondos de la Independencia",
-        "source_url": "https://www.archivonacional.gob.cl",
-        "category": "Historia Patria"
-      }
-    ],
-    "other_dates": [
-      {
-        "date": "18 de Septiembre",
-        "year": 1810,
-        "title": "Primera Junta Nacional de Gobierno",
-        "desc": "Cabildo abierto en Santiago que marca el inicio del proceso de emancipación nacional e independencia de Chile.",
-        "source": "Memoria Chilena - Biblioteca Nacional de Chile",
-        "source_url": "https://www.memoriachilena.gob.cl"
+        "month": 1,
+        "day": 28,
+        "year": 2022,
+        "title": "Creación de la Pensión Garantizada Universal (PGU)",
+        "desc": "Ley N° 21.419 reemplazó el pilar solidario por una pensión no contributiva para el 90% de adultos mayores.",
+        "source": "BCN / IPS",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=1172152"
       },
       {
-        "date": "12 de Febrero",
+        "month": 2,
+        "day": 1,
+        "year": 1968,
+        "title": "Seguro Social de Accidentes del Trabajo (Ley N° 16.744)",
+        "desc": "Creó el seguro obligatorio administrado por el Estado y las mutuales.",
+        "source": "SUSESO",
+        "url": "https://www.suseso.cl"
+      },
+      {
+        "month": 2,
+        "day": 12,
         "year": 1818,
-        "title": "Firma del Acta de Proclamación de la Independencia",
-        "desc": "Bernardo O Higgins firma solemnemente el Acta de Independencia de Chile en Talca y es jurada en Santiago.",
-        "source": "Biblioteca del Congreso Nacional de Chile",
-        "source_url": "https://www.bcn.cl"
+        "title": "Firma de la Proclamación de la Independencia",
+        "desc": "Bernardo O Higgins firma solemnemente el Acta de Independencia de Chile en Talca.",
+        "source": "Archivo Histórico Nacional",
+        "url": "https://www.archivonacional.gob.cl"
       },
       {
-        "date": "11 de Julio",
-        "year": 1971,
-        "title": "Nacionalización de la Gran Minería del Cobre (Día de la Dignidad Nacional)",
-        "desc": "Aprobación unánime en el Congreso Nacional de la reforma constitucional que traspasó los principales yacimientos (Chuquicamata, El Teniente, El Salvador) al Estado de Chile, creando Codelco.",
-        "source": "Congreso Nacional de Chile - Reforma Constitucional Ley N° 17.450",
-        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=29107"
+        "month": 4,
+        "day": 26,
+        "year": 2023,
+        "title": "Promulgación de la Ley de 40 Horas (Ley N° 21.561)",
+        "desc": "Reducción de la jornada laboral de 45 a 40 horas semanales con gradualidad.",
+        "source": "Ministerio del Trabajo / BCN",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=1191060"
       },
       {
-        "date": "21 de Mayo",
+        "month": 4,
+        "day": 29,
+        "year": 1939,
+        "title": "Fundación de CORFO (Ley N° 6.334)",
+        "desc": "Creación de la Corporación de Fomento de la Producción tras el terremoto de Chillán.",
+        "source": "CORFO / Memoria Chilena",
+        "url": "https://www.corfo.cl"
+      },
+      {
+        "month": 5,
+        "day": 13,
+        "year": 1931,
+        "title": "Primer Código del Trabajo de Chile (DFL N° 178)",
+        "desc": "Unificó las leyes sociales de 1924 en un solo cuerpo normativo laboral.",
+        "source": "BCN LeyChile",
+        "url": "https://www.bcn.cl"
+      },
+      {
+        "month": 5,
+        "day": 21,
         "year": 1879,
         "title": "Combate Naval de Iquique y Punta Gruesa",
-        "desc": "Acción naval en que la corbeta Esmeralda comandada por Arturo Prat resistió al monitor Huáscar, consagrando el valor cívico naval.",
-        "source": "Armada de Chile - Archivo Histórico Naval",
-        "source_url": "https://www.armada.cl"
+        "desc": "Hazaña cívica naval de Arturo Prat Chacón a bordo de la corbeta Esmeralda.",
+        "source": "Armada de Chile",
+        "url": "https://www.armada.cl"
+      },
+      {
+        "month": 5,
+        "day": 29,
+        "year": 2018,
+        "title": "Ley de Gratuidad Universitaria y Técnica (Ley N° 21.091)",
+        "desc": "Consagración legal de la gratuidad en educación superior para los primeros 6 deciles.",
+        "source": "Mineduc / BCN",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=1118958"
+      },
+      {
+        "month": 5,
+        "day": 31,
+        "year": 1958,
+        "title": "Cédula Única de Votación (Ley N° 12.889)",
+        "desc": "Terminó con el cohecho electoral entregando el control de las papeletas al Estado.",
+        "source": "Servicio Electoral (SERVEL)",
+        "url": "https://www.servel.cl"
+      },
+      {
+        "month": 7,
+        "day": 11,
+        "year": 1971,
+        "title": "Nacionalización de la Gran Minería del Cobre (Ley N° 17.450)",
+        "desc": "Reforma constitucional unánime que transfirió todos los yacimientos al Estado, creando Codelco.",
+        "source": "Congreso Nacional de Chile",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=29107"
+      },
+      {
+        "month": 7,
+        "day": 28,
+        "year": 1967,
+        "title": "Promulgación de la Reforma Agraria (Ley N° 16.640)",
+        "desc": "Redistribución de fundos y sindicalización de los trabajadores campesinos.",
+        "source": "BCN / Indap",
+        "url": "https://www.bcn.cl"
+      },
+      {
+        "month": 8,
+        "day": 20,
+        "year": 2008,
+        "title": "Ley de Transparencia y Acceso a la Información (Ley N° 20.285)",
+        "desc": "Creó el Consejo para la Transparencia y la obligación de transparencia activa.",
+        "source": "Consejo para la Transparencia",
+        "url": "https://www.consejotransparencia.cl"
+      },
+      {
+        "month": 8,
+        "day": 26,
+        "year": 1920,
+        "title": "Ley de Instrucción Primaria Obligatoria (Ley N° 3.654)",
+        "desc": "Garantizó la educación primaria estatal y gratuita impulsada por Darío Salas.",
+        "source": "BCN LeyChile",
+        "url": "https://www.bcn.cl"
+      },
+      {
+        "month": 9,
+        "day": 1,
+        "year": 1952,
+        "title": "Creación del Servicio Nacional de Salud (SNS - Ley N° 10.383)",
+        "desc": "Unificó la medicina preventiva y curativa, fundando el actual Fonasa y hospitales públicos.",
+        "source": "BCN / DEIS Minsal",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=27027"
+      },
+      {
+        "month": 9,
+        "day": 1,
+        "year": 1925,
+        "title": "Fundación del Banco Central de Chile (Decreto Ley N° 486)",
+        "desc": "Se crea la institución monetaria bajo recomendación de la Misión Kemmerer.",
+        "source": "Banco Central de Chile",
+        "url": "https://www.bcentral.cl"
+      },
+      {
+        "month": 9,
+        "day": 1,
+        "year": 1989,
+        "title": "Autonomía Constitucional del Banco Central (Ley N° 18.840)",
+        "desc": "Se establece la autonomía técnica para velar por la estabilidad de la moneda.",
+        "source": "Diario Oficial / BCN",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=30219"
+      },
+      {
+        "month": 9,
+        "day": 3,
+        "year": 2004,
+        "title": "Régimen de Garantías Explícitas en Salud (AUGE/GES - Ley N° 19.966)",
+        "desc": "Garantías legales de acceso, oportunidad y calidad para problemas de salud priorizados.",
+        "source": "Superintendencia de Salud",
+        "url": "https://www.supersalud.gob.cl"
+      },
+      {
+        "month": 9,
+        "day": 8,
+        "year": 1924,
+        "title": "Promulgación de las Leyes Sociales de 1924",
+        "desc": "Primer paquete integral de derechos laborales y seguro obligatorio de enfermedad.",
+        "source": "Memoria Chilena",
+        "url": "https://www.memoriachilena.gob.cl"
+      },
+      {
+        "month": 9,
+        "day": 18,
+        "year": 1810,
+        "title": "Primera Junta Nacional de Gobierno",
+        "desc": "Cabildo abierto que marca el inicio del proceso de autodeterminación republicana.",
+        "source": "Archivo Nacional",
+        "url": "https://www.archivonacional.gob.cl"
+      },
+      {
+        "month": 9,
+        "day": 18,
+        "year": 1925,
+        "title": "Promulgación de la Constitución Política de 1925",
+        "desc": "Restauró el régimen presidencialista y separó la Iglesia del Estado.",
+        "source": "BCN LeyChile",
+        "url": "https://www.bcn.cl"
+      },
+      {
+        "month": 11,
+        "day": 4,
+        "year": 1980,
+        "title": "Creación del Sistema de Capitalización Individual (DL N° 3.500)",
+        "desc": "Creó el sistema de Administradoras de Fondos de Pensiones (AFP).",
+        "source": "Superintendencia de Pensiones",
+        "url": "https://www.spensiones.cl"
+      },
+      {
+        "month": 12,
+        "day": 14,
+        "year": 1855,
+        "title": "Promulgación del Código Civil de Andrés Bello",
+        "desc": "Pilar del derecho privado y patrimonial chileno vigente desde 1857.",
+        "source": "BCN LeyChile",
+        "url": "https://www.bcn.cl/leychile"
       }
     ],
     "century_comparison": [

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#ffffff">
-    <title>Presidenta IA & Radiografía de Estado de Chile 🇨🇱 | Auditoría Nacional, 16 Regiones & Memoria Histórica</title>
+    <title>Presidenta IA & Radiografía de Estado de Chile 🇨🇱 | Suite Cívica Profesional 2026</title>
     
     <!-- OpenGraph & Social Sharing -->
     <meta property="og:title" content="Presidenta IA & Radiografía de Estado de Chile 🇨🇱">
-    <meta property="og:description" content="Auditoría transversal del Estado de Chile y sus 16 Regiones con fuentes oficiales de 11 ministerios, efemérides históricas y observatorio de medios.">
+    <meta property="og:description" content="Auditoría transversal del Estado de Chile y sus 16 Regiones con fuentes oficiales de 11 ministerios, Asistente Cívico IA, Simulador Fiscal y Memoria Histórica.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://majajicl.github.io/chile-observatorio-medios/">
     
@@ -23,11 +23,11 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./style.css?v=20260901_8">
+    <link rel="stylesheet" href="./style.css?v=20260901_9">
 </head>
 <body class="min-h-full flex flex-col bg-[#f8f9fa] selection:bg-[#0f172a] selection:text-white antialiased pb-20 lg:pb-0">
 
-    <!-- TOP TICKER BAR: INDICADORES DEL BANCO CENTRAL (FLEX-WRAP, CERO SCROLL LATERAL) -->
+    <!-- TOP TICKER BAR: INDICADORES DEL BANCO CENTRAL -->
     <header class="border-b border-[#e2e8f0] bg-[#ffffff] px-4 py-2 text-xs sticky top-0 z-40 shadow-xs">
         <div class="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
             <div class="flex items-center space-x-2">
@@ -41,17 +41,22 @@
             </div>
 
             <div class="flex items-center space-x-2 text-xs">
-                <button onclick="openOnboarding(1)" class="shadcn-button-primary px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 shadow-xs">
-                    <i data-lucide="help-circle" class="w-3.5 h-3.5 text-amber-300"></i>
-                    <span>¿Cómo Funciona?</span>
+                <button onclick="openAssistantModal()" class="shadcn-button-primary px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 shadow-xs bg-[#0284c7] hover:bg-[#0369a1]">
+                    <i data-lucide="bot" class="w-3.5 h-3.5 text-amber-300"></i>
+                    <span>Pregúntale a la Presidenta IA</span>
+                </button>
+                <button onclick="openOnboarding(1)" class="shadcn-button-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5">
+                    <i data-lucide="help-circle" class="w-3.5 h-3.5 text-[#0f172a]"></i>
+                    <span class="hidden sm:inline">Guía</span>
                 </button>
                 <button onclick="openArcoModal()" class="shadcn-button-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1">
                     <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#0f172a]"></i>
-                    <span class="hidden sm:inline">Ley 21.719 (ARCO)</span>
+                    <span class="hidden sm:inline">Ley 21.719</span>
                 </button>
             </div>
         </div>
     </header>
+
     <!-- MAIN CONTAINER -->
     <main class="flex-1 max-w-[1280px] w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
 
@@ -71,15 +76,15 @@
                             Presidenta IA & Radiografía de Chile 🇨🇱
                         </h1>
                         <p class="text-xs sm:text-sm md:text-base text-slate-200 font-normal leading-relaxed">
-                            Observatorio de Estado basado en <strong>ciencia, datos oficiales de 11 ministerios, memoria histórica y lecciones internacionales</strong>. Cada cifra, gasto, dotación de Carabineros, capacidad hospitalaria y efeméride cuenta con su fuente pública verificada.
+                            Observatorio de Estado basado en <strong>ciencia, datos de 11 ministerios, simuladores interactivos y memoria histórica</strong>. Cada cifra, gasto público, dotación de Carabineros, capacidad hospitalaria y efeméride cuenta con su fuente oficial verificada.
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-                        <button onclick="switchTab('regiones')" class="px-4 py-2.5 rounded-[12px] bg-[#ffffff] text-[#0f172a] font-bold text-xs hover:bg-slate-100 transition shadow-md flex items-center justify-center gap-1.5">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-[#0284c7]"></i> 16 Regiones
+                        <button onclick="openAssistantModal()" class="px-4 py-2.5 rounded-[12px] bg-[#0284c7] text-white font-bold text-xs hover:bg-sky-600 transition shadow-md flex items-center justify-center gap-1.5">
+                            <i data-lucide="bot" class="w-4 h-4 text-amber-300"></i> Pregúntale a Presidenta IA
                         </button>
-                        <button onclick="switchTab('historia')" class="px-4 py-2.5 rounded-[12px] bg-[#0284c7] text-white font-bold text-xs hover:bg-sky-600 transition shadow-md flex items-center justify-center gap-1.5">
-                            <i data-lucide="calendar" class="w-4 h-4 text-white"></i> Un Día Como Hoy
+                        <button onclick="switchTab('comparador')" class="px-4 py-2.5 rounded-[12px] bg-white text-[#0f172a] font-bold text-xs hover:bg-slate-100 transition shadow-md flex items-center justify-center gap-1.5">
+                            <i data-lucide="git-compare" class="w-4 h-4 text-[#0284c7]"></i> Comparador 1vs1
                         </button>
                     </div>
                 </div>
@@ -87,33 +92,37 @@
                 <!-- NAVEGACIÓN PRINCIPAL (FLEX-WRAP, CERO SCROLLBARS) -->
                 <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-white/15">
                     <button onclick="switchTab('balance')" id="tab-btn-balance" class="shadcn-button-primary px-3.5 py-2 text-xs font-bold shadow-xs flex items-center space-x-1.5">
-                        <i data-lucide="landmark" class="w-3.5 h-3.5"></i> <span>1. Balance Nacional</span>
+                        <i data-lucide="landmark" class="w-3.5 h-3.5"></i> <span>1. Balance & Simulador</span>
                     </button>
                     <button onclick="switchTab('regiones')" id="tab-btn-regiones" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
                         <i data-lucide="map" class="w-3.5 h-3.5 text-[#0284c7]"></i> <span>2. 16 Regiones</span>
                     </button>
+                    <button onclick="switchTab('comparador')" id="tab-btn-comparador" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
+                        <i data-lucide="git-compare" class="w-3.5 h-3.5 text-[#16a34a]"></i> <span>3. Comparador 1vs1 & Heatmap</span>
+                    </button>
                     <button onclick="switchTab('matriz')" id="tab-btn-matriz" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> <span>3. Comparador & Rankings</span>
+                        <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> <span>4. Rankings Nacionales</span>
                     </button>
                     <button onclick="switchTab('historia')" id="tab-btn-historia" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="scroll-text" class="w-3.5 h-3.5 text-[#dc2626]"></i> <span>4. Historia & Efemérides</span>
+                        <i data-lucide="scroll-text" class="w-3.5 h-3.5 text-[#dc2626]"></i> <span>5. Historia & Efemérides</span>
                     </button>
                     <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="scale" class="w-3.5 h-3.5"></i> <span>5. Leyes & Congreso</span>
+                        <i data-lucide="scale" class="w-3.5 h-3.5"></i> <span>6. Leyes & Congreso</span>
                     </button>
                     <button onclick="switchTab('cadena')" id="tab-btn-cadena" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="radio" class="w-3.5 h-3.5"></i> <span>6. Cadena Diaria</span>
+                        <i data-lucide="radio" class="w-3.5 h-3.5"></i> <span>7. Cadena Diaria</span>
                     </button>
                     <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="newspaper" class="w-3.5 h-3.5"></i> <span>7. Noticias</span>
+                        <i data-lucide="newspaper" class="w-3.5 h-3.5"></i> <span>8. Noticias</span>
                     </button>
                     <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5">
-                        <i data-lucide="users" class="w-3.5 h-3.5"></i> <span>8. Ágora Ciudadana</span>
+                        <i data-lucide="users" class="w-3.5 h-3.5"></i> <span>9. Ágora Ciudadana</span>
                     </button>
                 </div>
             </div>
         </section>
-        <!-- PESTAÑA 1: BALANCE NACIONAL -->
+
+        <!-- PESTAÑA 1: BALANCE NACIONAL & SIMULADOR FISCAL -->
         <div id="view-balance" class="space-y-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="shadcn-card p-4 sm:p-5 space-y-1">
@@ -136,6 +145,25 @@
                     <span id="national-debt" class="text-xl sm:text-2xl font-extrabold font-mono text-[#0f172a]">41.2% PIB</span>
                     <span class="text-[10px] text-[#64748b] block">EMBI 118 pts (Banco Central)</span>
                 </div>
+            </div>
+
+            <!-- SIMULADOR FISCAL INTERACTIVO («SI TÚ FUERAS PRESIDENTE») -->
+            <div class="shadcn-card p-5 sm:p-8 space-y-5 border border-[#e2e8f0]">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="shadcn-badge bg-[#0284c7] text-white">SIMULADOR EN TIEMPO REAL</span>
+                            <span class="shadcn-badge bg-[#f1f5f9] text-[#0f172a] border border-[#e2e8f0]">REGLA FISCAL CFA</span>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-[#0f172a] tracking-tight">
+                            Simulador Fiscal Interactivo: «Si tú fueras Presidente»
+                        </h2>
+                        <p class="text-xs text-[#64748b]">
+                            Ajusta el gasto público en salud, educación, seguridad, obras públicas y ciencia. Observa el veredicto del Consejo Fiscal Autónomo sobre el déficit y el riesgo país.
+                        </p>
+                    </div>
+                </div>
+                <div id="interactive-budget-simulator-container"></div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -183,25 +211,6 @@
                 </div>
                 <div id="national-infra-summary-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3.5"></div>
             </div>
-
-            <div class="shadcn-card p-5 sm:p-8 space-y-5">
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">
-                    <div>
-                        <h3 class="text-base sm:text-lg font-bold text-[#0f172a] flex items-center gap-2">
-                            <i data-lucide="cpu" class="w-5 h-5 text-[#0284c7]"></i>
-                            Simulador Prospectivo: Evidencia Histórica Internacional
-                        </h3>
-                        <p class="text-xs text-[#64748b]">Evaluación de políticas públicas basada en datos reales de países OCDE</p>
-                    </div>
-                    <select id="simulator-select" onchange="runSimulation()" class="shadcn-input px-3.5 py-2 text-xs font-semibold cursor-pointer">
-                        <option value="carceles">🔒 Seguridad & Cárceles (Noruega vs Castigo Masivo)</option>
-                        <option value="salud">🏥 Salud (España Alta Resolución vs Subsidio Demanda)</option>
-                        <option value="agua">💧 Agua & Sequía (Israel Desalinización vs Camiones Aljibe)</option>
-                        <option value="educacion">🎓 Educación (Alemania Formación Dual vs Universidad Tradicional)</option>
-                    </select>
-                </div>
-                <div id="simulator-output" class="p-5 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0]"></div>
-            </div>
         </div>
 
         <!-- PESTAÑA 2: RADIOGRAFÍA 16 REGIONES -->
@@ -210,15 +219,41 @@
             <div id="region-full-audit-container" class="space-y-6"></div>
         </div>
 
-        <!-- PESTAÑA 3: COMPARADOR & RANKINGS -->
+        <!-- PESTAÑA 3: COMPARADOR 1 VS 1 & HEATMAP VECTORIAL -->
+        <div id="view-comparador" class="hidden space-y-6">
+            <div class="shadcn-card p-5 sm:p-8 space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span class="shadcn-badge bg-[#0f172a] text-white">COMPARADOR CARA A CARA</span>
+                    <span class="shadcn-badge bg-[#16a34a] text-white">1 VS 1 TERRITORIAL</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight">
+                    Comparador de Regiones & Semáforo de Desempeño
+                </h2>
+                <p class="text-xs text-[#64748b]">
+                    Compara 2 regiones simultáneamente para evaluar quién tiene mejores tiempos de espera en salud, dotación de seguridad, situación carcelaria y autonomía financiera.
+                </p>
+            </div>
+
+            <div id="region-comparator-container" class="space-y-6"></div>
+
+            <div class="shadcn-card p-5 sm:p-8 space-y-4">
+                <div class="border-b border-[#e2e8f0] pb-3">
+                    <h3 class="text-base font-bold text-[#0f172a]">Mapa Térmico de Chile (Heatmap Territorial)</h3>
+                    <p class="text-xs text-[#64748b]">Nivel de estrés territorial de norte a sur</p>
+                </div>
+                <div id="vector-heatmap-container"></div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 4: RANKINGS NACIONALES -->
         <div id="view-matriz" class="hidden space-y-6">
             <div class="shadcn-card p-5 sm:p-8 space-y-2">
                 <div class="flex items-center space-x-2">
-                    <span class="shadcn-badge bg-[#0f172a] text-white">COMPARADOR NACIONAL</span>
+                    <span class="shadcn-badge bg-[#0f172a] text-white">RANKINGS NACIONALES</span>
                     <span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">16 REGIONES</span>
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight">
-                    Rankings & Comparativa Territorial de Chile
+                    Rankings de Estado & Brechas Territoriales
                 </h2>
                 <p class="text-xs text-[#64748b]">
                     Identificación directa de brechas críticas en salud, hacinamiento penal, homicidios y dependencia financiera municipal con fuentes oficiales.
@@ -227,11 +262,12 @@
             <div id="regional-matrix-container" class="space-y-6"></div>
         </div>
 
-        <!-- PESTAÑA 4: MEMORIA & EFEMÉRIDES HISTÓRICAS (UN DÍA COMO HOY) -->
+        <!-- PESTAÑA 5: MEMORIA & EFEMÉRIDES HISTÓRICAS (UN DÍA COMO HOY) -->
         <div id="view-historia" class="hidden space-y-6">
             <div id="historical-view-container" class="space-y-6"></div>
         </div>
-        <!-- PESTAÑA 5: LEYES & CONGRESO -->
+
+        <!-- PESTAÑA 6: LEYES & CONGRESO -->
         <div id="view-leyes" class="hidden space-y-6">
             <div class="shadcn-card p-5 sm:p-8 space-y-2">
                 <div class="flex items-center space-x-2">
@@ -248,7 +284,7 @@
             <div id="legislative-bills-container" class="space-y-6"></div>
         </div>
 
-        <!-- PESTAÑA 6: CADENA NACIONAL -->
+        <!-- PESTAÑA 7: CADENA NACIONAL -->
         <div id="view-cadena" class="hidden space-y-6">
             <div class="shadcn-card p-5 sm:p-8 space-y-6">
                 <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">
@@ -280,7 +316,7 @@
             </div>
         </div>
 
-        <!-- PESTAÑA 7: OBSERVATORIO DE NOTICIAS -->
+        <!-- PESTAÑA 8: OBSERVATORIO DE NOTICIAS -->
         <div id="view-clusters" class="hidden space-y-6">
             <div class="shadcn-card p-5 sm:p-6 space-y-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -305,7 +341,7 @@
             <div id="clusters-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"></div>
         </div>
 
-        <!-- PESTAÑA 8: ÁGORA CIUDADANA -->
+        <!-- PESTAÑA 9: ÁGORA CIUDADANA -->
         <div id="view-citizen" class="hidden space-y-6">
             <div class="shadcn-card p-5 sm:p-8 space-y-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -326,7 +362,70 @@
         </div>
 
     </main>
-    <!-- BARRA DE NAVEGACIÓN RÁPIDA MÓVIL (FIJA EN INFERIOR PARA TELÉFONOS) -->
+
+    <!-- FLOATING ASISTENTE CÍVICO BUTTON -->
+    <button id="btn-open-assistant" onclick="openAssistantModal()" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 px-4 py-3 rounded-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold text-xs shadow-2xl flex items-center gap-2 border-2 border-white transition transform hover:scale-105 active:scale-95">
+        <i data-lucide="bot" class="w-5 h-5 text-amber-300"></i>
+        <span class="hidden sm:inline">Pregúntale a la Presidenta IA</span>
+        <span class="sm:hidden font-extrabold">Presidenta IA</span>
+    </button>
+
+    <!-- ASISTENTE CÍVICO MODAL INTERACTIVO -->
+    <div id="assistant-modal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+        <div class="bg-white rounded-[24px] border border-[#e2e8f0] max-w-2xl w-full h-[88vh] max-h-[700px] flex flex-col shadow-2xl overflow-hidden">
+            <!-- Header -->
+            <div class="p-4 sm:p-5 bg-[#0f172a] text-white flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-[#0284c7] flex items-center justify-center text-white">
+                        <i data-lucide="bot" class="w-5 h-5 text-amber-300"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
+                            Presidenta IA 🇨🇱
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-white font-mono font-bold">100% FACTUAL</span>
+                        </h3>
+                        <p class="text-[11px] text-slate-300">Consultas ciudadanas con datos de 11 ministerios y leyes oficiales</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('assistant-modal')" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">✕</button>
+            </div>
+
+            <!-- Chips de Consulta Rápida -->
+            <div class="p-2.5 bg-[#f8f9fa] border-b border-[#e2e8f0] flex items-center gap-1.5 overflow-x-auto text-[11px]">
+                <button onclick="askAssistantChip('¿Cómo está la seguridad y Carabineros en Valparaíso?')" class="px-2.5 py-1 rounded-full bg-white border border-[#e2e8f0] hover:border-[#0284c7] text-[#0f172a] font-medium whitespace-nowrap">🛡️ Carabineros Valparaíso</button>
+                <button onclick="askAssistantChip('¿Cuánto es el presupuesto nacional y de dónde viene el dinero?')" class="px-2.5 py-1 rounded-full bg-white border border-[#e2e8f0] hover:border-[#0284c7] text-[#0f172a] font-medium whitespace-nowrap">💰 Presupuesto US$ 93.5B</button>
+                <button onclick="askAssistantChip('¿Cómo están las listas de espera en La Araucanía?')" class="px-2.5 py-1 rounded-full bg-white border border-[#e2e8f0] hover:border-[#0284c7] text-[#0f172a] font-medium whitespace-nowrap">🏥 Salud La Araucanía</button>
+                <button onclick="askAssistantChip('¿Qué pasó un día como hoy en Chile?')" class="px-2.5 py-1 rounded-full bg-white border border-[#e2e8f0] hover:border-[#0284c7] text-[#0f172a] font-medium whitespace-nowrap">📜 Un Día Como Hoy</button>
+            </div>
+
+            <!-- Chat Log -->
+            <div id="assistant-chat-log" class="flex-1 p-4 overflow-y-auto space-y-3 bg-[#fafafa]">
+                <div class="flex justify-start">
+                    <div class="max-w-[88%] p-3.5 rounded-[16px] rounded-tl-none bg-[#f1f5f9] border border-[#e2e8f0] text-[#0f172a] text-xs leading-relaxed space-y-1">
+                        <div class="flex items-center gap-1 text-[10px] font-bold text-[#0284c7] mb-1"><i data-lucide="bot" class="w-3.5 h-3.5"></i> Presidenta IA:</div>
+                        <p>¡Hola! Soy la <strong>Presidenta IA</strong> de Chile. Puedo responderte con total transparencia y datos duros de 11 ministerios sobre:</p>
+                        <ul class="list-disc pl-4 space-y-0.5 text-[#334155]">
+                            <li>Dotación policial, homicidios y cárceles de las 16 regiones.</li>
+                            <li>Listas de espera hospitalarias y camas críticas.</li>
+                            <li>Presupuesto fiscal, IVA, rentas de Codelco y Litio.</li>
+                            <li>Proyectos de ley clave y memoria histórica día a día.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <form onsubmit="handleAssistantSubmit(event)" class="p-3 bg-white border-t border-[#e2e8f0] flex items-center gap-2">
+                <input id="assistant-input" type="text" placeholder="Escribe tu consulta sobre Chile o cualquier región..." class="flex-1 shadcn-input px-3.5 py-2 text-xs" autocomplete="off" />
+                <button type="submit" class="shadcn-button-primary px-4 py-2 text-xs font-bold flex items-center gap-1.5 shadow-xs">
+                    <span>Consultar</span>
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA MÓVIL -->
     <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-[#e2e8f0] px-2 py-1.5 flex justify-around items-center shadow-lg text-[10px]">
         <button onclick="switchTab('balance')" id="mob-tab-btn-balance" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#0284c7] font-bold">
             <i data-lucide="landmark" class="w-4 h-4 mb-0.5"></i>
@@ -336,6 +435,10 @@
             <i data-lucide="map-pin" class="w-4 h-4 mb-0.5"></i>
             <span>16 Regiones</span>
         </button>
+        <button onclick="switchTab('comparador')" id="mob-tab-btn-comparador" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium">
+            <i data-lucide="git-compare" class="w-4 h-4 mb-0.5"></i>
+            <span>Comparar</span>
+        </button>
         <button onclick="switchTab('historia')" id="mob-tab-btn-historia" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium">
             <i data-lucide="calendar" class="w-4 h-4 mb-0.5"></i>
             <span>Historia</span>
@@ -343,10 +446,6 @@
         <button onclick="switchTab('leyes')" id="mob-tab-btn-leyes" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium">
             <i data-lucide="scale" class="w-4 h-4 mb-0.5"></i>
             <span>Leyes</span>
-        </button>
-        <button onclick="switchTab('clusters')" id="mob-tab-btn-clusters" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium">
-            <i data-lucide="newspaper" class="w-4 h-4 mb-0.5"></i>
-            <span>Noticias</span>
         </button>
         <button onclick="switchTab('citizen')" id="mob-tab-btn-citizen" class="flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium">
             <i data-lucide="users" class="w-4 h-4 mb-0.5"></i>
@@ -473,7 +572,7 @@
         <div class="flex items-center justify-center space-x-2 text-[#0f172a] font-semibold">
             <span>🇨🇱 Presidenta IA & Radiografía de Estado de Chile</span>
             <span>•</span>
-            <span>Auditoría de Estado & Memoria Republicana</span>
+            <span>Suite Cívica Profesional 2026</span>
         </div>
         <p class="max-w-xl mx-auto text-[#64748b] text-[11px]">
             Conforme a las Leyes N° 21.719 (Protección de Datos Personales), N° 21.459 (Ciberseguridad) y N° 17.336 (Propiedad Intelectual).
@@ -481,7 +580,7 @@
     </footer>
 
     <!-- SCRIPTS UNIVERSALES CON CACHE-BUSTING -->
-    <script src="./data.js?v=20260901_8"></script>
-    <script src="./app.js?v=20260901_8"></script>
+    <script src="./data.js?v=20260901_9"></script>
+    <script src="./app.js?v=20260901_9"></script>
 </body>
 </html>
