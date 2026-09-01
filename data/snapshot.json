@@ -5070,5 +5070,170 @@
       "photo_url": "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=1200&q=80",
       "photo_caption": "Macizo Torres del Paine, Glaciar Grey y Estrecho de Magallanes"
     }
-  ]
+  ],
+  "historical_data": {
+    "today_date": "1 de Septiembre",
+    "efemerides_today": [
+      {
+        "year": 1952,
+        "years_ago": 74,
+        "title": "Creación del Servicio Nacional de Salud (SNS) de Chile",
+        "desc": "Se promulga la Ley N° 10.383 durante el gobierno de Gabriel González Videla, fusionando el Servicio Médico Nacional de Empleados, la Junta Central de Beneficencia y el Seguro Obrero Obligatorio. Este hito unificó la medicina curativa y preventiva en Chile, sentando las bases del actual Fondo Nacional de Salud (Fonasa) y la red de 206 hospitales públicos.",
+        "source": "Biblioteca del Congreso Nacional de Chile (BCN) - Ley N° 10.383",
+        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=27027",
+        "category": "Salud Pública & Bienestar"
+      },
+      {
+        "year": 1925,
+        "years_ago": 101,
+        "title": "Fundación del Banco Central de Chile",
+        "desc": "Mediante el Decreto Ley N° 486 se crea el Banco Central de Chile bajo la presidencia de Arturo Alessandri Palma, siguiendo las recomendaciones técnicas de la Misión Kemmerer para poner fin a décadas de inestabilidad monetaria y emisión inorgánica de billetes fiscales.",
+        "source": "Banco Central de Chile - Archivo Institucional & Leyes Fundacionales",
+        "source_url": "https://www.bcentral.cl",
+        "category": "Economía & Soberanía Monetaria"
+      },
+      {
+        "year": 1989,
+        "years_ago": 37,
+        "title": "Autonomía Constitucional del Banco Central de Chile",
+        "desc": "Se promulga la Ley Orgánica Constitucional N° 18.840, consagrando la autonomía técnica y patrimonial del Banco Central, con la misión exclusiva de velar por la estabilidad de la moneda y el normal funcionamiento de los pagos internos y externos.",
+        "source": "Diario Oficial de la República de Chile - Ley N° 18.840",
+        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=30219",
+        "category": "Institucionalidad"
+      },
+      {
+        "year": 1812,
+        "years_ago": 214,
+        "title": "Primer Reglamento Militar de la República Libre",
+        "desc": "Durante la Patria Vieja, la Junta de Gobierno presidida por José Miguel Carrera decreta las primeras ordenanzas militares republicanas para organizar las milicias patriotas frente a la reconquista.",
+        "source": "Archivo Histórico Nacional de Chile - Fondos de la Independencia",
+        "source_url": "https://www.archivonacional.gob.cl",
+        "category": "Historia Patria"
+      }
+    ],
+    "other_dates": [
+      {
+        "date": "18 de Septiembre",
+        "year": 1810,
+        "title": "Primera Junta Nacional de Gobierno",
+        "desc": "Cabildo abierto en Santiago que marca el inicio del proceso de emancipación nacional e independencia de Chile.",
+        "source": "Memoria Chilena - Biblioteca Nacional de Chile",
+        "source_url": "https://www.memoriachilena.gob.cl"
+      },
+      {
+        "date": "12 de Febrero",
+        "year": 1818,
+        "title": "Firma del Acta de Proclamación de la Independencia",
+        "desc": "Bernardo O Higgins firma solemnemente el Acta de Independencia de Chile en Talca y es jurada en Santiago.",
+        "source": "Biblioteca del Congreso Nacional de Chile",
+        "source_url": "https://www.bcn.cl"
+      },
+      {
+        "date": "11 de Julio",
+        "year": 1971,
+        "title": "Nacionalización de la Gran Minería del Cobre (Día de la Dignidad Nacional)",
+        "desc": "Aprobación unánime en el Congreso Nacional de la reforma constitucional que traspasó los principales yacimientos (Chuquicamata, El Teniente, El Salvador) al Estado de Chile, creando Codelco.",
+        "source": "Congreso Nacional de Chile - Reforma Constitucional Ley N° 17.450",
+        "source_url": "https://www.bcn.cl/leychile/navegar?idNorma=29107"
+      },
+      {
+        "date": "21 de Mayo",
+        "year": 1879,
+        "title": "Combate Naval de Iquique y Punta Gruesa",
+        "desc": "Acción naval en que la corbeta Esmeralda comandada por Arturo Prat resistió al monitor Huáscar, consagrando el valor cívico naval.",
+        "source": "Armada de Chile - Archivo Histórico Naval",
+        "source_url": "https://www.armada.cl"
+      }
+    ],
+    "century_comparison": [
+      {
+        "indicator": "Esperanza de Vida al Nacer",
+        "y1926": "31.5 años",
+        "y1976": "67.2 años",
+        "y2000": "77.0 años",
+        "y2026": "81.4 años",
+        "change": "+49.9 años (+158%)",
+        "source": "Instituto Nacional de Estadísticas (INE) & DEIS Minsal",
+        "source_url": "https://www.ine.gob.cl",
+        "desc": "Erradicación de enfermedades infecciosas, cobertura de vacunas PNI y acceso a agua potable."
+      },
+      {
+        "indicator": "Mortalidad Infantil (x 1.000 nacidos vivos)",
+        "y1926": "250.0 ‰",
+        "y1976": "54.7 ‰",
+        "y2000": "8.9 ‰",
+        "y2026": "5.1 ‰",
+        "change": "-98.0% de reducción",
+        "source": "Ministerio de Salud de Chile (Minsal / DEIS)",
+        "source_url": "https://deis.minsal.cl",
+        "desc": "Chile pasó de la peor tasa de mortalidad infantil de América a tener la más baja de Latinoamérica."
+      },
+      {
+        "indicator": "Tasa de Pobreza por Ingresos",
+        "y1926": "75.0% aprox.",
+        "y1976": "62.0% aprox.",
+        "y2000": "20.2%",
+        "y2026": "6.5%",
+        "change": "-55.5 puntos porcentuales",
+        "source": "Ministerio de Desarrollo Social - Encuesta CASEN",
+        "source_url": "https://observatorio.ministeriodesarrollosocial.gob.cl",
+        "desc": "Crecimiento económico sostenido, subsidios focalizados (PGU, SUF) y gratuidad educativa."
+      },
+      {
+        "indicator": "PIB per Cápita (USD Corrientes)",
+        "y1926": "US$ 320",
+        "y1976": "US$ 1.250",
+        "y2000": "US$ 5.040",
+        "y2026": "US$ 17.250",
+        "change": "+1.280% desde 1976",
+        "source": "Banco Central de Chile & Banco Mundial",
+        "source_url": "https://www.bcentral.cl",
+        "desc": "Multiplicación del comercio exterior, tratados de libre comercio y diversificación productiva."
+      },
+      {
+        "indicator": "Cobertura Agua Potable Urbana",
+        "y1926": "42.0%",
+        "y1976": "78.5%",
+        "y2000": "98.8%",
+        "y2026": "99.9%",
+        "change": "+57.9 puntos porcentuales",
+        "source": "Superintendencia de Servicios Sanitarios (SISS)",
+        "source_url": "https://www.siss.gob.cl",
+        "desc": "Universalización del saneamiento urbano y plantas de tratamiento de aguas servidas (99.8%)."
+      },
+      {
+        "indicator": "Tasa de Alfabetismo Poblacional",
+        "y1926": "56.0%",
+        "y1976": "88.8%",
+        "y2000": "95.8%",
+        "y2026": "98.1%",
+        "change": "+42.1 puntos porcentuales",
+        "source": "Centro de Estudios Mineduc & Censos INE",
+        "source_url": "https://centroestudios.mineduc.cl",
+        "desc": "Escolaridad obligatoria de 12 años, carrera docente y acceso masivo a educación superior."
+      },
+      {
+        "indicator": "Matriz Eléctrica Renovable Limpia",
+        "y1926": "8.0%",
+        "y1976": "14.0%",
+        "y2000": "22.5%",
+        "y2026": "63.4%",
+        "change": "+40.9 puntos en 25 años",
+        "source": "Comisión Nacional de Energía (CNE) & Coordinador Eléctrico",
+        "source_url": "https://www.cne.cl",
+        "desc": "Revolución solar en el Desierto de Atacama y parques eólicos en Coquimbo y Biobío."
+      },
+      {
+        "indicator": "Población Total de Chile",
+        "y1926": "3.980.000",
+        "y1976": "10.450.000",
+        "y2000": "15.400.000",
+        "y2026": "20.120.000",
+        "change": "+405% de incremento",
+        "source": "Instituto Nacional de Estadísticas (INE) - Censo Oficial",
+        "source_url": "https://www.ine.gob.cl",
+        "desc": "Transición demográfica hacia el envejecimiento poblacional (edad mediana 39.2 años)."
+      }
+    ]
+  }
 }
