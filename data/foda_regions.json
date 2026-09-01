@@ -1,0 +1,312 @@
+{
+  "country_foda_strategy": {
+    "title": "Estrategia Nacional & Matriz FODA de la República de Chile",
+    "executive_summary": "Chile posee ventajas comparativas geopolíticas y geológicas únicas en el siglo XXI (litio, cobre, radiación solar, borde costero y cielos astronómicos), pero enfrenta riesgos críticos de cohesión social, crimen organizado transnacional, crisis hídrica y estancamiento de la productividad. La estrategia de Estado exige pasar del modelo puramente extractivo a la economía del conocimiento y la industrialización verde con equidad territorial.",
+    "foda": {
+      "fortalezas": [
+        {"title": "Institucionalidad Macroeconómica", "desc": "Banco Central autónomo, regla de balance estructural fiscal y clasificación de riesgo crediticio líder en América Latina (A/A2)."},
+        {"title": "Liderazgo en Recursos Estratégicos", "desc": "Mayor reserva mundial de litio en salmuera (Salar de Atacama) y 28% de la producción global de cobre."},
+        {"title": "Potencial Energético Inigualable", "desc": "Mayor radiación solar del planeta en el Desierto de Atacama y vientos de clase mundial en Magallanes para Hidrógeno Verde."},
+        {"title": "Capital Científico y Astronómico", "desc": "Más del 70% de la capacidad de observación astronómica terrestre mundial y red de tratados de libre comercio con el 88% del PIB global."}
+      ],
+      "oportunidades": [
+        {"title": "Demanda Global de Descarbonización", "desc": "El mundo triplicará el consumo de cobre y litio para electromovilidad y almacenamiento de energía hacia 2040."},
+        {"title": "Polo de Hidrógeno Verde & Combustibles Sintéticos", "desc": "Posibilidad de convertir a Magallanes y Antofagasta en exportadores netos de energía limpia hacia Asia y Europa."},
+        {"title": "Corredor Bioceánico Capricornio", "desc": "Integración logística con Brasil, Argentina y Paraguay a través de los puertos del norte chileno hacia el Asia-Pacífico."},
+        {"title": "Hub Digital del Cono Sur", "desc": "Cable submarino transpacífico Humboldt y centros de datos de hiperescala alimentados 100% con energías renovables."}
+      ],
+      "debilidades": [
+        {"title": "Productividad Estancada", "desc": "12 años sin crecimiento significativo de la Productividad Total de Factores (PTF) y baja inversión en I+D (0.34% del PIB)."},
+        {"title": "Hipercentralismo Territorial", "desc": "Más del 40% de la población y el 45% del PIB concentrados en la Región Metropolitana, asfixiando el desarrollo de regiones."},
+        {"title": "Colapso del Sistema Penitenciario", "desc": "135% de hacinamiento carcelario y falta de inhibición celular activa que permite la operación de bandas desde el encierro."},
+        {"title": "Listas de Espera en Salud Pública", "desc": "2.6 millones de atenciones en espera y 330 días promedio de demora para cirugías electivas de alta complejidad."}
+      ],
+      "amenazas": [
+        {"title": "Infiltración de Crimen Organizado Transnacional", "desc": "Bandas internacionales (Tren de Aragua, cárteles) que amenazan el Estado de derecho, puertos y pasos fronterizos no habilitados."},
+        {"title": "Megasequía & Cambio Climático", "desc": "14 años consecutivos de déficit hídrico en la zona central y norte chico, con 400.000 personas dependientes de camiones aljibe."},
+        {"title": "Envejecimiento Poblacional Acelerado", "desc": "Caída de la tasa de fecundidad a 1.1 hijos por mujer, lo que generará una crisis de sostenibilidad previsional y fuerza laboral a 2040."},
+        {"title": "Permisología Excesiva e Inseguridad Jurídica", "desc": "Plazos de hasta 500 días para permisos ambientales que frenan más de US$ 15.000 millones en inversiones clave."}
+      ]
+    },
+    "strategic_pillars_2050": [
+      {"pillar": "Soberanía Energética y Minería Verde", "target_2030": "100% de operaciones de cobre con agua desalada y energía solar/eólica.", "target_2050": "Polo exportador de Hidrógeno Verde y cátodos de litio elaborados."},
+      {"pillar": "Revolución de Seguridad & Control Fronterizo", "target_2030": "Inhibición total en 100% de cárceles y frontera norte blindada con radares y drones térmicos.", "target_2050": "Tasa de homicidios < 2.0 por 100k hab. (estándar europeo)."},
+      {"pillar": "Infraestructura Hídrica Nacional", "target_2030": "Red pública de desalinizadoras multipropósito en Coquimbo, Valparaíso y Atacama.", "target_2050": "100% de seguridad hídrica urbana y agrícola en todo Chile."},
+      {"pillar": "Educación Dual & Capital Humano IA", "target_2030": "60% de institutos técnicos integrados con empresas en modelo dual alemán.", "target_2050": "Chile en el Top 15 del Índice de Desarrollo Humano (IDH) mundial."}
+    ]
+  },
+  "regions_analysis": [
+    {
+      "id": "arica",
+      "number": "XV",
+      "name": "Región de Arica y Parinacota",
+      "capital": "Arica",
+      "population": 252000,
+      "pib_share": "1.3%",
+      "poverty_rate": "12.8%",
+      "vocation": "Puerta Norte de Chile, Hub Logístico Trifronterizo, Agricultura de Valles Desérticos (Azapa/Lluta) y Turismo Patrimonial.",
+      "foda": {
+        "fortalezas": ["Ubicación estratégica trifronteriza con Perú y Bolivia.", "Clima excepcional todo el año para agricultura protegida contratemporada.", "Patrimonio arqueológico Chinchorro (UNESCO)."],
+        "oportunidades": ["Consolidar puerto de Arica como salida preferente de carga boliviana y del sur peruano.", "Energía solar de alta radiación en la pampa.", "Turismo cultural y de borde costero durante 365 días."],
+        "debilidades": ["Aislamiento de la zona altiplánica (Putre, General Lagos).", "Escasez de infraestructura hospitalaria de alta complejidad.", "Baja diversificación industrial local."],
+        "amenazas": ["Flujos migratorios irregulares por pasos no habilitados en la frontera norte.", "Presión sobre recursos hídricos en el río San José.", "Competencia con puertos vecinos del sur de Perú."]
+      },
+      "presidential_strategy": "Blindaje tecnológico de pasos fronterizos con drones térmicos y cámaras de largo alcance, modernización del Puerto de Arica y plan de riego tecnificado con desalinización solar para los valles de Azapa y Lluta."
+    },
+    {
+      "id": "tarapaca",
+      "number": "I",
+      "name": "Región de Tarapacá",
+      "capital": "Iquique",
+      "population": 391000,
+      "pib_share": "3.8%",
+      "poverty_rate": "14.2%",
+      "vocation": "Comercio Internacional (ZOFRI), Gran Minería del Cobre (Collahuasi, Quebrada Blanca) y Pesca Industrial.",
+      "foda": {
+        "fortalezas": ["Puerto de aguas profundas y Zona Franca (ZOFRI) articuladora del comercio sudamericano.", "Mega-yacimientos de cobre de clase mundial.", "Borde costero con fuerte atractivo turístico."],
+        "oportunidades": ["Liderar el Corredor Bioceánico Capricornio desde Brasil a Iquique.", "Generación masiva de energía solar fotovoltaica.", "Reconversión de ZOFRI hacia el comercio digital e industria 4.0."],
+        "debilidades": ["Campamentos y déficit habitacional crítico en Alto Hospicio.", "Sobrecarga de servicios públicos y escuelas.", "Contrabando y comercio informal en accesos a ZOFRI."],
+        "amenazas": ["Penetración de bandas criminales transnacionales en pasos fronterizos de Colchane.", "Sequía y vulnerabilidad de acuíferos en la Pampa del Tamarugal.", "Obsolescencia del modelo ZOFRI tradicional sin modernización."]
+      },
+      "presidential_strategy": "Control fronterizo integrado en Colchane con inteligencia biométrica, plan maestro de regeneración urbana y vivienda en Alto Hospicio, y conexión ferroviaria y vial del Corredor Bioceánico a Iquique."
+    },
+    {
+      "id": "antofagasta",
+      "number": "II",
+      "name": "Región de Antofagasta",
+      "capital": "Antofagasta",
+      "population": 690000,
+      "pib_share": "10.5%",
+      "poverty_rate": "9.1%",
+      "vocation": "Capital Minera del Mundo (Cobre & Litio), Energía Solar de Hiperescala y Observación Astronómica Global (ALMA, Paranal, ELT).",
+      "foda": {
+        "fortalezas": ["Mayor productor de cobre y litio de Chile.", "Radiación solar más alta del planeta (Desierto de Atacama).", "Infraestructura portuaria minera y plantas desalinizadoras avanzadas."],
+        "oportunidades": ["Crear el mayor Cluster de Tecnología y Proveedores Mineros (METS) de Sudamérica.", "Producción y exportación de Hidrógeno Verde.", "Desarrollo de cátodos y baterías de litio de alto valor agregado."],
+        "debilidades": ["Alto costo de la vida y brecha de habitabilidad (macro-campamentos en Antofagasta y Calama).", "Contaminación histórica por polimetales y pasivos ambientales.", "Enfermedades oncológicas por encima del promedio nacional."],
+        "amenazas": ["Disputa por recursos hídricos en salares protegidos.", "Inseguridad y crimen organizado en zonas portuarias y pasos fronterizos.", "Caída en leyes de mineral de cobre si no se invierte en I+D."]
+      },
+      "presidential_strategy": "Creación del Instituto Tecnológico del Litio y Cobre en Antofagasta, aceleración de obras de salud oncológica regional, y plan integral de urbanización y desalojo de tomas en zonas de riesgo aluvional."
+    },
+    {
+      "id": "atacama",
+      "number": "III",
+      "name": "Región de Atacama",
+      "capital": "Copiapó",
+      "population": 315000,
+      "pib_share": "2.9%",
+      "poverty_rate": "11.5%",
+      "vocation": "Minería de Cobre, Oro y Hierro, Agricultura de Uva de Mesa de Exportación y Energía Renovable.",
+      "foda": {
+        "fortalezas": ["Pionera en desalinización pública (Planta Desalinizadora de Caldera).", "Gran potencial de exploración geológica en oro y cobalto.", "Cielos limpios y parques eólicos/solares de gran escala."],
+        "oportunidades": ["Convertirse en la primera región con 100% de matriz eléctrica y agua potable renovable.", "Explotación sustentable de cobalto y minerales críticos.", "Turismo costero en Bahía Inglesa y Parque Nacional Pan de Azúcar."],
+        "debilidades": ["Crisis grave en la educación pública (desmunicipalización SLEP Atacama).", "Vulnerabilidad a aluviones en la cuenca del Río Copiapó.", "Déficit de médicos especialistas en el Hospital de Copiapó."],
+        "amenazas": ["Paralización de proyectos de inversión por trabas burocráticas y judicialización ambiental.", "Erosión de la agricultura en el Valle de Copiapó.", "Agotamiento de relaves mineros no tratados."]
+      },
+      "presidential_strategy": "Intervención de emergencia en la infraestructura escolar de SLEP Atacama, defensa aluvional definitiva en Copiapó y Chañaral, y fomento al procesamiento de relaves para recuperar tierras raras y cobalto."
+    },
+    {
+      "id": "coquimbo",
+      "number": "IV",
+      "name": "Región de Coquimbo",
+      "capital": "La Serena",
+      "population": 848000,
+      "pib_share": "3.2%",
+      "poverty_rate": "13.0%",
+      "vocation": "Agricultura de Precisión (Piscos, Cítricos, Paltas), Minería (Pelambres), Turismo de Playas y Astroturismo (Valle de Elqui).",
+      "foda": {
+        "fortalezas": ["Conurbación La Serena-Coquimbo con gran dinamismo demográfico.", "Valle de Elqui y Limarí con reconocimiento mundial en astroturismo y pisco.", "Puerto de Coquimbo modernizado."],
+        "oportunidades": ["Construcción de plantas desalinizadoras multipropósito en Elqui y Limarí.", "Conexión vial y túnel internacional hacia San Juan (Argentina).", "Agroindustria tecnificada de alto valor con riego por goteo solar."],
+        "debilidades": ["Zona cero de la megasequía en Chile: embalses La Paloma y Cogotí en mínimos históricos.", "Congestión vial crítica en la conurbación La Serena - Coquimbo.", "Hospitales regionales colapsados en listas de espera."],
+        "amenazas": ["Desertificación y colapso de la pequeña agricultura campesina y crianceros.", "Falta de agua potable para más de 100.000 habitantes rurales.", "Pérdida de empleos agrícolas estacionales."]
+      },
+      "presidential_strategy": "Prioridad presidencial absoluta: Construcción de la Planta Desalinizadora de Coquimbo para consumo humano y regadío, tranvía La Serena-Coquimbo y entrega de los nuevos hospitales de La Serena y Coquimbo."
+    },
+    {
+      "id": "valparaiso",
+      "number": "V",
+      "name": "Región de Valparaíso",
+      "capital": "Valparaíso",
+      "population": 1980000,
+      "pib_share": "7.8%",
+      "poverty_rate": "10.4%",
+      "vocation": "Complejo Portuario Líder (San Antonio & Valparaíso), Polo Universitario, Turismo Nacional e Internacional y Agroindustria (Aconcagua).",
+      "foda": {
+        "fortalezas": ["Principal nodo de comercio exterior de Chile (más del 60% de la carga del país).", "Valparaíso Ciudad Patrimonio de la Humanidad (UNESCO).", "Valle de Aconcagua y Casablanca líderes en vinos y fruticultura."],
+        "oportunidades": ["Mega-Puerto Exterior de San Antonio.", "Tren Rápido Santiago - Valparaíso / Viña del Mar.", "Reconversión de Valparaíso como polo de industrias creativas y turismo de cruceros."],
+        "debilidades": ["Alto riesgo de incendios forestales e interfaz urbano-forestal desregulada (Viña/Quilpué).", "Deterioro patrimonial y abandono comercial en el plan de Valparaíso.", "Sequía crítica en Petorca y Valle de Aconcagua."],
+        "amenazas": ["Incendios de gran magnitud que amenazan vidas humanas en cerros.", "Inseguridad y narcotráfico en campamentos de la parte alta.", "Pérdida de competitividad portuaria frente a mega-puertos de la región."]
+      },
+      "presidential_strategy": "Plan maestro de reconstrucción resiliente anti-incendios con cortafuegos y redes húmedas, licitación del Tren Santiago-Valparaíso, y modernización portuaria de Valparaíso y San Antonio."
+    },
+    {
+      "id": "metropolitana",
+      "number": "RM",
+      "name": "Región Metropolitana de Santiago",
+      "capital": "Santiago",
+      "population": 8200000,
+      "pib_share": "44.5%",
+      "poverty_rate": "8.8%",
+      "vocation": "Centro Financiero, Tecnológico, Institucional y Cultural de Chile. Hub Aéreo Sudamericano (Nuevo Pudahuel).",
+      "foda": {
+        "fortalezas": ["Red de Metro de Santiago de clase mundial (140 km en expansión a Líneas 7, 8 y 9).", "Concentración del ecosistema de startups e innovación más dinámico de América Latina.", "Infraestructura hospitalaria y universitaria de vanguardia."],
+        "oportunidades": ["Transformación en Capital Smart City con electromovilidad 100% en buses públicos.", "Regeneración del centro histórico de Santiago y eje Alameda-Providencia.", "Polo tecnológico de inteligencia artificial y servicios financieros regionales."],
+        "debilidades": ["Segregación socio-espacial extrema y brecha de ingresos municipal (Las Condes vs La Pintana).", "Contaminación atmosférica en invierno y efecto isla de calor urbana.", "Hacinamiento en cárceles de Santiago (Santiago 1, Colina)."],
+        "amenazas": ["Infiltración de homicidios por encargo, extorsiones y crimen organizado armado.", "Estrés hídrico en las cuencas de los ríos Maipo y Mapocho.", "Colapso vial y saturación de urgencias hospitalarias periféricas."]
+      },
+      "presidential_strategy": "Reforma al Fondo Común Municipal para equiparar presupuesto barrial, inhibición celular activa en cárceles de Santiago, expansión de Metro Líneas 7, 8 y 9, y parque fluvial de protección de la cuenca del Maipo."
+    },
+    {
+      "id": "ohiggins",
+      "number": "VI",
+      "name": "Región de O'Higgins",
+      "capital": "Rancagua",
+      "population": 991000,
+      "pib_share": "4.6%",
+      "poverty_rate": "10.1%",
+      "vocation": "Potencia Agroindustrial y Exportadora Frutícola (Cachapoal/Colchagua), Gran Minería del Cobre Subterránea (El Teniente) y Turismo Enológico.",
+      "foda": {
+        "fortalezas": ["Mayor mina de cobre subterránea del mundo (El Teniente de Codelco).", "Valle de Colchagua de prestigio internacional en producción vitivinícola.", "Cercanía inmediata a la Región Metropolitana y puertos."],
+        "oportunidades": ["Tecnificación y mecanización del trabajo agrícola con robótica e IA.", "Polo de energías renovables (hidroeléctricas de pasada y solares).", "Extensión del servicio ferroviario EFE Rancagua - San Fernando."],
+        "debilidades": ["Deficiente conectividad vial rural en el secano costero (Paredones, Marchigüe).", "Escasez de mano de obra en temporadas altas de cosecha.", "Falta de especialistas en el Hospital Regional de Rancagua."],
+        "amenazas": ["Heladas tardías y granizadas que destruyen cosechas por cambio climático.", "Déficit de agua en tranques del secano costero.", "Contaminación por uso excesivo de plaguicidas agrícolas."]
+      },
+      "presidential_strategy": "Inversión en reservorios y canales de regadío tecnificado para el secano costero, consolidación del tren de cercanías hasta San Fernando y fortalecimiento de la Escuela de Medicina de la Universidad de O'Higgins."
+    },
+    {
+      "id": "maule",
+      "number": "VII",
+      "name": "Región del Maule",
+      "capital": "Talca",
+      "population": 1130000,
+      "pib_share": "3.5%",
+      "poverty_rate": "13.8%",
+      "vocation": "Corazón Agrícola y Agroalimentario de Chile (Cerezas, Berries, Vinos, Manzanas), Industria Maderera y Generación Hidroeléctrica.",
+      "foda": {
+        "fortalezas": ["Líder nacional en producción de cerezas de exportación hacia China.", "Tradición campesina e identidad rural arraigada.", "Paso Internacional Pehuenche pavimentado hacia Argentina."],
+        "oportunidades": ["Agregación de valor en la industria de alimentos procesados y funcionales.", "Uso sustentable de biomasa para calefacción distrital.", "Desarrollo del tren patrimonial Talca - Constitución (Ramal)."],
+        "debilidades": ["Bajos ingresos per cápita y alta estacionalidad del empleo rural.", "Brecha de pavimentación en caminos rurales de Linares y Cauquenes.", "Complejo Hospitalario de Talca con alta sobrecarga."],
+        "amenazas": ["Incendios forestales masivos en zonas de interfaz rural.", "Inundaciones recurrentes por desbordes de los ríos Mataquito y Maule.", "Deterioro de precios internacionales de fruta si no se diversifican mercados."]
+      },
+      "presidential_strategy": "Defensa fluvial definitiva en cuencas de los ríos Maule y Mataquito, plan de pavimentación de 500 km de caminos rurales en Linares y Cauquenes, y centro de I+D agroalimentario de la fruta en Curicó."
+    },
+    {
+      "id": "nuble",
+      "number": "XVI",
+      "name": "Región de Ñuble",
+      "capital": "Chillán",
+      "population": 517000,
+      "pib_share": "1.8%",
+      "poverty_rate": "14.7%",
+      "vocation": "Agricultura de Riego, Viñedos Patrimoniales (Valle del Itata), Turismo Termal y de Nieve (Nevados de Chillán).",
+      "foda": {
+        "fortalezas": ["Valle del Itata con cepas patrimoniales centenarias (País, Cinsault).", "Atractivo turístico de clase mundial en Nevados de Chillán.", "Nueva infraestructura de servicios públicos tras convertirse en región."],
+        "oportunidades": ["Concreción del Embalse La Punilla y Zapallar para regar 70.000 nuevas hectáreas.", "Exportación de berries orgánicos y frutos secos.", "Tren rápido Chillán - Santiago en 3 horas 40 minutos."],
+        "debilidades": ["Una de las regiones con mayor pobreza multidimensional y desempleo.", "Baja cobertura de agua potable rural (APR).", "Alta vulnerabilidad habitacional en invierno por uso de leña húmeda."],
+        "amenazas": ["Paralización de proyectos de embalses por judicialización.", "Incendios forestales en la cordillera de la costa.", "Emigración de jóvenes por falta de oportunidades laborales calificadas."]
+      },
+      "presidential_strategy": "Destrabe y construcción inmediata de los embalses Punilla y Zapallar con acuerdos comunitarios, entrega del nuevo Hospital Regional de Ñuble en Chillán y subsidio masivo de aislación térmica para viviendas."
+    },
+    {
+      "id": "biobio",
+      "number": "VIII",
+      "name": "Región del Biobío",
+      "capital": "Concepción",
+      "population": 1660000,
+      "pib_share": "6.8%",
+      "poverty_rate": "12.2%",
+      "vocation": "Capital Industrial del Sur (Siderurgia, Química, Naval), Polo Forestal y Celulosa, Gran Complejo Portuario (Talcahuano, Coronel, San Vicente) y Hub Universitario.",
+      "foda": {
+        "fortalezas": ["Gran Concepción como segundo polo universitario y científico del país.", "Mayor infraestructura portuaria e industrial maderera de Chile.", "Astillero y base naval ASMAR de nivel sudamericano."],
+        "oportunidades": ["Reconversión del parque industrial tras el cierre de Huachipato hacia acero verde y manufactura avanzada.", "Ampliación del Biotrén a Coronel, Lota y Penco.", "Polo de biotecnología aplicada a materiales forestales e hidrógeno verde."],
+        "debilidades": ["Desindustrialización y pérdida de empleo manufacturero calificado.", "Violencia rural y robo de madera en la provincia de Arauco.", "Congestión vehicular severa en los puentes sobre el Río Biobío."],
+        "amenazas": ["Pérdida de competitividad fabril frente a subsidios extranjeros.", "Ataques a faenas productivas en la Macrozona Sur.", "Incendios en plantaciones forestales colindantes a centros poblados."]
+      },
+      "presidential_strategy": "Plan de Reindustrialización Verde del Biobío con incentivos tributarios a manufactura limpia, extensión del Biotrén hasta Lota y Penco, y plan integral de seguridad y desarrollo productivo en la Provincia de Arauco."
+    },
+    {
+      "id": "araucania",
+      "number": "IX",
+      "name": "Región de La Araucanía",
+      "capital": "Temuco",
+      "population": 1020000,
+      "pib_share": "2.8%",
+      "poverty_rate": "17.4%",
+      "vocation": "Agricultura de Granos y Semillas (Trigo, Avena, Raps), Turismo Lacustre y Volcánico (Villarrica, Pucón), y Riqueza Cultural del Pueblo Mapuche.",
+      "foda": {
+        "fortalezas": ["Principal granero agrícola de Chile en cereales.", "Destino turístico internacional consolidado en la zona lacustre.", "Patrimonio cultural, gastronómico y lingüístico mapuche único."],
+        "oportunidades": ["Desarrollo de turismo indígena y etnoturismo con estándar internacional.", "Fruticultura de exportación en expansión hacia el sur (avellano europeo, arándanos).", "Acuerdo de Paz y Entendimiento de Estado con restitución y desarrollo productivo."],
+        "debilidades": ["Mayor tasa de pobreza multidimensional de Chile.", "Conflicto histórico no resuelto, atentados rurales y quema de maquinaria.", "Caminos rurales y escuelas rurales en estado precario en Malleco."],
+        "amenazas": ["Violencia de grupos radicalizados que frena la inversión y el empleo.", "Erosión y degradación de suelos por monocultivos.", "Desempleo juvenil rural y rezago histórico en la provincia de Malleco."]
+      },
+      "presidential_strategy": "Plan de Paz, Seguridad y Desarrollo Integral con presencia disuasiva de seguridad en rutas críticas, restitución de tierras condicionada a proyectos agroproductivos sustentables y pavimentación masiva en Malleco."
+    },
+    {
+      "id": "los_rios",
+      "number": "XIV",
+      "name": "Región de Los Ríos",
+      "capital": "Valdivia",
+      "population": 405000,
+      "pib_share": "1.7%",
+      "poverty_rate": "12.5%",
+      "vocation": "Capital Científica y Cervecera del Sur, Turismo Fluvial y Selva Valdiviana, Industria Maderera y Lechería de Calidad.",
+      "foda": {
+        "fortalezas": ["Valdivia: Ciudad fluvial universitaria con alta calidad de vida y capital científico (CECs, UACh).", "Paisaje de ríos navegables y Selva Valdiviana protegida.", "Polo de cerveza artesanal e industria de alimentos gourmet."],
+        "oportunidades": ["Hub de innovación en biomedicina, nanotecnología y robótica marina.", "Desarrollo del transporte público fluvial sustentable (taxis solares).", "Turismo de intereses especiales y conservación biológica."],
+        "debilidades": ["Baja diversificación económica fuera de Valdivia (La Unión, Panguipulli).", "Conectividad vial deficiente en invierno en zonas cordilleranas.", "Contaminación por leña en Valdivia en meses fríos."],
+        "amenazas": ["Floraciones algales y contaminación de humedales urbanos.", "Falta de inversión en infraestructura portuaria en Corral.", "Pérdida de bosque nativo por loteos irregulares."]
+      },
+      "presidential_strategy": "Protección legal y restauración de la red de humedales urbanos de Valdivia, modernización del Puerto de Corral y pavimentación de la ruta costera Chaihuín - Corral, y red pública de transporte fluvial ecológico."
+    },
+    {
+      "id": "los_lagos",
+      "number": "X",
+      "name": "Región de Los Lagos",
+      "capital": "Puerto Montt",
+      "population": 891000,
+      "pib_share": "4.5%",
+      "poverty_rate": "11.8%",
+      "vocation": "Potencia Acuícola Mundial (Salmón & Mitílidos), Industria Láctea y Ganadera, Turismo de Naturaleza (Llanquihue, Chiloé, Carretera Austral).",
+      "foda": {
+        "fortalezas": ["Segundo mayor productor mundial de salmón.", "Archipiélago de Chiloé con identidad patrimonial, iglesias UNESCO y mitología única.", "Puerto Montt como puerta de entrada a la Patagonia chilena."],
+        "oportunidades": ["Construcción del Puente Chacao que unirá Chiloé con el continente.", "Acuicultura sustentable offshore y trazabilidad genómica verde.", "Turismo internacional en la Carretera Austral y Parque Nacional Pumalín."],
+        "debilidades": ["Aislamiento de islas menores en Chiloé y Palena.", "Escasez de agua en Chiloé durante el verano por degradación de turberas (pomponales).", "Deficiente conectividad aérea y marítima en la Provincia de Palena."],
+        "amenazas": ["Mareas rojas y crisis ambientales en fiordos por sobrecarga acuícola.", "Resistencia al Puente Chacao sin planes viales complementarios en la isla.", "Déficit de médicos especialistas en Castro y Ancud."]
+      },
+      "presidential_strategy": "Entrega y puesta en marcha del Puente Chacao con doble vía en Ruta 5 Chiloé, protección estricta de las turberas y glaciares de agua de Chiloé, y regulación ambiental estricta con biotecnología a la salmonicultura."
+    },
+    {
+      "id": "aysen",
+      "number": "XI",
+      "name": "Región de Aysén del General Carlos Ibáñez del Campo",
+      "capital": "Coyhaique",
+      "population": 107000,
+      "pib_share": "0.9%",
+      "poverty_rate": "10.6%",
+      "vocation": "Reserva Mundial de Agua Dulce y Biodiversidad, Ecoturismo de Aventura (Campos de Hielo, Lago General Carrera), Pesca y Ganadería Ovina/Bovina.",
+      "foda": {
+        "fortalezas": ["Mayor reserva de agua dulce per cápita del mundo y naturaleza prístina intacta.", "Carretera Austral como una de las rutas escénicas más bellas del planeta.", "Cultura gaucha patagónica auténtica y arraigada."],
+        "oportunidades": ["Polo de turismo científico sobre glaciología y cambio climático.", "Conexión digital por fibra óptica austral submarina.", "Energía eólica y minihidroeléctrica sustentable para autosuficiencia regional."],
+        "debilidades": ["Aislamiento geográfico extremo y dependencia de barcazas y pasos por Argentina.", "Coyhaique como una de las ciudades con mayor polución por humo de leña en América Latina.", "Altísimo costo de fletes, alimentos y combustible."],
+        "amenazas": ["Ruptura de conectividad por derrumbes en la Carretera Austral en invierno.", "Retiro acelerado de glaciares en Campos de Hielo Norte y Sur.", "Falta de especialistas médicos que obliga a evacuar pacientes a Puerto Montt o Santiago."]
+      },
+      "presidential_strategy": "Pavimentación continua de la Carretera Austral, subsidio masivo de calefacción distrital eléctrica y pellets en Coyhaique para erradicar el humo, y fortalecimiento del Hospital Regional de Coyhaique con telemedicina 24/7."
+    },
+    {
+      "id": "magallanes",
+      "number": "XII",
+      "name": "Región de Magallanes y de la Antártica Chilena",
+      "capital": "Punta Arenas",
+      "population": 180000,
+      "pib_share": "1.4%",
+      "poverty_rate": "5.6%",
+      "vocation": "Capital Mundial del Hidrógeno Verde y Combustibles Sintéticos, Puerta de Entrada Global a la Antártica, Torres del Paine (Octava Maravilla del Mundo) y Ganadería Ovina.",
+      "foda": {
+        "fortalezas": ["Vientos constantes con factor de planta del 70% (el más alto del planeta para energía eólica).", "Menor tasa de pobreza de Chile y más alto ingreso per cápita relativo.", "Posición geoestratégica en el Estrecho de Magallanes y proyección antártica."],
+        "oportunidades": ["Inversiones por más de US$ 30.000 millones en plantas de Hidrógeno Verde y amoníaco limpio.", "Consolidar a Punta Arenas y Puerto Williams como la base antártica científica del mundo.", "Desarrollo del turismo antártico y cruceros australes."],
+        "debilidades": ["Aislamiento terrestre del resto de Chile (obliga a transitar por territorio argentino).", "Fragilidad de la red vial para camiones pesados y aeropuertos.", "Escasez de mano de obra local calificada para la industria energética."],
+        "amenazas": ["Impacto ambiental en la avifauna y estepa patagónica si las plantas eólicas no se planifican bien.", "Tensiones geopolíticas sobre el Tratado Antártico hacia 2048.", "Congestión portuaria en Punta Arenas y Cabo Negro."]
+      },
+      "presidential_strategy": "Plan de Estado Magallanes Energía Global 2050 con puertos multipropósito en Cabo Negro, Centro Antártico Internacional (CAI) en Punta Arenas y formación técnica dual para 10.000 técnicos en Hidrógeno Verde."
+    }
+  ]
+}

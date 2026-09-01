@@ -121,18 +121,22 @@
                     <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i> <span>2. Leyes & Congreso</span>
                     <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-950 text-emerald-300 font-bold border border-emerald-800">5 Leyes</span>
                 </button>
+                <button onclick="switchTab('foda')" id="tab-btn-foda" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="map" class="w-4 h-4 text-amber-400"></i> <span>3. FODA & 16 Regiones</span>
+                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-amber-950 text-amber-300 font-bold border border-amber-800">16 Regiones</span>
+                </button>
                 <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>3. Noticias & Espectro</span>
+                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>4. Noticias & Espectro</span>
                     <span id="badge-clusters-count" class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-bold">49</span>
                 </button>
                 <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>4. Hoja de Ruta 2050</span>
+                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>5. Hoja de Ruta 2050</span>
                 </button>
                 <button onclick="switchTab('audit')" id="tab-btn-audit" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>5. Auditoría 7 Pilares</span>
+                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>6. Auditoría 7 Pilares</span>
                 </button>
                 <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>6. Ágora Ciudadana</span>
+                    <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>7. Ágora Ciudadana</span>
                 </button>
             </div>
 
@@ -235,7 +239,52 @@
             </div>
         </section>
 
-        <!-- TAB 3: NOTICIAS & ESPECTRO MEDIÁTICO -->
+        <!-- TAB 3: MATRIZ FODA & ESTRATEGIA (PAÍS & 16 REGIONES) -->
+        <section id="view-foda" class="space-y-6 hidden">
+            
+            <!-- HEADER DE SELECCIÓN: PAÍS VS 16 REGIONES -->
+            <div class="p-5 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <div class="space-y-1">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-950 text-amber-300 border border-amber-800 uppercase tracking-wider">Inteligencia Estratégica & Territorial</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-black text-white">Análisis, Interpretación, FODA & Estrategia Regional</h3>
+                    <p class="text-xs text-slate-400">Diagnóstico integral de la República y de las 16 regiones: fortalezas geológicas, oportunidades de mercado, cuellos de botella y planes presidenciales.</p>
+                </div>
+                <div class="flex items-center bg-slate-950 p-1 rounded-2xl border border-slate-800 self-start md:self-auto gap-1">
+                    <button onclick="toggleFodaScope('country')" id="btn-foda-country" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap">
+                        <i data-lucide="globe" class="w-3.5 h-3.5"></i> 🇨🇱 General País
+                    </button>
+                    <button onclick="toggleFodaScope('regions')" id="btn-foda-regions" class="px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i> 📍 16 Regiones
+                    </button>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR 1: GENERAL PAÍS -->
+            <div id="foda-country-container" class="space-y-6">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- CONTENEDOR 2: 16 REGIONES -->
+            <div id="foda-regions-container" class="space-y-6 hidden">
+                <!-- Selector de Regiones en Píldoras -->
+                <div class="glass-panel p-4 rounded-2xl space-y-3">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Selecciona una Región de Chile:</span>
+                    <div id="regions-pills" class="flex items-center gap-2 overflow-x-auto pb-2 text-xs">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Detalle de la Región Seleccionada -->
+                <div id="region-detail-card" class="space-y-6">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TAB 4: NOTICIAS & ESPECTRO MEDIÁTICO -->
         <section id="view-clusters" class="space-y-4 hidden">
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div class="relative min-w-[260px] flex-1">

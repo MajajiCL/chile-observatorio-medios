@@ -65,15 +65,16 @@ function renderAllViews() {
     renderEconomicIndicators();
     renderCadenaNacional();
     renderLegislativeBills();
+    renderStrategyFodaView();
+    renderClustersView();
     renderRoadmap2050();
     renderAuditPillars();
-    renderClustersView();
     renderCitizenProposals();
     if (window.lucide) lucide.createIcons();
 }
 
 function switchTab(tabId) {
-    const tabs = ['cadena', 'leyes', 'roadmap', 'audit', 'clusters', 'citizen'];
+    const tabs = ['cadena', 'leyes', 'foda', 'clusters', 'roadmap', 'audit', 'citizen'];
     tabs.forEach(t => {
         const view = document.getElementById('view-' + t);
         const btn = document.getElementById('tab-btn-' + t);
@@ -84,13 +85,240 @@ function switchTab(tabId) {
             btn.className = 'px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap';
         } else {
             view.classList.add('hidden');
-            btn.className = 'px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap';
+            btn.className = 'px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap';
         }
     });
 
     if (tabId === 'cadena') {
         setTimeout(renderStatecraftRadar, 60);
     }
+    if (window.lucide) lucide.createIcons();
+}
+
+let currentSelectedRegionId = 'antofagasta';
+
+function toggleFodaScope(scope) {
+    const countryContainer = document.getElementById('foda-country-container');
+    const regionsContainer = document.getElementById('foda-regions-container');
+    const btnCountry = document.getElementById('btn-foda-country');
+    const btnRegions = document.getElementById('btn-foda-regions');
+
+    if (!countryContainer || !regionsContainer || !btnCountry || !btnRegions) return;
+
+    if (scope === 'country') {
+        countryContainer.classList.remove('hidden');
+        regionsContainer.classList.add('hidden');
+        btnCountry.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap';
+        btnRegions.className = 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap';
+    } else {
+        countryContainer.classList.add('hidden');
+        regionsContainer.classList.remove('hidden');
+        btnRegions.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap';
+        btnCountry.className = 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap';
+        selectRegion(currentSelectedRegionId);
+    }
+    if (window.lucide) lucide.createIcons();
+}
+
+function renderStrategyFodaView() {
+    renderCountryFoda();
+    renderRegionsSelector();
+}
+
+function renderCountryFoda() {
+    const container = document.getElementById('foda-country-container');
+    if (!container) return;
+
+    const data = (dataSnapshot && dataSnapshot.country_foda_strategy) ? dataSnapshot.country_foda_strategy : null;
+    if (!data) return;
+
+    const f = data.foda || {};
+    const fHtml = (f.fortalezas || []).map(item => `
+        <div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 space-y-1">
+            <h5 class="font-extrabold text-emerald-300 text-xs flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> ${item.title}</h5>
+            <p class="text-slate-300 text-[11px] leading-relaxed">${item.desc}</p>
+        </div>
+    `).join("");
+
+    const oHtml = (f.oportunidades || []).map(item => `
+        <div class="p-3.5 rounded-2xl bg-cyan-950/40 border border-cyan-800/60 space-y-1">
+            <h5 class="font-extrabold text-cyan-300 text-xs flex items-center gap-1.5"><i data-lucide="trending-up" class="w-3.5 h-3.5 text-cyan-400"></i> ${item.title}</h5>
+            <p class="text-slate-300 text-[11px] leading-relaxed">${item.desc}</p>
+        </div>
+    `).join("");
+
+    const dHtml = (f.debilidades || []).map(item => `
+        <div class="p-3.5 rounded-2xl bg-amber-950/40 border border-amber-800/60 space-y-1">
+            <h5 class="font-extrabold text-amber-300 text-xs flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-400"></i> ${item.title}</h5>
+            <p class="text-slate-300 text-[11px] leading-relaxed">${item.desc}</p>
+        </div>
+    `).join("");
+
+    const aHtml = (f.amenazas || []).map(item => `
+        <div class="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-800/60 space-y-1">
+            <h5 class="font-extrabold text-rose-300 text-xs flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-400"></i> ${item.title}</h5>
+            <p class="text-slate-300 text-[11px] leading-relaxed">${item.desc}</p>
+        </div>
+    `).join("");
+
+    const pillarsHtml = (data.strategic_pillars_2050 || []).map(p => `
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+            <span class="font-extrabold text-cyan-300 text-xs uppercase tracking-wide block">${p.pillar}</span>
+            <div class="space-y-1 text-slate-300">
+                <div><strong class="text-amber-400">Meta 2030:</strong> ${p.target_2030}</div>
+                <div><strong class="text-emerald-400">Meta 2050:</strong> ${p.target_2050}</div>
+            </div>
+        </div>
+    `).join("");
+
+    container.innerHTML = `
+        <div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-6 border border-slate-800">
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Síntesis Estratégica de la Presidenta IA:</span>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">${data.executive_summary}</p>
+            </div>
+
+            <!-- CUADRÍCULA FODA PAÍS EN 4 CUADRANTES -->
+            <div class="space-y-2">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Matriz FODA de la República de Chile (2026 - 2050):</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- FORTALEZAS -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3 border-emerald-800/40">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4"></i> Fortalezas (Factores Internos Positivos)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">F</span>
+                        </div>
+                        <div class="space-y-2.5">${fHtml}</div>
+                    </div>
+                    <!-- OPORTUNIDADES -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3 border-cyan-800/40">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5"><i data-lucide="compass" class="w-4 h-4"></i> Oportunidades (Factores Externos Positivos)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-950 text-cyan-400 border border-cyan-800">O</span>
+                        </div>
+                        <div class="space-y-2.5">${oHtml}</div>
+                    </div>
+                    <!-- DEBILIDADES -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3 border-amber-800/40">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-4 h-4"></i> Debilidades (Factores Internos Negativos)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-950 text-amber-400 border border-amber-800">D</span>
+                        </div>
+                        <div class="space-y-2.5">${dHtml}</div>
+                    </div>
+                    <!-- AMENAZAS -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3 border-rose-800/40">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1.5"><i data-lucide="zap-off" class="w-4 h-4"></i> Amenazas (Factores Externos Negativos)</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800">A</span>
+                        </div>
+                        <div class="space-y-2.5">${aHtml}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 PILARES ESTRATÉGICOS -->
+            <div class="space-y-3 pt-2 border-t border-slate-800">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Plan Estratégico de Estado de la Presidenta IA (Metas 2030 - 2050):</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">${pillarsHtml}</div>
+            </div>
+        </div>
+    `;
+    if (window.lucide) lucide.createIcons();
+}
+
+function renderRegionsSelector() {
+    const pillsContainer = document.getElementById('regions-pills');
+    if (!pillsContainer) return;
+
+    const regions = (dataSnapshot && dataSnapshot.regions_analysis) ? dataSnapshot.regions_analysis : [];
+    pillsContainer.innerHTML = regions.map(r => `
+        <button onclick="selectRegion('${r.id}')" id="reg-pill-${r.id}" class="reg-pill px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition ${r.id === currentSelectedRegionId ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/25 border border-cyan-400' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'}">
+            <span class="font-mono text-[10px] text-cyan-300 font-extrabold mr-1">${r.number}</span> ${r.name.replace('Región de ', '').replace('Región del ', '')}
+        </button>
+    `).join("");
+}
+
+function selectRegion(regionId) {
+    currentSelectedRegionId = regionId;
+    const regions = (dataSnapshot && dataSnapshot.regions_analysis) ? dataSnapshot.regions_analysis : [];
+    const r = regions.find(item => item.id === regionId) || regions[0];
+    if (!r) return;
+
+    document.querySelectorAll('.reg-pill').forEach(btn => {
+        btn.className = 'reg-pill px-3 py-1.5 rounded-xl font-semibold whitespace-nowrap transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800 text-xs';
+    });
+    const activePill = document.getElementById('reg-pill-' + regionId);
+    if (activePill) {
+        activePill.className = 'reg-pill px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition bg-cyan-600 text-white shadow-md shadow-cyan-600/25 border border-cyan-400 text-xs';
+    }
+
+    const detailCard = document.getElementById('region-detail-card');
+    if (!detailCard) return;
+
+    const f = r.foda || {};
+    const fHtml = (f.fortalezas || []).map(t => `<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span> ${t}</li>`).join("");
+    const oHtml = (f.oportunidades || []).map(t => `<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-cyan-400 font-bold">•</span> ${t}</li>`).join("");
+    const dHtml = (f.debilidades || []).map(t => `<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-amber-400 font-bold">•</span> ${t}</li>`).join("");
+    const aHtml = (f.amenazas || []).map(t => `<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-rose-400 font-bold">•</span> ${t}</li>`).join("");
+
+    detailCard.innerHTML = `
+        <div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-6 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-700 flex items-center justify-center text-white font-black text-base shadow-lg shadow-cyan-600/20 font-mono">
+                        ${r.number}
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Capital Regional: ${r.capital}</span>
+                        <h3 class="text-lg sm:text-xl font-black text-white">${r.name}</h3>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-medium">👥 ${(r.population || 0).toLocaleString('es-CL')} habitantes</span>
+                    <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-emerald-300 font-mono font-bold">PIB: ${r.pib_share}</span>
+                </div>
+            </div>
+
+            <!-- VOCACIÓN TERRITORIAL -->
+            <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs space-y-1">
+                <span class="text-[10px] font-bold text-cyan-300 uppercase tracking-wider block">Vocación Productiva & Identidad Regional:</span>
+                <p class="text-slate-100 font-medium leading-relaxed">${r.vocation}</p>
+            </div>
+
+            <!-- MATRIZ FODA REGIONAL -->
+            <div class="space-y-2">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Matriz FODA Territorial (${r.name}):</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-800/50 space-y-2">
+                        <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5"></i> Fortalezas</span>
+                        <ul class="space-y-1.5">${fHtml}</ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/50 space-y-2">
+                        <span class="text-xs font-extrabold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="compass" class="w-3.5 h-3.5"></i> Oportunidades</span>
+                        <ul class="space-y-1.5">${oHtml}</ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-amber-950/30 border border-amber-800/50 space-y-2">
+                        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Debilidades & Cuellos de Botella</span>
+                        <ul class="space-y-1.5">${dHtml}</ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-rose-950/30 border border-rose-800/50 space-y-2">
+                        <span class="text-xs font-extrabold text-rose-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Amenazas & Riesgos</span>
+                        <ul class="space-y-1.5">${aHtml}</ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESTRATEGIA DE LA PRESIDENTA IA PARA LA REGIÓN -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-cyan-500/40 text-xs space-y-1.5 shadow-md">
+                <span class="text-[11px] font-extrabold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="crosshair" class="w-4 h-4 text-cyan-400"></i> Plan de Acción & Obras Estructurantes de la Presidenta IA (2026 - 2050):
+                </span>
+                <p class="text-slate-100 font-medium leading-relaxed text-xs sm:text-sm">${r.presidential_strategy}</p>
+            </div>
+        </div>
+    `;
+
     if (window.lucide) lucide.createIcons();
 }
 
