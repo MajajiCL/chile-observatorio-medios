@@ -89,7 +89,7 @@
       {
         "category": "Educación Pública (SLEP, Subvenciones, Gratuidad Superior)",
         "amount_usd": 17800000000,
-        "pct_total": 19.0,
+        "pct_total": 19,
         "desc": "Subvención escolar preferencial, funcionamiento de colegios públicos y gratuidad para el 60% más vulnerable."
       },
       {
@@ -119,7 +119,7 @@
       {
         "category": "Defensa Nacional (FFAA: Ejército, Armada, FACh, EMCO)",
         "amount_usd": 2850000000,
-        "pct_total": 3.0,
+        "pct_total": 3,
         "desc": "Mantenimiento del poder disuasivo soberano, resguardo fronterizo e infraestructura crítica."
       },
       {
@@ -228,8 +228,8 @@
         "active_volunteer_firefighters": 480,
         "fire_trucks_operational": 24,
         "fire_trucks_out_of_service": 5,
-        "state_budget_funding_pct": 42.0,
-        "self_funding_rifas_pct": 58.0,
+        "state_budget_funding_pct": 42,
+        "self_funding_rifas_pct": 58,
         "avg_response_time_minutes": 8.5,
         "forest_fire_risk_conaf": "Bajo (Vegetación xerofítica en precordillera)"
       },
@@ -245,17 +245,19 @@
         "camps_tomas_count": 28,
         "paved_roads_km": 680,
         "unpaved_roads_km": 1120,
-        "reservoir_water_storage_pct": 32.0,
+        "reservoir_water_storage_pct": 32,
         "desalination_plants_operating": 0,
         "rural_water_apr_coverage_pct": 62.5,
         "renewable_energy_capacity_mw": 240
       },
       "presidential_strategy_2050": "Construcción de la Planta Desalinizadora de Arica para regadío solar de Azapa/Lluta, blindaje fronterizo biométrico y modernización del Complejo Portuario Arica hacia el sur de Perú y Bolivia.",
-      "image_url": "https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Morro de Arica y Altiplano de Parinacota",
-      "idh": 0.812,
-      "informal_labor_pct": 33.4,
-      "water_deficit_pct": 78.5
+      "image_url": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Morro de Arica y Altiplano de Parinacota (Lago Chungará)",
+      "idh": 0.825,
+      "informal_labor_pct": 32.4,
+      "water_deficit_pct": 68.2,
+      "photo_url": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Morro de Arica y Altiplano de Parinacota (Lago Chungará)"
     },
     {
       "id": "tarapaca",
@@ -282,7 +284,7 @@
         "surgical_waiting_list_patients": 26800,
         "surgical_waiting_list_avg_days": 362,
         "specialist_consult_waiting_patients": 58000,
-        "specialist_doctors_per_100k": 92.0,
+        "specialist_doctors_per_100k": 92,
         "cenabast_hospital_debt_clp_millions": 8900
       },
       "educacion": {
@@ -325,8 +327,8 @@
         "active_volunteer_firefighters": 920,
         "fire_trucks_operational": 42,
         "fire_trucks_out_of_service": 9,
-        "state_budget_funding_pct": 45.0,
-        "self_funding_rifas_pct": 55.0,
+        "state_budget_funding_pct": 45,
+        "self_funding_rifas_pct": 55,
         "avg_response_time_minutes": 7.8,
         "forest_fire_risk_conaf": "Bajo (Pampa del Tamarugal protegida)"
       },
@@ -344,15 +346,17 @@
         "unpaved_roads_km": 1980,
         "reservoir_water_storage_pct": 18.5,
         "desalination_plants_operating": 2,
-        "rural_water_apr_coverage_pct": 58.0,
+        "rural_water_apr_coverage_pct": 58,
         "renewable_energy_capacity_mw": 890
       },
       "presidential_strategy_2050": "Polo logístico del Corredor Bioceánico Capricornio hacia Brasil, erradicación y radicación de campamentos en Alto Hospicio y digitalización 4.0 de ZOFRI.",
-      "image_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Costa de Iquique, Duna Dragón y Salitrera Humberstone",
-      "idh": 0.825,
-      "informal_labor_pct": 31.8,
-      "water_deficit_pct": 82.0
+      "image_url": "https://images.unsplash.com/photo-1589556264800-08ae9e129a8c?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Oficinas Salitreras Humberstone y Bahía de Iquique",
+      "idh": 0.838,
+      "informal_labor_pct": 34.1,
+      "water_deficit_pct": 72,
+      "photo_url": "https://images.unsplash.com/photo-1589556264800-08ae9e129a8c?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Oficinas Salitreras Humberstone y Bahía de Iquique"
     },
     {
       "id": "antofagasta",
@@ -369,7 +373,7 @@
         "budget_fndr_clp_millions": 142000,
         "fndr_execution_pct": 89.2,
         "per_capita_municipal_income_clp": 380000,
-        "fcm_dependency_pct": 42.0
+        "fcm_dependency_pct": 42
       },
       "salud": {
         "hospitals_high_complexity": 2,
@@ -379,7 +383,7 @@
         "surgical_waiting_list_patients": 38200,
         "surgical_waiting_list_avg_days": 320,
         "specialist_consult_waiting_patients": 82000,
-        "specialist_doctors_per_100k": 104.0,
+        "specialist_doctors_per_100k": 104,
         "cenabast_hospital_debt_clp_millions": 14200
       },
       "educacion": {
@@ -422,8 +426,8 @@
         "active_volunteer_firefighters": 1450,
         "fire_trucks_operational": 68,
         "fire_trucks_out_of_service": 12,
-        "state_budget_funding_pct": 48.0,
-        "self_funding_rifas_pct": 52.0,
+        "state_budget_funding_pct": 48,
+        "self_funding_rifas_pct": 52,
         "avg_response_time_minutes": 6.9,
         "forest_fire_risk_conaf": "Nulo / Emergencias por sustancias peligrosas mineras"
       },
@@ -439,17 +443,19 @@
         "camps_tomas_count": 86,
         "paved_roads_km": 3240,
         "unpaved_roads_km": 4120,
-        "reservoir_water_storage_pct": 45.0,
+        "reservoir_water_storage_pct": 45,
         "desalination_plants_operating": 8,
-        "rural_water_apr_coverage_pct": 68.0,
+        "rural_water_apr_coverage_pct": 68,
         "renewable_energy_capacity_mw": 5200
       },
       "presidential_strategy_2050": "Instituto de Tecnologías Limpias (ITL), producción de cátodos de litio y baterías, red de hospitales oncológicos del norte y 100% de agua industrial proveniente del mar.",
-      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Monumento Natural La Portada y Salares de Atacama",
-      "idh": 0.864,
-      "informal_labor_pct": 22.1,
-      "water_deficit_pct": 88.0
+      "image_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Valle de la Luna, San Pedro y Monumento Natural La Portada",
+      "idh": 0.871,
+      "informal_labor_pct": 20.8,
+      "water_deficit_pct": 84.5,
+      "photo_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Valle de la Luna, San Pedro y Monumento Natural La Portada"
     },
     {
       "id": "atacama",
@@ -464,9 +470,9 @@
       "vocation": "Minería de Cobre, Oro y Hierro, Agricultura de Uva de Mesa de Exportación y Energía Renovable.",
       "fiscal_gore": {
         "budget_fndr_clp_millions": 76500,
-        "fndr_execution_pct": 92.0,
+        "fndr_execution_pct": 92,
         "per_capita_municipal_income_clp": 260000,
-        "fcm_dependency_pct": 59.0
+        "fcm_dependency_pct": 59
       },
       "salud": {
         "hospitals_high_complexity": 1,
@@ -476,7 +482,7 @@
         "surgical_waiting_list_patients": 22400,
         "surgical_waiting_list_avg_days": 355,
         "specialist_consult_waiting_patients": 48000,
-        "specialist_doctors_per_100k": 82.0,
+        "specialist_doctors_per_100k": 82,
         "cenabast_hospital_debt_clp_millions": 7200
       },
       "educacion": {
@@ -510,7 +516,7 @@
         "actual_inmate_population": 2420,
         "hacinamiento_pct": 146.7,
         "gendarmeria_staff": 680,
-        "recidivism_rate_pct": 49.0,
+        "recidivism_rate_pct": 49,
         "cellular_signal_inhibition_active": "En proceso de instalación"
       },
       "bomberos_emergencias": {
@@ -519,8 +525,8 @@
         "active_volunteer_firefighters": 780,
         "fire_trucks_operational": 36,
         "fire_trucks_out_of_service": 8,
-        "state_budget_funding_pct": 44.0,
-        "self_funding_rifas_pct": 56.0,
+        "state_budget_funding_pct": 44,
+        "self_funding_rifas_pct": 56,
         "avg_response_time_minutes": 8.2,
         "forest_fire_risk_conaf": "Bajo (Vulnerabilidad alta ante aluviones)"
       },
@@ -536,17 +542,19 @@
         "camps_tomas_count": 48,
         "paved_roads_km": 2180,
         "unpaved_roads_km": 3450,
-        "reservoir_water_storage_pct": 24.0,
+        "reservoir_water_storage_pct": 24,
         "desalination_plants_operating": 3,
-        "rural_water_apr_coverage_pct": 65.0,
+        "rural_water_apr_coverage_pct": 65,
         "renewable_energy_capacity_mw": 3100
       },
       "presidential_strategy_2050": "Intervención integral de emergencia en la infraestructura escolar del SLEP Atacama, defensa fluvial/aluvional definitiva en el Río Copiapó y planta de recuperación de tierras raras desde relaves mineros.",
-      "image_url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Desierto Florido y Bahía Inglesa",
-      "idh": 0.81,
-      "informal_labor_pct": 27.6,
-      "water_deficit_pct": 74.0
+      "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Bahía Inglesa, Parque Pan de Azúcar y Desierto Florido",
+      "idh": 0.828,
+      "informal_labor_pct": 28.5,
+      "water_deficit_pct": 79,
+      "photo_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Bahía Inglesa, Parque Pan de Azúcar y Desierto Florido"
     },
     {
       "id": "coquimbo",
@@ -557,13 +565,13 @@
       "communes_count": 15,
       "area_km2": 40580,
       "pib_share_pct": 3.2,
-      "poverty_rate_pct": 13.0,
+      "poverty_rate_pct": 13,
       "vocation": "Agricultura de Precisión (Piscos, Cítricos, Paltas), Minería (Pelambres), Turismo de Playas y Astroturismo (Valle de Elqui).",
       "fiscal_gore": {
         "budget_fndr_clp_millions": 96800,
-        "fndr_execution_pct": 88.0,
+        "fndr_execution_pct": 88,
         "per_capita_municipal_income_clp": 235000,
-        "fcm_dependency_pct": 66.0
+        "fcm_dependency_pct": 66
       },
       "salud": {
         "hospitals_high_complexity": 2,
@@ -573,7 +581,7 @@
         "surgical_waiting_list_patients": 48600,
         "surgical_waiting_list_avg_days": 380,
         "specialist_consult_waiting_patients": 112000,
-        "specialist_doctors_per_100k": 86.0,
+        "specialist_doctors_per_100k": 86,
         "cenabast_hospital_debt_clp_millions": 16500
       },
       "educacion": {
@@ -582,8 +590,8 @@
         "schools_subsidized_private": 248,
         "schools_private_paid": 38,
         "total_students_enrolled": 178000,
-        "school_dropout_rate_pct": 2.0,
-        "critical_attendance_pct": 31.0,
+        "school_dropout_rate_pct": 2,
+        "critical_attendance_pct": 31,
         "simce_math_avg": 246,
         "simce_reading_avg": 254,
         "paes_avg_score": 536,
@@ -616,8 +624,8 @@
         "active_volunteer_firefighters": 1850,
         "fire_trucks_operational": 82,
         "fire_trucks_out_of_service": 18,
-        "state_budget_funding_pct": 43.0,
-        "self_funding_rifas_pct": 57.0,
+        "state_budget_funding_pct": 43,
+        "self_funding_rifas_pct": 57,
         "avg_response_time_minutes": 8.8,
         "forest_fire_risk_conaf": "Alto (Sequía extrema y pastizales secos en valles interiores)"
       },
@@ -635,15 +643,17 @@
         "unpaved_roads_km": 4920,
         "reservoir_water_storage_pct": 8.4,
         "desalination_plants_operating": 1,
-        "rural_water_apr_coverage_pct": 61.0,
+        "rural_water_apr_coverage_pct": 61,
         "renewable_energy_capacity_mw": 2650
       },
       "presidential_strategy_2050": "Construcción prioritaria de la Planta Desalinizadora de Coquimbo-La Serena y Limarí, tranvía interurbano La Serena-Coquimbo y entrega de los nuevos hospitales de alta complejidad.",
-      "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Valle del Elqui y Bahía de Coquimbo-La Serena",
-      "idh": 0.804,
-      "informal_labor_pct": 29.5,
-      "water_deficit_pct": 85.2
+      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Valle del Elqui Astronómico y Faro Monumental de La Serena",
+      "idh": 0.835,
+      "informal_labor_pct": 29.8,
+      "water_deficit_pct": 81.3,
+      "photo_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Valle del Elqui Astronómico y Faro Monumental de La Serena"
     },
     {
       "id": "valparaiso",
@@ -660,7 +670,7 @@
         "budget_fndr_clp_millions": 128000,
         "fndr_execution_pct": 93.4,
         "per_capita_municipal_income_clp": 295000,
-        "fcm_dependency_pct": 54.0
+        "fcm_dependency_pct": 54
       },
       "salud": {
         "hospitals_high_complexity": 4,
@@ -670,7 +680,7 @@
         "surgical_waiting_list_patients": 86400,
         "surgical_waiting_list_avg_days": 395,
         "specialist_consult_waiting_patients": 210000,
-        "specialist_doctors_per_100k": 112.0,
+        "specialist_doctors_per_100k": 112,
         "cenabast_hospital_debt_clp_millions": 28500
       },
       "educacion": {
@@ -713,8 +723,8 @@
         "active_volunteer_firefighters": 5400,
         "fire_trucks_operational": 240,
         "fire_trucks_out_of_service": 38,
-        "state_budget_funding_pct": 46.0,
-        "self_funding_rifas_pct": 54.0,
+        "state_budget_funding_pct": 46,
+        "self_funding_rifas_pct": 54,
         "avg_response_time_minutes": 7.4,
         "forest_fire_risk_conaf": "Extremo (Zona de incendios forestales catastróficos en interfaz urbano-forestal)"
       },
@@ -732,15 +742,17 @@
         "unpaved_roads_km": 3890,
         "reservoir_water_storage_pct": 34.2,
         "desalination_plants_operating": 2,
-        "rural_water_apr_coverage_pct": 74.0,
+        "rural_water_apr_coverage_pct": 74,
         "renewable_energy_capacity_mw": 1450
       },
       "presidential_strategy_2050": "Plan anti-incendios de reconstrucción resiliente en cerros, Tren Rápido Santiago-Valparaíso, Mega-Puerto Exterior de San Antonio y planta desalinizadora para el Valle de Aconcagua.",
-      "image_url": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Cerros y Ascensores Tradicionales de Valparaíso (Patrimonio UNESCO)",
-      "idh": 0.835,
-      "informal_labor_pct": 28.1,
-      "water_deficit_pct": 62.0
+      "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Cerros, Ascensores y Bahía de Valparaíso (Patrimonio UNESCO)",
+      "idh": 0.852,
+      "informal_labor_pct": 27.6,
+      "water_deficit_pct": 74.8,
+      "photo_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Cerros, Ascensores y Bahía de Valparaíso (Patrimonio UNESCO)"
     },
     {
       "id": "metropolitana",
@@ -757,7 +769,7 @@
         "budget_fndr_clp_millions": 182000,
         "fndr_execution_pct": 96.5,
         "per_capita_municipal_income_clp": 520000,
-        "fcm_dependency_pct": 28.0
+        "fcm_dependency_pct": 28
       },
       "salud": {
         "hospitals_high_complexity": 18,
@@ -767,7 +779,7 @@
         "surgical_waiting_list_patients": 118000,
         "surgical_waiting_list_avg_days": 290,
         "specialist_consult_waiting_patients": 340000,
-        "specialist_doctors_per_100k": 168.0,
+        "specialist_doctors_per_100k": 168,
         "cenabast_hospital_debt_clp_millions": 68000
       },
       "educacion": {
@@ -781,7 +793,7 @@
         "simce_math_avg": 262,
         "simce_reading_avg": 268,
         "paes_avg_score": 582,
-        "higher_education_gratuity_coverage_pct": 52.0
+        "higher_education_gratuity_coverage_pct": 52
       },
       "seguridad_policias": {
         "carabineros_active_officers": 22400,
@@ -810,8 +822,8 @@
         "active_volunteer_firefighters": 14200,
         "fire_trucks_operational": 620,
         "fire_trucks_out_of_service": 84,
-        "state_budget_funding_pct": 48.0,
-        "self_funding_rifas_pct": 52.0,
+        "state_budget_funding_pct": 48,
+        "self_funding_rifas_pct": 52,
         "avg_response_time_minutes": 6.2,
         "forest_fire_risk_conaf": "Alto (Quebradas precordilleranas y cerros isla)"
       },
@@ -827,17 +839,19 @@
         "camps_tomas_count": 192,
         "paved_roads_km": 6800,
         "unpaved_roads_km": 2400,
-        "reservoir_water_storage_pct": 62.0,
+        "reservoir_water_storage_pct": 62,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 82.0,
+        "rural_water_apr_coverage_pct": 82,
         "renewable_energy_capacity_mw": 1100
       },
       "presidential_strategy_2050": "Reforma del Fondo Común Municipal para igualar inversión barrial, expansión de Metro Líneas 7, 8 y 9 con electromovilidad total, y blindaje de la cuenca del Maipo ante el cambio climático.",
-      "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Palacio de La Moneda y Cordillera de Los Andes en Santiago",
-      "idh": 0.874,
-      "informal_labor_pct": 25.4,
-      "water_deficit_pct": 48.0
+      "image_url": "https://images.unsplash.com/photo-1578885136359-16c8bd4d3a8e?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Palacio de La Moneda, Gran Santiago y Cerro San Cristóbal",
+      "idh": 0.894,
+      "informal_labor_pct": 24.2,
+      "water_deficit_pct": 61.5,
+      "photo_url": "https://images.unsplash.com/photo-1578885136359-16c8bd4d3a8e?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Palacio de La Moneda, Gran Santiago y Cerro San Cristóbal"
     },
     {
       "id": "ohiggins",
@@ -854,17 +868,17 @@
         "budget_fndr_clp_millions": 94500,
         "fndr_execution_pct": 92.8,
         "per_capita_municipal_income_clp": 255000,
-        "fcm_dependency_pct": 64.0
+        "fcm_dependency_pct": 64
       },
       "salud": {
         "hospitals_high_complexity": 1,
         "hospitals_low_mid": 14,
         "cesfam_and_rural_posts": 88,
-        "critical_beds_per_100k": 11.0,
+        "critical_beds_per_100k": 11,
         "surgical_waiting_list_patients": 42500,
         "surgical_waiting_list_avg_days": 370,
         "specialist_consult_waiting_patients": 94000,
-        "specialist_doctors_per_100k": 84.0,
+        "specialist_doctors_per_100k": 84,
         "cenabast_hospital_debt_clp_millions": 12400
       },
       "educacion": {
@@ -874,11 +888,11 @@
         "schools_private_paid": 42,
         "total_students_enrolled": 192000,
         "school_dropout_rate_pct": 1.7,
-        "critical_attendance_pct": 28.0,
+        "critical_attendance_pct": 28,
         "simce_math_avg": 248,
         "simce_reading_avg": 256,
         "paes_avg_score": 538,
-        "higher_education_gratuity_coverage_pct": 68.0
+        "higher_education_gratuity_coverage_pct": 68
       },
       "seguridad_policias": {
         "carabineros_active_officers": 2700,
@@ -898,7 +912,7 @@
         "actual_inmate_population": 4250,
         "hacinamiento_pct": 132.8,
         "gendarmeria_staff": 1120,
-        "recidivism_rate_pct": 47.0,
+        "recidivism_rate_pct": 47,
         "cellular_signal_inhibition_active": "Operativa en Complejo Penitenciario La Gonzalina (Rancagua)"
       },
       "bomberos_emergencias": {
@@ -907,8 +921,8 @@
         "active_volunteer_firefighters": 3400,
         "fire_trucks_operational": 164,
         "fire_trucks_out_of_service": 28,
-        "state_budget_funding_pct": 44.0,
-        "self_funding_rifas_pct": 56.0,
+        "state_budget_funding_pct": 44,
+        "self_funding_rifas_pct": 56,
         "avg_response_time_minutes": 8.1,
         "forest_fire_risk_conaf": "Muy Alto (Plantaciones forestales y pastizales en secano costero)"
       },
@@ -924,17 +938,19 @@
         "camps_tomas_count": 44,
         "paved_roads_km": 3450,
         "unpaved_roads_km": 5120,
-        "reservoir_water_storage_pct": 54.0,
+        "reservoir_water_storage_pct": 54,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 78.0,
+        "rural_water_apr_coverage_pct": 78,
         "renewable_energy_capacity_mw": 1820
       },
       "presidential_strategy_2050": "Tren de cercanías EFE Santiago-Rancagua-San Fernando, tecnificación de regadío en secano costero y fortalecimiento de la Escuela de Medicina de la Universidad de O'Higgins.",
-      "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Valle Vitivinícola de Colchagua y Campamento Minero Sewell",
-      "idh": 0.798,
-      "informal_labor_pct": 29.8,
-      "water_deficit_pct": 42.0
+      "image_url": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Campamento Sewell (UNESCO), El Teniente y Viñedos de Colchagua",
+      "idh": 0.821,
+      "informal_labor_pct": 31,
+      "water_deficit_pct": 54,
+      "photo_url": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Campamento Sewell (UNESCO), El Teniente y Viñedos de Colchagua"
     },
     {
       "id": "maule",
@@ -951,7 +967,7 @@
         "budget_fndr_clp_millions": 105000,
         "fndr_execution_pct": 91.2,
         "per_capita_municipal_income_clp": 220000,
-        "fcm_dependency_pct": 72.0
+        "fcm_dependency_pct": 72
       },
       "salud": {
         "hospitals_high_complexity": 2,
@@ -961,7 +977,7 @@
         "surgical_waiting_list_patients": 54200,
         "surgical_waiting_list_avg_days": 410,
         "specialist_consult_waiting_patients": 128000,
-        "specialist_doctors_per_100k": 76.0,
+        "specialist_doctors_per_100k": 76,
         "cenabast_hospital_debt_clp_millions": 18200
       },
       "educacion": {
@@ -1004,8 +1020,8 @@
         "active_volunteer_firefighters": 3800,
         "fire_trucks_operational": 182,
         "fire_trucks_out_of_service": 32,
-        "state_budget_funding_pct": 42.0,
-        "self_funding_rifas_pct": 58.0,
+        "state_budget_funding_pct": 42,
+        "self_funding_rifas_pct": 58,
         "avg_response_time_minutes": 9.4,
         "forest_fire_risk_conaf": "Extremo (Historial de mega-incendios forestales como Las Máquinas)"
       },
@@ -1023,15 +1039,17 @@
         "unpaved_roads_km": 7240,
         "reservoir_water_storage_pct": 48.2,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 72.0,
+        "rural_water_apr_coverage_pct": 72,
         "renewable_energy_capacity_mw": 2950
       },
       "presidential_strategy_2050": "Defensa fluvial definitiva de cuencas de los ríos Maule y Mataquito, pavimentación de 600 km de caminos rurales en Linares y Cauquenes, y centro de I+D agroalimentario en Curicó.",
-      "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Reserva Nacional Radal Siete Tazas y Cuenca del Maule",
-      "idh": 0.772,
-      "informal_labor_pct": 34.2,
-      "water_deficit_pct": 38.0
+      "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Parque Nacional Radal Siete Tazas y Cuenca Agrícola del Maule",
+      "idh": 0.805,
+      "informal_labor_pct": 36.2,
+      "water_deficit_pct": 49,
+      "photo_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Parque Nacional Radal Siete Tazas y Cuenca Agrícola del Maule"
     },
     {
       "id": "nuble",
@@ -1046,9 +1064,9 @@
       "vocation": "Agricultura de Riego, Viñedos Patrimoniales (Valle del Itata), Turismo Termal y de Nieve (Nevados de Chillán).",
       "fiscal_gore": {
         "budget_fndr_clp_millions": 68400,
-        "fndr_execution_pct": 94.0,
+        "fndr_execution_pct": 94,
         "per_capita_municipal_income_clp": 210000,
-        "fcm_dependency_pct": 78.0
+        "fcm_dependency_pct": 78
       },
       "salud": {
         "hospitals_high_complexity": 1,
@@ -1058,7 +1076,7 @@
         "surgical_waiting_list_patients": 29400,
         "surgical_waiting_list_avg_days": 420,
         "specialist_consult_waiting_patients": 68000,
-        "specialist_doctors_per_100k": 72.0,
+        "specialist_doctors_per_100k": 72,
         "cenabast_hospital_debt_clp_millions": 9400
       },
       "educacion": {
@@ -1068,7 +1086,7 @@
         "schools_private_paid": 18,
         "total_students_enrolled": 102000,
         "school_dropout_rate_pct": 2.2,
-        "critical_attendance_pct": 34.0,
+        "critical_attendance_pct": 34,
         "simce_math_avg": 240,
         "simce_reading_avg": 248,
         "paes_avg_score": 524,
@@ -1101,8 +1119,8 @@
         "active_volunteer_firefighters": 1950,
         "fire_trucks_operational": 94,
         "fire_trucks_out_of_service": 16,
-        "state_budget_funding_pct": 41.0,
-        "self_funding_rifas_pct": 59.0,
+        "state_budget_funding_pct": 41,
+        "self_funding_rifas_pct": 59,
         "avg_response_time_minutes": 9.8,
         "forest_fire_risk_conaf": "Extremo (Monocultivos forestales en contacto con caseríos)"
       },
@@ -1118,17 +1136,19 @@
         "camps_tomas_count": 22,
         "paved_roads_km": 1820,
         "unpaved_roads_km": 4650,
-        "reservoir_water_storage_pct": 38.0,
+        "reservoir_water_storage_pct": 38,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 64.0,
+        "rural_water_apr_coverage_pct": 64,
         "renewable_energy_capacity_mw": 980
       },
       "presidential_strategy_2050": "Construcción definitiva del Embalse La Punilla y Zapallar para 70.000 ha de riego, nuevo Hospital Regional de Ñuble y subsidio masivo de aislación térmica para erradicar el humo de leña.",
-      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Valle de Itata y Termas Cordilleranas de Chillán",
-      "idh": 0.768,
-      "informal_labor_pct": 35.6,
-      "water_deficit_pct": 32.0
+      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Nevados y Termas de Chillán, Valle Las Trancas y Valle de Itata",
+      "idh": 0.798,
+      "informal_labor_pct": 38.5,
+      "water_deficit_pct": 42,
+      "photo_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Nevados y Termas de Chillán, Valle Las Trancas y Valle de Itata"
     },
     {
       "id": "biobio",
@@ -1145,7 +1165,7 @@
         "budget_fndr_clp_millions": 134000,
         "fndr_execution_pct": 92.5,
         "per_capita_municipal_income_clp": 280000,
-        "fcm_dependency_pct": 58.0
+        "fcm_dependency_pct": 58
       },
       "salud": {
         "hospitals_high_complexity": 4,
@@ -1155,7 +1175,7 @@
         "surgical_waiting_list_patients": 74500,
         "surgical_waiting_list_avg_days": 385,
         "specialist_consult_waiting_patients": 185000,
-        "specialist_doctors_per_100k": 118.0,
+        "specialist_doctors_per_100k": 118,
         "cenabast_hospital_debt_clp_millions": 24000
       },
       "educacion": {
@@ -1189,7 +1209,7 @@
         "actual_inmate_population": 7920,
         "hacinamiento_pct": 136.5,
         "gendarmeria_staff": 1950,
-        "recidivism_rate_pct": 48.0,
+        "recidivism_rate_pct": 48,
         "cellular_signal_inhibition_active": "Operativa en Complejo Penitenciario Biobío (El Manzano)"
       },
       "bomberos_emergencias": {
@@ -1198,8 +1218,8 @@
         "active_volunteer_firefighters": 6800,
         "fire_trucks_operational": 310,
         "fire_trucks_out_of_service": 44,
-        "state_budget_funding_pct": 47.0,
-        "self_funding_rifas_pct": 53.0,
+        "state_budget_funding_pct": 47,
+        "self_funding_rifas_pct": 53,
         "avg_response_time_minutes": 7.2,
         "forest_fire_risk_conaf": "Extremo (Zona de interfaz forestal masiva en Santa Juana, Tomé, Florida)"
       },
@@ -1215,17 +1235,19 @@
         "camps_tomas_count": 156,
         "paved_roads_km": 4650,
         "unpaved_roads_km": 5800,
-        "reservoir_water_storage_pct": 58.0,
+        "reservoir_water_storage_pct": 58,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 76.0,
+        "rural_water_apr_coverage_pct": 76,
         "renewable_energy_capacity_mw": 4800
       },
       "presidential_strategy_2050": "Plan de Reindustrialización Verde tras el cierre de Huachipato, extensión del Biotrén a Lota y Penco, y plan integral de seguridad e inversión en la Provincia de Arauco.",
-      "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Río Biobío, Bahía de Talcahuano y Universidad de Concepción",
-      "idh": 0.815,
-      "informal_labor_pct": 27.8,
-      "water_deficit_pct": 28.0
+      "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Río Biobío, Puentes de Concepción y Polo Industrial Marítimo",
+      "idh": 0.836,
+      "informal_labor_pct": 29.1,
+      "water_deficit_pct": 35,
+      "photo_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Río Biobío, Puentes de Concepción y Polo Industrial Marítimo"
     },
     {
       "id": "araucania",
@@ -1242,7 +1264,7 @@
         "budget_fndr_clp_millions": 145000,
         "fndr_execution_pct": 89.5,
         "per_capita_municipal_income_clp": 195000,
-        "fcm_dependency_pct": 82.0
+        "fcm_dependency_pct": 82
       },
       "salud": {
         "hospitals_high_complexity": 2,
@@ -1252,7 +1274,7 @@
         "surgical_waiting_list_patients": 58400,
         "surgical_waiting_list_avg_days": 430,
         "specialist_consult_waiting_patients": 142000,
-        "specialist_doctors_per_100k": 78.0,
+        "specialist_doctors_per_100k": 78,
         "cenabast_hospital_debt_clp_millions": 19800
       },
       "educacion": {
@@ -1286,7 +1308,7 @@
         "actual_inmate_population": 4450,
         "hacinamiento_pct": 143.5,
         "gendarmeria_staff": 1280,
-        "recidivism_rate_pct": 51.0,
+        "recidivism_rate_pct": 51,
         "cellular_signal_inhibition_active": "Operativa en Centro Penitenciario de Temuco"
       },
       "bomberos_emergencias": {
@@ -1295,8 +1317,8 @@
         "active_volunteer_firefighters": 4800,
         "fire_trucks_operational": 260,
         "fire_trucks_out_of_service": 42,
-        "state_budget_funding_pct": 40.0,
-        "self_funding_rifas_pct": 60.0,
+        "state_budget_funding_pct": 40,
+        "self_funding_rifas_pct": 60,
         "avg_response_time_minutes": 10.2,
         "forest_fire_risk_conaf": "Extremo (Ataques intencionales y condiciones climáticas severas)"
       },
@@ -1312,17 +1334,19 @@
         "camps_tomas_count": 64,
         "paved_roads_km": 3120,
         "unpaved_roads_km": 8940,
-        "reservoir_water_storage_pct": 72.0,
+        "reservoir_water_storage_pct": 72,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 59.0,
+        "rural_water_apr_coverage_pct": 59,
         "renewable_energy_capacity_mw": 2100
       },
       "presidential_strategy_2050": "Plan de Paz, Seguridad y Desarrollo Integral con presencia disuasiva en rutas críticas, restitución de tierras condicionada a proyectos agroproductivos sustentables y pavimentación masiva en Malleco.",
-      "image_url": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Volcán Villarrica, Lago y Bosques Milenarios de Araucarias",
-      "idh": 0.76,
-      "informal_labor_pct": 36.8,
-      "water_deficit_pct": 25.0
+      "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Volcán Villarrica y Bosques Milenarios de Araucarias en Conguillío",
+      "idh": 0.791,
+      "informal_labor_pct": 39.4,
+      "water_deficit_pct": 28,
+      "photo_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Volcán Villarrica y Bosques Milenarios de Araucarias en Conguillío"
     },
     {
       "id": "los_rios",
@@ -1339,7 +1363,7 @@
         "budget_fndr_clp_millions": 64500,
         "fndr_execution_pct": 93.8,
         "per_capita_municipal_income_clp": 240000,
-        "fcm_dependency_pct": 71.0
+        "fcm_dependency_pct": 71
       },
       "salud": {
         "hospitals_high_complexity": 1,
@@ -1349,7 +1373,7 @@
         "surgical_waiting_list_patients": 21500,
         "surgical_waiting_list_avg_days": 360,
         "specialist_consult_waiting_patients": 52000,
-        "specialist_doctors_per_100k": 105.0,
+        "specialist_doctors_per_100k": 105,
         "cenabast_hospital_debt_clp_millions": 8100
       },
       "educacion": {
@@ -1359,11 +1383,11 @@
         "schools_private_paid": 22,
         "total_students_enrolled": 82000,
         "school_dropout_rate_pct": 1.7,
-        "critical_attendance_pct": 29.0,
+        "critical_attendance_pct": 29,
         "simce_math_avg": 248,
         "simce_reading_avg": 256,
         "paes_avg_score": 542,
-        "higher_education_gratuity_coverage_pct": 68.0
+        "higher_education_gratuity_coverage_pct": 68
       },
       "seguridad_policias": {
         "carabineros_active_officers": 1580,
@@ -1392,9 +1416,9 @@
         "active_volunteer_firefighters": 2400,
         "fire_trucks_operational": 128,
         "fire_trucks_out_of_service": 18,
-        "state_budget_funding_pct": 45.0,
-        "self_funding_rifas_pct": 55.0,
-        "avg_response_time_minutes": 8.0,
+        "state_budget_funding_pct": 45,
+        "self_funding_rifas_pct": 55,
+        "avg_response_time_minutes": 8,
         "forest_fire_risk_conaf": "Medio-Alto (Veranos secos en Cordillera de la Costa)"
       },
       "defensa_ffaa": {
@@ -1409,17 +1433,19 @@
         "camps_tomas_count": 24,
         "paved_roads_km": 1940,
         "unpaved_roads_km": 3820,
-        "reservoir_water_storage_pct": 82.0,
+        "reservoir_water_storage_pct": 82,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 74.0,
+        "rural_water_apr_coverage_pct": 74,
         "renewable_energy_capacity_mw": 1420
       },
       "presidential_strategy_2050": "Protección legal y restauración de los humedales urbanos de Valdivia, modernización del Puerto de Corral y consolidación del transporte público fluvial ecológico.",
-      "image_url": "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Costanera y Ríos Navegables de Valdivia",
-      "idh": 0.812,
-      "informal_labor_pct": 28.4,
-      "water_deficit_pct": 15.0
+      "image_url": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Red Fluvial de Valdivia, Puente Calle-Calle y Selva Valdiviana",
+      "idh": 0.829,
+      "informal_labor_pct": 30.5,
+      "water_deficit_pct": 18,
+      "photo_url": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Red Fluvial de Valdivia, Puente Calle-Calle y Selva Valdiviana"
     },
     {
       "id": "los_lagos",
@@ -1434,19 +1460,19 @@
       "vocation": "Potencia Acuícola Mundial (Salmón & Mitílidos), Industria Láctea y Ganadera, Turismo de Naturaleza (Llanquihue, Chiloé, Carretera Austral).",
       "fiscal_gore": {
         "budget_fndr_clp_millions": 118000,
-        "fndr_execution_pct": 91.0,
+        "fndr_execution_pct": 91,
         "per_capita_municipal_income_clp": 265000,
-        "fcm_dependency_pct": 65.0
+        "fcm_dependency_pct": 65
       },
       "salud": {
         "hospitals_high_complexity": 2,
         "hospitals_low_mid": 12,
         "cesfam_and_rural_posts": 110,
-        "critical_beds_per_100k": 12.0,
+        "critical_beds_per_100k": 12,
         "surgical_waiting_list_patients": 46800,
         "surgical_waiting_list_avg_days": 390,
         "specialist_consult_waiting_patients": 118000,
-        "specialist_doctors_per_100k": 92.0,
+        "specialist_doctors_per_100k": 92,
         "cenabast_hospital_debt_clp_millions": 16400
       },
       "educacion": {
@@ -1460,7 +1486,7 @@
         "simce_math_avg": 246,
         "simce_reading_avg": 254,
         "paes_avg_score": 538,
-        "higher_education_gratuity_coverage_pct": 66.0
+        "higher_education_gratuity_coverage_pct": 66
       },
       "seguridad_policias": {
         "carabineros_active_officers": 3100,
@@ -1489,8 +1515,8 @@
         "active_volunteer_firefighters": 5800,
         "fire_trucks_operational": 280,
         "fire_trucks_out_of_service": 42,
-        "state_budget_funding_pct": 45.0,
-        "self_funding_rifas_pct": 55.0,
+        "state_budget_funding_pct": 45,
+        "self_funding_rifas_pct": 55,
         "avg_response_time_minutes": 8.4,
         "forest_fire_risk_conaf": "Alto en verano (Chiloé y valles de Osorno)"
       },
@@ -1506,17 +1532,19 @@
         "camps_tomas_count": 56,
         "paved_roads_km": 2980,
         "unpaved_roads_km": 6840,
-        "reservoir_water_storage_pct": 86.0,
+        "reservoir_water_storage_pct": 86,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 71.0,
+        "rural_water_apr_coverage_pct": 71,
         "renewable_energy_capacity_mw": 1650
       },
       "presidential_strategy_2050": "Puesta en marcha del Puente Chacao con doble vía Ruta 5 Chiloé, protección estricta de las turberas y pomponales, y bioseguridad genómica sustentable para la salmonicultura.",
-      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Volcán Osorno, Lago Llanquihue y Archipiélago de Chiloé",
-      "idh": 0.806,
-      "informal_labor_pct": 29.1,
-      "water_deficit_pct": 12.0
+      "image_url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Volcán Osorno, Lago Llanquihue y Palafitos de Castro (Chiloé)",
+      "idh": 0.822,
+      "informal_labor_pct": 31.8,
+      "water_deficit_pct": 12,
+      "photo_url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Volcán Osorno, Lago Llanquihue y Palafitos de Castro (Chiloé)"
     },
     {
       "id": "aysen",
@@ -1533,7 +1561,7 @@
         "budget_fndr_clp_millions": 62000,
         "fndr_execution_pct": 95.2,
         "per_capita_municipal_income_clp": 340000,
-        "fcm_dependency_pct": 69.0
+        "fcm_dependency_pct": 69
       },
       "salud": {
         "hospitals_high_complexity": 1,
@@ -1543,7 +1571,7 @@
         "surgical_waiting_list_patients": 6800,
         "surgical_waiting_list_avg_days": 310,
         "specialist_consult_waiting_patients": 18500,
-        "specialist_doctors_per_100k": 110.0,
+        "specialist_doctors_per_100k": 110,
         "cenabast_hospital_debt_clp_millions": 4200
       },
       "educacion": {
@@ -1553,11 +1581,11 @@
         "schools_private_paid": 6,
         "total_students_enrolled": 24500,
         "school_dropout_rate_pct": 1.4,
-        "critical_attendance_pct": 26.0,
+        "critical_attendance_pct": 26,
         "simce_math_avg": 248,
         "simce_reading_avg": 256,
         "paes_avg_score": 538,
-        "higher_education_gratuity_coverage_pct": 62.0
+        "higher_education_gratuity_coverage_pct": 62
       },
       "seguridad_policias": {
         "carabineros_active_officers": 1150,
@@ -1577,7 +1605,7 @@
         "actual_inmate_population": 980,
         "hacinamiento_pct": 115.3,
         "gendarmeria_staff": 390,
-        "recidivism_rate_pct": 42.0,
+        "recidivism_rate_pct": 42,
         "cellular_signal_inhibition_active": "En proceso"
       },
       "bomberos_emergencias": {
@@ -1586,8 +1614,8 @@
         "active_volunteer_firefighters": 890,
         "fire_trucks_operational": 48,
         "fire_trucks_out_of_service": 6,
-        "state_budget_funding_pct": 52.0,
-        "self_funding_rifas_pct": 48.0,
+        "state_budget_funding_pct": 52,
+        "self_funding_rifas_pct": 48,
         "avg_response_time_minutes": 8.8,
         "forest_fire_risk_conaf": "Medio (Riesgo en turberas y bosque nativo en veranos cálidos)"
       },
@@ -1603,17 +1631,19 @@
         "camps_tomas_count": 8,
         "paved_roads_km": 420,
         "unpaved_roads_km": 3480,
-        "reservoir_water_storage_pct": 98.0,
+        "reservoir_water_storage_pct": 98,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 84.0,
+        "rural_water_apr_coverage_pct": 84,
         "renewable_energy_capacity_mw": 180
       },
       "presidential_strategy_2050": "Pavimentación continua de la Carretera Austral, subsidio de calefacción distrital limpia en Coyhaique para erradicar el humo y fortalecimiento del Hospital Regional con telemedicina 24/7.",
-      "image_url": "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1000&q=80",
+      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
       "image_caption": "Santuario de la Naturaleza Capillas de Mármol y Carretera Austral",
-      "idh": 0.82,
-      "informal_labor_pct": 24.5,
-      "water_deficit_pct": 5.0
+      "idh": 0.832,
+      "informal_labor_pct": 23.4,
+      "water_deficit_pct": 5,
+      "photo_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Santuario de la Naturaleza Capillas de Mármol y Carretera Austral"
     },
     {
       "id": "magallanes",
@@ -1630,7 +1660,7 @@
         "budget_fndr_clp_millions": 78000,
         "fndr_execution_pct": 96.8,
         "per_capita_municipal_income_clp": 460000,
-        "fcm_dependency_pct": 48.0
+        "fcm_dependency_pct": 48
       },
       "salud": {
         "hospitals_high_complexity": 1,
@@ -1640,7 +1670,7 @@
         "surgical_waiting_list_patients": 9400,
         "surgical_waiting_list_avg_days": 280,
         "specialist_consult_waiting_patients": 24000,
-        "specialist_doctors_per_100k": 128.0,
+        "specialist_doctors_per_100k": 128,
         "cenabast_hospital_debt_clp_millions": 5800
       },
       "educacion": {
@@ -1654,7 +1684,7 @@
         "simce_math_avg": 256,
         "simce_reading_avg": 264,
         "paes_avg_score": 558,
-        "higher_education_gratuity_coverage_pct": 59.0
+        "higher_education_gratuity_coverage_pct": 59
       },
       "seguridad_policias": {
         "carabineros_active_officers": 1420,
@@ -1683,8 +1713,8 @@
         "active_volunteer_firefighters": 1150,
         "fire_trucks_operational": 54,
         "fire_trucks_out_of_service": 6,
-        "state_budget_funding_pct": 54.0,
-        "self_funding_rifas_pct": 46.0,
+        "state_budget_funding_pct": 54,
+        "self_funding_rifas_pct": 46,
         "avg_response_time_minutes": 6.8,
         "forest_fire_risk_conaf": "Alto en Torres del Paine (Vientos de hasta 120 km/h que propagan fuego)"
       },
@@ -1700,17 +1730,19 @@
         "camps_tomas_count": 6,
         "paved_roads_km": 1120,
         "unpaved_roads_km": 2450,
-        "reservoir_water_storage_pct": 94.0,
+        "reservoir_water_storage_pct": 94,
         "desalination_plants_operating": 0,
-        "rural_water_apr_coverage_pct": 91.0,
+        "rural_water_apr_coverage_pct": 91,
         "renewable_energy_capacity_mw": 320
       },
       "presidential_strategy_2050": "Polo global de Hidrógeno Verde y Combustibles Sintéticos en Cabo Negro, Centro Antártico Internacional (CAI) en Punta Arenas y formación dual de 10.000 técnicos en energías limpias.",
-      "image_url": "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?auto=format&fit=crop&w=1000&q=80",
-      "image_caption": "Parque Nacional Torres del Paine y Estrecho de Magallanes",
-      "idh": 0.858,
-      "informal_labor_pct": 19.8,
-      "water_deficit_pct": 0.0
+      "image_url": "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=1200&q=80",
+      "image_caption": "Macizo Torres del Paine, Glaciar Grey y Estrecho de Magallanes",
+      "idh": 0.865,
+      "informal_labor_pct": 19.2,
+      "water_deficit_pct": 8,
+      "photo_url": "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=1200&q=80",
+      "photo_caption": "Macizo Torres del Paine, Glaciar Grey y Estrecho de Magallanes"
     }
   ]
 }
