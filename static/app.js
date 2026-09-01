@@ -167,7 +167,7 @@
                 trigger: 'item',
                 backgroundColor: '#0f172a',
                 borderColor: '#1e293b',
-                textStyle: { color: '#ffffff', fontSize: 12, fontFamily: 'Plus Jakarta Sans' },
+                textStyle: { color: '#ffffff', fontSize: 12, fontFamily: 'Montserrat' },
                 formatter: function (params) {
                     return '<div class="font-bold">' + params.name + '</div>' +
                         '<div>Monto: <span class="font-mono text-cyan-400 font-bold">US$ ' + params.value.toFixed(1) + 'B</span></div>' +
@@ -193,7 +193,7 @@
                             show: true,
                             fontSize: 13,
                             fontWeight: 'bold',
-                            fontFamily: 'Plus Jakarta Sans',
+                            fontFamily: 'Montserrat',
                             color: '#0f172a',
                             formatter: '{b}\nUS$ {c}B'
                         },
