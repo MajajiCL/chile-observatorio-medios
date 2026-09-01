@@ -1,112 +1,285 @@
-﻿// Observatorio de Medios de Chile - Client Engine
-// Compatible 100% con GitHub Pages y FastAPI Backend
+// Presidenta IA & Observatorio de Estado de Chile - Universal Client Engine
 
 let allClusters = [];
 let allSources = [];
+let allAuditPillars = [];
+let allProposals = [
+    {
+        id: 1,
+        pillar: 'Seguridad & Cárceles',
+        title: 'Inhibición activa de señal celular y cárceles modulares de alta seguridad',
+        author: 'Comunidad Cívica Antofagasta',
+        votes: 428,
+        desc: 'Implementar bloqueo total de espectro electromagnético en recintos penales y separar a reclusos primerizos según el modelo noruego para frenar el reclutamiento delictual.'
+    },
+    {
+        id: 2,
+        pillar: 'Agua & Desalinización',
+        title: 'Planta desalinizadora multipropósito pública en Región de Coquimbo',
+        author: 'Asociación de Agricultores del Limarí',
+        votes: 389,
+        desc: 'Construir infraestructura costera de desalinización alimentada por energía solar para abastecer consumo humano y regadío tecnificado campesino, emulando la experiencia de Israel.'
+    },
+    {
+        id: 3,
+        pillar: 'Salud Pública',
+        title: 'Turnos vespertinos y fines de semana 24/7 en pabellones quirúrgicos',
+        author: 'Colegio Médico & Pacientes Fonasa',
+        votes: 512,
+        desc: 'Maximizar el uso de infraestructura hospitalaria existente remunerando turnos médicos extendidos para reducir las 330.000 cirugías en lista de espera en menos de 18 meses.'
+    },
+    {
+        id: 4,
+        pillar: 'Municipios & Calles',
+        title: 'Plan Nacional de Pavimentación Participativa y Fondo Común Equitativo',
+        author: 'Juntas de Vecinos La Pintana / Cerro Navia',
+        votes: 345,
+        desc: 'Reformar el FCM para garantizar un estándar mínimo de veredas, asfalto y luminarias LED inteligentes en todas las comunas del país sin importar el nivel de ingresos comunal.'
+    }
+];
+
 let currentCategory = 'all';
 let currentSearch = '';
-
-// Obtener datos embebidos del snapshot (0ms latencia)
 let dataSnapshot = window.OBSERVATORIO_SNAPSHOT || null;
 
-document.addEventListener("DOMContentLoaded", async () => {
-    // Si no está embebido, intentar fetch
+document.addEventListener('DOMContentLoaded', async () => {
     if (!dataSnapshot) {
         try {
             const res = await fetch('./data/snapshot.json');
             if (res.ok) dataSnapshot = await res.json();
         } catch (e) {
-            console.log("Modo API");
+            console.log('Modo API');
         }
     }
 
     renderAllViews();
+    runSimulation();
 });
 
 function renderAllViews() {
     renderEconomicIndicators();
-    renderStats();
+    renderPresidentialBriefing();
+    renderAuditPillars();
+    renderBenchmarksGrid();
     renderClustersView();
     renderBlindspotsView();
     renderSourcesView();
-    renderAnalyticsView();
+    renderCitizenProposals();
     if (window.lucide) lucide.createIcons();
 }
 
-// 1. TABS
+function renderStatecraftRadar() {
+    const chartDom = document.getElementById('chart-statecraft-radar');
+    if (!chartDom || !window.echarts) return;
+    
+    const myChart = echarts.init(chartDom, 'dark', { backgroundColor: 'transparent' });
+    const option = {
+        tooltip: { trigger: 'axis' },
+        radar: {
+            indicator: [
+                { name: 'Seguridad & Cárceles', max: 100 },
+                { name: 'Salud & Listas Espera', max: 100 },
+                { name: 'Educación & Futuro', max: 100 },
+                { name: 'Equidad Municipal / Calles', max: 100 },
+                { name: 'Productividad & Litio/Cobre', max: 100 },
+                { name: 'Agua & Clima', max: 100 },
+                { name: 'Probidad & Estado', max: 100 }
+            ],
+            shape: 'polygon',
+            splitNumber: 4,
+            axisName: { color: '#94a3b8', fontSize: 10, fontWeight: 'bold' },
+            splitLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.4)' } },
+            splitArea: { show: false },
+            axisLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.5)' } }
+        },
+        series: [
+            {
+                name: 'Auditoría Nacional',
+                type: 'radar',
+                data: [
+                    {
+                        value: [38, 42, 50, 40, 58, 35, 65],
+                        name: 'Nivel Actual de Desempeño (Chile)',
+                        itemStyle: { color: '#ef4444' },
+                        areaStyle: { color: 'rgba(239, 68, 68, 0.25)' }
+                    },
+                    {
+                        value: [85, 90, 88, 85, 88, 92, 90],
+                        name: 'Meta Benchmark OCDE / Países Desarrollados',
+                        itemStyle: { color: '#06b6d4' },
+                        areaStyle: { color: 'rgba(6, 182, 212, 0.15)' }
+                    }
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option);
+}
+
 function switchTab(tabId) {
-    const tabs = ['clusters', 'blindspots', 'sources', 'analytics'];
+    const tabs = ['presidencia', 'audit', 'benchmarks', 'clusters', 'blindspots', 'sources', 'citizen'];
     tabs.forEach(t => {
-        const view = document.getElementById(`view-${t}`);
-        const btn = document.getElementById(`tab-btn-${t}`);
+        const view = document.getElementById('view-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
         if (!view || !btn) return;
         
         if (t === tabId) {
             view.classList.remove('hidden');
-            btn.className = "px-4 py-2 rounded-lg font-semibold transition bg-cyan-600 text-white shadow-sm flex items-center space-x-2 whitespace-nowrap";
+            btn.className = 'px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap';
         } else {
             view.classList.add('hidden');
-            btn.className = "px-4 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap";
+            btn.className = 'px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap';
         }
     });
 
-    if (tabId === 'analytics') {
-        setTimeout(renderPluralityChart, 50);
+    if (tabId === 'presidencia') {
+        setTimeout(renderStatecraftRadar, 60);
     }
     if (window.lucide) lucide.createIcons();
 }
 
-// 2. INDICADORES ECONOMICOS
 function renderEconomicIndicators() {
     const container = document.getElementById('economic-ticker');
     if (!container) return;
 
     let indicators = dataSnapshot && dataSnapshot.economic_indicators ? dataSnapshot.economic_indicators : [
-        { code: "UF", name: "Unidad de Fomento", value: 40875.09, unit: "CLP" },
-        { code: "DOLAR", name: "Dólar Observado", value: 933.40, unit: "CLP" },
-        { code: "EURO", name: "Euro", value: 1084.21, unit: "CLP" },
-        { code: "IPC", name: "IPC Mensual", value: -0.2, unit: "%" },
-        { code: "UTM", name: "UTM", value: 71721.00, unit: "CLP" }
+        { code: 'UF', name: 'Unidad de Fomento', value: 40875.09, unit: 'CLP' },
+        { code: 'DOLAR', name: 'Dólar Observado', value: 933.40, unit: 'CLP' },
+        { code: 'EURO', name: 'Euro', value: 1084.21, unit: 'CLP' },
+        { code: 'IPC', name: 'IPC Mensual', value: -0.2, unit: '%' },
+        { code: 'UTM', name: 'UTM', value: 71721.00, unit: 'CLP' }
     ];
 
     container.innerHTML = indicators.map(ind => {
         const isClp = ind.unit === '$' || ind.unit === 'CLP';
         const formatted = ind.value ? ind.value.toLocaleString('es-CL', { minimumFractionDigits: ind.unit === '%' ? 1 : 2, maximumFractionDigits: 2 }) : '-';
-        return `
-            <div class="flex items-center space-x-1.5 whitespace-nowrap">
-                <span class="text-slate-400 font-semibold text-[11px]">${ind.code}:</span>
-                <span class="text-emerald-400 font-mono font-bold text-xs">${isClp ? '$' : ''}${formatted} ${ind.unit === '%' ? '%' : ''}</span>
-            </div>
-        `;
+        return '<div class="flex items-center space-x-1.5 whitespace-nowrap"><span class="text-slate-400 font-semibold text-[11px]">' + ind.code + ':</span><span class="text-emerald-400 font-mono font-bold text-xs">' + (isClp ? '$' : '') + formatted + ' ' + (ind.unit === '%' ? '%' : '') + '</span></div>';
     }).join('');
 }
 
-// 3. STATS
-function renderStats() {
-    let stats = dataSnapshot && dataSnapshot.stats ? dataSnapshot.stats : {
-        sources_count: 17,
-        articles_indexed_count: 53,
-        clusters_active_count: 49,
-        blindspots_detected_count: 0
+function renderPresidentialBriefing() {
+    const briefing = (dataSnapshot && dataSnapshot.presidential_briefing) ? dataSnapshot.presidential_briefing : {
+        title: 'Mensaje de Estado: Diagnóstico Sistémico y Prospectiva Nacional',
+        date: '1 de Septiembre, 2026',
+        core_principles: [
+            '1. Desconexión de la trifulca coyuntural: El progreso no se mide en cuñas televisivas, sino en indicadores de vida verificables.',
+            '2. Evidencia y ciencia como único árbitro: Las políticas públicas deben fundamentarse en datos del Banco Central, INE, OCDE y ciencia aplicada.',
+            '3. Aprendizaje histórico internacional: Ningún problema chileno es inédito; las soluciones probadas en Noruega, Singapur, Países Bajos y Estonia marcan el camino.'
+        ],
+        strategic_summary: 'Chile posee una posición macroeconómica e institucional privilegiada en América Latina, pero enfrenta cuellos de botella críticos en seguridad penitenciaria, listas de espera en salud, estancamiento de la productividad y estrés hídrico. Resolverlos exige abandonar el cortoplacismo electoral y ejecutar reformas estructurales con métricas de 10 a 20 años.',
+        urgent_priorities: [
+            'Reforma Penitenciaria y Aislamiento de Crimen Organizado',
+            'Uso 24/7 de Pabellones Quirúrgicos y Telemedicina en CESFAM',
+            'Estrategia Nacional de Desalinización Multipropósito',
+            'Ley Anti-Permisología y Foco en I+D de Cobre y Litio',
+            'Redistribución Efectiva del Fondo Común Municipal para Calles y Seguridad'
+        ]
     };
 
-    const sCount = document.getElementById('stat-sources');
-    const aCount = document.getElementById('stat-articles');
-    const cCount = document.getElementById('stat-clusters');
-    const bCount = document.getElementById('stat-blindspots');
+    const titleEl = document.getElementById('briefing-title');
+    const dateEl = document.getElementById('briefing-date');
+    const summaryEl = document.getElementById('briefing-summary');
+    const principlesEl = document.getElementById('briefing-principles');
+    const prioritiesEl = document.getElementById('briefing-priorities');
 
-    if (sCount) sCount.innerText = stats.sources_count || 17;
-    if (aCount) aCount.innerText = stats.articles_indexed_count || 53;
-    if (cCount) cCount.innerText = stats.clusters_active_count || 49;
-    if (bCount) bCount.innerText = stats.blindspots_detected_count || 0;
+    if (titleEl) titleEl.innerText = briefing.title;
+    if (dateEl) dateEl.innerText = briefing.date;
+    if (summaryEl) summaryEl.innerHTML = '<p class="leading-relaxed"><strong class="text-white font-semibold">Diagnóstico General:</strong> ' + briefing.strategic_summary + '</p>';
 
-    const bClusters = document.getElementById('badge-clusters-count');
-    const bBlindspots = document.getElementById('badge-blindspots-count');
-    if (bClusters) bClusters.innerText = stats.clusters_active_count || 49;
-    if (bBlindspots) bBlindspots.innerText = stats.blindspots_detected_count || 0;
+    if (principlesEl) {
+        principlesEl.innerHTML = (briefing.core_principles || []).map(p => '<div class="p-3 rounded-xl bg-slate-900 border border-slate-800 leading-snug"><span class="text-slate-200">' + p + '</span></div>').join('');
+    }
+
+    if (prioritiesEl) {
+        prioritiesEl.innerHTML = (briefing.urgent_priorities || []).map(pri => '<span class="px-3 py-1 rounded-xl text-xs font-semibold bg-cyan-950 text-cyan-300 border border-cyan-700/60 flex items-center gap-1.5 shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> ' + pri + '</span>').join('');
+    }
+
+    setTimeout(renderStatecraftRadar, 50);
 }
 
-// 4. CLUSTERS / AGENDA
+const SIMULATION_DATA = {
+    carceles: {
+        title: 'Dilema Penitenciario: Castigo Masivo vs. Modelo Noruego de Aislamiento Tecnológico',
+        decisionA: 'Construcción de mega-cárceles tradicionales hacinadas.',
+        impactA: 'Costos de mantención se disparan 200%, reincidencia delictual se mantiene en 70%, centros se convierten en universidades del crimen.',
+        decisionB: 'Cárceles modulares de alta seguridad tecnológica + inhibición digital + reinserción laboral intensiva (Modelo Noruega/Holanda).',
+        impactB: 'Reducción de la reincidencia a menos del 30% en 8 años, desarticulación financiera de bandas criminales y descongestión de recintos.',
+        evidence: 'Noruega redujo su tasa de criminalidad nacional a mínimos históricos tras sustituir la lógica del castigo indiscriminado por la separación estricta de reos y capacitación industrial obligatoria.'
+    },
+    salud: {
+        title: 'Dilema Sanitario: Subsidio de Demanda vs. Modelo Español de Alta Resolución Primaria',
+        decisionA: 'Derivación masiva y compra de bonos privados individuales.',
+        impactA: 'Gasto fiscal insostenible a largo plazo, no se crea capacidad pública instalada, listas de espera reaparecen cada año.',
+        decisionB: 'Transformar CESFAM en centros de diagnóstico resolutivo con telemedicina 24/7 + pabellones vespertinos continuos.',
+        impactB: 'Resolución del 75% de las interconsultas en la comuna sin derivación hospitalaria; reducción de 330 a 90 días en cirugías complejas.',
+        evidence: 'España e Inglaterra logran una de las coberturas sanitarias más eficientes del mundo resolviendo más del 80% de las patologías en centros de atención primaria barriales con tecnología diagnóstica.'
+    },
+    agua: {
+        title: 'Dilema Hídrico: Camiones Aljibe de Emergencia vs. Modelo Israelí de Desalinización Multipropósito',
+        decisionA: 'Gasto crónico de miles de millones en arriendo de camiones aljibe por décadas.',
+        impactA: 'Dependencia permanente de agua precaria, desertificación acelerada de los valles centrales, despoblamiento rural.',
+        decisionB: 'Red de desalinizadoras multipropósito solares + tratamiento y reutilización del 90% de aguas servidas.',
+        impactB: 'Seguridad hídrica garantizada para consumo humano y pequeña agricultura por los próximos 50 años; recuperación de acuíferos.',
+        evidence: 'Israel pasó de ser un país con déficit hídrico extremo a ser el mayor exportador de agua de Medio Oriente al desalinizar el 85% del agua urbana y reciclar el 90% de efluentes para agricultura tecnificada.'
+    },
+    educacion: {
+        title: 'Dilema Educativo: Modelo Universitario Clásico vs. Modelo Dual Alemán',
+        decisionA: 'Masificación de títulos universitarios saturados sin vínculo con la matriz productiva.',
+        impactA: 'Subempleo profesional juvenil (40% trabaja en áreas no afines), endeudamiento y escasez de técnicos especializados.',
+        decisionB: 'Educación Técnico-Profesional Dual vinculada a Litio, Cobre, Energías Renovables, IA y Astronomía.',
+        impactB: 'Desempleo juvenil inferior al 5%, sueldos técnicos superiores a la media y aceleración de la productividad industrial nacional.',
+        evidence: 'Alemania, Suiza y Austria mantienen la tasa de desempleo juvenil más baja de Europa gracias a que el 60% de los jóvenes estudia combinando días en fábrica con días en aula.'
+    }
+};
+
+function runSimulation() {
+    const select = document.getElementById('simulator-select');
+    const output = document.getElementById('simulator-output');
+    if (!select || !output) return;
+
+    const sim = SIMULATION_DATA[select.value] || SIMULATION_DATA.carceles;
+
+    output.innerHTML = '<h4 class="font-bold text-white text-xs sm:text-sm text-cyan-300 mb-2">' + sim.title + '</h4><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"><div class="p-3 rounded-xl bg-red-950/40 border border-red-800/40 space-y-1"><span class="text-[10px] font-bold text-red-400 uppercase tracking-wider">Enfoque Tradicional:</span><p class="text-slate-300 font-medium">' + sim.decisionA + '</p><p class="text-red-300/80 text-[11px]">↳ ' + sim.impactA + '</p></div><div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/40 space-y-1"><span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Enfoque con Evidencia:</span><p class="text-slate-300 font-medium">' + sim.decisionB + '</p><p class="text-emerald-300/80 text-[11px]">↳ ' + sim.impactB + '</p></div></div><div class="p-2.5 rounded-xl bg-slate-900 text-[11px] text-slate-400 border border-slate-800 flex items-start gap-2 mt-2"><i data-lucide="book-open" class="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Evidencia Histórica Global:</strong> ' + sim.evidence + '</span></div>';
+    if (window.lucide) lucide.createIcons();
+}
+
+function renderAuditPillars() {
+    allAuditPillars = (dataSnapshot && dataSnapshot.national_audit) ? dataSnapshot.national_audit : [];
+    const container = document.getElementById('audit-pillars-container');
+    if (!container) return;
+
+    container.innerHTML = allAuditPillars.map((p, idx) => {
+        let statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-950 text-red-400 border border-red-800">ESTADO CRÍTICO</span>';
+        if (p.status_level === 'grave') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-800">ESTADO GRAVE</span>';
+        if (p.status_level === 'moderado') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-400 border border-blue-800">ESTADO MODERADO</span>';
+
+        const dataKeys = Object.entries(p.chile_current_data || {});
+        const metricsHtml = dataKeys.map(([k, v]) => '<div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80"><span class="text-[10px] uppercase font-bold text-slate-500 block">' + k.replace(/_/g, ' ') + '</span><span class="text-xs font-mono font-bold text-slate-200">' + v + '</span></div>').join('');
+
+        const benchmarksHtml = (p.global_benchmarks || []).map(b => '<div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5 text-xs"><div class="flex items-center justify-between text-cyan-400 font-bold"><span>' + b.country + '</span><span class="text-[10px] text-slate-400 font-mono">' + b.policy_model + '</span></div><p class="text-slate-300">' + b.historical_lesson + '</p><div class="text-[11px] text-emerald-400 pt-1 border-t border-slate-800/80"><strong>Aplicación en Chile:</strong> ' + b.applicability_chile + '</div></div>').join('');
+
+        return '<div class="glass-card p-6 sm:p-7 rounded-3xl space-y-5 border border-slate-800"><div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-4"><div class="flex items-center space-x-3"><div class="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 font-bold">' + (idx + 1) + '</div><div><span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Pilar de Estado #' + (idx + 1) + '</span><h3 class="text-base sm:text-lg font-black text-white">' + p.title + '</h3></div></div>' + statusBadge + '</div><div class="space-y-2"><h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Diagnóstico Estructural:</h4><p class="text-xs sm:text-sm text-slate-200 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800/60">' + p.diagnostic + '</p></div><div><h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Datos Duros Oficiales (Chile):</h4><div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">' + metricsHtml + '</div></div><div class="space-y-2.5"><h4 class="text-xs font-bold uppercase tracking-wider text-cyan-400">Experiencia Internacional & Solución Probada en el Mundo:</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + benchmarksHtml + '</div></div><div class="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-800/40 text-xs text-amber-200 flex items-start gap-2"><i data-lucide="alert-circle" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i><div><strong class="font-bold text-amber-300">Riesgo Crítico hacia 2030 si no se actúa:</strong><p class="text-slate-300 text-[11px] mt-0.5">' + p.future_risks_2030 + '</p></div></div><div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs text-cyan-200"><strong class="font-bold text-cyan-300 uppercase tracking-wider text-[11px] block mb-1">Recomendación Estratégica de la Presidenta IA:</strong><p class="text-slate-200 leading-relaxed">' + p.strategic_recommendation + '</p></div></div>';
+    }).join('');
+
+    if (window.lucide) lucide.createIcons();
+}
+
+function renderBenchmarksGrid() {
+    const container = document.getElementById('benchmarks-grid');
+    if (!container) return;
+
+    let allBenchmarks = [];
+    allAuditPillars.forEach(p => {
+        (p.global_benchmarks || []).forEach(b => {
+            allBenchmarks.push({ ...b, pillarTitle: p.title });
+        });
+    });
+
+    container.innerHTML = allBenchmarks.map(b => '<div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between"><div class="space-y-2"><div class="flex items-center justify-between"><span class="text-xs font-bold text-white bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">' + b.country + '</span><span class="text-[10px] text-cyan-400 font-mono">' + b.pillarTitle + '</span></div><h4 class="text-sm font-bold text-white">' + b.policy_model + '</h4><p class="text-xs text-slate-300 leading-relaxed">' + b.historical_lesson + '</p></div><div class="pt-3 border-t border-slate-800 text-[11px] text-emerald-400"><strong>Lección para Chile:</strong> ' + b.applicability_chile + '</div></div>').join('');
+
+    if (window.lucide) lucide.createIcons();
+}
+
 function renderClustersView() {
     allClusters = (dataSnapshot && dataSnapshot.clusters) ? dataSnapshot.clusters : [];
     applyFilters();
@@ -114,34 +287,19 @@ function renderClustersView() {
 
 function applyFilters() {
     let filtered = allClusters;
-
     if (currentCategory !== 'all') {
         filtered = filtered.filter(c => (c.category || '').toLowerCase().includes(currentCategory.toLowerCase()));
     }
-
     if (currentSearch) {
         const q = currentSearch.toLowerCase();
-        filtered = filtered.filter(c => 
-            (c.title || '').toLowerCase().includes(q) || 
-            (c.description || '').toLowerCase().includes(q)
-        );
+        filtered = filtered.filter(c => (c.title || '').toLowerCase().includes(q) || (c.description || '').toLowerCase().includes(q));
     }
 
     const container = document.getElementById('clusters-list');
-    const countEl = document.getElementById('results-count');
-    if (countEl) countEl.innerText = `Mostrando ${filtered.length} eventos fácticos`;
-
     if (!container) return;
 
     if (filtered.length === 0) {
-        container.innerHTML = `
-            <div class="col-span-2 p-12 text-center text-slate-400 glass-card rounded-2xl">
-                <i data-lucide="search-x" class="w-8 h-8 text-slate-500 mx-auto mb-2"></i>
-                <p class="font-bold text-white text-base">No se encontraron eventos con los filtros actuales</p>
-                <p class="text-xs text-slate-500 mt-1">Intenta con otros términos de búsqueda o selecciona "Todos".</p>
-            </div>
-        `;
-        if (window.lucide) lucide.createIcons();
+        container.innerHTML = '<div class="col-span-2 p-8 text-center text-slate-500 glass-card rounded-2xl">No se encontraron noticias con estos criterios.</div>';
         return;
     }
 
@@ -151,77 +309,18 @@ function applyFilters() {
         const centerW = Math.round((b.center_pct || 0) * 100);
         const rightW = Math.round((b.right_pct || 0) * 100);
 
-        let blindspotBadge = '';
-        if (b.is_blindspot) {
-            const sideText = b.side === 'blindspot_left' ? '🔴 Punto Ciego Izquierda' : '🔵 Punto Ciego Derecha';
-            blindspotBadge = `
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-950/80 text-amber-300 border border-amber-700/60 flex items-center gap-1">
-                    <i data-lucide="alert-triangle" class="w-3 h-3 text-amber-400"></i> ${sideText}
-                </span>
-            `;
-        }
-
-        const dateStr = c.last_seen_at ? new Date(c.last_seen_at).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }) + ' hrs' : 'Hoy';
-
-        return `
-            <div class="glass-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
-                <div class="space-y-2.5">
-                    <div class="flex items-center justify-between gap-2 flex-wrap">
-                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-800/90 text-cyan-400 border border-cyan-500/20">
-                            ${c.category || 'Nacional'}
-                        </span>
-                        <div class="flex items-center gap-2">
-                            ${blindspotBadge}
-                            <span class="text-xs text-slate-400 flex items-center gap-1 bg-slate-900/60 px-2 py-0.5 rounded-md border border-slate-800">
-                                <i data-lucide="newspaper" class="w-3.5 h-3.5 text-slate-400"></i> ${c.article_count || 1} medios
-                            </span>
-                        </div>
-                    </div>
-
-                    <h3 class="text-sm sm:text-base font-bold text-white leading-snug cursor-pointer hover:text-cyan-400 transition" onclick="openClusterModal(${c.id})">
-                        ${c.title}
-                    </h3>
-                    
-                    <p class="text-xs text-slate-300/80 line-clamp-2 leading-relaxed">
-                        ${c.description || 'Evento en seguimiento activo.'}
-                    </p>
-                </div>
-
-                <!-- SPECTRUM COVERAGE BAR -->
-                <div class="space-y-1.5 pt-3 border-t border-slate-800/80">
-                    <div class="flex items-center justify-between text-[11px] font-semibold">
-                        <span class="text-red-400 flex items-center gap-1">🔴 Izq ${leftW}%</span>
-                        <span class="text-amber-400 flex items-center gap-1">🟡 Centro ${centerW}%</span>
-                        <span class="text-blue-400 flex items-center gap-1">🔵 Der ${rightW}%</span>
-                    </div>
-                    <div class="h-2 w-full bg-slate-950 rounded-full overflow-hidden flex border border-slate-800/80">
-                        <div style="width: ${leftW}%" class="bg-red-500 spectrum-bar" title="Izquierda: ${leftW}%"></div>
-                        <div style="width: ${centerW}%" class="bg-amber-500 spectrum-bar" title="Centro: ${centerW}%"></div>
-                        <div style="width: ${rightW}%" class="bg-blue-500 spectrum-bar" title="Derecha: ${rightW}%"></div>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between text-xs pt-1">
-                    <span class="text-slate-500 text-[11px] font-mono">${dateStr}</span>
-                    <button onclick="openClusterModal(${c.id})" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 text-xs transition">
-                        Ver Comparativa Multi-ángulo <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-            </div>
-        `;
+        return '<div class="glass-card p-5 rounded-2xl flex flex-col justify-between space-y-4"><div class="space-y-2"><div class="flex items-center justify-between gap-2"><span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-800 text-cyan-400 border border-cyan-500/20">' + (c.category || 'Nacional') + '</span><span class="text-xs text-slate-400">' + (c.article_count || 1) + ' medios</span></div><h3 class="text-sm sm:text-base font-bold text-white leading-snug cursor-pointer hover:text-cyan-400 transition" onclick="openClusterModal(' + c.id + ')">' + c.title + '</h3><p class="text-xs text-slate-300 line-clamp-2">' + (c.description || '') + '</p></div><div class="space-y-1.5 pt-2 border-t border-slate-800"><div class="flex items-center justify-between text-[11px] font-semibold"><span class="text-red-400">🔴 Izq ' + leftW + '%</span><span class="text-amber-400">🟡 Centro ' + centerW + '%</span><span class="text-blue-400">🔵 Der ' + rightW + '%</span></div><div class="h-2 w-full bg-slate-950 rounded-full overflow-hidden flex border border-slate-800"><div style="width: ' + leftW + '%" class="bg-red-500 spectrum-bar"></div><div style="width: ' + centerW + '%" class="bg-amber-500 spectrum-bar"></div><div style="width: ' + rightW + '%" class="bg-blue-500 spectrum-bar"></div></div></div><div class="flex items-center justify-between text-xs pt-1"><span class="text-slate-500 text-[11px]">' + (c.last_seen_at ? new Date(c.last_seen_at).toLocaleTimeString('es-CL', {hour:'2-digit', minute:'2-digit'}) + ' hrs' : 'Hoy') + '</span><button onclick="openClusterModal(' + c.id + ')" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 text-xs">Comparar Coberturas <i data-lucide="arrow-right" class="w-3 h-3"></i></button></div></div>';
     }).join('');
-
     if (window.lucide) lucide.createIcons();
 }
 
 function filterCategory(cat) {
     currentCategory = cat;
     document.querySelectorAll('.cat-pill').forEach(btn => {
-        btn.className = "cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800";
+        btn.className = 'cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800';
     });
-    const clicked = event.target;
-    if (clicked) {
-        clicked.className = "cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold";
+    if (event && event.target) {
+        event.target.className = 'cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold';
     }
     applyFilters();
 }
@@ -231,170 +330,81 @@ function filterClusters() {
     applyFilters();
 }
 
-// 5. PUNTOS CIEGOS
 function renderBlindspotsView() {
     let list = (dataSnapshot && dataSnapshot.blindspots) ? dataSnapshot.blindspots : [];
     const container = document.getElementById('blindspots-list');
     if (!container) return;
 
     if (list.length === 0) {
-        container.innerHTML = `
-            <div class="col-span-2 p-8 text-center text-slate-400 glass-card rounded-2xl border border-slate-800">
-                <div class="w-12 h-12 rounded-full bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center mx-auto mb-3">
-                    <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400"></i>
-                </div>
-                <h4 class="font-bold text-white text-base">Cobertura Equilibrada en los Sucesos Actuales</h4>
-                <p class="text-xs text-slate-400 max-w-md mx-auto mt-1">
-                    No se registran asimetrías extremas ( $\ge 65\%$ vs $\le 20\%$ ) en los clusters activos de la jornada. El algoritmo monitorea continuamente 17 medios nacionales.
-                </p>
-            </div>
-        `;
+        container.innerHTML = '<div class="col-span-2 p-8 text-center text-slate-400 glass-card rounded-2xl"><i data-lucide="check-circle" class="w-8 h-8 text-emerald-400 mx-auto mb-2"></i><h4 class="font-bold text-white text-base">Cobertura Equilibrada en los Sucesos Actuales</h4><p class="text-xs text-slate-400 mt-1">No se registran asimetrías ideológicas extremas en la jornada.</p></div>';
         if (window.lucide) lucide.createIcons();
         return;
     }
 
-    container.innerHTML = list.map(b => `
-        <div class="glass-card p-5 rounded-2xl border-amber-900/40 hover:border-amber-700/60 transition space-y-3">
-            <div class="flex items-center justify-between">
-                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-950 text-amber-300 border border-amber-800">
-                    PUNTO CIEGO DE: ${b.blindspot_side === 'blindspot_left' ? '🔴 IZQUIERDA' : '🔵 DERECHA'}
-                </span>
-                <span class="text-xs text-slate-400 font-mono">${b.article_count} notas</span>
-            </div>
-            <h3 class="text-sm sm:text-base font-bold text-white hover:text-amber-400 cursor-pointer transition" onclick="openClusterModal(${b.cluster_id})">
-                ${b.title}
-            </h3>
-            <p class="text-xs text-slate-300 bg-slate-900/80 p-3 rounded-xl border border-slate-800 leading-relaxed">
-                ${b.explanation}
-            </p>
-            <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800">
-                <span>Divergencia Editorial: <strong>${Math.round(b.divergence_score * 100)}%</strong></span>
-                <button onclick="openClusterModal(${b.cluster_id})" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1">
-                    Analizar Asimetría <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-            </div>
-        </div>
-    `).join('');
-
+    container.innerHTML = list.map(b => '<div class="glass-card p-5 rounded-2xl border-amber-900/40 space-y-3"><span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-950 text-amber-300 border border-amber-800">PUNTO CIEGO DE: ' + (b.blindspot_side === 'blindspot_left' ? '🔴 IZQUIERDA' : '🔵 DERECHA') + '</span><h3 class="text-sm font-bold text-white cursor-pointer hover:text-amber-400" onclick="openClusterModal(' + b.cluster_id + ')">' + b.title + '</h3><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">' + b.explanation + '</p></div>').join('');
     if (window.lucide) lucide.createIcons();
 }
 
-// 6. FUENTES Y PROPIEDAD
 function renderSourcesView() {
     let sources = (dataSnapshot && dataSnapshot.sources) ? dataSnapshot.sources : [];
     const container = document.getElementById('sources-grid');
     if (!container) return;
 
-    container.innerHTML = sources.map(s => {
-        let badgeColor = "bg-amber-500/20 text-amber-300 border-amber-500/30";
-        if (s.spectrum.includes("derecha")) badgeColor = "bg-blue-500/20 text-blue-300 border-blue-500/30";
-        if (s.spectrum.includes("izquierda")) badgeColor = "bg-red-500/20 text-red-300 border-red-500/30";
-        if (s.spectrum.includes("institucional")) badgeColor = "bg-emerald-500/20 text-emerald-300 border-emerald-500/30";
-        if (s.spectrum.includes("investigacion")) badgeColor = "bg-purple-500/20 text-purple-300 border-purple-500/30";
-
-        return `
-            <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${badgeColor}">${s.spectrum.toUpperCase()}</span>
-                        <span class="text-[10px] text-slate-400 font-mono">${s.region}</span>
-                    </div>
-                    <h4 class="text-sm sm:text-base font-bold text-white">${s.name}</h4>
-                    <a href="${s.url}" target="_blank" class="text-xs text-cyan-400 hover:underline flex items-center gap-1 mt-0.5 truncate">
-                        ${s.url} <i data-lucide="external-link" class="w-3 h-3"></i>
-                    </a>
-                </div>
-                <div class="space-y-1 text-xs pt-3 border-t border-slate-800/80 text-slate-300">
-                    <div><strong class="text-slate-400">Controlador:</strong> ${s.ownership}</div>
-                    <div><strong class="text-slate-400">Tipo:</strong> ${s.ownership_type}</div>
-                    <div><strong class="text-slate-400">Financiamiento:</strong> ${s.funding_model}</div>
-                    <div><strong class="text-slate-400">Facticidad:</strong> <span class="text-emerald-400 font-bold">${s.facticity_rating}</span></div>
-                </div>
-            </div>
-        `;
-    }).join('');
-
+    container.innerHTML = sources.map(s => '<div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3"><div class="flex items-center justify-between"><span class="text-[10px] font-bold px-2 py-0.5 rounded border bg-slate-800 text-cyan-400">' + s.spectrum.toUpperCase() + '</span><span class="text-[10px] text-slate-500 font-mono">' + s.region + '</span></div><h4 class="text-sm font-bold text-white">' + s.name + '</h4><div class="text-xs space-y-1 text-slate-300 pt-2 border-t border-slate-800"><div><strong class="text-slate-500">Controlador:</strong> ' + s.ownership + '</div><div><strong class="text-slate-500">Financiamiento:</strong> ' + s.funding_model + '</div><div><strong class="text-slate-500">Facticidad:</strong> <span class="text-emerald-400 font-bold">' + s.facticity_rating + '</span></div></div></div>').join('');
     if (window.lucide) lucide.createIcons();
 }
 
-// 7. ANALÍTICA Y PLURALIDAD
-function renderAnalyticsView() {
-    let entities = (dataSnapshot && dataSnapshot.entities) ? dataSnapshot.entities : {
-        people: ["Gabriel Boric", "Mario Marcel", "Carolina Tohá", "Camila Vallejo"],
-        institutions: ["Banco Central de Chile", "Codelco", "Carabineros de Chile", "Ministerio Público"],
-        locations: ["Santiago", "Valparaíso", "Concepción", "Región de Antofagasta"]
-    };
-
-    const container = document.getElementById('entities-container');
+function renderCitizenProposals() {
+    const container = document.getElementById('citizen-proposals-grid');
     if (!container) return;
 
-    container.innerHTML = `
-        <div class="space-y-2">
-            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="user-check" class="w-3.5 h-3.5"></i> Autoridades & Figuras Públicas:
-            </span>
-            <div class="flex flex-wrap gap-1.5">
-                ${entities.people && entities.people.length > 0 ? entities.people.map(p => `<span class="px-2.5 py-1 bg-slate-800 rounded-lg text-xs font-medium text-slate-200 border border-slate-700">${p}</span>`).join('') : '<span class="text-slate-500 text-xs">Sin menciones</span>'}
-            </div>
-        </div>
-
-        <div class="space-y-2 pt-2 border-t border-slate-800">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="landmark" class="w-3.5 h-3.5"></i> Organismos e Instituciones del Estado:
-            </span>
-            <div class="flex flex-wrap gap-1.5">
-                ${entities.institutions && entities.institutions.length > 0 ? entities.institutions.map(i => `<span class="px-2.5 py-1 bg-slate-800 rounded-lg text-xs font-medium text-slate-200 border border-slate-700">${i}</span>`).join('') : '<span class="text-slate-500 text-xs">Sin menciones</span>'}
-            </div>
-        </div>
-
-        <div class="space-y-2 pt-2 border-t border-slate-800">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Regiones & Ciudades:
-            </span>
-            <div class="flex flex-wrap gap-1.5">
-                ${entities.locations && entities.locations.length > 0 ? entities.locations.map(l => `<span class="px-2.5 py-1 bg-slate-800 rounded-lg text-xs font-medium text-slate-200 border border-slate-700">${l}</span>`).join('') : '<span class="text-slate-500 text-xs">Sin menciones</span>'}
-            </div>
-        </div>
-    `;
-
+    container.innerHTML = allProposals.map(p => '<div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between space-y-3"><div class="space-y-1.5"><span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-cyan-400 border border-slate-700">' + p.pillar + '</span><h4 class="font-bold text-white text-sm leading-snug">' + p.title + '</h4><p class="text-slate-300 text-xs">' + p.desc + '</p><div class="text-[10px] text-slate-500">Por: ' + p.author + '</div></div><div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs"><button onclick="upvoteProposal(' + p.id + ')" class="px-3 py-1 bg-cyan-950 hover:bg-cyan-900 text-cyan-300 font-bold rounded-lg border border-cyan-800/60 flex items-center gap-1.5 transition"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> <span>' + p.votes + ' Votos</span></button><span class="text-emerald-400 text-[11px] font-semibold flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> En Revisión</span></div></div>').join('');
     if (window.lucide) lucide.createIcons();
 }
 
-function renderPluralityChart() {
-    const chartDom = document.getElementById('chart-plurality');
-    if (!chartDom || !window.echarts) return;
-    
-    const myChart = echarts.init(chartDom, 'dark', { backgroundColor: 'transparent' });
-    let p = (dataSnapshot && dataSnapshot.plurality) ? dataSnapshot.plurality : { balanced_events: 47, left_blindspots: 1, right_blindspots: 1, skewed_events: 0 };
-
-    const option = {
-        tooltip: { trigger: 'item' },
-        legend: { bottom: '0%', left: 'center', textStyle: { color: '#94a3b8', fontSize: 11 } },
-        series: [
-            {
-                name: 'Cobertura Mediática',
-                type: 'pie',
-                radius: ['45%', '72%'],
-                center: ['50%', '45%'],
-                avoidLabelOverlap: false,
-                itemStyle: { borderRadius: 8, borderColor: '#090d16', borderWidth: 3 },
-                label: { show: false },
-                emphasis: {
-                    label: { show: true, fontSize: 14, fontWeight: 'bold', color: '#fff' }
-                },
-                data: [
-                    { value: p.balanced_events || 47, name: 'Cobertura Equilibrada', itemStyle: { color: '#10b981' } },
-                    { value: p.left_blindspots || 1, name: 'Puntos Ciegos Izquierda', itemStyle: { color: '#ef4444' } },
-                    { value: p.right_blindspots || 1, name: 'Puntos Ciegos Derecha', itemStyle: { color: '#3b82f6' } },
-                    { value: p.skewed_events || 0, name: 'Asimetría Parcial', itemStyle: { color: '#f59e0b' } }
-                ]
-            }
-        ]
-    };
-    myChart.setOption(option);
+function upvoteProposal(id) {
+    const prop = allProposals.find(p => p.id === id);
+    if (prop) {
+        prop.votes += 1;
+        renderCitizenProposals();
+    }
 }
 
-// 8. MODAL MULTI-PERSPECTIVA
+function openCitizenProposalModal() {
+    const el = document.getElementById('proposal-modal');
+    if (el) el.classList.remove('hidden');
+    if (window.lucide) lucide.createIcons();
+}
+
+function submitCitizenProposal(e) {
+    e.preventDefault();
+    const pilar = document.getElementById('prop-pilar').value;
+    const title = document.getElementById('prop-title').value;
+    const desc = document.getElementById('prop-desc').value;
+    const resDiv = document.getElementById('prop-result');
+
+    allProposals.unshift({
+        id: allProposals.length + 1,
+        pillar: pilar,
+        title: title,
+        author: 'Ciudadano Conectado',
+        votes: 1,
+        desc: desc
+    });
+
+    resDiv.classList.remove('hidden');
+    resDiv.innerHTML = '<div class="text-emerald-400 font-bold">¡Propuesta Cívica publicada con éxito en el Ágora Nacional!</div>';
+    
+    setTimeout(() => {
+        closeModal('proposal-modal');
+        resDiv.classList.add('hidden');
+        document.getElementById('prop-title').value = '';
+        document.getElementById('prop-desc').value = '';
+        renderCitizenProposals();
+        switchTab('citizen');
+    }, 1200);
+}
+
 function openClusterModal(clusterId) {
     const modal = document.getElementById('cluster-modal');
     const body = document.getElementById('modal-body');
@@ -402,26 +412,15 @@ function openClusterModal(clusterId) {
 
     modal.classList.remove('hidden');
 
-    let clusterDetail = null;
-    if (dataSnapshot && dataSnapshot.clusters_detail && dataSnapshot.clusters_detail[String(clusterId)]) {
-        clusterDetail = dataSnapshot.clusters_detail[String(clusterId)];
-    }
+    let clusterDetail = (dataSnapshot && dataSnapshot.clusters_detail && dataSnapshot.clusters_detail[String(clusterId)]) ? dataSnapshot.clusters_detail[String(clusterId)] : null;
 
     if (!clusterDetail) {
-        const fallbackCluster = allClusters.find(c => c.id === clusterId) || { title: 'Evento Fáctico', description: '', category: 'General', article_count: 1 };
+        const c = allClusters.find(item => item.id === clusterId) || { title: 'Evento Fáctico', description: '', category: 'General' };
         clusterDetail = {
-            id: clusterId,
-            title: fallbackCluster.title,
-            description: fallbackCluster.description,
-            category: fallbackCluster.category,
-            articles: [
-                {
-                    title: fallbackCluster.title,
-                    url: '#',
-                    snippet: fallbackCluster.description,
-                    source: { name: 'Medio Registrado', spectrum: 'centro', ownership: 'Empresa Periodística' }
-                }
-            ]
+            title: c.title,
+            description: c.description,
+            category: c.category,
+            articles: [{ title: c.title, snippet: c.description, url: '#', source: { name: 'Medio Chileno', spectrum: 'centro', ownership: 'Empresa Periodística' } }]
         };
     }
 
@@ -429,56 +428,24 @@ function openClusterModal(clusterId) {
     document.getElementById('modal-category').innerText = clusterDetail.category || 'General';
 
     const articlesHtml = (clusterDetail.articles || []).map(a => {
-        let badgeColor = "bg-amber-500/20 text-amber-300 border-amber-500/30";
+        let badgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
         const spec = (a.source.spectrum || '').toLowerCase();
-        if (spec.includes("derecha")) badgeColor = "bg-blue-500/20 text-blue-300 border-blue-500/30";
-        if (spec.includes("izquierda")) badgeColor = "bg-red-500/20 text-red-300 border-red-500/30";
+        if (spec.includes('derecha')) badgeColor = 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+        if (spec.includes('izquierda')) badgeColor = 'bg-red-500/20 text-red-300 border-red-500/30';
 
-        return `
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
-                <div class="flex items-center justify-between text-xs">
-                    <span class="font-bold text-cyan-400">${a.source.name}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${badgeColor}">${a.source.spectrum.toUpperCase()}</span>
-                </div>
-                <h4 class="font-bold text-white text-sm leading-snug">${a.title}</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">${a.snippet || ''}</p>
-                <div class="text-[11px] pt-2 flex flex-wrap justify-between items-center text-slate-400 border-t border-slate-800/80 gap-2">
-                    <span>Controlador: <strong class="text-slate-300">${a.source.ownership}</strong></span>
-                    ${a.url && a.url !== '#' ? `
-                        <a href="${a.url}" target="_blank" class="text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1 font-semibold">
-                            Leer despacho completo <i data-lucide="external-link" class="w-3 h-3"></i>
-                        </a>
-                    ` : ''}
-                </div>
-            </div>
-        `;
+        return '<div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5 text-xs"><div class="flex items-center justify-between"><span class="font-bold text-cyan-400">' + a.source.name + '</span><span class="text-[10px] font-bold px-2 py-0.5 rounded border ' + badgeColor + '">' + a.source.spectrum.toUpperCase() + '</span></div><h4 class="font-bold text-white text-sm leading-snug">' + a.title + '</h4><p class="text-slate-300 text-xs">' + (a.snippet || '') + '</p><div class="pt-2 flex justify-between items-center text-slate-500 text-[11px] border-t border-slate-800"><span>Controlador: ' + a.source.ownership + '</span>' + (a.url && a.url !== '#' ? '<a href="' + a.url + '" target="_blank" class="text-cyan-400 hover:underline flex items-center gap-1 font-semibold">Leer noticia original <i data-lucide="external-link" class="w-3 h-3"></i></a>' : '') + '</div></div>';
     }).join('');
 
-    body.innerHTML = `
-        <div class="space-y-4">
-            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
-                <h4 class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Síntesis Fáctica Neutral:</h4>
-                <p class="text-slate-200 text-sm leading-relaxed">${clusterDetail.description || 'Evento noticioso en desarrollo.'}</p>
-            </div>
-
-            <div class="space-y-3">
-                <h4 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Cobertura y Titulares por Medio (${(clusterDetail.articles || []).length} despachos):</h4>
-                <div class="space-y-3">
-                    ${articlesHtml}
-                </div>
-            </div>
-        </div>
-    `;
+    body.innerHTML = '<div class="space-y-4"><div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1"><h4 class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Síntesis Fáctica de Estado:</h4><p class="text-slate-200 text-sm leading-relaxed">' + (clusterDetail.description || 'Evento en seguimiento.') + '</p></div><div class="space-y-2.5"><h4 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Despachos por Medio de Comunicación (' + (clusterDetail.articles || []).length + ' fuentes):</h4><div class="space-y-2.5">' + articlesHtml + '</div></div></div>';
 
     if (window.lucide) lucide.createIcons();
 }
 
-function closeModal(modalId) {
-    const el = document.getElementById(modalId);
+function closeModal(id) {
+    const el = document.getElementById(id);
     if (el) el.classList.add('hidden');
 }
 
-// 9. DERECHOS ARCO
 function openArcoModal() {
     const el = document.getElementById('arco-modal');
     if (el) el.classList.remove('hidden');
@@ -487,22 +454,11 @@ function openArcoModal() {
 
 function submitArcoForm(e) {
     e.preventDefault();
-    const type = document.getElementById('arco-type').value;
-    const email = document.getElementById('arco-email').value;
-    const target = document.getElementById('arco-target').value;
     const resDiv = document.getElementById('arco-result');
-
-    const fakeTicket = "ARCO-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+    const fakeTicket = 'ARCO-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 
     resDiv.classList.remove('hidden');
-    resDiv.innerHTML = `
-        <div class="text-emerald-400 font-bold text-sm mb-1 flex items-center gap-1.5">
-            <i data-lucide="check-circle" class="w-4 h-4"></i> Solicitud Registrada Formalmente
-        </div>
-        <div class="text-slate-300">Ticket ID: <strong class="font-mono text-cyan-400">${fakeTicket}</strong></div>
-        <div class="text-slate-400 text-[11px] mt-1">Plazo legal de respuesta: 30 días corridos según la Ley N° 21.719. Se ha notificado al oficial de cumplimiento.</div>
-    `;
-
+    resDiv.innerHTML = '<div class="text-emerald-400 font-bold text-sm mb-1 flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4"></i> Solicitud Registrada</div><div class="text-slate-300">Ticket ID: <strong class="font-mono text-cyan-400">' + fakeTicket + '</strong></div><div class="text-slate-400 text-[11px] mt-1">Plazo legal: 30 días corridos según Ley N° 21.719. Se ha notificado al Delegado de Protección de Datos.</div>';
     document.getElementById('arco-form').reset();
     if (window.lucide) lucide.createIcons();
 }
