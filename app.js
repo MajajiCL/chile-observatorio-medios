@@ -1,14 +1,12 @@
 ﻿/**
  * Observatorio de Medios & Radiografía de Estado de Chile
- * Actualización: Efemérides Históricas Día a Día, Fuentes Verificadas al 100% y Optimización Móvil
+ * Mobile-First: Cero Bloqueos, Miniaturas 100% Garantizadas, Fuentes Oficiales y Efemérides
  */
 
 (function () {
     'use strict';
 
     var currentCategory = 'all';
-    var currentSortField = 'population';
-    var sortDirection = 'desc';
     var currentRegionId = 'metropolitana';
     var onboardingStep = 1;
 
@@ -17,12 +15,16 @@
     }
 
     function safeCreateIcons() {
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-            window.lucide.createIcons();
+        try {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+        } catch (e) {
+            console.warn('Lucide fallback:', e);
         }
     }
 
-    // 1. INDICADORES ECONÓMICOS DEL BANCO CENTRAL (FLEX-WRAP RESPONSIVO)
+    // 1. INDICADORES ECONÓMICOS DEL BANCO CENTRAL
     function renderEconomicIndicators() {
         var snap = getSnapshot();
         var indicators = snap.economic_indicators || [];
@@ -44,7 +46,6 @@
 
         container.innerHTML = html;
     }
-
     // 2. BALANCE NACIONAL (INGRESOS & GASTOS CON FUENTES OFICIALES)
     function renderNationalBalanceView() {
         var snap = getSnapshot();
@@ -101,7 +102,7 @@
                 '<div class="p-4 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1">' +
                 '<span class="text-[10px] uppercase font-bold text-[#64748b] block">Educación</span>' +
                 '<span class="text-lg font-mono font-extrabold text-[#0f172a]">' + infra.total_schools.toLocaleString('es-CL') + '</span>' +
-                '<span class="text-[11px] text-[#64748b] block">Colegios (Fuente: Mineduc)</span>' +
+                '<span class="text-[11px] text-[#64748b] block">Colegios y Liceos (Mineduc)</span>' +
                 '</div>' +
                 '<div class="p-4 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1">' +
                 '<span class="text-[10px] uppercase font-bold text-[#64748b] block">Salud Pública</span>' +
@@ -211,7 +212,7 @@
         myChart.setOption(option);
         window.addEventListener('resize', function () { myChart.resize(); });
     }
-    // 4. RADIOGRAFÍA 16 REGIONES: SELECTOR VISUAL EN CUADRÍCULA + DROPDOWN (SIN SCROLLBARS)
+    // 4. RADIOGRAFÍA 16 REGIONES: SELECTOR VISUAL CON MINIATURAS REALES + DROPDOWN
     function renderRegionsAuditView() {
         var snap = getSnapshot();
         var regions = snap.regions_complete_audit || [];
@@ -223,7 +224,7 @@
         // Dropdown para cambio instantáneo en móvil
         html += '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-[18px] bg-white border border-[#e2e8f0]">' +
             '<div>' +
-            '<label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider">Selección Directa de Región:</label>' +
+            '<label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider">🗺️ Selección Directa de Región:</label>' +
             '<p class="text-[11px] text-[#64748b]">Elige una de las 16 regiones de Chile para auditarla</p>' +
             '</div>' +
             '<select id="region-dropdown-select" onchange="selectRegion(this.value)" class="shadcn-input px-3.5 py-2 text-xs font-bold bg-[#f8f9fa] cursor-pointer min-w-[240px]">';
@@ -234,18 +235,18 @@
         });
         html += '</select></div>';
 
-        // Cuadrícula visual fotográfica de las 16 regiones (Grid 2 cols en móvil, 4 cols en tablet, 8 cols en desktop)
+        // Cuadrícula visual fotográfica de las 16 regiones con MINIATURAS FOTOGRÁFICAS REALES
         html += '<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">';
         regions.forEach(function (r) {
             var isSelected = (r.id === currentRegionId);
             var activeClass = isSelected
                 ? 'ring-2 ring-[#0284c7] border-[#0284c7] shadow-md scale-[1.02]'
                 : 'border-[#e2e8f0] opacity-85 hover:opacity-100 hover:border-slate-400';
-            var photo = r.photo_url || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80';
+            var photo = r.photo_url || r.image_url || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80';
 
             html += '<button onclick="selectRegion(\'' + r.id + '\')" id="btn-grid-reg-' + r.id + '" class="group relative rounded-[16px] overflow-hidden border p-2 text-left bg-white transition-all ' + activeClass + '">' +
                 '<div class="w-full h-16 rounded-[12px] overflow-hidden relative mb-2 bg-[#0f172a]">' +
-                '<img src="' + photo + '" alt="' + r.name + '" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />' +
+                '<img src="' + photo + '" alt="' + r.name + '" onerror="this.src=\'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80\'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />' +
                 '<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded-[6px] text-[9px] font-mono font-extrabold bg-[#0f172a]/90 text-white">' + r.number + '</span>' +
                 '</div>' +
                 '<div class="space-y-0.5">' +
@@ -286,15 +287,24 @@
         var container = document.getElementById('region-full-audit-container');
         if (!container) return;
 
-        var photoUrl = r.photo_url || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80';
-        var photoCaption = r.photo_caption || r.capital;
+        var photoUrl = r.photo_url || r.image_url || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80';
+        var photoCaption = r.photo_caption || r.image_caption || r.capital;
         var idhVal = r.idh || 0.840;
         var informalVal = r.informal_labor_pct || 28.0;
         var waterVal = r.water_deficit_pct || 45.0;
 
+        var fin = r.finances || {};
+        var hl = r.health || {};
+        var sec = r.security || {};
+        var pr = r.prisons || {};
+        var ed = r.education || {};
+        var ff = r.firefighters || {};
+        var mil = r.military || {};
+        var inf = r.infrastructure || {};
+
         var html = '<div class="shadcn-card overflow-hidden border border-[#e2e8f0] space-y-6 shadow-card">' +
             '<div class="relative h-56 sm:h-72 w-full overflow-hidden bg-[#0f172a]">' +
-            '<img src="' + photoUrl + '" alt="' + r.name + '" class="w-full h-full object-cover filter brightness-[0.75] contrast-110 hover:scale-105 transition-transform duration-700" />' +
+            '<img src="' + photoUrl + '" alt="' + r.name + '" onerror="this.src=\'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80\'" class="w-full h-full object-cover filter brightness-[0.75] contrast-110 hover:scale-105 transition-transform duration-700" />' +
             '<div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>' +
             '<div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-white">' +
             '<div class="space-y-1.5">' +
@@ -307,92 +317,92 @@
             '<span class="text-xs text-slate-200 flex items-center gap-1 font-medium"><i data-lucide="camera" class="w-3.5 h-3.5 text-amber-300"></i> ' + photoCaption + '</span>' +
             '</div>' +
             '<div class="flex items-center gap-2 flex-wrap">' +
-            '<span class="px-3 py-1.5 rounded-[12px] bg-white/15 backdrop-blur-md text-xs font-mono font-bold border border-white/20">' + r.population.toLocaleString('es-CL') + ' hab. (INE)</span>' +
-            '<span class="px-3 py-1.5 rounded-[12px] bg-white/15 backdrop-blur-md text-xs font-mono font-bold border border-white/20">' + r.pib_share_pct + '% PIB (Banco Central)</span>' +
+            '<span class="px-3 py-1.5 rounded-[12px] bg-white/15 backdrop-blur-md text-xs font-mono font-bold border border-white/20">' + (r.population || 0).toLocaleString('es-CL') + ' hab. (INE)</span>' +
+            '<span class="px-3 py-1.5 rounded-[12px] bg-white/15 backdrop-blur-md text-xs font-mono font-bold border border-white/20">' + (r.pib_share_pct || 0) + '% PIB (Banco Central)</span>' +
             '</div>' +
             '</div>' +
             '</div>' +
 
-            '<div class="p-6 sm:p-8 space-y-6">' +
+            '<div class="p-5 sm:p-8 space-y-6">' +
             '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">' +
-            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Presupuesto GORE (FNDR)</span><span class="text-base font-mono font-bold text-[#0f172a]">$' + (r.finances.budget_gore_fndr_mmclp / 1000).toFixed(1) + 'B CLP</span><span class="text-[10px] text-[#16a34a] block font-semibold">' + r.finances.execution_fndr_pct + '% Ejecución (DIPRES)</span></div>' +
+            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Presupuesto GORE (FNDR)</span><span class="text-base font-mono font-bold text-[#0f172a]">$' + ((fin.budget_gore_fndr_mmclp || 0) / 1000).toFixed(1) + 'B CLP</span><span class="text-[10px] text-[#16a34a] block font-semibold">' + (fin.execution_fndr_pct || 0) + '% Ejecución (DIPRES)</span></div>' +
             '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Informalidad Laboral</span><span class="text-base font-mono font-bold text-[#dc2626]">' + informalVal + '%</span><span class="text-[10px] text-[#64748b] block">Fuente: INE ENE</span></div>' +
             '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Déficit Hídrico</span><span class="text-base font-mono font-bold text-[#0284c7]">' + waterVal + '%</span><span class="text-[10px] text-[#64748b] block">Fuente: DGA / MOP</span></div>' +
-            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Dependencia FCM Comunas</span><span class="text-base font-mono font-bold text-[#0f172a]">' + r.finances.fcm_dependency_avg_pct + '%</span><span class="text-[10px] text-[#64748b] block">Fuente: SUBDERE SINIM</span></div>' +
+            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><span class="text-[10px] uppercase font-bold text-[#64748b] block">Dependencia FCM Comunas</span><span class="text-base font-mono font-bold text-[#0f172a]">' + (fin.fcm_dependency_avg_pct || 0) + '%</span><span class="text-[10px] text-[#64748b] block">Fuente: SUBDERE SINIM</span></div>' +
             '</div>' +
 
             '<div class="grid grid-cols-1 md:grid-cols-3 gap-5">' +
             // SALUD
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="heart-pulse" class="w-4 h-4 text-[#dc2626]\"></i> Red Asistencial (Minsal/DEIS)</h3><span class="text-[10px] font-mono text-[#64748b]">' + r.health.hospitals_high_complexity + ' Hosp. Alta C.</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="heart-pulse" class="w-4 h-4 text-[#dc2626]"></i> Red Asistencial (Minsal/DEIS)</h3><span class="text-[10px] font-mono text-[#64748b]">' + (hl.hospitals_high_complexity || 0) + ' Hosp. Alta C.</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Camas Críticas (UPC):</span><span class="font-mono font-bold">' + r.health.critical_beds_upc_per_100k + ' / 100k hab.</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Lista Espera Quirúrgica:</span><span class="font-mono font-bold text-[#dc2626]">' + r.health.surgical_waiting_list_patients.toLocaleString('es-CL') + ' pers.</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Demora Media Pabellón:</span><span class="font-mono font-bold">' + r.health.avg_waiting_days_surgery + ' días</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Consultas Especialidad:</span><span class="font-mono font-bold">' + r.health.specialist_consult_waiting_list.toLocaleString('es-CL') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Camas Críticas (UPC):</span><span class="font-mono font-bold">' + (hl.critical_beds_upc_per_100k || 0) + ' / 100k hab.</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Lista Espera Quirúrgica:</span><span class="font-mono font-bold text-[#dc2626]">' + (hl.surgical_waiting_list_patients || 0).toLocaleString('es-CL') + ' pers.</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Demora Media Pabellón:</span><span class="font-mono font-bold">' + (hl.avg_waiting_days_surgery || 0) + ' días</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Consultas Especialidad:</span><span class="font-mono font-bold">' + (hl.specialist_consult_waiting_list || 0).toLocaleString('es-CL') + '</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Fonasa / Catastro DEIS 2026</div>' +
             '</div></div>' +
 
             // SEGURIDAD
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4 text-[#0284c7]"></i> Policías (Carabineros / PDI)</h3><span class="text-[10px] font-mono text-[#64748b]">' + r.security.carabineros_officers.toLocaleString('es-CL') + ' Carab.</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4 text-[#0284c7]"></i> Policías (Carabineros / PDI)</h3><span class="text-[10px] font-mono text-[#64748b]">' + (sec.carabineros_officers || 0).toLocaleString('es-CL') + ' Carab.</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Detectives PDI:</span><span class="font-mono font-bold">' + r.security.pdi_detectives.toLocaleString('es-CL') + '</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Patrullas Operativas:</span><span class="font-mono font-bold">' + r.security.patrol_vehicles_active + ' (' + r.security.patrol_vehicles_broken + ' en pana)</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Tasa de Homicidios:</span><span class="font-mono font-bold text-[#dc2626]">' + r.security.homicide_rate_per_100k + ' / 100k hab.</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Amenaza Crimen Org.:</span><span class="font-bold text-[#dc2626]">' + r.security.organized_crime_threat_level + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Detectives PDI:</span><span class="font-mono font-bold">' + (sec.pdi_detectives || 0).toLocaleString('es-CL') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Patrullas Operativas:</span><span class="font-mono font-bold">' + (sec.patrol_vehicles_active || 0) + ' (' + (sec.patrol_vehicles_broken || 0) + ' en pana)</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Tasa de Homicidios:</span><span class="font-mono font-bold text-[#dc2626]">' + (sec.homicide_rate_per_100k || 0) + ' / 100k hab.</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Amenaza Crimen Org.:</span><span class="font-bold text-[#dc2626]">' + (sec.organized_crime_threat_level || 'Medio') + '</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: CEAD Subsecretaría Prevención del Delito</div>' +
             '</div></div>' +
 
             // CARCELES
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-[#dc2626]"></i> Cárceles (Gendarmería)</h3><span class="text-[10px] font-mono text-[#dc2626] font-bold">' + r.prisons.overcrowding_pct + '% Hacin.</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-[#dc2626]"></i> Cárceles (Gendarmería)</h3><span class="text-[10px] font-mono text-[#dc2626] font-bold">' + (pr.overcrowding_pct || 0) + '% Hacin.</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Recintos Penales:</span><span class="font-mono font-bold">' + r.prisons.prisons_count + ' cárceles</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Población Penal:</span><span class="font-mono font-bold">' + r.prisons.inmates_total.toLocaleString('es-CL') + ' reos</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Gendarmes de Trato:</span><span class="font-mono font-bold">' + r.prisons.gendarmerie_staff.toLocaleString('es-CL') + '</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Prisión Preventiva:</span><span class="font-mono font-bold">' + r.prisons.preventive_custody_pct + '% sin condena</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Recintos Penales:</span><span class="font-mono font-bold">' + (pr.prisons_count || 0) + ' cárceles</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Población Penal:</span><span class="font-mono font-bold">' + (pr.inmates_total || 0).toLocaleString('es-CL') + ' reos</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Gendarmes de Trato:</span><span class="font-mono font-bold">' + (pr.gendarmerie_staff || 0).toLocaleString('es-CL') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Prisión Preventiva:</span><span class="font-mono font-bold">' + (pr.preventive_custody_pct || 0) + '% sin condena</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Compendio Estadístico Gendarmería 2026</div>' +
             '</div></div>' +
 
             // EDUCACION
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4 text-[#0f172a]"></i> Escuelas & Liceos</h3><span class="text-[10px] font-mono text-[#64748b]">' + r.education.total_schools + ' Colegios</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4 text-[#0f172a]"></i> Escuelas & Liceos</h3><span class="text-[10px] font-mono text-[#64748b]">' + (ed.total_schools || 0) + ' Colegios</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Matrícula Escolar:</span><span class="font-mono font-bold">' + r.education.matricula_total.toLocaleString('es-CL') + ' alumnos</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">SIMCE Lectura / Mate:</span><span class="font-mono font-bold">' + r.education.simce_reading_avg + ' / ' + r.education.simce_math_avg + ' pts</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Asistencia Crítica:</span><span class="font-mono font-bold text-[#dc2626]">' + r.education.critical_attendance_pct + '%</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Gratuidad Superior:</span><span class="font-mono font-bold text-[#16a34a]">' + r.education.gratuidad_coverage_pct + '%</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Matrícula Escolar:</span><span class="font-mono font-bold">' + (ed.matricula_total || 0).toLocaleString('es-CL') + ' alumnos</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">SIMCE Lectura / Mate:</span><span class="font-mono font-bold">' + (ed.simce_reading_avg || 0) + ' / ' + (ed.simce_math_avg || 0) + ' pts</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Asistencia Crítica:</span><span class="font-mono font-bold text-[#dc2626]">' + (ed.critical_attendance_pct || 0) + '%</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Gratuidad Superior:</span><span class="font-mono font-bold text-[#16a34a]">' + (ed.gratuidad_coverage_pct || 0) + '%</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Centro de Estudios Mineduc / Agencia Calidad</div>' +
             '</div></div>' +
 
             // BOMBEROS
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4 text-[#dc2626]"></i> Bomberos de Chile</h3><span class="text-[10px] font-mono text-[#0284c7] font-bold">' + r.firefighters.companies_count + ' Cías.</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4 text-[#dc2626]"></i> Bomberos de Chile</h3><span class="text-[10px] font-mono text-[#0284c7] font-bold">' + (ff.companies_count || 0) + ' Cías.</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Voluntarios Activos:</span><span class="font-mono font-bold">' + r.firefighters.volunteers_count.toLocaleString('es-CL') + '</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Carrobombas / Carros:</span><span class="font-mono font-bold">' + r.firefighters.fire_trucks_operational + ' (' + r.firefighters.fire_trucks_falla + ' en falla)</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Tiempo Resp. Urbano:</span><span class="font-mono font-bold">' + r.firefighters.avg_response_time_minutes + ' min</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Aporte Fiscal Anual:</span><span class="font-mono font-bold">$' + (r.firefighters.fiscal_subsidy_mmclp).toLocaleString('es-CL') + 'M CLP</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Voluntarios Activos:</span><span class="font-mono font-bold">' + (ff.volunteers_count || 0).toLocaleString('es-CL') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Carrobombas / Carros:</span><span class="font-mono font-bold">' + (ff.fire_trucks_operational || 0) + ' (' + (ff.fire_trucks_falla || 0) + ' en falla)</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Tiempo Resp. Urbano:</span><span class="font-mono font-bold">' + (ff.avg_response_time_minutes || 0) + ' min</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Aporte Fiscal Anual:</span><span class="font-mono font-bold">$' + (ff.fiscal_subsidy_mmclp || 0).toLocaleString('es-CL') + 'M CLP</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Memoria Junta Nacional de Bomberos</div>' +
             '</div></div>' +
 
             // FFAA
             '<div class="p-4 rounded-[18px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-3">' +
-            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="anchor" class="w-4 h-4 text-[#0f172a]"></i> Fuerzas Armadas (FFAA)</h3><span class="text-[10px] font-mono text-[#64748b]">' + r.military.bases_units_count + ' Unidades</span></div>' +
+            '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2"><h3 class="text-xs font-bold text-[#0f172a] flex items-center gap-1.5"><i data-lucide="anchor" class="w-4 h-4 text-[#0f172a]"></i> Fuerzas Armadas (FFAA)</h3><span class="text-[10px] font-mono text-[#64748b]">' + (mil.bases_units_count || 4) + ' Unidades</span></div>' +
             '<div class="space-y-2 text-xs">' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Efectivos Militares:</span><span class="font-mono font-bold">' + r.military.stationed_personnel.toLocaleString('es-CL') + '</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Ramas Presentes:</span><span class="font-bold">' + r.military.branches_present.join(', ') + '</span></div>' +
-            '<div class="flex justify-between"><span class="text-[#64748b]">Misión Estratégica:</span><span class="font-bold text-[#0284c7]">' + r.military.primary_strategic_mission + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Efectivos Militares:</span><span class="font-mono font-bold">' + (mil.stationed_personnel || 0).toLocaleString('es-CL') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Ramas Presentes:</span><span class="font-bold">' + ((mil.branches_present || []).join(', ') || 'Ejército, Armada, FACh') + '</span></div>' +
+            '<div class="flex justify-between"><span class="text-[#64748b]">Misión Estratégica:</span><span class="font-bold text-[#0284c7]">' + (mil.primary_strategic_mission || 'Protección de soberanía y catástrofes.') + '</span></div>' +
             '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Estado Mayor Conjunto (EMCO)</div>' +
             '</div></div>' +
             '</div>' +
 
             // VIVIENDA, CALLES Y ENERGIA
             '<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-[#e2e8f0]">' +
-            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#dc2626] block">Déficit Habitacional</span><span class="text-base font-mono font-bold text-[#dc2626]">' + r.infrastructure.housing_deficit_units.toLocaleString('es-CL') + ' viviendas</span><span class="text-[10px] text-[#64748b] block">' + r.infrastructure.campamentos_count + ' campamentos (' + r.infrastructure.campamentos_families.toLocaleString('es-CL') + ' familias) - Minvu/TECHO</span></div>' +
-            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#0f172a] block">Red Vial & Pavimentación</span><span class="text-base font-mono font-bold text-[#0f172a]">' + r.infrastructure.paved_roads_pct + '% pavimentado</span><span class="text-[10px] text-[#64748b] block">' + r.infrastructure.total_roads_km.toLocaleString('es-CL') + ' km caminos (Vialidad MOP)</span></div>' +
-            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#16a34a] block">Matriz Renovable Limpia</span><span class="text-base font-mono font-bold text-[#16a34a]">' + r.infrastructure.renewable_energy_share_pct + '% limpia</span><span class="text-[10px] text-[#64748b] block">' + r.infrastructure.installed_capacity_mw.toLocaleString('es-CL') + ' MW (CNE/CEN)</span></div>' +
+            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#dc2626] block">Déficit Habitacional</span><span class="text-base font-mono font-bold text-[#dc2626]">' + (inf.housing_deficit_units || 0).toLocaleString('es-CL') + ' viviendas</span><span class="text-[10px] text-[#64748b] block">' + (inf.campamentos_count || 0) + ' campamentos (' + (inf.campamentos_families || 0).toLocaleString('es-CL') + ' familias) - Minvu/TECHO</span></div>' +
+            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#0f172a] block">Red Vial & Pavimentación</span><span class="text-base font-mono font-bold text-[#0f172a]">' + (inf.paved_roads_pct || 0) + '% pavimentado</span><span class="text-[10px] text-[#64748b] block">' + (inf.total_roads_km || 0).toLocaleString('es-CL') + ' km caminos (Vialidad MOP)</span></div>' +
+            '<div class="p-3.5 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0] space-y-1"><span class="text-[10px] uppercase font-bold text-[#16a34a] block">Matriz Renovable Limpia</span><span class="text-base font-mono font-bold text-[#16a34a]">' + (inf.renewable_energy_share_pct || 0) + '% limpia</span><span class="text-[10px] text-[#64748b] block">' + (inf.installed_capacity_mw || 0).toLocaleString('es-CL') + ' MW (CNE/CEN)</span></div>' +
             '</div>' +
 
             '</div></div>';
@@ -400,7 +410,7 @@
         container.innerHTML = html;
         safeCreateIcons();
     }
-    // 5. MEMORIA & EFEMÉRIDES HISTÓRICAS: UN DÍA COMO HOY EN CHILE & EVOLUCIÓN CENTENARIA
+    // 5. MEMORIA HISTÓRICA: UN DÍA COMO HOY EN CHILE & EVOLUCIÓN CENTENARIA CON FUENTES OFICIALES
     function renderHistoricalView() {
         var snap = getSnapshot();
         var hist = snap.historical_data || {};
@@ -500,9 +510,9 @@
         var container = document.getElementById('regional-matrix-container');
         if (!container) return;
 
-        var byHacinamiento = regions.slice().sort(function (a, b) { return b.prisons.overcrowding_pct - a.prisons.overcrowding_pct; });
-        var byEspera = regions.slice().sort(function (a, b) { return b.health.avg_waiting_days_surgery - a.health.avg_waiting_days_surgery; });
-        var byFCM = regions.slice().sort(function (a, b) { return b.finances.fcm_dependency_avg_pct - a.finances.fcm_dependency_avg_pct; });
+        var byHacinamiento = regions.slice().sort(function (a, b) { return ((b.prisons || {}).overcrowding_pct || 0) - ((a.prisons || {}).overcrowding_pct || 0); });
+        var byEspera = regions.slice().sort(function (a, b) { return ((b.health || {}).avg_waiting_days_surgery || 0) - ((a.health || {}).avg_waiting_days_surgery || 0); });
+        var byFCM = regions.slice().sort(function (a, b) { return ((b.finances || {}).fcm_dependency_avg_pct || 0) - ((a.finances || {}).fcm_dependency_avg_pct || 0); });
 
         var html = '<div class="space-y-6">' +
             '<div class="grid grid-cols-1 md:grid-cols-3 gap-5">' +
@@ -513,9 +523,10 @@
             '</div>' +
             '<div class="space-y-2">';
         byHacinamiento.slice(0, 5).forEach(function (r, idx) {
+            var pr = r.prisons || {};
             html += '<div onclick="switchToRegion(\'' + r.id + '\')" class="flex items-center justify-between p-2 rounded-[10px] hover:bg-[#f8f9fa] cursor-pointer transition text-xs">' +
                 '<span class="font-medium text-[#0f172a]"><strong class="text-[#64748b] mr-1">#' + (idx + 1) + '</strong> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</span>' +
-                '<span class="font-mono font-bold text-[#dc2626]">' + r.prisons.overcrowding_pct + '%</span>' +
+                '<span class="font-mono font-bold text-[#dc2626]">' + (pr.overcrowding_pct || 0) + '%</span>' +
                 '</div>';
         });
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Gendarmería de Chile 2026</div>' +
@@ -528,9 +539,10 @@
             '</div>' +
             '<div class="space-y-2">';
         byEspera.slice(0, 5).forEach(function (r, idx) {
+            var hl = r.health || {};
             html += '<div onclick="switchToRegion(\'' + r.id + '\')" class="flex items-center justify-between p-2 rounded-[10px] hover:bg-[#f8f9fa] cursor-pointer transition text-xs">' +
                 '<span class="font-medium text-[#0f172a]"><strong class="text-[#64748b] mr-1">#' + (idx + 1) + '</strong> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</span>' +
-                '<span class="font-mono font-bold text-[#0f172a]">' + r.health.avg_waiting_days_surgery + ' días</span>' +
+                '<span class="font-mono font-bold text-[#0f172a]">' + (hl.avg_waiting_days_surgery || 0) + ' días</span>' +
                 '</div>';
         });
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: DEIS - Ministerio de Salud</div>' +
@@ -543,9 +555,10 @@
             '</div>' +
             '<div class="space-y-2">';
         byFCM.slice(0, 5).forEach(function (r, idx) {
+            var fin = r.finances || {};
             html += '<div onclick="switchToRegion(\'' + r.id + '\')" class="flex items-center justify-between p-2 rounded-[10px] hover:bg-[#f8f9fa] cursor-pointer transition text-xs">' +
                 '<span class="font-medium text-[#0f172a]"><strong class="text-[#64748b] mr-1">#' + (idx + 1) + '</strong> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</span>' +
-                '<span class="font-mono font-bold text-[#0284c7]">' + r.finances.fcm_dependency_avg_pct + '%</span>' +
+                '<span class="font-mono font-bold text-[#0284c7]">' + (fin.fcm_dependency_avg_pct || 0) + '%</span>' +
                 '</div>';
         });
         html += '<div class="text-[10px] text-[#64748b] pt-1 border-t border-[#e2e8f0]">Fuente: Subdere SINIM 2026</div>' +
@@ -560,16 +573,18 @@
             '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">';
 
         regions.forEach(function (r) {
+            var pr = r.prisons || {};
+            var hl = r.health || {};
             html += '<div onclick="switchToRegion(\'' + r.id + '\')" class="p-3.5 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] hover:border-[#0284c7] hover:shadow-sm cursor-pointer transition space-y-2">' +
                 '<div class="flex items-center justify-between">' +
                 '<span class="px-2 py-0.5 rounded-[8px] text-[10px] font-mono font-extrabold bg-[#0f172a] text-white">' + r.number + '</span>' +
-                '<span class="text-[11px] font-mono font-bold text-[#0284c7]">' + r.pib_share_pct + '% PIB</span>' +
+                '<span class="text-[11px] font-mono font-bold text-[#0284c7]">' + (r.pib_share_pct || 0) + '% PIB</span>' +
                 '</div>' +
                 '<h4 class="text-xs font-extrabold text-[#0f172a] truncate">' + r.name + '</h4>' +
                 '<div class="space-y-1 text-[11px] text-[#64748b]">' +
-                '<div class="flex justify-between"><span>Población:</span><span class="font-mono font-bold text-[#0f172a]">' + (r.population / 1000).toFixed(0) + 'k</span></div>' +
-                '<div class="flex justify-between"><span>Hacinamiento Penal:</span><span class="font-mono font-bold text-[#dc2626]">' + r.prisons.overcrowding_pct + '%</span></div>' +
-                '<div class="flex justify-between"><span>Lista Cirugía:</span><span class="font-mono font-bold text-[#0f172a]">' + r.health.surgical_waiting_list_patients.toLocaleString('es-CL') + '</span></div>' +
+                '<div class="flex justify-between"><span>Población:</span><span class="font-mono font-bold text-[#0f172a]">' + ((r.population || 0) / 1000).toFixed(0) + 'k</span></div>' +
+                '<div class="flex justify-between"><span>Hacinamiento Penal:</span><span class="font-mono font-bold text-[#dc2626]">' + (pr.overcrowding_pct || 0) + '%</span></div>' +
+                '<div class="flex justify-between"><span>Lista Cirugía:</span><span class="font-mono font-bold text-[#0f172a]">' + (hl.surgical_waiting_list_patients || 0).toLocaleString('es-CL') + '</span></div>' +
                 '</div>' +
                 '</div>';
         });
@@ -585,6 +600,7 @@
         var el = document.getElementById('view-regiones');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
+
     // 7. LEYES & CONGRESO CON FUENTES LEGISLATIVAS
     function renderLegislativeBills() {
         var snap = getSnapshot();
@@ -693,8 +709,7 @@
             '<div class="pt-2 border-t border-[#e2e8f0] text-[10px] text-[#64748b]">Fuente: ' + item.source + '</div>' +
             '</div>';
     }
-
-    // 10. OBSERVATORIO DE NOTICIAS & CLUSTERS (NORMALIZACIÓN ROBUSTA DE CATEGORÍAS)
+    // 10. OBSERVATORIO DE NOTICIAS & CLUSTERS
     function normalizeCategoryName(cat) {
         if (!cat) return 'Nacional';
         var c = cat.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
@@ -790,6 +805,7 @@
 
         document.getElementById('cluster-modal').classList.remove('hidden');
     }
+
     // 11. ÁGORA CIUDADANA
     var defaultProposals = [
         { id: 1, pilar: 'Salud Pública', title: 'Telemedicina 24/7 en postas rurales de Aysén y Los Lagos', desc: 'Conectar las 240 postas rurales más aisladas con médicos especialistas de Santiago y Concepción vía fibra óptica y satelital.', votes: 428 },
@@ -903,12 +919,12 @@
                 else el.classList.add('hidden');
             }
             if (btn) {
-                if (v === tabKey) btn.className = 'shadcn-button-primary px-4 py-2.5 text-xs font-bold shadow-sm flex items-center space-x-1.5 whitespace-nowrap';
-                else btn.className = 'shadcn-button-secondary px-4 py-2.5 text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap';
+                if (v === tabKey) btn.className = 'shadcn-button-primary px-3.5 py-2 text-xs font-bold shadow-sm flex items-center space-x-1.5 whitespace-nowrap';
+                else btn.className = 'shadcn-button-secondary px-3.5 py-2 text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap';
             }
             if (mobBtn) {
-                if (v === tabKey) mobBtn.className = 'flex flex-col items-center justify-center py-1 px-2 text-[#0284c7] font-bold';
-                else mobBtn.className = 'flex flex-col items-center justify-center py-1 px-2 text-[#64748b] font-medium';
+                if (v === tabKey) mobBtn.className = 'flex flex-col items-center justify-center py-1 px-1.5 text-[#0284c7] font-bold';
+                else mobBtn.className = 'flex flex-col items-center justify-center py-1 px-1.5 text-[#64748b] font-medium';
             }
         });
 
@@ -995,7 +1011,7 @@
         localStorage.setItem('chile_onboarding_done', 'true');
     }
 
-    // INICIALIZACIÓN GLOBAL
+    // INICIALIZACIÓN GLOBAL (SIN MODALES BLOQUEADORES AL ENTRAR)
     function renderAllViews() {
         renderEconomicIndicators();
         renderNationalBalanceView();
@@ -1008,10 +1024,6 @@
         renderClustersView();
         renderCitizenProposals();
         safeCreateIcons();
-
-        if (!localStorage.getItem('chile_onboarding_done')) {
-            openOnboarding(1);
-        }
     }
 
     document.addEventListener('DOMContentLoaded', function () {

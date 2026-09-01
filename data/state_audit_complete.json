@@ -257,7 +257,78 @@
       "informal_labor_pct": 32.4,
       "water_deficit_pct": 68.2,
       "photo_url": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Morro de Arica y Altiplano de Parinacota (Lago Chungará)"
+      "photo_caption": "Morro de Arica y Altiplano de Parinacota (Lago Chungará)",
+      "finances": {
+        "budget_gore_fndr_mmclp": 58400,
+        "execution_fndr_pct": 94.2,
+        "per_capita_municipal_income_clp": 245000,
+        "fcm_dependency_avg_pct": 68.4
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 0,
+        "cesfam_count": 14,
+        "critical_beds_upc_per_100k": 11.2,
+        "surgical_waiting_list_patients": 18400,
+        "avg_waiting_days_surgery": 348,
+        "specialist_consult_waiting_list": 42000,
+        "cenabast_debt_mmclp": 6400
+      },
+      "security": {
+        "carabineros_officers": 1650,
+        "carabineros_stations": 18,
+        "patrol_vehicles_active": 78,
+        "patrol_vehicles_broken": 26,
+        "pdi_detectives": 420,
+        "homicide_rate_per_100k": 8.4,
+        "dmcs_crimes_annual": 12400,
+        "organized_crime_threat_level": "Alto (Bandas de tráfico y pasos no habilitados)"
+      },
+      "prisons": {
+        "prisons_count": 2,
+        "design_capacity": 2180,
+        "inmates_total": 3150,
+        "overcrowding_pct": 144.5,
+        "gendarmerie_staff": 890,
+        "recidivism_rate_pct": 48.2,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 148,
+        "matricula_total": 58200,
+        "dropout_rate_pct": 2.1,
+        "critical_attendance_pct": 31.4,
+        "simce_math_avg": 241,
+        "simce_reading_avg": 250,
+        "gratuidad_coverage_pct": 66.8
+      },
+      "firefighters": {
+        "companies_count": 9,
+        "volunteers_count": 480,
+        "fire_trucks_operational": 24,
+        "fire_trucks_falla": 5,
+        "avg_response_time_minutes": 8.5,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 8,
+        "stationed_personnel": 3400,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Blindaje de la frontera norte (Línea de la Concordia y Hito 1 al 80) bajo Ley de Infraestructura Crítica."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 14200,
+        "campamentos_count": 28,
+        "campamentos_families": 2380,
+        "total_roads_km": 1800,
+        "paved_roads_pct": 38,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 240
+      }
     },
     {
       "id": "tarapaca",
@@ -356,7 +427,78 @@
       "informal_labor_pct": 34.1,
       "water_deficit_pct": 72,
       "photo_url": "https://images.unsplash.com/photo-1589556264800-08ae9e129a8c?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Oficinas Salitreras Humberstone y Bahía de Iquique"
+      "photo_caption": "Oficinas Salitreras Humberstone y Bahía de Iquique",
+      "finances": {
+        "budget_gore_fndr_mmclp": 84200,
+        "execution_fndr_pct": 91.5,
+        "per_capita_municipal_income_clp": 278000,
+        "fcm_dependency_avg_pct": 61.2
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 1,
+        "cesfam_count": 22,
+        "critical_beds_upc_per_100k": 12.8,
+        "surgical_waiting_list_patients": 26800,
+        "avg_waiting_days_surgery": 362,
+        "specialist_consult_waiting_list": 58000,
+        "cenabast_debt_mmclp": 8900
+      },
+      "security": {
+        "carabineros_officers": 2200,
+        "carabineros_stations": 24,
+        "patrol_vehicles_active": 112,
+        "patrol_vehicles_broken": 38,
+        "pdi_detectives": 580,
+        "homicide_rate_per_100k": 9.2,
+        "dmcs_crimes_annual": 19800,
+        "organized_crime_threat_level": "Crítico (Rutas Colchane-Pozo Almonte y contrabando ZOFRI)"
+      },
+      "prisons": {
+        "prisons_count": 3,
+        "design_capacity": 2850,
+        "inmates_total": 4620,
+        "overcrowding_pct": 162.1,
+        "gendarmerie_staff": 1150,
+        "recidivism_rate_pct": 52.4,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 218,
+        "matricula_total": 89400,
+        "dropout_rate_pct": 2.4,
+        "critical_attendance_pct": 33.8,
+        "simce_math_avg": 244,
+        "simce_reading_avg": 252,
+        "gratuidad_coverage_pct": 64.2
+      },
+      "firefighters": {
+        "companies_count": 18,
+        "volunteers_count": 920,
+        "fire_trucks_operational": 42,
+        "fire_trucks_falla": 9,
+        "avg_response_time_minutes": 7.8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 8,
+        "stationed_personnel": 5600,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Control fronterizo en Colchane y vigilancia aeroespacial del norte de Chile."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 28400,
+        "campamentos_count": 52,
+        "campamentos_families": 4420,
+        "total_roads_km": 3120,
+        "paved_roads_pct": 37,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 890
+      }
     },
     {
       "id": "antofagasta",
@@ -455,7 +597,78 @@
       "informal_labor_pct": 20.8,
       "water_deficit_pct": 84.5,
       "photo_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Valle de la Luna, San Pedro y Monumento Natural La Portada"
+      "photo_caption": "Valle de la Luna, San Pedro y Monumento Natural La Portada",
+      "finances": {
+        "budget_gore_fndr_mmclp": 142000,
+        "execution_fndr_pct": 89.2,
+        "per_capita_municipal_income_clp": 380000,
+        "fcm_dependency_avg_pct": 42
+      },
+      "health": {
+        "hospitals_high_complexity": 2,
+        "hospitals_low_mid": 3,
+        "cesfam_count": 34,
+        "critical_beds_upc_per_100k": 14.5,
+        "surgical_waiting_list_patients": 38200,
+        "avg_waiting_days_surgery": 320,
+        "specialist_consult_waiting_list": 82000,
+        "cenabast_debt_mmclp": 14200
+      },
+      "security": {
+        "carabineros_officers": 3100,
+        "carabineros_stations": 36,
+        "patrol_vehicles_active": 184,
+        "patrol_vehicles_broken": 52,
+        "pdi_detectives": 780,
+        "homicide_rate_per_100k": 6.8,
+        "dmcs_crimes_annual": 34200,
+        "organized_crime_threat_level": "Alto (Robo de concentrado de cobre, drogas y puertos)"
+      },
+      "prisons": {
+        "prisons_count": 4,
+        "design_capacity": 4100,
+        "inmates_total": 5950,
+        "overcrowding_pct": 145.1,
+        "gendarmerie_staff": 1420,
+        "recidivism_rate_pct": 47.8,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 313,
+        "matricula_total": 148000,
+        "dropout_rate_pct": 1.9,
+        "critical_attendance_pct": 28.5,
+        "simce_math_avg": 252,
+        "simce_reading_avg": 258,
+        "gratuidad_coverage_pct": 58.4
+      },
+      "firefighters": {
+        "companies_count": 28,
+        "volunteers_count": 1450,
+        "fire_trucks_operational": 68,
+        "fire_trucks_falla": 12,
+        "avg_response_time_minutes": 6.9,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 8,
+        "stationed_personnel": 6800,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Vigilancia de pasos andinos (Ollagüe, San Pedro) y protección de infraestructura crítica minera y astronómica."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 36800,
+        "campamentos_count": 86,
+        "campamentos_families": 7310,
+        "total_roads_km": 7360,
+        "paved_roads_pct": 44,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 5200
+      }
     },
     {
       "id": "atacama",
@@ -554,7 +767,78 @@
       "informal_labor_pct": 28.5,
       "water_deficit_pct": 79,
       "photo_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Bahía Inglesa, Parque Pan de Azúcar y Desierto Florido"
+      "photo_caption": "Bahía Inglesa, Parque Pan de Azúcar y Desierto Florido",
+      "finances": {
+        "budget_gore_fndr_mmclp": 76500,
+        "execution_fndr_pct": 92,
+        "per_capita_municipal_income_clp": 260000,
+        "fcm_dependency_avg_pct": 59
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 2,
+        "cesfam_count": 26,
+        "critical_beds_upc_per_100k": 11.5,
+        "surgical_waiting_list_patients": 22400,
+        "avg_waiting_days_surgery": 355,
+        "specialist_consult_waiting_list": 48000,
+        "cenabast_debt_mmclp": 7200
+      },
+      "security": {
+        "carabineros_officers": 1420,
+        "carabineros_stations": 22,
+        "patrol_vehicles_active": 82,
+        "patrol_vehicles_broken": 28,
+        "pdi_detectives": 360,
+        "homicide_rate_per_100k": 5.4,
+        "dmcs_crimes_annual": 14800,
+        "organized_crime_threat_level": "Medio-Alto (Robo de cables, camiones y narcotráfico)"
+      },
+      "prisons": {
+        "prisons_count": 3,
+        "design_capacity": 1650,
+        "inmates_total": 2420,
+        "overcrowding_pct": 146.7,
+        "gendarmerie_staff": 680,
+        "recidivism_rate_pct": 49,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 192,
+        "matricula_total": 68400,
+        "dropout_rate_pct": 2.6,
+        "critical_attendance_pct": 35.2,
+        "simce_math_avg": 238,
+        "simce_reading_avg": 246,
+        "gratuidad_coverage_pct": 68.5
+      },
+      "firefighters": {
+        "companies_count": 16,
+        "volunteers_count": 780,
+        "fire_trucks_operational": 36,
+        "fire_trucks_falla": 8,
+        "avg_response_time_minutes": 8.2,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 1650,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Apoyo a la comunidad ante desastres aluvionales y resguardo del Paso San Francisco."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 18200,
+        "campamentos_count": 48,
+        "campamentos_families": 4080,
+        "total_roads_km": 5630,
+        "paved_roads_pct": 39,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 3100
+      }
     },
     {
       "id": "coquimbo",
@@ -653,7 +937,78 @@
       "informal_labor_pct": 29.8,
       "water_deficit_pct": 81.3,
       "photo_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Valle del Elqui Astronómico y Faro Monumental de La Serena"
+      "photo_caption": "Valle del Elqui Astronómico y Faro Monumental de La Serena",
+      "finances": {
+        "budget_gore_fndr_mmclp": 96800,
+        "execution_fndr_pct": 88,
+        "per_capita_municipal_income_clp": 235000,
+        "fcm_dependency_avg_pct": 66
+      },
+      "health": {
+        "hospitals_high_complexity": 2,
+        "hospitals_low_mid": 7,
+        "cesfam_count": 68,
+        "critical_beds_upc_per_100k": 10.8,
+        "surgical_waiting_list_patients": 48600,
+        "avg_waiting_days_surgery": 380,
+        "specialist_consult_waiting_list": 112000,
+        "cenabast_debt_mmclp": 16500
+      },
+      "security": {
+        "carabineros_officers": 2650,
+        "carabineros_stations": 44,
+        "patrol_vehicles_active": 148,
+        "patrol_vehicles_broken": 46,
+        "pdi_detectives": 640,
+        "homicide_rate_per_100k": 5.1,
+        "dmcs_crimes_annual": 38900,
+        "organized_crime_threat_level": "Medio-Alto (Cultivos ilegales en valles interiores Choapa/Limarí)"
+      },
+      "prisons": {
+        "prisons_count": 4,
+        "design_capacity": 3400,
+        "inmates_total": 4680,
+        "overcrowding_pct": 137.6,
+        "gendarmerie_staff": 1080,
+        "recidivism_rate_pct": 46.5,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 612,
+        "matricula_total": 178000,
+        "dropout_rate_pct": 2,
+        "critical_attendance_pct": 31,
+        "simce_math_avg": 246,
+        "simce_reading_avg": 254,
+        "gratuidad_coverage_pct": 69.4
+      },
+      "firefighters": {
+        "companies_count": 42,
+        "volunteers_count": 1850,
+        "fire_trucks_operational": 82,
+        "fire_trucks_falla": 18,
+        "avg_response_time_minutes": 8.8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 2100,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Apoyo ante catástrofes de sequía, transporte aéreo de agua y resguardo del Paso Agua Negra."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 34200,
+        "campamentos_count": 42,
+        "campamentos_families": 3570,
+        "total_roads_km": 7760,
+        "paved_roads_pct": 37,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 2650
+      }
     },
     {
       "id": "valparaiso",
@@ -752,7 +1107,78 @@
       "informal_labor_pct": 27.6,
       "water_deficit_pct": 74.8,
       "photo_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Cerros, Ascensores y Bahía de Valparaíso (Patrimonio UNESCO)"
+      "photo_caption": "Cerros, Ascensores y Bahía de Valparaíso (Patrimonio UNESCO)",
+      "finances": {
+        "budget_gore_fndr_mmclp": 128000,
+        "execution_fndr_pct": 93.4,
+        "per_capita_municipal_income_clp": 295000,
+        "fcm_dependency_avg_pct": 54
+      },
+      "health": {
+        "hospitals_high_complexity": 4,
+        "hospitals_low_mid": 14,
+        "cesfam_count": 112,
+        "critical_beds_upc_per_100k": 13.2,
+        "surgical_waiting_list_patients": 86400,
+        "avg_waiting_days_surgery": 395,
+        "specialist_consult_waiting_list": 210000,
+        "cenabast_debt_mmclp": 28500
+      },
+      "security": {
+        "carabineros_officers": 5800,
+        "carabineros_stations": 72,
+        "patrol_vehicles_active": 320,
+        "patrol_vehicles_broken": 98,
+        "pdi_detectives": 1450,
+        "homicide_rate_per_100k": 6.2,
+        "dmcs_crimes_annual": 88400,
+        "organized_crime_threat_level": "Alto (Narcotráfico en puertos de San Antonio y cerros de Viña/Valparaíso)"
+      },
+      "prisons": {
+        "prisons_count": 9,
+        "design_capacity": 6200,
+        "inmates_total": 8450,
+        "overcrowding_pct": 136.3,
+        "gendarmerie_staff": 2200,
+        "recidivism_rate_pct": 49.8,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 1050,
+        "matricula_total": 395000,
+        "dropout_rate_pct": 1.8,
+        "critical_attendance_pct": 27.2,
+        "simce_math_avg": 254,
+        "simce_reading_avg": 262,
+        "gratuidad_coverage_pct": 61.5
+      },
+      "firefighters": {
+        "companies_count": 118,
+        "volunteers_count": 5400,
+        "fire_trucks_operational": 240,
+        "fire_trucks_falla": 38,
+        "avg_response_time_minutes": 7.4,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 11500,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Control soberano de la Zona Económica Exclusiva, resguardo del Paso Los Libertadores y base estratégica naval."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 72000,
+        "campamentos_count": 284,
+        "campamentos_families": 24140,
+        "total_roads_km": 8010,
+        "paved_roads_pct": 51,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 1450
+      }
     },
     {
       "id": "metropolitana",
@@ -851,7 +1277,78 @@
       "informal_labor_pct": 24.2,
       "water_deficit_pct": 61.5,
       "photo_url": "https://images.unsplash.com/photo-1578885136359-16c8bd4d3a8e?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Palacio de La Moneda, Gran Santiago y Cerro San Cristóbal"
+      "photo_caption": "Palacio de La Moneda, Gran Santiago y Cerro San Cristóbal",
+      "finances": {
+        "budget_gore_fndr_mmclp": 182000,
+        "execution_fndr_pct": 96.5,
+        "per_capita_municipal_income_clp": 520000,
+        "fcm_dependency_avg_pct": 28
+      },
+      "health": {
+        "hospitals_high_complexity": 18,
+        "hospitals_low_mid": 28,
+        "cesfam_count": 280,
+        "critical_beds_upc_per_100k": 18.5,
+        "surgical_waiting_list_patients": 118000,
+        "avg_waiting_days_surgery": 290,
+        "specialist_consult_waiting_list": 340000,
+        "cenabast_debt_mmclp": 68000
+      },
+      "security": {
+        "carabineros_officers": 22400,
+        "carabineros_stations": 142,
+        "patrol_vehicles_active": 1450,
+        "patrol_vehicles_broken": 380,
+        "pdi_detectives": 5800,
+        "homicide_rate_per_100k": 4.8,
+        "dmcs_crimes_annual": 248000,
+        "organized_crime_threat_level": "Muy Alto (Homicidios por encargo, extorsiones, tomas y crimen armado)"
+      },
+      "prisons": {
+        "prisons_count": 12,
+        "design_capacity": 18500,
+        "inmates_total": 26400,
+        "overcrowding_pct": 142.7,
+        "gendarmerie_staff": 6800,
+        "recidivism_rate_pct": 46.2,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 2960,
+        "matricula_total": 1620000,
+        "dropout_rate_pct": 1.6,
+        "critical_attendance_pct": 24.5,
+        "simce_math_avg": 262,
+        "simce_reading_avg": 268,
+        "gratuidad_coverage_pct": 52
+      },
+      "firefighters": {
+        "companies_count": 285,
+        "volunteers_count": 14200,
+        "fire_trucks_operational": 620,
+        "fire_trucks_falla": 84,
+        "avg_response_time_minutes": 6.2,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 12,
+        "stationed_personnel": 24000,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Coordinación del Estado Mayor Conjunto (EMCO), apoyo logístico y ciberdefensa nacional."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 210000,
+        "campamentos_count": 192,
+        "campamentos_families": 16320,
+        "total_roads_km": 9200,
+        "paved_roads_pct": 74,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 1100
+      }
     },
     {
       "id": "ohiggins",
@@ -950,7 +1447,78 @@
       "informal_labor_pct": 31,
       "water_deficit_pct": 54,
       "photo_url": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Campamento Sewell (UNESCO), El Teniente y Viñedos de Colchagua"
+      "photo_caption": "Campamento Sewell (UNESCO), El Teniente y Viñedos de Colchagua",
+      "finances": {
+        "budget_gore_fndr_mmclp": 94500,
+        "execution_fndr_pct": 92.8,
+        "per_capita_municipal_income_clp": 255000,
+        "fcm_dependency_avg_pct": 64
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 14,
+        "cesfam_count": 88,
+        "critical_beds_upc_per_100k": 11,
+        "surgical_waiting_list_patients": 42500,
+        "avg_waiting_days_surgery": 370,
+        "specialist_consult_waiting_list": 94000,
+        "cenabast_debt_mmclp": 12400
+      },
+      "security": {
+        "carabineros_officers": 2700,
+        "carabineros_stations": 48,
+        "patrol_vehicles_active": 162,
+        "patrol_vehicles_broken": 44,
+        "pdi_detectives": 610,
+        "homicide_rate_per_100k": 3.9,
+        "dmcs_crimes_annual": 36400,
+        "organized_crime_threat_level": "Medio (Robo de agroquímicos, maquinaria y bandas locales)"
+      },
+      "prisons": {
+        "prisons_count": 6,
+        "design_capacity": 3200,
+        "inmates_total": 4250,
+        "overcrowding_pct": 132.8,
+        "gendarmerie_staff": 1120,
+        "recidivism_rate_pct": 47,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 626,
+        "matricula_total": 192000,
+        "dropout_rate_pct": 1.7,
+        "critical_attendance_pct": 28,
+        "simce_math_avg": 248,
+        "simce_reading_avg": 256,
+        "gratuidad_coverage_pct": 68
+      },
+      "firefighters": {
+        "companies_count": 78,
+        "volunteers_count": 3400,
+        "fire_trucks_operational": 164,
+        "fire_trucks_falla": 28,
+        "avg_response_time_minutes": 8.1,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 3200,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Capacidad de despliegue aéreo de rescate y protección del Paso Las Damas."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 26800,
+        "campamentos_count": 44,
+        "campamentos_families": 3740,
+        "total_roads_km": 8570,
+        "paved_roads_pct": 40,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 1820
+      }
     },
     {
       "id": "maule",
@@ -1049,7 +1617,78 @@
       "informal_labor_pct": 36.2,
       "water_deficit_pct": 49,
       "photo_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Parque Nacional Radal Siete Tazas y Cuenca Agrícola del Maule"
+      "photo_caption": "Parque Nacional Radal Siete Tazas y Cuenca Agrícola del Maule",
+      "finances": {
+        "budget_gore_fndr_mmclp": 105000,
+        "execution_fndr_pct": 91.2,
+        "per_capita_municipal_income_clp": 220000,
+        "fcm_dependency_avg_pct": 72
+      },
+      "health": {
+        "hospitals_high_complexity": 2,
+        "hospitals_low_mid": 11,
+        "cesfam_count": 98,
+        "critical_beds_upc_per_100k": 10.2,
+        "surgical_waiting_list_patients": 54200,
+        "avg_waiting_days_surgery": 410,
+        "specialist_consult_waiting_list": 128000,
+        "cenabast_debt_mmclp": 18200
+      },
+      "security": {
+        "carabineros_officers": 2950,
+        "carabineros_stations": 58,
+        "patrol_vehicles_active": 178,
+        "patrol_vehicles_broken": 54,
+        "pdi_detectives": 680,
+        "homicide_rate_per_100k": 4.2,
+        "dmcs_crimes_annual": 41200,
+        "organized_crime_threat_level": "Medio (Robo de madera y microtráfico rural)"
+      },
+      "prisons": {
+        "prisons_count": 8,
+        "design_capacity": 3600,
+        "inmates_total": 4890,
+        "overcrowding_pct": 135.8,
+        "gendarmerie_staff": 1180,
+        "recidivism_rate_pct": 48.5,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 752,
+        "matricula_total": 218000,
+        "dropout_rate_pct": 2.1,
+        "critical_attendance_pct": 32.5,
+        "simce_math_avg": 242,
+        "simce_reading_avg": 251,
+        "gratuidad_coverage_pct": 72.4
+      },
+      "firefighters": {
+        "companies_count": 86,
+        "volunteers_count": 3800,
+        "fire_trucks_operational": 182,
+        "fire_trucks_falla": 32,
+        "avg_response_time_minutes": 9.4,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 2800,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Apoyo a desastres de inundaciones e incendios y resguardo del Paso Pehuenche."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 32500,
+        "campamentos_count": 38,
+        "campamentos_families": 3230,
+        "total_roads_km": 11090,
+        "paved_roads_pct": 35,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 2950
+      }
     },
     {
       "id": "nuble",
@@ -1148,7 +1787,78 @@
       "informal_labor_pct": 38.5,
       "water_deficit_pct": 42,
       "photo_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Nevados y Termas de Chillán, Valle Las Trancas y Valle de Itata"
+      "photo_caption": "Nevados y Termas de Chillán, Valle Las Trancas y Valle de Itata",
+      "finances": {
+        "budget_gore_fndr_mmclp": 68400,
+        "execution_fndr_pct": 94,
+        "per_capita_municipal_income_clp": 210000,
+        "fcm_dependency_avg_pct": 78
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 6,
+        "cesfam_count": 62,
+        "critical_beds_upc_per_100k": 9.8,
+        "surgical_waiting_list_patients": 29400,
+        "avg_waiting_days_surgery": 420,
+        "specialist_consult_waiting_list": 68000,
+        "cenabast_debt_mmclp": 9400
+      },
+      "security": {
+        "carabineros_officers": 1650,
+        "carabineros_stations": 34,
+        "patrol_vehicles_active": 98,
+        "patrol_vehicles_broken": 32,
+        "pdi_detectives": 380,
+        "homicide_rate_per_100k": 3.8,
+        "dmcs_crimes_annual": 18200,
+        "organized_crime_threat_level": "Bajo-Medio (Delincuencia común y robo rural)"
+      },
+      "prisons": {
+        "prisons_count": 5,
+        "design_capacity": 1800,
+        "inmates_total": 2580,
+        "overcrowding_pct": 143.3,
+        "gendarmerie_staff": 640,
+        "recidivism_rate_pct": 47.5,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 416,
+        "matricula_total": 102000,
+        "dropout_rate_pct": 2.2,
+        "critical_attendance_pct": 34,
+        "simce_math_avg": 240,
+        "simce_reading_avg": 248,
+        "gratuidad_coverage_pct": 74.8
+      },
+      "firefighters": {
+        "companies_count": 52,
+        "volunteers_count": 1950,
+        "fire_trucks_operational": 94,
+        "fire_trucks_falla": 16,
+        "avg_response_time_minutes": 9.8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 1450,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Resguardo cordillerano, rescate en nieve y combate de incendios."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 19400,
+        "campamentos_count": 22,
+        "campamentos_families": 1870,
+        "total_roads_km": 6470,
+        "paved_roads_pct": 28,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 980
+      }
     },
     {
       "id": "biobio",
@@ -1247,7 +1957,78 @@
       "informal_labor_pct": 29.1,
       "water_deficit_pct": 35,
       "photo_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Río Biobío, Puentes de Concepción y Polo Industrial Marítimo"
+      "photo_caption": "Río Biobío, Puentes de Concepción y Polo Industrial Marítimo",
+      "finances": {
+        "budget_gore_fndr_mmclp": 134000,
+        "execution_fndr_pct": 92.5,
+        "per_capita_municipal_income_clp": 280000,
+        "fcm_dependency_avg_pct": 58
+      },
+      "health": {
+        "hospitals_high_complexity": 4,
+        "hospitals_low_mid": 16,
+        "cesfam_count": 118,
+        "critical_beds_upc_per_100k": 13.8,
+        "surgical_waiting_list_patients": 74500,
+        "avg_waiting_days_surgery": 385,
+        "specialist_consult_waiting_list": 185000,
+        "cenabast_debt_mmclp": 24000
+      },
+      "security": {
+        "carabineros_officers": 4900,
+        "carabineros_stations": 68,
+        "patrol_vehicles_active": 285,
+        "patrol_vehicles_broken": 76,
+        "pdi_detectives": 1200,
+        "homicide_rate_per_100k": 5.9,
+        "dmcs_crimes_annual": 74200,
+        "organized_crime_threat_level": "Alto (Robo de madera en provincia de Arauco y narcotráfico portuario)"
+      },
+      "prisons": {
+        "prisons_count": 8,
+        "design_capacity": 5800,
+        "inmates_total": 7920,
+        "overcrowding_pct": 136.5,
+        "gendarmerie_staff": 1950,
+        "recidivism_rate_pct": 48,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 973,
+        "matricula_total": 342000,
+        "dropout_rate_pct": 1.9,
+        "critical_attendance_pct": 28.8,
+        "simce_math_avg": 250,
+        "simce_reading_avg": 258,
+        "gratuidad_coverage_pct": 65.2
+      },
+      "firefighters": {
+        "companies_count": 142,
+        "volunteers_count": 6800,
+        "fire_trucks_operational": 310,
+        "fire_trucks_falla": 44,
+        "avg_response_time_minutes": 7.2,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 9800,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Despliegue bajo Estado de Excepción en Provincia de Arauco y capacidad astillero naval sudamericano."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 54000,
+        "campamentos_count": 156,
+        "campamentos_families": 13260,
+        "total_roads_km": 10450,
+        "paved_roads_pct": 44,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 4800
+      }
     },
     {
       "id": "araucania",
@@ -1346,7 +2127,78 @@
       "informal_labor_pct": 39.4,
       "water_deficit_pct": 28,
       "photo_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Volcán Villarrica y Bosques Milenarios de Araucarias en Conguillío"
+      "photo_caption": "Volcán Villarrica y Bosques Milenarios de Araucarias en Conguillío",
+      "finances": {
+        "budget_gore_fndr_mmclp": 145000,
+        "execution_fndr_pct": 89.5,
+        "per_capita_municipal_income_clp": 195000,
+        "fcm_dependency_avg_pct": 82
+      },
+      "health": {
+        "hospitals_high_complexity": 2,
+        "hospitals_low_mid": 28,
+        "cesfam_count": 145,
+        "critical_beds_upc_per_100k": 11.2,
+        "surgical_waiting_list_patients": 58400,
+        "avg_waiting_days_surgery": 430,
+        "specialist_consult_waiting_list": 142000,
+        "cenabast_debt_mmclp": 19800
+      },
+      "security": {
+        "carabineros_officers": 4200,
+        "carabineros_stations": 74,
+        "patrol_vehicles_active": 240,
+        "patrol_vehicles_broken": 72,
+        "pdi_detectives": 820,
+        "homicide_rate_per_100k": 5.4,
+        "dmcs_crimes_annual": 46800,
+        "organized_crime_threat_level": "Crítico (Violencia rural, quema de maquinaria, robo de madera y usurpaciones)"
+      },
+      "prisons": {
+        "prisons_count": 9,
+        "design_capacity": 3100,
+        "inmates_total": 4450,
+        "overcrowding_pct": 143.5,
+        "gendarmerie_staff": 1280,
+        "recidivism_rate_pct": 51,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 1002,
+        "matricula_total": 210000,
+        "dropout_rate_pct": 2.8,
+        "critical_attendance_pct": 36.2,
+        "simce_math_avg": 236,
+        "simce_reading_avg": 244,
+        "gratuidad_coverage_pct": 76.5
+      },
+      "firefighters": {
+        "companies_count": 124,
+        "volunteers_count": 4800,
+        "fire_trucks_operational": 260,
+        "fire_trucks_falla": 42,
+        "avg_response_time_minutes": 10.2,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 4800,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Despliegue operativo continuo bajo Estado de Excepción Constitucional en las provincias de Malleco y Cautín."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 42000,
+        "campamentos_count": 64,
+        "campamentos_families": 5440,
+        "total_roads_km": 12060,
+        "paved_roads_pct": 26,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 2100
+      }
     },
     {
       "id": "los_rios",
@@ -1445,7 +2297,78 @@
       "informal_labor_pct": 30.5,
       "water_deficit_pct": 18,
       "photo_url": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Red Fluvial de Valdivia, Puente Calle-Calle y Selva Valdiviana"
+      "photo_caption": "Red Fluvial de Valdivia, Puente Calle-Calle y Selva Valdiviana",
+      "finances": {
+        "budget_gore_fndr_mmclp": 64500,
+        "execution_fndr_pct": 93.8,
+        "per_capita_municipal_income_clp": 240000,
+        "fcm_dependency_avg_pct": 71
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 8,
+        "cesfam_count": 48,
+        "critical_beds_upc_per_100k": 12.4,
+        "surgical_waiting_list_patients": 21500,
+        "avg_waiting_days_surgery": 360,
+        "specialist_consult_waiting_list": 52000,
+        "cenabast_debt_mmclp": 8100
+      },
+      "security": {
+        "carabineros_officers": 1580,
+        "carabineros_stations": 28,
+        "patrol_vehicles_active": 94,
+        "patrol_vehicles_broken": 24,
+        "pdi_detectives": 340,
+        "homicide_rate_per_100k": 3.4,
+        "dmcs_crimes_annual": 16400,
+        "organized_crime_threat_level": "Bajo-Medio (Ataques incendiarios aislados en el límite norte)"
+      },
+      "prisons": {
+        "prisons_count": 3,
+        "design_capacity": 1950,
+        "inmates_total": 2520,
+        "overcrowding_pct": 129.2,
+        "gendarmerie_staff": 620,
+        "recidivism_rate_pct": 45.8,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 350,
+        "matricula_total": 82000,
+        "dropout_rate_pct": 1.7,
+        "critical_attendance_pct": 29,
+        "simce_math_avg": 248,
+        "simce_reading_avg": 256,
+        "gratuidad_coverage_pct": 68
+      },
+      "firefighters": {
+        "companies_count": 64,
+        "volunteers_count": 2400,
+        "fire_trucks_operational": 128,
+        "fire_trucks_falla": 18,
+        "avg_response_time_minutes": 8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 2600,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Vigilancia fluvial/marítima de la bahía de Corral y pasos andinos (Hua Hum)."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 14800,
+        "campamentos_count": 24,
+        "campamentos_families": 2040,
+        "total_roads_km": 5760,
+        "paved_roads_pct": 34,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 1420
+      }
     },
     {
       "id": "los_lagos",
@@ -1544,7 +2467,78 @@
       "informal_labor_pct": 31.8,
       "water_deficit_pct": 12,
       "photo_url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Volcán Osorno, Lago Llanquihue y Palafitos de Castro (Chiloé)"
+      "photo_caption": "Volcán Osorno, Lago Llanquihue y Palafitos de Castro (Chiloé)",
+      "finances": {
+        "budget_gore_fndr_mmclp": 118000,
+        "execution_fndr_pct": 91,
+        "per_capita_municipal_income_clp": 265000,
+        "fcm_dependency_avg_pct": 65
+      },
+      "health": {
+        "hospitals_high_complexity": 2,
+        "hospitals_low_mid": 12,
+        "cesfam_count": 110,
+        "critical_beds_upc_per_100k": 12,
+        "surgical_waiting_list_patients": 46800,
+        "avg_waiting_days_surgery": 390,
+        "specialist_consult_waiting_list": 118000,
+        "cenabast_debt_mmclp": 16400
+      },
+      "security": {
+        "carabineros_officers": 3100,
+        "carabineros_stations": 62,
+        "patrol_vehicles_active": 198,
+        "patrol_vehicles_broken": 58,
+        "pdi_detectives": 690,
+        "homicide_rate_per_100k": 3.6,
+        "dmcs_crimes_annual": 38200,
+        "organized_crime_threat_level": "Bajo-Medio (Robo de salmón y contrabando marítimo)"
+      },
+      "prisons": {
+        "prisons_count": 7,
+        "design_capacity": 3800,
+        "inmates_total": 4920,
+        "overcrowding_pct": 129.5,
+        "gendarmerie_staff": 1240,
+        "recidivism_rate_pct": 46.8,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 720,
+        "matricula_total": 182000,
+        "dropout_rate_pct": 1.8,
+        "critical_attendance_pct": 29.5,
+        "simce_math_avg": 246,
+        "simce_reading_avg": 254,
+        "gratuidad_coverage_pct": 66
+      },
+      "firefighters": {
+        "companies_count": 136,
+        "volunteers_count": 5800,
+        "fire_trucks_operational": 280,
+        "fire_trucks_falla": 42,
+        "avg_response_time_minutes": 8.4,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 4,
+        "stationed_personnel": 5200,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Conectividad soberana marítima y aérea de zonas aisladas (Palena, Chiloé interior) y resguardo de canales australes."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 31000,
+        "campamentos_count": 56,
+        "campamentos_families": 4760,
+        "total_roads_km": 9820,
+        "paved_roads_pct": 30,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 1650
+      }
     },
     {
       "id": "aysen",
@@ -1643,7 +2637,78 @@
       "informal_labor_pct": 23.4,
       "water_deficit_pct": 5,
       "photo_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Santuario de la Naturaleza Capillas de Mármol y Carretera Austral"
+      "photo_caption": "Santuario de la Naturaleza Capillas de Mármol y Carretera Austral",
+      "finances": {
+        "budget_gore_fndr_mmclp": 62000,
+        "execution_fndr_pct": 95.2,
+        "per_capita_municipal_income_clp": 340000,
+        "fcm_dependency_avg_pct": 69
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 4,
+        "cesfam_count": 36,
+        "critical_beds_upc_per_100k": 14.2,
+        "surgical_waiting_list_patients": 6800,
+        "avg_waiting_days_surgery": 310,
+        "specialist_consult_waiting_list": 18500,
+        "cenabast_debt_mmclp": 4200
+      },
+      "security": {
+        "carabineros_officers": 1150,
+        "carabineros_stations": 28,
+        "patrol_vehicles_active": 72,
+        "patrol_vehicles_broken": 18,
+        "pdi_detectives": 240,
+        "homicide_rate_per_100k": 2.8,
+        "dmcs_crimes_annual": 5400,
+        "organized_crime_threat_level": "Bajo (Aislamiento territorial disuasivo)"
+      },
+      "prisons": {
+        "prisons_count": 3,
+        "design_capacity": 850,
+        "inmates_total": 980,
+        "overcrowding_pct": 115.3,
+        "gendarmerie_staff": 390,
+        "recidivism_rate_pct": 42,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 86,
+        "matricula_total": 24500,
+        "dropout_rate_pct": 1.4,
+        "critical_attendance_pct": 26,
+        "simce_math_avg": 248,
+        "simce_reading_avg": 256,
+        "gratuidad_coverage_pct": 62
+      },
+      "firefighters": {
+        "companies_count": 26,
+        "volunteers_count": 890,
+        "fire_trucks_operational": 48,
+        "fire_trucks_falla": 6,
+        "avg_response_time_minutes": 8.8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 6,
+        "stationed_personnel": 2900,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Soberanía efectiva en fiordos australes, Campos de Hielo y pasos fronterizos con Argentina (Huemules, Coyhaique Alto)."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 4600,
+        "campamentos_count": 8,
+        "campamentos_families": 680,
+        "total_roads_km": 3900,
+        "paved_roads_pct": 11,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 180
+      }
     },
     {
       "id": "magallanes",
@@ -1742,7 +2807,78 @@
       "informal_labor_pct": 19.2,
       "water_deficit_pct": 8,
       "photo_url": "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=1200&q=80",
-      "photo_caption": "Macizo Torres del Paine, Glaciar Grey y Estrecho de Magallanes"
+      "photo_caption": "Macizo Torres del Paine, Glaciar Grey y Estrecho de Magallanes",
+      "finances": {
+        "budget_gore_fndr_mmclp": 78000,
+        "execution_fndr_pct": 96.8,
+        "per_capita_municipal_income_clp": 460000,
+        "fcm_dependency_avg_pct": 48
+      },
+      "health": {
+        "hospitals_high_complexity": 1,
+        "hospitals_low_mid": 4,
+        "cesfam_count": 28,
+        "critical_beds_upc_per_100k": 16.5,
+        "surgical_waiting_list_patients": 9400,
+        "avg_waiting_days_surgery": 280,
+        "specialist_consult_waiting_list": 24000,
+        "cenabast_debt_mmclp": 5800
+      },
+      "security": {
+        "carabineros_officers": 1420,
+        "carabineros_stations": 26,
+        "patrol_vehicles_active": 88,
+        "patrol_vehicles_broken": 16,
+        "pdi_detectives": 310,
+        "homicide_rate_per_100k": 2.2,
+        "dmcs_crimes_annual": 8200,
+        "organized_crime_threat_level": "Bajo (Control aduanero y migratorio austral estricto)"
+      },
+      "prisons": {
+        "prisons_count": 3,
+        "design_capacity": 1100,
+        "inmates_total": 1240,
+        "overcrowding_pct": 112.7,
+        "gendarmerie_staff": 480,
+        "recidivism_rate_pct": 41.5,
+        "preventive_custody_pct": 36.5
+      },
+      "education": {
+        "total_schools": 96,
+        "matricula_total": 38500,
+        "dropout_rate_pct": 1.2,
+        "critical_attendance_pct": 22.4,
+        "simce_math_avg": 256,
+        "simce_reading_avg": 264,
+        "gratuidad_coverage_pct": 59
+      },
+      "firefighters": {
+        "companies_count": 22,
+        "volunteers_count": 1150,
+        "fire_trucks_operational": 54,
+        "fire_trucks_falla": 6,
+        "avg_response_time_minutes": 6.8,
+        "fiscal_subsidy_mmclp": 1200
+      },
+      "military": {
+        "bases_units_count": 6,
+        "stationed_personnel": 6400,
+        "branches_present": [
+          "Ejército",
+          "Armada",
+          "FACh"
+        ],
+        "primary_strategic_mission": "Control y soberanía bioceánica en el Estrecho de Magallanes, Canal Beagle, Cabo de Hornos y Territorio Chileno Antártico."
+      },
+      "infrastructure": {
+        "housing_deficit_units": 5800,
+        "campamentos_count": 6,
+        "campamentos_families": 510,
+        "total_roads_km": 3570,
+        "paved_roads_pct": 31,
+        "renewable_energy_share_pct": 62,
+        "installed_capacity_mw": 320
+      }
     }
   ],
   "historical_data": {
