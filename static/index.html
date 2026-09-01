@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-[#080d1a] text-slate-100">
+<html lang="es" class="h-full bg-[#f5f5f5] text-[#0a0a0a]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#080d1a">
-    <title>Presidenta IA & Guía de Estado de Chile 🇨🇱 | Inteligencia Cívica, Leyes & Visión 2050</title>
+    <meta name="theme-color" content="#ffffff">
+    <title>Presidenta IA & Radiografía de Estado de Chile 🇨🇱 | Auditoría Nacional & 16 Regiones</title>
     
-    <!-- OpenGraph & Social Sharing (WhatsApp, Twitter, Telegram) -->
-    <meta property="og:title" content="Presidenta IA & Guía de Estado de Chile 🇨🇱">
-    <meta property="og:description" content="Inteligencia de Estado basada en ciencia, datos oficiales y lecciones internacionales para el desarrollo de Chile 2026-2050.">
+    <!-- OpenGraph & Social Sharing -->
+    <meta property="og:title" content="Presidenta IA & Radiografía de Estado de Chile 🇨🇱">
+    <meta property="og:description" content="Auditoría transversal del Estado de Chile y sus 16 Regiones en todas sus dimensiones: Finanzas, Salud, Educación, Policías, Cárceles, Bomberos, FFAA y Obras Públicas.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://majajicl.github.io/chile-observatorio-medios/">
     
-    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <!-- Google Fonts: Geist Sans & Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,472 +23,475 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        cyber: {
-                            cyan: '#00f0ff',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e',
-                            violet: '#8b5cf6',
-                            blue: '#3b82f6'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(17, 24, 39, 0.92) 0%, rgba(15, 23, 42, 0.85) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(51, 65, 85, 0.55);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-panel:hover {
-            border-color: rgba(0, 240, 255, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75);
-        }
-        .glow-accent {
-            box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.35);
-        }
-        .spectrum-bar { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #080d1a; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #334155; }
-    </style>
+    <link rel="stylesheet" href="./style.css?v=20260901_4">
 </head>
-<body class="h-full flex flex-col bg-[#080d1a] selection:bg-cyan-500 selection:text-white">
+<body class="min-h-full flex flex-col bg-[#f5f5f5] selection:bg-[#0a0a0a] selection:text-white antialiased">
 
-    <!-- TOP TICKER BAR: INDICADORES DEL BANCO CENTRAL -->
-    <header class="border-b border-slate-800/90 bg-slate-950/95 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 backdrop-blur-md">
+    <!-- TOP TICKER BAR: INDICADORES OFICIALES -->
+    <header class="border-b border-[#e5e5e5] bg-[#ffffff] px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 shadow-sm">
         <div class="flex items-center space-x-3">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-950 text-emerald-300 border border-emerald-700 shadow-sm">
-                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> BANCO CENTRAL DE CHILE
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-[18px] text-[11px] font-bold bg-[#0a0a0a] text-white">
+                <span class="w-2 h-2 bg-[#e7000b] rounded-full animate-pulse"></span> BANCO CENTRAL DE CHILE
             </span>
-            <span class="text-slate-400 hidden lg:inline font-semibold">Indicadores Oficiales del Día:</span>
+            <span class="text-[#737373] hidden lg:inline font-medium">Indicadores Oficiales del Día:</span>
         </div>
-        <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto text-slate-200 py-0.5 font-medium">
-            <!-- Dynamic Ticker -->
+
+        <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto py-1 scrollbar-none text-xs">
+            <!-- Renderizado dinámico desde app.js -->
         </div>
-        <div class="flex items-center space-x-3 text-slate-400 text-xs">
-            <a href="https://github.com/MajajiCL/chile-observatorio-medios" target="_blank" class="hover:text-white flex items-center gap-1 font-semibold transition">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">GitHub</span>
-            </a>
-            <button onclick="openArcoModal()" class="text-cyan-400 hover:text-cyan-300 underline decoration-slate-700 transition flex items-center gap-1 font-semibold">
-                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Ley 21.719
+
+        <div class="flex items-center space-x-3 text-xs">
+            <button onclick="openArcoModal()" class="shadcn-button-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#0a0a0a]"></i>
+                <span>Ley N° 21.719 (ARCO)</span>
             </button>
         </div>
     </header>
 
-    <!-- HERO HEADER: INTELIGENCIA CÍVICA -->
-    <div class="border-b border-slate-800/80 bg-gradient-to-b from-slate-900/90 via-[#0b1329]/80 to-transparent px-6 py-8">
-        <div class="max-w-7xl mx-auto space-y-6">
-            
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-[1280px] w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- HERO INSTITUCIONAL -->
+        <section class="shadcn-card p-6 md:p-10 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="space-y-2">
-                    <div class="flex items-center space-x-2.5">
-                        <span class="text-3xl">🇨🇱</span>
-                        <span class="text-xs uppercase tracking-widest font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                            Observatorio Cívico & Guía de Estado
-                        </span>
+                    <div class="flex items-center gap-2">
+                        <span class="shadcn-badge bg-[#0a0a0a] text-white">CHILE 2026 - 2050</span>
+                        <span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">AUDITORÍA TRANSVERSAL DE ESTADO</span>
                     </div>
-                    <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                        Presidenta IA de Chile: Tu Guía Diaria para Comprender y Construir el País
+                    <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-[#0a0a0a]">
+                        Presidenta IA de Chile 🇨🇱
                     </h1>
-                    <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                        Inteligencia de Estado basada en <strong>ciencia, datos oficiales y lecciones históricas internacionales</strong>. Analiza las noticias sin sesgo partidista, traduce los proyectos de ley del Congreso y proyecta la hoja de ruta hacia el 2050.
+                    <p class="text-sm md:text-base text-[#737373] max-w-2xl font-normal leading-relaxed">
+                        Radiografía cuantitativa de la República y sus 16 Regiones. Auditoría integral de ingresos, gastos, dotación policial, capacidad hospitalaria, escuelas, cárceles, bomberos, fuerzas armadas y obras públicas.
                     </p>
                 </div>
-
-                <div class="flex flex-wrap items-center gap-3">
-                    <button onclick="openCitizenProposalModal()" class="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-white rounded-xl text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition">
-                        <i data-lucide="lightbulb" class="w-4 h-4 text-amber-300"></i> <span>Aportar una Propuesta</span>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <button onclick="switchTab('regiones')" class="shadcn-button-primary px-5 py-2.5 text-xs font-semibold flex items-center justify-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> Explorar 16 Regiones
                     </button>
-                    <button onclick="refreshData()" class="px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-2 shadow-sm">
-                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> <span>Actualizar</span>
+                    <button onclick="switchTab('balance')" class="shadcn-button-secondary px-5 py-2.5 text-xs font-semibold flex items-center justify-center gap-2">
+                        <i data-lucide="pie-chart" class="w-4 h-4"></i> Balance Nacional
                     </button>
                 </div>
             </div>
 
-            <!-- TABS NAVIGATION: COLORES VIBRANTES Y SELECCIÓN INTUITIVA -->
-            <div class="flex items-center bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 text-xs sm:text-sm overflow-x-auto gap-1 shadow-inner">
-                <button onclick="switchTab('cadena')" id="tab-btn-cadena" class="px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="radio" class="w-4 h-4 text-amber-300"></i> <span>1. Cadena Nacional</span>
+            <!-- NAVEGACIÓN POR PESTAÑAS (SHADCN TABS) -->
+            <div class="flex items-center space-x-2 overflow-x-auto pt-4 border-t border-[#e5e5e5] scrollbar-none">
+                <button onclick="switchTab('balance')" id="tab-btn-balance" class="shadcn-button-primary px-4 py-2 text-xs font-semibold shadow-sm flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="landmark" class="w-3.5 h-3.5"></i> <span>1. Balance Nacional (Ingresos & Gastos)</span>
                 </button>
-                <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i> <span>2. Leyes & Congreso</span>
-                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-950 text-emerald-300 font-bold border border-emerald-800">5 Leyes</span>
+                <button onclick="switchTab('regiones')" id="tab-btn-regiones" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="map" class="w-3.5 h-3.5"></i> <span>2. Radiografía 16 Regiones</span>
                 </button>
-                <button onclick="switchTab('foda')" id="tab-btn-foda" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="map" class="w-4 h-4 text-amber-400"></i> <span>3. FODA & 16 Regiones</span>
-                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-amber-950 text-amber-300 font-bold border border-amber-800">16 Regiones</span>
+                <button onclick="switchTab('matriz')" id="tab-btn-matriz" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="table" class="w-3.5 h-3.5"></i> <span>3. Matriz Comparativa (Tabla)</span>
                 </button>
-                <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>4. Noticias & Espectro</span>
-                    <span id="badge-clusters-count" class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-bold">49</span>
+                <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="scale" class="w-3.5 h-3.5"></i> <span>4. Leyes & Congreso</span>
                 </button>
-                <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>5. Hoja de Ruta 2050</span>
+                <button onclick="switchTab('cadena')" id="tab-btn-cadena" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="radio" class="w-3.5 h-3.5"></i> <span>5. Cadena Nacional Diaria</span>
                 </button>
-                <button onclick="switchTab('audit')" id="tab-btn-audit" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>6. Auditoría 7 Pilares</span>
+                <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="newspaper" class="w-3.5 h-3.5"></i> <span>6. Observatorio de Noticias</span>
                 </button>
-                <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>7. Ágora Ciudadana</span>
+                <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap">
+                    <i data-lucide="users" class="w-3.5 h-3.5"></i> <span>7. Ágora Ciudadana</span>
                 </button>
             </div>
+        </section>
 
-        </div>
-    </div>
+        <!-- ========================================== -->
+        <!-- PESTAÑA 1: BALANCE NACIONAL (INGRESOS & GASTOS) -->
+        <!-- ========================================== -->
+        <div id="view-balance" class="space-y-6">
 
-    <!-- MAIN APP CONTAINER -->
-    <main class="flex-1 max-w-7xl mx-auto w-full p-6 space-y-8">
-
-        <!-- TAB 1: CADENA NACIONAL CIUDADANA -->
-        <section id="view-cadena" class="space-y-6">
-            
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-cyan-500/30 space-y-6 bg-gradient-to-br from-slate-900/95 via-[#0d172e]/90 to-slate-950">
-                <div class="flex items-center justify-between flex-wrap gap-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 text-white font-bold text-lg">
-                            <i data-lucide="radio" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">Transmisión Matutina de la Presidenta IA</span>
-                            <h2 class="text-lg sm:text-xl font-black text-white" id="cadena-title">Cadena Nacional Ciudadana: El Estado de Chile Hoy</h2>
-                        </div>
-                    </div>
-                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-700 font-mono">3 minutos de lectura</span>
+            <!-- MACRO INDICADORES FISCALES -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="shadcn-card p-5 space-y-1">
+                    <span class="text-[11px] uppercase font-bold text-[#737373] block">Presupuesto General 2026</span>
+                    <span id="national-total-budget" class="text-xl md:text-2xl font-bold font-mono text-[#0a0a0a]">US$ 93.5B</span>
+                    <span class="text-[11px] text-[#737373] block">87.2 Billones de Pesos Chilenos</span>
                 </div>
-
-                <div class="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> El Diagnóstico Central del Día:
-                    </span>
-                    <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium" id="cadena-headline">
-                        <!-- Headline -->
-                    </p>
+                <div class="shadcn-card p-5 space-y-1">
+                    <span class="text-[11px] uppercase font-bold text-[#737373] block">Producto Interno Bruto (PIB)</span>
+                    <span id="national-gdp" class="text-xl md:text-2xl font-bold font-mono text-[#0a0a0a]">US$ 345B</span>
+                    <span class="text-[11px] text-[#737373] block">PIB per cápita: US$ 17.250</span>
                 </div>
-
-                <!-- 3 TARJETAS CLAVE: BOLSILLO, SEGURIDAD, SALUD -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="cadena-takeaways">
-                    <!-- Dynamic Takeaways -->
+                <div class="shadcn-card p-5 space-y-1">
+                    <span class="text-[11px] uppercase font-bold text-[#737373] block">Balance Fiscal Estructural</span>
+                    <span id="national-deficit" class="text-xl md:text-2xl font-bold font-mono text-[#e7000b]">-1.9% PIB</span>
+                    <span class="text-[11px] text-[#737373] block">Meta regla fiscal hacia 2027</span>
                 </div>
-
-                <!-- FRASE DE ESTADO -->
-                <div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/50 text-xs sm:text-sm text-cyan-200 italic leading-relaxed text-center font-medium" id="cadena-quote">
-                    <!-- Quote -->
+                <div class="shadcn-card p-5 space-y-1">
+                    <span class="text-[11px] uppercase font-bold text-[#737373] block">Deuda Pública Bruta</span>
+                    <span id="national-debt" class="text-xl md:text-2xl font-bold font-mono text-[#0a0a0a]">41.2% PIB</span>
+                    <span class="text-[11px] text-[#737373] block">Riesgo País EMBI: 118 puntos</span>
                 </div>
             </div>
 
-            <!-- RADAR DE DESAFÍOS & SIMULADOR PROSPECTIVO -->
+            <!-- DESGLOSE DE INGRESOS VS EGRESOS -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="glass-panel p-6 rounded-3xl space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                            <i data-lucide="activity" class="w-4 h-4 text-cyan-400"></i>
-                            Radar de Desafíos de Chile (Frente a la OCDE)
-                        </h3>
-                        <span class="text-[11px] font-mono text-slate-400">INE / Banco Central / OCDE</span>
-                    </div>
-                    <div id="chart-statecraft-radar" class="h-72 w-full"></div>
-                </div>
 
-                <div class="glass-panel p-6 rounded-3xl space-y-4">
-                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                        <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
-                        Simulador de Decisiones: ¿Qué pasa si...?
-                    </h3>
-                    <p class="text-xs text-slate-400">Compara el impacto a 10 años de tomar una decisión cortoplacista vs. una política de Estado basada en ciencia:</p>
-                    
-                    <div class="space-y-3 text-xs">
+                <!-- INGRESOS FISCALES -->
+                <div class="shadcn-card p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
                         <div>
-                            <label class="block text-slate-300 font-semibold mb-1">Dilema de Política Pública:</label>
-                            <select id="simulator-select" onchange="runSimulation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                                <option value="carceles">Seguridad: ¿Mega-cárceles tradicionales vs. Modelo noruego de inhibición y reinserción?</option>
-                                <option value="salud">Salud: ¿Subsidiar bonos privados vs. Pabellones 24/7 y alta resolución en CESFAM?</option>
-                                <option value="agua">Agua: ¿Camiones aljibe por décadas vs. Red estatal de desalinizadoras solares?</option>
-                                <option value="educacion">Educación: ¿Títulos tradicionales saturados vs. Educación técnica dual (Litio/Energía)?</option>
-                            </select>
+                            <h3 class="text-base font-bold text-[#0a0a0a] flex items-center gap-2">
+                                <i data-lucide="arrow-down-left" class="w-4 h-4 text-[#0a0a0a]"></i>
+                                Ingresos del Fisco de Chile (Fuentes)
+                            </h3>
+                            <p class="text-xs text-[#737373]">Tributación interna, excedentes mineros y rentas de salares</p>
                         </div>
-                        <div id="simulator-output" class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-slate-300">
-                            <!-- Output -->
+                        <span class="shadcn-badge bg-[#0a0a0a] text-white">RECAUDACIÓN</span>
+                    </div>
+                    <div id="revenues-breakdown-list" class="space-y-3">
+                        <!-- Renderizado desde app.js -->
+                    </div>
+                </div>
+
+                <!-- EGRESOS / GASTO PÚBLICO -->
+                <div class="shadcn-card p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
+                        <div>
+                            <h3 class="text-base font-bold text-[#0a0a0a] flex items-center gap-2">
+                                <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#0a0a0a]"></i>
+                                Destino del Gasto Público (Egresos)
+                            </h3>
+                            <p class="text-xs text-[#737373]">Prioridades presupuestarias ministeriales</p>
                         </div>
+                        <span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">DISTRIBUCIÓN</span>
+                    </div>
+
+                    <!-- Gráfico ECharts -->
+                    <div id="chart-fiscal-flow" class="w-full h-48 sm:h-56"></div>
+
+                    <div id="expenditures-breakdown-list" class="space-y-3 pt-2">
+                        <!-- Renderizado desde app.js -->
                     </div>
                 </div>
             </div>
 
-        </section>
-
-        <!-- TAB 2: PROYECTOS DE LEY & CONGRESO -->
-        <section id="view-leyes" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-800/50 text-xs text-slate-300 flex items-start space-x-3">
-                <i data-lucide="book-marked" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-                <div class="space-y-1">
-                    <strong class="font-bold text-white text-sm">Termómetro Legislativo: Leyes Explicadas con Peras y Manzanas</strong>
-                    <p class="text-slate-300">
-                        La Presidenta IA audita los proyectos de ley clave en el Congreso y te explica: <strong>qué propone, los riesgos, la evidencia internacional y cómo impacta en tu bolsillo y tu barrio</strong>.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 gap-6" id="legislative-bills-container">
-                <!-- Injected dynamically -->
-            </div>
-        </section>
-
-        <!-- TAB 3: MATRIZ FODA & ESTRATEGIA (PAÍS & 16 REGIONES) -->
-        <section id="view-foda" class="space-y-6 hidden">
-            
-            <!-- HEADER DE SELECCIÓN: PAÍS VS 16 REGIONES -->
-            <div class="p-5 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-                <div class="space-y-1">
-                    <div class="flex items-center space-x-2">
-                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-950 text-amber-300 border border-amber-800 uppercase tracking-wider">Inteligencia Estratégica & Territorial</span>
+            <!-- AUDITORÍA DE DOTACIÓN & CAPACIDAD NACIONAL -->
+            <div class="shadcn-card p-6 md:p-8 space-y-6">
+                <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-[#0a0a0a] flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-5 h-5 text-[#0a0a0a]"></i>
+                            Radiografía de Capacidad Instalada & Dotación de Estado
+                        </h3>
+                        <p class="text-xs text-[#737373]">Cifras consolidadas a nivel país en todas las dimensiones públicas</p>
                     </div>
-                    <h3 class="text-base sm:text-lg font-black text-white">Análisis, Interpretación, FODA & Estrategia Regional</h3>
-                    <p class="text-xs text-slate-400">Diagnóstico integral de la República y de las 16 regiones: fortalezas geológicas, oportunidades de mercado, cuellos de botella y planes presidenciales.</p>
+                    <span class="shadcn-badge bg-[#0a0a0a] text-white">100% AUDITADO</span>
                 </div>
-                <div class="flex items-center bg-slate-950 p-1 rounded-2xl border border-slate-800 self-start md:self-auto gap-1">
-                    <button onclick="toggleFodaScope('country')" id="btn-foda-country" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap">
-                        <i data-lucide="globe" class="w-3.5 h-3.5"></i> 🇨🇱 General País
-                    </button>
-                    <button onclick="toggleFodaScope('regions')" id="btn-foda-regions" class="px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
-                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i> 📍 16 Regiones
-                    </button>
+                <div id="national-infra-summary-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <!-- Renderizado dinámico desde app.js -->
                 </div>
             </div>
 
-            <!-- CONTENEDOR 1: GENERAL PAÍS -->
-            <div id="foda-country-container" class="space-y-6">
-                <!-- Injected via JS -->
-            </div>
-
-            <!-- CONTENEDOR 2: 16 REGIONES -->
-            <div id="foda-regions-container" class="space-y-6 hidden">
-                <!-- Selector de Regiones en Píldoras -->
-                <div class="glass-panel p-4 rounded-2xl space-y-3">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Selecciona una Región de Chile:</span>
-                    <div id="regions-pills" class="flex items-center gap-2 overflow-x-auto pb-2 text-xs">
-                        <!-- Injected via JS -->
+            <!-- SIMULADOR PROSPECTIVO DE POLÍTICAS PÚBLICAS -->
+            <div class="shadcn-card p-6 md:p-8 space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e5e5] pb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-[#0a0a0a] flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-5 h-5 text-[#0a0a0a]"></i>
+                            Simulador Prospectivo: Evidencia Histórica Internacional
+                        </h3>
+                        <p class="text-xs text-[#737373]">Evaluación de políticas públicas basada en datos reales de países OCDE</p>
                     </div>
+                    <select id="simulator-select" onchange="runSimulation()" class="shadcn-input px-3.5 py-1.5 text-xs font-semibold cursor-pointer">
+                        <option value="carceles">🔒 Seguridad & Cárceles (Noruega vs Castigo Masivo)</option>
+                        <option value="salud">🏥 Salud (España Alta Resolución vs Subsidio Demanda)</option>
+                        <option value="agua">💧 Agua & Sequía (Israel Desalinización vs Camiones Aljibe)</option>
+                        <option value="educacion">🎓 Educación (Alemania Formación Dual vs Universidad Tradicional)</option>
+                    </select>
                 </div>
+                <div id="simulator-output" class="p-5 rounded-[20px] bg-[#fafafa] border border-[#e5e5e5]">
+                    <!-- Renderizado dinámico desde app.js -->
+                </div>
+            </div>
+        </div>
 
-                <!-- Detalle de la Región Seleccionada -->
-                <div id="region-detail-card" class="space-y-6">
-                    <!-- Injected via JS -->
+        <!-- ========================================== -->
+        <!-- PESTAÑA 2: RADIOGRAFÍA 16 REGIONES -->
+        <!-- ========================================== -->
+        <div id="view-regiones" class="hidden space-y-6">
+
+            <!-- SELECTOR DE REGIONES HORIZONTAL -->
+            <div class="shadcn-card p-4 space-y-2">
+                <div class="flex items-center justify-between px-1">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#737373]">Selecciona una Región para Auditar:</span>
+                    <span class="text-xs text-[#737373]">16 Regiones de Chile</span>
+                </div>
+                <div id="region-selector-pills" class="flex items-center space-x-2 overflow-x-auto py-1 scrollbar-none">
+                    <!-- Renderizado dinámico desde app.js -->
                 </div>
             </div>
 
-        </section>
+            <!-- FICHA INTEGRAL DE LA REGIÓN SELECCIONADA -->
+            <div id="region-full-audit-container" class="space-y-6">
+                <!-- Renderizado dinámico desde app.js -->
+            </div>
+        </div>
 
-        <!-- TAB 4: NOTICIAS & ESPECTRO MEDIÁTICO -->
-        <section id="view-clusters" class="space-y-4 hidden">
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                <div class="relative min-w-[260px] flex-1">
-                    <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                    <input type="text" id="cluster-search" placeholder="Buscar por tema, ministro o palabra clave..." oninput="filterClusters()" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+        <!-- ========================================== -->
+        <!-- PESTAÑA 3: MATRIZ COMPARATIVA (TABLA DINÁMICA) -->
+        <!-- ========================================== -->
+        <div id="view-matriz" class="hidden space-y-6">
+            <div class="shadcn-card p-6 md:p-8 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e5e5] pb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-[#0a0a0a] flex items-center gap-2">
+                            <i data-lucide="table" class="w-5 h-5 text-[#0a0a0a]"></i>
+                            Matriz Comparativa Multidimensional de las 16 Regiones
+                        </h3>
+                        <p class="text-xs text-[#737373]">Haz clic en cualquier encabezado para ordenar o en una fila para ver el detalle</p>
+                    </div>
+                    <span class="shadcn-badge bg-[#0a0a0a] text-white">ORDENABLE</span>
                 </div>
-                <div class="flex items-center gap-1.5 overflow-x-auto text-xs pb-1" id="category-pills">
-                    <button onclick="filterCategory('all')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold">Todos</button>
-                    <button onclick="filterCategory('Politica')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Política</button>
-                    <button onclick="filterCategory('Economia')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Economía</button>
-                    <button onclick="filterCategory('Nacional')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Nacional</button>
-                    <button onclick="filterCategory('Regional')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Regiones</button>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-[#e5e5e5] text-[11px] font-bold uppercase tracking-wider text-[#737373] bg-[#fafafa]">
+                                <th class="py-3 px-4">N°</th>
+                                <th class="py-3 px-4 cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('name')">Región ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('population')">Población ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('pib_share_pct')">PIB % ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('hacinamiento')">Hacinamiento Cárceles ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('homicidios')">Tasa Homicidios ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('espera')">Lista Quirúrgica ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('policias')">Carabineros ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('camas')">Camas Críticas/100k ↕</th>
+                                <th class="py-3 px-4 text-right cursor-pointer hover:text-[#0a0a0a]" onclick="sortMatrix('fcm')">Dep. FCM % ↕</th>
+                            </tr>
+                        </thead>
+                        <tbody id="regional-matrix-tbody">
+                            <!-- Renderizado desde app.js -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <div id="clusters-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 4: HOJA DE RUTA 2050 -->
-        <section id="view-roadmap" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-purple-950/30 border border-purple-800/50 text-xs text-slate-300 space-y-1">
-                <h3 class="font-bold text-white text-sm flex items-center gap-2">
-                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i>
-                    Hoja de Ruta de Estado: El Plan 2026 - 2050
-                </h3>
-                <p class="text-slate-300">
-                    Metas e hitos claros para llevar a Chile al Top 15 del Índice de Desarrollo Humano (IDH) en 25 años.
+        <!-- ========================================== -->
+        <!-- PESTAÑA 4: LEYES & CONGRESO -->
+        <!-- ========================================== -->
+        <div id="view-leyes" class="hidden space-y-6">
+            <div class="shadcn-card p-6 md:p-8 space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span class="shadcn-badge bg-[#0a0a0a] text-white">CONGRESO NACIONAL</span>
+                    <span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">TERRITORIO LEGISLATIVO</span>
+                </div>
+                <h2 class="text-2xl font-bold text-[#0a0a0a] tracking-tight">
+                    Termómetro Legislativo: Los 5 Proyectos de Ley Clave para Chile
+                </h2>
+                <p class="text-xs md:text-sm text-[#737373]">
+                    Explicación sin sesgos, con peras y manzanas: cómo te impactan a ti, qué dice el oficialismo, qué dice la oposición y qué concluye la evidencia técnica del Banco Central y la OCDE.
                 </p>
             </div>
 
-            <div class="space-y-6" id="roadmap-container">
-                <!-- Injected via JS -->
+            <div id="legislative-bills-container" class="space-y-6">
+                <!-- Renderizado dinámico desde app.js -->
             </div>
-        </section>
+        </div>
 
-        <!-- TAB 5: AUDITORÍA 7 PILARES -->
-        <section id="view-audit" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-blue-950/30 border border-blue-800/50 flex items-start space-x-3 text-xs text-slate-300">
-                <i data-lucide="info" class="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5"></i>
-                <div>
-                    <strong class="font-bold text-white text-sm">Auditoría Transversal de los 7 Pilares de Chile</strong>
-                    <p class="text-slate-300 mt-0.5">Diagnóstico exhaustivo de las dificultades estructurales de Chile con datos oficiales y benchmarks internacionales.</p>
+        <!-- ========================================== -->
+        <!-- PESTAÑA 5: CADENA NACIONAL -->
+        <!-- ========================================== -->
+        <div id="view-cadena" class="hidden space-y-6">
+            <div class="shadcn-card p-6 md:p-8 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e5e5] pb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-[18px] bg-[#0a0a0a] text-white flex items-center justify-center font-bold text-sm">
+                            <i data-lucide="radio" class="w-5 h-5 text-[#e7000b]"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-[#737373] font-bold">EMISIÓN OFICIAL CIUDADANA</span>
+                            <h2 id="cadena-title" class="text-xl md:text-2xl font-bold text-[#0a0a0a]">Cadena Nacional</h2>
+                        </div>
+                    </div>
+                    <span class="shadcn-badge bg-[#0a0a0a] text-white">EN VIVO</span>
+                </div>
+
+                <div class="p-5 rounded-[20px] bg-[#fafafa] border border-[#e5e5e5] text-sm md:text-base text-[#171717] leading-relaxed">
+                    <strong class="text-[#0a0a0a] block text-xs uppercase tracking-wider mb-1 font-bold">Síntesis Ejecutiva del Estado de Chile:</strong>
+                    <p id="cadena-headline">Cargando síntesis...</p>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-[#737373]">Claves del Día para el Ciudadano:</h4>
+                    <div id="cadena-takeaways" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Renderizado desde app.js -->
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-[20px] bg-[#f5f5f5] border border-[#e5e5e5] text-xs md:text-sm text-[#171717] italic text-center font-medium">
+                    <p id="cadena-quote">«...»</p>
                 </div>
             </div>
-            
-            <div class="grid grid-cols-1 gap-6" id="audit-pillars-container">
-                <!-- Injected dynamically -->
-            </div>
-        </section>
+        </div>
 
-        <!-- TAB 6: ÁGORA CIUDADANA -->
-        <section id="view-citizen" class="space-y-6 hidden">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-3">
+        <!-- ========================================== -->
+        <!-- PESTAÑA 6: OBSERVATORIO DE NOTICIAS -->
+        <!-- ========================================== -->
+        <div id="view-clusters" class="hidden space-y-6">
+            <div class="shadcn-card p-6 space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
-                            Ágora Cívica: Deliberación & Propuestas de la Ciudadanía
-                        </h3>
-                        <p class="text-xs text-slate-400 mt-1">Plantea soluciones con datos y vota las iniciativas prioritarias de la comunidad.</p>
+                        <h2 class="text-xl font-bold text-[#0a0a0a]">Observatorio de Medios & Sesgo Fáctico</h2>
+                        <p class="text-xs text-[#737373]">Eventos de la pauta pública chilena analizados según la cobertura de medios de izquierda, centro y derecha</p>
                     </div>
-                    <button onclick="openCitizenProposalModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-xl text-xs flex items-center gap-1.5 transition">
-                        <i data-lucide="plus" class="w-4 h-4"></i> Nueva Propuesta
+                    <div class="flex items-center space-x-2">
+                        <input id="cluster-search" oninput="filterClusters()" type="text" placeholder="Buscar noticia o tema..." class="shadcn-input px-3.5 py-1.5 text-xs w-64">
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 overflow-x-auto py-1 scrollbar-none border-t border-[#e5e5e5] pt-3">
+                    <button onclick="filterCategory('all')" class="cat-pill shadcn-button-primary px-3 py-1 text-xs font-semibold">Todas</button>
+                    <button onclick="filterCategory('Nacional')" class="cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium">Nacional</button>
+                    <button onclick="filterCategory('Economía')" class="cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium">Economía</button>
+                    <button onclick="filterCategory('Política')" class="cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium">Política</button>
+                    <button onclick="filterCategory('Seguridad')" class="cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium">Seguridad</button>
+                    <button onclick="filterCategory('Regiones')" class="cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium">Regiones</button>
+                </div>
+            </div>
+
+            <div id="clusters-list" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Renderizado dinámico desde app.js -->
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PESTAÑA 7: ÁGORA CIUDADANA -->
+        <!-- ========================================== -->
+        <div id="view-citizen" class="hidden space-y-6">
+            <div class="shadcn-card p-6 md:p-8 space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="shadcn-badge bg-[#0a0a0a] text-white">COLABORACIÓN CÍVICA</span>
+                        <h2 class="text-2xl font-bold text-[#0a0a0a] tracking-tight">Ágora Nacional: Propuestas Ciudadanas</h2>
+                        <p class="text-xs md:text-sm text-[#737373]">
+                            Plataforma de co-creación y auditoría donde los ciudadanos proponen y votan soluciones para mejorar la gestión pública.
+                        </p>
+                    </div>
+                    <button onclick="openCitizenProposalModal()" class="shadcn-button-primary px-4 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm">
+                        <i data-lucide="plus-circle" class="w-4 h-4"></i> Crear Propuesta
                     </button>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs" id="citizen-proposals-grid">
-                    <!-- Injected dynamically -->
-                </div>
             </div>
-        </section>
+
+            <div id="citizen-proposals-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Renderizado dinámico desde app.js -->
+            </div>
+        </div>
 
     </main>
 
-    <!-- MODAL DETALLE MULTI-PERSPECTIVA -->
-    <div id="cluster-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col overflow-hidden border border-slate-700 shadow-2xl bg-[#0b1120]">
-            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
-                <div>
-                    <span id="modal-category" class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Categoría</span>
-                    <h3 id="modal-title" class="text-base sm:text-lg font-bold text-white mt-0.5 leading-snug">Título del Evento</h3>
+    <!-- MODAL DE NOTICIAS & COBERTURA MEDIÁTICA -->
+    <div id="cluster-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[24px] border border-[#e5e5e5] max-w-2xl w-full p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
+                <div class="flex items-center space-x-2">
+                    <span id="modal-category" class="shadcn-badge bg-[#0a0a0a] text-white">Categoría</span>
+                    <h3 id="modal-title" class="text-base font-bold text-[#0a0a0a]">Título</h3>
                 </div>
-                <button onclick="closeModal('cluster-modal')" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+                <button onclick="closeModal('cluster-modal')" class="text-[#737373] hover:text-[#0a0a0a] text-lg font-bold">✕</button>
             </div>
-            
-            <div class="p-6 overflow-y-auto space-y-6 text-sm" id="modal-body">
-                <!-- Injected via JavaScript -->
-            </div>
-
-            <div class="p-4 border-t border-slate-800 bg-slate-950 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
-                <span class="text-[11px] text-slate-500">Conforme al Art. 71B Ley N° 17.336 (Derecho de Cita y Enlaces Originales)</span>
-                <button onclick="closeModal('cluster-modal')" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition">Cerrar</button>
+            <div id="modal-body" class="space-y-4 text-xs">
+                <!-- Contenido dinámico -->
             </div>
         </div>
     </div>
 
-    <!-- MODAL PROPUESTA CIUDADANA -->
-    <div id="proposal-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-panel w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
-                    <i data-lucide="lightbulb" class="w-4 h-4 text-amber-400"></i>
-                    <span>Ingresar Propuesta de Estado Ciudadana</span>
-                </h3>
-                <button onclick="closeModal('proposal-modal')" class="text-slate-400 hover:text-white">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+    <!-- MODAL DE PROPUESTA CIUDADANA -->
+    <div id="proposal-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[24px] border border-[#e5e5e5] max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
+                <h3 class="text-base font-bold text-[#0a0a0a]">Ingresar Propuesta Cívica</h3>
+                <button onclick="closeModal('proposal-modal')" class="text-[#737373] hover:text-[#0a0a0a] text-lg font-bold">✕</button>
             </div>
-            <form onsubmit="submitCitizenProposal(event)" class="space-y-3 text-xs">
+            <form onsubmit="submitCitizenProposal(event)" class="space-y-3.5 text-xs">
                 <div>
-                    <label class="block text-slate-300 font-medium mb-1">Pilar Estratégico</label>
-                    <select id="prop-pilar" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
-                        <option value="Seguridad & Cárceles">Seguridad Pública & Sistema Penitenciario</option>
-                        <option value="Salud Pública">Salud Pública & Reducción de Listas de Espera</option>
-                        <option value="Educación del Futuro">Educación Pública & Formación Técnica</option>
-                        <option value="Municipios & Calles">Desarrollo Municipal & Pavimentación</option>
-                        <option value="Agua & Desalinización">Crisis Hídrica & Desalinización</option>
-                        <option value="Economía & Litio">Economía, Litio, Cobre & I+D</option>
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Pilar de Estado / Materia:</label>
+                    <select id="prop-pilar" class="w-full shadcn-input px-3 py-2 text-xs">
+                        <option value="Seguridad & Cárceles">Seguridad & Cárceles</option>
+                        <option value="Salud Pública">Salud Pública</option>
+                        <option value="Educación & Futuro">Educación & Futuro</option>
+                        <option value="Agua & Clima">Agua & Desalinización</option>
+                        <option value="Municipios & Calles">Municipios & Fondo Común</option>
+                        <option value="Economía & Empleo">Economía & Litio/Cobre</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-medium mb-1">Título de la Propuesta</label>
-                    <input type="text" id="prop-title" required placeholder="Ej: Red de desalinizadoras solares en Coquimbo" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Título de la Propuesta:</label>
+                    <input id="prop-title" required type="text" placeholder="Ej: Telemedicina 24/7 en postas rurales" class="w-full shadcn-input px-3 py-2 text-xs">
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-medium mb-1">Fundamento & Evidencia</label>
-                    <textarea id="prop-desc" rows="3" required placeholder="Explica cómo esta medida resuelve un problema real basándote en datos..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Descripción y Fundamentación:</label>
+                    <textarea id="prop-desc" required rows="3" placeholder="Explica la solución y cómo beneficiará a tu comunidad..." class="w-full shadcn-input px-3 py-2 text-xs"></textarea>
                 </div>
-                <button type="submit" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-lg transition text-xs shadow-md shadow-cyan-600/20">
-                    Publicar en el Ágora Cívica
+                <button type="submit" class="w-full py-2.5 shadcn-button-primary text-xs font-bold">
+                    Publicar en el Ágora
                 </button>
             </form>
-            <div id="prop-result" class="text-xs p-3 rounded-lg bg-slate-900 border border-slate-800 hidden"></div>
+            <div id="prop-result" class="text-xs p-3 rounded-[14px] bg-[#fafafa] border border-[#e5e5e5] hidden"></div>
         </div>
     </div>
 
-    <!-- MODAL DERECHOS ARCO (LEY 21.719) -->
-    <div id="arco-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-panel w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
-                    <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
-                    <span>Canal de Cumplimiento ARCO (Ley N° 21.719)</span>
-                </h3>
-                <button onclick="closeModal('arco-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <!-- MODAL ARCO LEY 21.719 -->
+    <div id="arco-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[24px] border border-[#e5e5e5] max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-[#0a0a0a]"></i>
+                    <h3 class="text-base font-bold text-[#0a0a0a]">Portal de Cumplimiento Legal (Ley N° 21.719)</h3>
+                </div>
+                <button onclick="closeModal('arco-modal')" class="text-[#737373] hover:text-[#0a0a0a] text-lg font-bold">✕</button>
             </div>
-            <p class="text-xs text-slate-300">Conforme a la <strong>Ley N° 21.719</strong>, puedes solicitar acceso, rectificación o supresión de datos con respuesta en un plazo máximo de 30 días corridos.</p>
+            <p class="text-xs text-[#737373]">
+                Formulario oficial para el ejercicio de derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong> respecto al tratamiento de información pública o fuentes citadas.
+            </p>
             <form id="arco-form" onsubmit="submitArcoForm(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-slate-300 font-medium mb-1">Tipo de Solicitud</label>
-                    <select id="arco-type" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
-                        <option value="supresion">Supresión / Eliminación de datos personales</option>
-                        <option value="rectificacion">Rectificación de datos erróneos</option>
-                        <option value="acceso">Acceso / Información de tratamiento</option>
-                        <option value="oposicion">Oposición al tratamiento</option>
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Nombre Completo:</label>
+                    <input type="text" required class="w-full shadcn-input px-3 py-2">
+                </div>
+                <div>
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Correo Electrónico:</label>
+                    <input type="email" required class="w-full shadcn-input px-3 py-2">
+                </div>
+                <div>
+                    <label class="block font-semibold text-[#0a0a0a] mb-1">Tipo de Derecho a Ejercer:</label>
+                    <select class="w-full shadcn-input px-3 py-2">
+                        <option>Rectificación de Fuente Periodística o Dato</option>
+                        <option>Acceso a Metadatos del Modelo</option>
+                        <option>Oposición / Desindexación</option>
                     </select>
                 </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Correo de Contacto</label>
-                    <input type="email" id="arco-email" required placeholder="correo@ejemplo.cl" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Identificador o Nombre Solicitado</label>
-                    <input type="text" id="arco-target" required placeholder="Ej: RUT o Nombre" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Fundamento</label>
-                    <textarea id="arco-desc" rows="3" required placeholder="Fundamento breve..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
-                </div>
-                <button type="submit" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-lg transition text-xs">
+                <button type="submit" class="w-full py-2.5 shadcn-button-primary text-xs font-bold">
                     Emitir Ticket Formal de Cumplimiento
                 </button>
             </form>
-            <div id="arco-result" class="text-xs p-3 rounded-lg bg-slate-900 border border-slate-800 hidden"></div>
+            <div id="arco-result" class="text-xs p-3 rounded-[14px] bg-[#fafafa] border border-[#e5e5e5] hidden"></div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 space-y-2">
-        <div class="flex items-center justify-center space-x-2 text-slate-400 font-semibold">
-            <span>🇨🇱 Presidenta IA & Plataforma de Inteligencia Cívica</span>
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="border-t border-[#e5e5e5] bg-[#ffffff] py-8 text-center text-xs text-[#737373] space-y-2 mt-12">
+        <div class="flex items-center justify-center space-x-2 text-[#0a0a0a] font-semibold">
+            <span>🇨🇱 Presidenta IA & Radiografía de Estado de Chile</span>
             <span>•</span>
             <span>Auditoría de Estado & Metodología Abierta</span>
         </div>
-        <p class="max-w-xl mx-auto text-slate-500 text-[11px]">
-            Conforme a las Leyes N° 21.719 (Datos Personales), N° 21.459 (Ciberseguridad) y N° 17.336 (Propiedad Intelectual).
+        <p class="max-w-xl mx-auto text-[#737373] text-[11px]">
+            Conforme a las Leyes N° 21.719 (Protección de Datos Personales), N° 21.459 (Ciberseguridad) y N° 17.336 (Propiedad Intelectual).
         </p>
     </footer>
 
-    <!-- SCRIPTS UNIVERSALES CON CACHE-BUSTING PARA MÓVILES -->
-    <script src="./data.js?v=20260901_3"></script>
-    <script src="./app.js?v=20260901_3"></script>
+    <!-- SCRIPTS UNIVERSALES CON CACHE-BUSTING -->
+    <script src="./data.js?v=20260901_4"></script>
+    <script src="./app.js?v=20260901_4"></script>
 </body>
 </html>

@@ -1,12 +1,11 @@
-// Presidenta IA & Observatorio de Estado de Chile - Universal Client Engine (Mobile & Desktop Optimized)
+// Presidenta IA & Radiografía de Estado de Chile - shadcn/ui Universal Client Engine
 
 var dataSnapshot = (typeof window !== 'undefined' && window.OBSERVATORIO_SNAPSHOT) ? window.OBSERVATORIO_SNAPSHOT : null;
-var allClusters = [];
-var allSources = [];
-var allAuditPillars = [];
-var allLegislativeBills = [];
-var allRoadmapPhases = [];
-var currentSelectedRegionId = 'antofagasta';
+var currentRegionId = 'antofagasta';
+var matrixSortField = 'population';
+var matrixSortAsc = false;
+var currentCategory = 'all';
+var currentSearch = '';
 
 var allProposals = [
     {
@@ -78,9 +77,6 @@ var SIMULATION_DATA = {
     }
 };
 
-var currentCategory = 'all';
-var currentSearch = '';
-
 function getSnapshot() {
     if (typeof window !== 'undefined' && window.OBSERVATORIO_SNAPSHOT) {
         return window.OBSERVATORIO_SNAPSHOT;
@@ -96,6 +92,7 @@ function safeCreateIcons() {
     } catch (e) {}
 }
 
+// 1. TICKER SUPERIOR INDICADORES
 function renderEconomicIndicators() {
     var container = document.getElementById('economic-ticker');
     if (!container) return;
@@ -112,10 +109,444 @@ function renderEconomicIndicators() {
     container.innerHTML = indicators.map(function(ind) {
         var isClp = ind.unit === '$' || ind.unit === 'CLP';
         var formatted = ind.value ? ind.value.toLocaleString('es-CL', { minimumFractionDigits: ind.unit === '%' ? 1 : 2, maximumFractionDigits: 2 }) : '-';
-        return '<div class="flex items-center space-x-1.5 whitespace-nowrap"><span class="text-slate-400 font-bold text-[11px]">' + ind.code + ':</span><span class="text-emerald-400 font-mono font-extrabold text-xs">' + (isClp ? '$' : '') + formatted + (ind.unit === '%' ? '%' : '') + '</span></div>';
+        return '<div class="flex items-center space-x-1.5 whitespace-nowrap"><span class="text-[#737373] font-medium text-[11px]">' + ind.code + ':</span><span class="text-[#0a0a0a] font-mono font-semibold text-xs">' + (isClp ? '$' : '') + formatted + (ind.unit === '%' ? '%' : '') + '</span></div>';
     }).join('');
 }
 
+// 2. BALANCE NACIONAL (INGRESOS & GASTOS)
+function renderNationalBalanceView() {
+    var snap = getSnapshot();
+    var fiscal = snap && snap.national_fiscal_balance ? snap.national_fiscal_balance : null;
+    var infra = snap && snap.national_infrastructure_summary ? snap.national_infrastructure_summary : null;
+    if (!fiscal) return;
+
+    var totalBudgetEl = document.getElementById('national-total-budget');
+    var gdpEl = document.getElementById('national-gdp');
+    var deficitEl = document.getElementById('national-deficit');
+    var debtEl = document.getElementById('national-debt');
+
+    if (totalBudgetEl) totalBudgetEl.innerText = 'US$ ' + (fiscal.total_budget_usd / 1e9).toFixed(1) + 'B (' + fiscal.total_budget_clp_trillions + 'B CLP)';
+    if (gdpEl) gdpEl.innerText = 'US$ ' + (fiscal.gdp_nominal_usd / 1e9).toFixed(0) + 'B (PIB pc: US$ ' + fiscal.gdp_per_capita_usd.toLocaleString('es-CL') + ')';
+    if (deficitEl) deficitEl.innerText = fiscal.fiscal_deficit_pct_gdp + '% del PIB';
+    if (debtEl) debtEl.innerText = fiscal.gross_public_debt_pct_gdp + '% del PIB (US$ ' + (fiscal.gross_public_debt_usd / 1e9).toFixed(1) + 'B)';
+
+    var revenuesList = document.getElementById('revenues-breakdown-list');
+    if (revenuesList) {
+        revenuesList.innerHTML = (fiscal.revenues || []).map(function(r) {
+            return '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1">' +
+                '<div class="flex items-center justify-between text-xs font-semibold">' +
+                    '<span class="text-[#0a0a0a]">' + r.category + '</span>' +
+                    '<span class="font-mono text-[#0a0a0a]">US$ ' + (r.amount_usd / 1e9).toFixed(2) + 'B (' + r.pct_total + '%)</span>' +
+                '</div>' +
+                '<p class="text-[11px] text-[#737373]">' + r.desc + '</p>' +
+                '<div class="w-full bg-[#e5e5e5] h-1.5 rounded-full overflow-hidden mt-1">' +
+                    '<div class="bg-[#0a0a0a] h-full rounded-full" style="width: ' + r.pct_total + '%"></div>' +
+                '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    var expendituresList = document.getElementById('expenditures-breakdown-list');
+    if (expendituresList) {
+        expendituresList.innerHTML = (fiscal.expenditures || []).map(function(e) {
+            return '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1">' +
+                '<div class="flex items-center justify-between text-xs font-semibold">' +
+                    '<span class="text-[#0a0a0a]">' + e.category + '</span>' +
+                    '<span class="font-mono text-[#0a0a0a]">US$ ' + (e.amount_usd / 1e9).toFixed(2) + 'B (' + e.pct_total + '%)</span>' +
+                '</div>' +
+                '<p class="text-[11px] text-[#737373]">' + e.desc + '</p>' +
+                '<div class="w-full bg-[#e5e5e5] h-1.5 rounded-full overflow-hidden mt-1">' +
+                    '<div class="bg-[#171717] h-full rounded-full" style="width: ' + Math.min(e.pct_total * 3, 100) + '%"></div>' +
+                '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    var infraGrid = document.getElementById('national-infra-summary-grid');
+    if (infraGrid && infra) {
+        infraGrid.innerHTML = '' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Colegios Totales</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + infra.schools_total.toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">Públicos, subvencionados y pagados</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Hospitales Públicos</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + infra.hospitals_total.toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">+624 CESFAM de atención primaria</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Cárceles & Hacinamiento</span><span class="text-xl font-bold font-mono text-[#e7000b]">' + infra.prisons_hacinamiento_national_pct + '%</span><span class="text-[10px] text-[#737373] block">' + infra.prisons_total + ' recintos penitenciarios</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Policías Totales</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + (infra.police_officers_carabineros + infra.police_officers_pdi).toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">54.200 Carabineros + 13.400 PDI</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Bomberos Voluntarios</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + infra.firefighters_volunteers_total.toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">1.240 compañías a nivel nacional</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Fuerzas Armadas</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + infra.military_personnel_total.toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">Ejército, Armada y FACh</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Déficit Habitacional</span><span class="text-xl font-bold font-mono text-[#e7000b]">' + infra.housing_deficit_units.toLocaleString('es-CL') + '</span><span class="text-[10px] text-[#737373] block">Familias en campamentos y allegadas</span></div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><span class="text-[11px] uppercase font-semibold text-[#737373] block">Matriz Eléctrica Renovable</span><span class="text-xl font-bold font-mono text-[#0a0a0a]">' + infra.renewable_energy_share_pct + '%</span><span class="text-[10px] text-[#737373] block">33.400 MW de capacidad instalada</span></div>';
+    }
+
+    setTimeout(renderFiscalCharts, 60);
+}
+
+function renderFiscalCharts() {
+    var chartDom = document.getElementById('chart-fiscal-flow');
+    if (!chartDom || typeof echarts === 'undefined') return;
+
+    try {
+        var myChart = echarts.init(chartDom, null, { renderer: 'svg' });
+        var option = {
+            tooltip: { trigger: 'item', formatter: '{b}: US$ {c}B ({d}%)' },
+            legend: { orient: 'horizontal', bottom: '0%', textStyle: { color: '#737373', fontSize: 11 } },
+            series: [
+                {
+                    name: 'Gasto Público',
+                    type: 'pie',
+                    radius: ['45%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 8,
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    },
+                    label: { show: false },
+                    emphasis: {
+                        label: { show: true, fontSize: 12, fontWeight: 'bold', color: '#0a0a0a' }
+                    },
+                    data: [
+                        { value: 18.2, name: 'Salud Pública', itemStyle: { color: '#0a0a0a' } },
+                        { value: 17.8, name: 'Educación', itemStyle: { color: '#262626' } },
+                        { value: 16.9, name: 'Protección Social & PGU', itemStyle: { color: '#404040' } },
+                        { value: 7.1, name: 'Obras Públicas & MOP', itemStyle: { color: '#525252' } },
+                        { value: 6.8, name: 'GOREs & Municipios', itemStyle: { color: '#737373' } },
+                        { value: 5.4, name: 'Seguridad & Policías', itemStyle: { color: '#a3a3a3' } },
+                        { value: 4.6, name: 'Vivienda MINVU', itemStyle: { color: '#d4d4d4' } },
+                        { value: 2.85, name: 'Defensa FFAA', itemStyle: { color: '#171717' } },
+                        { value: 4.2, name: 'Intereses Deuda', itemStyle: { color: '#e7000b' } },
+                        { value: 9.6, name: 'Otros Ministerios', itemStyle: { color: '#e5e5e5' } }
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    } catch (e) {}
+}
+
+// 3. AUDITORÍA REGIONAL (16 REGIONES)
+function renderRegionsAuditView() {
+    renderRegionPills();
+    selectRegion(currentRegionId);
+}
+
+function renderRegionPills() {
+    var container = document.getElementById('region-selector-pills');
+    if (!container) return;
+
+    var snap = getSnapshot();
+    var regions = snap && snap.regions_complete_audit ? snap.regions_complete_audit : [];
+
+    container.innerHTML = regions.map(function(r) {
+        var isSelected = r.id === currentRegionId;
+        var btnClass = isSelected
+            ? 'shadcn-button-primary px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-sm'
+            : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#eaeaea]';
+        return '<button onclick="selectRegion(\'' + r.id + '\')" id="btn-reg-' + r.id + '" class="' + btnClass + '"><span class="font-mono font-bold mr-1 opacity-70">' + r.number + '</span> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</button>';
+    }).join('');
+}
+
+function selectRegion(regionId) {
+    currentRegionId = regionId;
+    var snap = getSnapshot();
+    var regions = snap && snap.regions_complete_audit ? snap.regions_complete_audit : [];
+    var r = regions.find(function(item) { return item.id === regionId; }) || regions[0];
+    if (!r) return;
+
+    regions.forEach(function(item) {
+        var btn = document.getElementById('btn-reg-' + item.id);
+        if (btn) {
+            btn.className = (item.id === regionId)
+                ? 'shadcn-button-primary px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-sm'
+                : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#eaeaea]';
+        }
+    });
+
+    var container = document.getElementById('region-full-audit-container');
+    if (!container) return;
+
+    var hacinamientoColor = '#0a0a0a';
+    if (r.carceles_gendarmeria.hacinamiento_pct > 140) hacinamientoColor = '#e7000b';
+
+    container.innerHTML = '' +
+        '<div class="shadcn-card p-6 md:p-8 space-y-6">' +
+            '<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e5e5] pb-5">' +
+                '<div class="flex items-center space-x-3.5">' +
+                    '<div class="w-12 h-12 rounded-[18px] bg-[#0a0a0a] text-white flex items-center justify-center font-mono font-bold text-lg shadow-sm">' + r.number + '</div>' +
+                    '<div>' +
+                        '<span class="text-[11px] font-mono uppercase tracking-wider text-[#737373] font-semibold">Capital Regional: ' + r.capital + ' • ' + r.communes_count + ' Comunas</span>' +
+                        '<h2 class="text-2xl md:text-3xl font-bold text-[#0a0a0a] tracking-tight">' + r.name + '</h2>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="flex flex-wrap items-center gap-2 text-xs">' +
+                    '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">👥 ' + r.population.toLocaleString('es-CL') + ' habitantes</span>' +
+                    '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">📐 ' + r.area_km2.toLocaleString('es-CL') + ' km²</span>' +
+                    '<span class="shadcn-badge bg-[#0a0a0a] text-white font-mono font-semibold">PIB: ' + r.pib_share_pct + '% Nacional</span>' +
+                    '<span class="shadcn-badge bg-[#fafafa] text-[#e7000b] border border-[#e5e5e5]">Pobreza: ' + r.poverty_rate_pct + '%</span>' +
+                '</div>' +
+            '</div>' +
+            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] text-xs space-y-1">' +
+                '<span class="text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider block">Vocación Productiva & Identidad Regional:</span>' +
+                '<p class="text-[#171717] leading-relaxed font-normal">' + r.vocation + '</p>' +
+            '</div>' +
+        '</div>' +
+
+        '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="landmark" class="w-4 h-4"></i> Finanzas GORE & Municipios</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FNDR</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Presupuesto FNDR:</span><span class="font-mono font-bold text-[#0a0a0a]">$' + (r.fiscal_gore.budget_fndr_clp_millions).toLocaleString('es-CL') + 'M</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Ejecución Presupuestaria:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.fiscal_gore.fndr_execution_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Ingreso Municipal per cápita:</span><span class="font-mono font-bold text-[#0a0a0a]">$' + r.fiscal_gore.per_capita_municipal_income_clp.toLocaleString('es-CL') + '/hab</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Dependencia Fondo Común (FCM):</span><span class="font-mono font-bold text-[#e7000b]">' + r.fiscal_gore.fcm_dependency_pct + '%</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: SUBDERE & DIPRES</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="heart-pulse" class="w-4 h-4"></i> Salud Pública & Hospitales</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FONASA</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Hospitales Alta Complejidad:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.hospitals_high_complexity + ' (+ ' + r.salud.hospitals_low_mid + ' mediana/baja)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">CESFAM / Postas Rurales:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.cesfam_and_rural_posts + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Lista Espera Quirúrgica:</span><span class="font-mono font-bold text-[#e7000b]">' + r.salud.surgical_waiting_list_patients.toLocaleString('es-CL') + ' pac. (' + r.salud.surgical_waiting_list_avg_days + ' días)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Camas Críticas (UPC) / 100k:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.critical_beds_per_100k + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Deuda Hospitalaria Cenabast:</span><span class="font-mono font-bold text-[#737373]">$' + r.salud.cenabast_hospital_debt_clp_millions.toLocaleString('es-CL') + 'M</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: DEIS / Ministerio de Salud</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4"></i> Educación & Escuelas</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">MINEDUC</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Establecimientos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + (r.educacion.schools_public_slep + r.educacion.schools_municipal + r.educacion.schools_subsidized_private + r.educacion.schools_private_paid) + ' (' + r.educacion.schools_public_slep + ' SLEP)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Matrícula Escolar Total:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.total_students_enrolled.toLocaleString('es-CL') + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Deserción / Asistencia Crítica:</span><span class="font-mono font-bold text-[#e7000b]">' + r.educacion.school_dropout_rate_pct + '% / ' + r.educacion.critical_attendance_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Promedio SIMCE Mat / Leng:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.simce_math_avg + ' / ' + r.educacion.simce_reading_avg + ' pts</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Cobertura Gratuidad Superior:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.higher_education_gratuity_coverage_pct + '%</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: Mineduc & DEMRE</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4"></i> Seguridad & Policías</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">POLICÍA</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Dotación Carabineros:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.carabineros_active_officers.toLocaleString('es-CL') + ' (' + r.seguridad_policias.carabineros_stations_and_posts + ' cuarteles)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Radiopatrullas Operativas:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.carabineros_patrol_vehicles_operational + ' (' + r.seguridad_policias.carabineros_patrol_vehicles_out_of_service + ' en pana)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Detectives PDI:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.pdi_detectives.toLocaleString('es-CL') + ' (' + r.seguridad_policias.pdi_stations + ' unidades)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Tasa Homicidios / 100k:</span><span class="font-mono font-bold text-[#e7000b]">' + r.seguridad_policias.homicide_rate_per_100k + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Incautación Drogas Anual:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.drug_seizures_annual_kg.toLocaleString('es-CL') + ' kg</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Amenaza: ' + r.seguridad_policias.organized_crime_threat_level + '</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4"></i> Sistema Penitenciario</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">GENDARMERÍA</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Recintos Penitenciarios:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.prisons_count + ' cárceles</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Capacidad vs Población:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.design_capacity_places.toLocaleString('es-CL') + ' / ' + r.carceles_gendarmeria.actual_inmate_population.toLocaleString('es-CL') + ' reos</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Hacinamiento Carcelario:</span><span class="font-mono font-bold" style="color: ' + hacinamientoColor + '">' + r.carceles_gendarmeria.hacinamiento_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Dotación Gendarmería:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.gendarmeria_staff.toLocaleString('es-CL') + ' funcionarios</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Inhibición Celular:</span><span class="font-medium text-[#0a0a0a] text-[11px]">' + r.carceles_gendarmeria.cellular_signal_inhibition_active + '</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Tasa Reincidencia: ' + r.carceles_gendarmeria.recidivism_rate_pct + '%</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4"></i> Bomberos & Emergencias</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">VOLUNTARIOS</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Cuerpos & Compañías:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.fire_departments_bodies + ' cuerpos (' + r.bomberos_emergencias.fire_companies_count + ' cías)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Voluntarios Activos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.active_volunteer_firefighters.toLocaleString('es-CL') + ' bomberos</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Carros Bomba Operativos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.fire_trucks_operational + ' (' + r.bomberos_emergencias.fire_trucks_out_of_service + ' en pana)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Aporte Estado vs Rifas:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.state_budget_funding_pct + '% / ' + r.bomberos_emergencias.self_funding_rifas_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Tiempo Respuesta Promedio:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.avg_response_time_minutes + ' minutos</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Riesgo CONAF: ' + r.bomberos_emergencias.forest_fire_risk_conaf + '</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="crosshair" class="w-4 h-4"></i> Defensa & Fuerzas Armadas</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FFAA</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Efectivos Militares Activos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.defensa_ffaa.active_military_personnel.toLocaleString('es-CL') + '</span></div>' +
+                        '<div><span class="text-[#737373] block text-[11px]">Ejército:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.army_units + '</p></div>' +
+                        '<div><span class="text-[#737373] block text-[11px]">Armada:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.navy_units + '</p></div>' +
+                        '<div><span class="text-[#737373] block text-[11px]">FACh:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.air_force_units + '</p></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">' + r.defensa_ffaa.strategic_border_role + '</div>' +
+            '</div>' +
+
+            '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
+                '<div class="space-y-2">' +
+                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4"></i> Vivienda, Vialidad & Agua</h4>' +
+                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">MOP/MINVU</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs pt-1">' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Déficit Habitacional:</span><span class="font-mono font-bold text-[#e7000b]">' + r.infraestructura_territorio.housing_deficit_families.toLocaleString('es-CL') + ' fam. (' + r.infraestructura_territorio.camps_tomas_count + ' campamentos)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Red Vial Pavimentada:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.paved_roads_km.toLocaleString('es-CL') + ' km (' + r.infraestructura_territorio.unpaved_roads_km.toLocaleString('es-CL') + ' km tierra)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Llenado de Embalses:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.reservoir_water_storage_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Plantas Desalinizadoras:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.desalination_plants_operating + ' en operación</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#737373]">Cobertura APR Rural / ERNC:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.rural_water_apr_coverage_pct + '% / ' + r.infraestructura_territorio.renewable_energy_capacity_mw + ' MW</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: MOP & DGA</div>' +
+            '</div>' +
+
+        '</div>' +
+
+        '<div class="shadcn-card p-6 md:p-7 space-y-2 border-l-4 border-l-[#0a0a0a]">' +
+            '<span class="text-[11px] font-bold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-1.5">' +
+                '<i data-lucide="sparkles" class="w-4 h-4 text-[#e7000b]"></i> Plan de Estado de la Presidenta IA para ' + r.name + ' (2026 - 2050):' +
+            '</span>' +
+            '<p class="text-xs md:text-sm text-[#171717] font-normal leading-relaxed">' + r.presidential_strategy_2050 + '</p>' +
+        '</div>';
+
+    safeCreateIcons();
+}
+
+// 4. MATRIZ COMPARATIVA 16 REGIONES (TABLA INTERACTIVA)
+function renderRegionalMatrixTable() {
+    var tableBody = document.getElementById('regional-matrix-tbody');
+    if (!tableBody) return;
+
+    var snap = getSnapshot();
+    var regions = snap && snap.regions_complete_audit ? [].concat(snap.regions_complete_audit) : [];
+
+    regions.sort(function(a, b) {
+        var valA = getFieldValue(a, matrixSortField);
+        var valB = getFieldValue(b, matrixSortField);
+        if (typeof valA === 'string') {
+            return matrixSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+        return matrixSortAsc ? valA - valB : valB - valA;
+    });
+
+    tableBody.innerHTML = regions.map(function(r) {
+        return '<tr class="border-b border-[#e5e5e5] hover:bg-[#fafafa] transition text-xs cursor-pointer" onclick="switchToRegion(\'' + r.id + '\')">' +
+            '<td class="py-3 px-4 font-mono font-bold text-[#0a0a0a]">' + r.number + '</td>' +
+            '<td class="py-3 px-4 font-semibold text-[#0a0a0a]">' + r.name + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.population.toLocaleString('es-CL') + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.pib_share_pct + '%</td>' +
+            '<td class="py-3 px-4 font-mono text-right font-bold ' + (r.carceles_gendarmeria.hacinamiento_pct > 140 ? 'text-[#e7000b]' : 'text-[#0a0a0a]') + '">' + r.carceles_gendarmeria.hacinamiento_pct + '%</td>' +
+            '<td class="py-3 px-4 font-mono text-right ' + (r.seguridad_policias.homicide_rate_per_100k > 6 ? 'text-[#e7000b] font-bold' : 'text-[#171717]') + '">' + r.seguridad_policias.homicide_rate_per_100k + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.salud.surgical_waiting_list_patients.toLocaleString('es-CL') + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.seguridad_policias.carabineros_active_officers.toLocaleString('es-CL') + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.salud.critical_beds_per_100k + '</td>' +
+            '<td class="py-3 px-4 font-mono text-right text-[#171717]">' + r.fiscal_gore.fcm_dependency_pct + '%</td>' +
+        '</tr>';
+    }).join('');
+}
+
+function getFieldValue(obj, field) {
+    if (field === 'population') return obj.population || 0;
+    if (field === 'pib_share_pct') return obj.pib_share_pct || 0;
+    if (field === 'hacinamiento') return obj.carceles_gendarmeria.hacinamiento_pct || 0;
+    if (field === 'homicidios') return obj.seguridad_policias.homicide_rate_per_100k || 0;
+    if (field === 'espera') return obj.salud.surgical_waiting_list_patients || 0;
+    if (field === 'policias') return obj.seguridad_policias.carabineros_active_officers || 0;
+    if (field === 'camas') return obj.salud.critical_beds_per_100k || 0;
+    if (field === 'fcm') return obj.fiscal_gore.fcm_dependency_pct || 0;
+    return obj.name || '';
+}
+
+function sortMatrix(field) {
+    if (matrixSortField === field) {
+        matrixSortAsc = !matrixSortAsc;
+    } else {
+        matrixSortField = field;
+        matrixSortAsc = false;
+    }
+    renderRegionalMatrixTable();
+}
+
+function switchToRegion(regId) {
+    switchTab('regiones');
+    selectRegion(regId);
+}
+
+// 5. PROYECTOS DE LEY & CONGRESO
+function renderLegislativeBills() {
+    var snap = getSnapshot();
+    var bills = snap && snap.legislative_bills ? snap.legislative_bills : [];
+    var container = document.getElementById('legislative-bills-container');
+    if (!container) return;
+
+    container.innerHTML = bills.map(function(b, idx) {
+        return '<div class="shadcn-card p-6 md:p-7 space-y-4">' +
+            '<div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e5e5] pb-4">' +
+                '<div class="flex items-center space-x-3">' +
+                    '<div class="w-9 h-9 rounded-[18px] bg-[#0a0a0a] text-white flex items-center justify-center font-bold text-sm font-mono">0' + (idx + 1) + '</div>' +
+                    '<div>' +
+                        '<div class="flex items-center gap-2">' +
+                            '<span class="text-[10px] font-mono uppercase tracking-wider text-[#737373] font-bold">' + b.bulletin_number + '</span>' +
+                            '<span class="shadcn-badge bg-[#fafafa] text-[#171717] border border-[#e5e5e5]">' + b.status + '</span>' +
+                        '</div>' +
+                        '<h3 class="text-base md:text-lg font-bold text-[#0a0a0a] mt-0.5">' + b.title + '</h3>' +
+                    '</div>' +
+                '</div>' +
+                '<span class="shadcn-badge bg-[#0a0a0a] text-white font-semibold flex items-center gap-1"><i data-lucide="flame" class="w-3.5 h-3.5 text-[#e7000b]"></i> ' + b.urgency + '</span>' +
+            '</div>' +
+            '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] text-xs text-[#171717]">' +
+                '<strong class="text-[#737373] block text-[11px] uppercase tracking-wider mb-1 font-bold">Resumen del Proyecto:</strong>' + b.summary +
+            '</div>' +
+            '<div class="p-4 rounded-[18px] bg-[#f5f5f5] border border-[#e5e5e5] text-xs space-y-1.5">' +
+                '<div class="flex items-center space-x-2 text-[#0a0a0a] font-bold text-sm"><i data-lucide="user-check" class="w-4 h-4 text-[#0a0a0a]"></i><span>¿Cómo te afecta a ti en tu vida diaria?</span></div>' +
+                '<p class="text-[#171717] leading-relaxed font-normal">' + b.ai_president_breakdown.como_te_afecta_a_ti + '</p>' +
+            '</div>' +
+            '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">' +
+                '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1">' +
+                    '<span class="text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#0a0a0a]"></i> Lo Positivo:</span>' +
+                    '<p class="text-[#171717]">' + b.ai_president_breakdown.lo_positivo + '</p>' +
+                '</div>' +
+                '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1">' +
+                    '<span class="text-[10px] font-bold text-[#e7000b] uppercase tracking-wider flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-[#e7000b]"></i> Los Riesgos & Desafíos:</span>' +
+                    '<p class="text-[#171717]">' + b.ai_president_breakdown.los_riesgos + '</p>' +
+                '</div>' +
+            '</div>' +
+            '<div class="pt-3 border-t border-[#e5e5e5] grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-[#737373]">' +
+                '<div class="p-3 rounded-[14px] bg-[#fafafa] border border-[#e5e5e5]"><strong class="text-[#0a0a0a] block mb-0.5 font-semibold">Oficialismo:</strong>' + b.political_debate.oficialismo + '</div>' +
+                '<div class="p-3 rounded-[14px] bg-[#fafafa] border border-[#e5e5e5]"><strong class="text-[#0a0a0a] block mb-0.5 font-semibold">Oposición:</strong>' + b.political_debate.oposicion + '</div>' +
+                '<div class="p-3 rounded-[14px] bg-[#fafafa] border border-[#e5e5e5]"><strong class="text-[#0a0a0a] block mb-0.5 font-semibold">Evidencia Técnica OCDE:</strong>' + b.political_debate.evidencia_tecnica + '</div>' +
+            '</div>' +
+        '</div>';
+    }).join('');
+
+    safeCreateIcons();
+}
+
+// 6. CADENA NACIONAL
 function renderCadenaNacional() {
     var snap = getSnapshot();
     var c = snap && snap.cadena_nacional ? snap.cadena_nacional : {
@@ -140,63 +571,15 @@ function renderCadenaNacional() {
 
     if (takeawaysEl) {
         takeawaysEl.innerHTML = (c.key_takeaways_for_citizens || []).map(function(t) {
-            return '<div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2"><div class="flex items-center space-x-2 text-cyan-400 font-bold text-xs"><i data-lucide="' + (t.icon || 'check') + '" class="w-4 h-4 text-cyan-400"></i><span class="text-cyan-300 font-extrabold uppercase tracking-wide">' + t.topic + '</span></div><p class="text-xs text-slate-200 leading-relaxed font-medium">' + t.text + '</p></div>';
+            return '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-2">' +
+                '<div class="flex items-center space-x-2 text-[#0a0a0a] font-bold text-xs"><i data-lucide="' + (t.icon || 'check') + '" class="w-4 h-4 text-[#0a0a0a]"></i><span class="uppercase tracking-wide font-semibold">' + t.topic + '</span></div>' +
+                '<p class="text-xs text-[#171717] leading-relaxed font-normal">' + t.text + '</p>' +
+            '</div>';
         }).join('');
     }
-
-    setTimeout(renderStatecraftRadar, 50);
 }
 
-function renderStatecraftRadar() {
-    var chartDom = document.getElementById('chart-statecraft-radar');
-    if (!chartDom || typeof echarts === 'undefined') return;
-    
-    try {
-        var myChart = echarts.init(chartDom, 'dark', { backgroundColor: 'transparent' });
-        var option = {
-            tooltip: { trigger: 'axis' },
-            radar: {
-                indicator: [
-                    { name: 'Seguridad & Cárceles', max: 100 },
-                    { name: 'Salud & Listas Espera', max: 100 },
-                    { name: 'Educación & Futuro', max: 100 },
-                    { name: 'Equidad Municipal / Calles', max: 100 },
-                    { name: 'Productividad & Litio/Cobre', max: 100 },
-                    { name: 'Agua & Clima', max: 100 },
-                    { name: 'Probidad & Estado', max: 100 }
-                ],
-                shape: 'polygon',
-                splitNumber: 4,
-                axisName: { color: '#94a3b8', fontSize: 10, fontWeight: 'bold' },
-                splitLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.4)' } },
-                splitArea: { show: false },
-                axisLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.5)' } }
-            },
-            series: [
-                {
-                    name: 'Auditoría Nacional',
-                    type: 'radar',
-                    data: [
-                        {
-                            value: [38, 42, 50, 40, 58, 35, 65],
-                            name: 'Nivel Actual de Desempeño (Chile)',
-                            itemStyle: { color: '#f43f5e' },
-                            areaStyle: { color: 'rgba(244, 63, 94, 0.3)' }
-                        },
-                        {
-                            value: [85, 90, 88, 85, 88, 92, 90],
-                            name: 'Meta Benchmark OCDE',
-                            itemStyle: { color: '#00f0ff' },
-                            areaStyle: { color: 'rgba(0, 240, 255, 0.2)' }
-                        }
-                    ]
-                }
-            ]
-        };
-        myChart.setOption(option);
-    } catch (e) {}
-}
-
+// 7. SIMULADOR DE POLÍTICAS PÚBLICAS
 function runSimulation() {
     var select = document.getElementById('simulator-select');
     var output = document.getElementById('simulator-output');
@@ -204,132 +587,33 @@ function runSimulation() {
 
     var sim = SIMULATION_DATA[select.value] || SIMULATION_DATA.carceles;
 
-    output.innerHTML = '<h4 class="font-black text-white text-xs sm:text-sm text-cyan-300 mb-2">' + sim.title + '</h4><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"><div class="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-800/50 space-y-1"><span class="text-[10px] font-extrabold text-rose-400 uppercase tracking-wider">Enfoque Tradicional / Cortoplacista:</span><p class="text-slate-200 font-medium">' + sim.decisionA + '</p><p class="text-rose-300 text-[11px] font-semibold">↳ ' + sim.impactA + '</p></div><div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/50 space-y-1"><span class="text-[10px] font-extrabold text-emerald-400 uppercase tracking-wider">Enfoque de Estado con Evidencia:</span><p class="text-slate-200 font-medium">' + sim.decisionB + '</p><p class="text-emerald-300 text-[11px] font-semibold">↳ ' + sim.impactB + '</p></div></div><div class="p-3 rounded-xl bg-slate-900 text-[11px] text-slate-300 border border-slate-800 flex items-start gap-2 mt-2"><i data-lucide="book-open" class="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5"></i><span><strong class="text-white">Evidencia Histórica Global:</strong> ' + sim.evidence + '</span></div>';
-    safeCreateIcons();
-}
-
-function renderLegislativeBills() {
-    var snap = getSnapshot();
-    allLegislativeBills = snap && snap.legislative_bills ? snap.legislative_bills : [];
-    var container = document.getElementById('legislative-bills-container');
-    if (!container) return;
-
-    container.innerHTML = allLegislativeBills.map(function(b, idx) {
-        return '<div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-5 border border-slate-800"><div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4"><div class="flex items-center space-x-3"><div class="w-10 h-10 rounded-2xl bg-emerald-950 border border-emerald-700 flex items-center justify-center text-emerald-300 font-black text-sm shadow-md">' + (idx + 1) + '</div><div><div class="flex items-center gap-2"><span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold">' + b.bulletin_number + '</span><span class="text-[10px] font-semibold px-2 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">' + b.status + '</span></div><h3 class="text-base sm:text-lg font-black text-white mt-0.5">' + b.title + '</h3></div></div><span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-950 text-amber-300 border border-amber-800 flex items-center gap-1"><i data-lucide="flame" class="w-3.5 h-3.5 text-amber-400"></i> ' + b.urgency + '</span></div><div class="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-200"><strong class="text-slate-400 block text-[11px] uppercase tracking-wider mb-1 font-bold">Resumen del Proyecto:</strong>' + b.summary + '</div><div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-700/60 text-xs space-y-1.5 shadow-sm"><div class="flex items-center space-x-2 text-cyan-300 font-extrabold text-sm"><i data-lucide="user-check" class="w-4 h-4 text-cyan-400"></i><span>¿Cómo te afecta a ti en tu vida diaria?</span></div><p class="text-slate-100 leading-relaxed font-medium">' + b.ai_president_breakdown.como_te_afecta_a_ti + '</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs"><div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-800/50 space-y-1"><span class="text-[10px] font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Lo Positivo:</span><p class="text-slate-200 font-medium">' + b.ai_president_breakdown.lo_positivo + '</p></div><div class="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-800/50 space-y-1"><span class="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Los Riesgos & Desafíos:</span><p class="text-slate-200 font-medium">' + b.ai_president_breakdown.los_riesgos + '</p></div></div><div class="pt-3 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-slate-300"><div class="p-3 rounded-xl bg-slate-900 border border-slate-800"><strong class="text-white block mb-0.5 font-bold">Oficialismo:</strong>' + b.political_debate.oficialismo + '</div><div class="p-3 rounded-xl bg-slate-900 border border-slate-800"><strong class="text-white block mb-0.5 font-bold">Oposición:</strong>' + b.political_debate.oposicion + '</div><div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-emerald-300"><strong class="text-emerald-400 block mb-0.5 font-bold">Evidencia OCDE / Banco Central:</strong>' + b.political_debate.evidencia_tecnica + '</div></div></div>';
-    }).join('');
-
-    safeCreateIcons();
-}
-
-function renderStrategyFodaView() {
-    renderCountryFoda();
-    renderRegionsSelector();
-}
-
-function toggleFodaScope(scope) {
-    var countryContainer = document.getElementById('foda-country-container');
-    var regionsContainer = document.getElementById('foda-regions-container');
-    var btnCountry = document.getElementById('btn-foda-country');
-    var btnRegions = document.getElementById('btn-foda-regions');
-
-    if (!countryContainer || !regionsContainer || !btnCountry || !btnRegions) return;
-
-    if (scope === 'country') {
-        countryContainer.classList.remove('hidden');
-        regionsContainer.classList.add('hidden');
-        btnCountry.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap';
-        btnRegions.className = 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap';
-    } else {
-        countryContainer.classList.add('hidden');
-        regionsContainer.classList.remove('hidden');
-        btnRegions.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md flex items-center gap-1.5 whitespace-nowrap';
-        btnCountry.className = 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap';
-        selectRegion(currentSelectedRegionId);
-    }
-    safeCreateIcons();
-}
-
-function renderCountryFoda() {
-    var container = document.getElementById('foda-country-container');
-    if (!container) return;
-
-    var snap = getSnapshot();
-    var data = snap && snap.country_foda_strategy ? snap.country_foda_strategy : null;
-    if (!data) return;
-
-    var f = data.foda || {};
-    var fHtml = (f.fortalezas || []).map(function(item) {
-        return '<div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 space-y-1"><h5 class="font-extrabold text-emerald-300 text-xs flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> ' + item.title + '</h5><p class="text-slate-300 text-[11px] leading-relaxed">' + item.desc + '</p></div>';
-    }).join('');
-
-    var oHtml = (f.oportunidades || []).map(function(item) {
-        return '<div class="p-3.5 rounded-2xl bg-cyan-950/40 border border-cyan-800/60 space-y-1"><h5 class="font-extrabold text-cyan-300 text-xs flex items-center gap-1.5"><i data-lucide="trending-up" class="w-3.5 h-3.5 text-cyan-400"></i> ' + item.title + '</h5><p class="text-slate-300 text-[11px] leading-relaxed">' + item.desc + '</p></div>';
-    }).join('');
-
-    var dHtml = (f.debilidades || []).map(function(item) {
-        return '<div class="p-3.5 rounded-2xl bg-amber-950/40 border border-amber-800/60 space-y-1"><h5 class="font-extrabold text-amber-300 text-xs flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-400"></i> ' + item.title + '</h5><p class="text-slate-300 text-[11px] leading-relaxed">' + item.desc + '</p></div>';
-    }).join('');
-
-    var aHtml = (f.amenazas || []).map(function(item) {
-        return '<div class="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-800/60 space-y-1"><h5 class="font-extrabold text-rose-300 text-xs flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-400"></i> ' + item.title + '</h5><p class="text-slate-300 text-[11px] leading-relaxed">' + item.desc + '</p></div>';
-    }).join('');
-
-    var pillarsHtml = (data.strategic_pillars_2050 || []).map(function(p) {
-        return '<div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs"><span class="font-extrabold text-cyan-300 text-xs uppercase tracking-wide block">' + p.pillar + '</span><div class="space-y-1 text-slate-300"><div><strong class="text-amber-400">Meta 2030:</strong> ' + p.target_2030 + '</div><div><strong class="text-emerald-400">Meta 2050:</strong> ' + p.target_2050 + '</div></div></div>';
-    }).join('');
-
-    container.innerHTML = '<div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-6 border border-slate-800"><div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1"><span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Síntesis Estratégica de la Presidenta IA:</span><p class="text-slate-200 text-xs sm:text-sm leading-relaxed">' + data.executive_summary + '</p></div><div class="space-y-2"><h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Matriz FODA de la República de Chile (2026 - 2050):</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="glass-panel p-5 rounded-2xl space-y-3 border-emerald-800/40"><div class="flex items-center justify-between"><span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4"></i> Fortalezas (Factores Internos)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">F</span></div><div class="space-y-2.5">' + fHtml + '</div></div><div class="glass-panel p-5 rounded-2xl space-y-3 border-cyan-800/40"><div class="flex items-center justify-between"><span class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5"><i data-lucide="compass" class="w-4 h-4"></i> Oportunidades (Factores Externos)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-950 text-cyan-400 border border-cyan-800">O</span></div><div class="space-y-2.5">' + oHtml + '</div></div><div class="glass-panel p-5 rounded-2xl space-y-3 border-amber-800/40"><div class="flex items-center justify-between"><span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-4 h-4"></i> Debilidades (Factores Internos)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-950 text-amber-400 border border-amber-800">D</span></div><div class="space-y-2.5">' + dHtml + '</div></div><div class="glass-panel p-5 rounded-2xl space-y-3 border-rose-800/40"><div class="flex items-center justify-between"><span class="text-xs font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1.5"><i data-lucide="zap-off" class="w-4 h-4"></i> Amenazas (Factores Externos)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800">A</span></div><div class="space-y-2.5">' + aHtml + '</div></div></div></div><div class="space-y-3 pt-2 border-t border-slate-800"><h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Plan Estratégico de Estado (Metas 2030 - 2050):</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + pillarsHtml + '</div></div></div>';
-    safeCreateIcons();
-}
-
-function renderRegionsSelector() {
-    var pillsContainer = document.getElementById('regions-pills');
-    if (!pillsContainer) return;
-
-    var snap = getSnapshot();
-    var regions = snap && snap.regions_analysis ? snap.regions_analysis : [];
-    pillsContainer.innerHTML = regions.map(function(r) {
-        return '<button onclick="selectRegion(\'' + r.id + '\')" id="reg-pill-' + r.id + '" class="reg-pill px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition ' + (r.id === currentSelectedRegionId ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/25 border border-cyan-400' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800') + '"><span class="font-mono text-[10px] text-cyan-300 font-extrabold mr-1">' + r.number + '</span> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</button>';
-    }).join('');
-}
-
-function selectRegion(regionId) {
-    currentSelectedRegionId = regionId;
-    var snap = getSnapshot();
-    var regions = snap && snap.regions_analysis ? snap.regions_analysis : [];
-    var r = regions.find(function(item) { return item.id === regionId; }) || regions[0];
-    if (!r) return;
-
-    document.querySelectorAll('.reg-pill').forEach(function(btn) {
-        btn.className = 'reg-pill px-3 py-1.5 rounded-xl font-semibold whitespace-nowrap transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800 text-xs';
-    });
-    var activePill = document.getElementById('reg-pill-' + regionId);
-    if (activePill) {
-        activePill.className = 'reg-pill px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition bg-cyan-600 text-white shadow-md shadow-cyan-600/25 border border-cyan-400 text-xs';
-    }
-
-    var detailCard = document.getElementById('region-detail-card');
-    if (!detailCard) return;
-
-    var f = r.foda || {};
-    var fHtml = (f.fortalezas || []).map(function(t) { return '<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span> ' + t + '</li>'; }).join('');
-    var oHtml = (f.oportunidades || []).map(function(t) { return '<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-cyan-400 font-bold">•</span> ' + t + '</li>'; }).join('');
-    var dHtml = (f.debilidades || []).map(function(t) { return '<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-amber-400 font-bold">•</span> ' + t + '</li>'; }).join('');
-    var aHtml = (f.amenazas || []).map(function(t) { return '<li class="text-slate-200 text-xs leading-relaxed flex items-start gap-1.5"><span class="text-rose-400 font-bold">•</span> ' + t + '</li>'; }).join('');
-
-    detailCard.innerHTML = '<div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-6 border border-slate-800"><div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4"><div class="flex items-center space-x-3"><div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-700 flex items-center justify-center text-white font-black text-base shadow-lg shadow-cyan-600/20 font-mono">' + r.number + '</div><div><span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Capital Regional: ' + r.capital + '</span><h3 class="text-lg sm:text-xl font-black text-white">' + r.name + '</h3></div></div><div class="flex items-center gap-2 text-xs"><span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-medium">👥 ' + (r.population || 0).toLocaleString('es-CL') + ' habitantes</span><span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-emerald-300 font-mono font-bold">PIB: ' + r.pib_share + '</span></div></div><div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs space-y-1"><span class="text-[10px] font-bold text-cyan-300 uppercase tracking-wider block">Vocación Productiva & Identidad Regional:</span><p class="text-slate-100 font-medium leading-relaxed">' + r.vocation + '</p></div><div class="space-y-2"><h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Matriz FODA Territorial (' + r.name + '):</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-800/50 space-y-2"><span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5"></i> Fortalezas</span><ul class="space-y-1.5">' + fHtml + '</ul></div><div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/50 space-y-2"><span class="text-xs font-extrabold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="compass" class="w-3.5 h-3.5"></i> Oportunidades</span><ul class="space-y-1.5">' + oHtml + '</ul></div><div class="p-4 rounded-2xl bg-amber-950/30 border border-amber-800/50 space-y-2"><span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Debilidades & Cuellos de Botella</span><ul class="space-y-1.5">' + dHtml + '</ul></div><div class="p-4 rounded-2xl bg-rose-950/30 border border-rose-800/50 space-y-2"><span class="text-xs font-extrabold text-rose-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Amenazas & Riesgos</span><ul class="space-y-1.5">' + aHtml + '</ul></div></div></div><div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-cyan-500/40 text-xs space-y-1.5 shadow-md"><span class="text-[11px] font-extrabold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="crosshair" class="w-4 h-4 text-cyan-400"></i> Plan de Acción & Obras Estructurantes de la Presidenta IA (2026 - 2050):</span><p class="text-slate-100 font-medium leading-relaxed text-xs sm:text-sm">' + r.presidential_strategy + '</p></div></div>';
+    output.innerHTML = '<h4 class="font-bold text-[#0a0a0a] text-xs sm:text-sm mb-2">' + sim.title + '</h4>' +
+        '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">' +
+            '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1">' +
+                '<span class="text-[10px] font-bold text-[#737373] uppercase tracking-wider">Enfoque Tradicional / Cortoplacista:</span>' +
+                '<p class="text-[#171717] font-medium">' + sim.decisionA + '</p>' +
+                '<p class="text-[#e7000b] text-[11px] font-medium">↳ ' + sim.impactA + '</p>' +
+            '</div>' +
+            '<div class="p-3.5 rounded-[18px] bg-[#f5f5f5] border border-[#e5e5e5] space-y-1">' +
+                '<span class="text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider">Enfoque de Estado con Evidencia:</span>' +
+                '<p class="text-[#0a0a0a] font-semibold">' + sim.decisionB + '</p>' +
+                '<p class="text-[#171717] text-[11px] font-medium">↳ ' + sim.impactB + '</p>' +
+            '</div>' +
+        '</div>' +
+        '<div class="p-3 rounded-[14px] bg-[#fafafa] text-[11px] text-[#737373] border border-[#e5e5e5] flex items-start gap-2 mt-2">' +
+            '<i data-lucide="book-open" class="w-4 h-4 text-[#0a0a0a] flex-shrink-0 mt-0.5"></i>' +
+            '<span><strong class="text-[#0a0a0a]">Evidencia Histórica Global:</strong> ' + sim.evidence + '</span>' +
+        '</div>';
 
     safeCreateIcons();
 }
 
+// 8. OBSERVATORIO DE MEDIOS & CLUSTERS
 function renderClustersView() {
     var snap = getSnapshot();
-    allClusters = snap && snap.clusters ? snap.clusters : [];
-    applyFilters();
-}
-
-function applyFilters() {
+    var allClusters = snap && snap.clusters ? snap.clusters : [];
     var filtered = allClusters;
+
     if (currentCategory !== 'all') {
         filtered = filtered.filter(function(c) { return (c.category || '').toLowerCase().indexOf(currentCategory.toLowerCase()) !== -1; });
     }
@@ -342,7 +626,7 @@ function applyFilters() {
     if (!container) return;
 
     if (filtered.length === 0) {
-        container.innerHTML = '<div class="col-span-2 p-8 text-center text-slate-500 glass-panel rounded-2xl">No se encontraron noticias con estos criterios.</div>';
+        container.innerHTML = '<div class="col-span-2 p-8 text-center text-[#737373] shadcn-card">No se encontraron noticias con estos criterios.</div>';
         return;
     }
 
@@ -352,78 +636,115 @@ function applyFilters() {
         var centerW = Math.round((b.center_pct || 0) * 100);
         var rightW = Math.round((b.right_pct || 0) * 100);
 
-        return '<div class="glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4"><div class="space-y-2"><div class="flex items-center justify-between gap-2"><span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-800 text-cyan-400 border border-cyan-500/20">' + (c.category || 'Nacional') + '</span><span class="text-xs text-slate-400 font-mono">' + (c.article_count || 1) + ' medios</span></div><h3 class="text-sm sm:text-base font-bold text-white leading-snug cursor-pointer hover:text-cyan-400 transition" onclick="openClusterModal(' + c.id + ')">' + c.title + '</h3><p class="text-xs text-slate-300 line-clamp-2">' + (c.description || '') + '</p></div><div class="space-y-1.5 pt-2 border-t border-slate-800"><div class="flex items-center justify-between text-[11px] font-semibold"><span class="text-rose-400">🔴 Izq ' + leftW + '%</span><span class="text-amber-400">🟡 Centro ' + centerW + '%</span><span class="text-blue-400">🔵 Der ' + rightW + '%</span></div><div class="h-2 w-full bg-slate-950 rounded-full overflow-hidden flex border border-slate-800"><div style="width: ' + leftW + '%" class="bg-rose-500 spectrum-bar"></div><div style="width: ' + centerW + '%" class="bg-amber-500 spectrum-bar"></div><div style="width: ' + rightW + '%" class="bg-blue-500 spectrum-bar"></div></div></div><div class="flex items-center justify-between text-xs pt-1"><span class="text-slate-500 text-[11px]">' + (c.last_seen_at ? new Date(c.last_seen_at).toLocaleTimeString('es-CL', {hour:'2-digit', minute:'2-digit'}) + ' hrs' : 'Hoy') + '</span><button onclick="openClusterModal(' + c.id + ')" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 text-xs">Comparar Coberturas <i data-lucide="arrow-right" class="w-3 h-3"></i></button></div></div>';
+        return '<div class="shadcn-card p-5 flex flex-col justify-between space-y-4">' +
+            '<div class="space-y-2">' +
+                '<div class="flex items-center justify-between gap-2">' +
+                    '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">' + (c.category || 'Nacional') + '</span>' +
+                    '<span class="text-xs text-[#737373] font-mono">' + (c.article_count || 1) + ' medios</span>' +
+                '</div>' +
+                '<h3 class="text-sm sm:text-base font-bold text-[#0a0a0a] leading-snug cursor-pointer hover:text-[#737373] transition" onclick="openClusterModal(' + c.id + ')">' + c.title + '</h3>' +
+                '<p class="text-xs text-[#737373] line-clamp-2">' + (c.description || '') + '</p>' +
+            '</div>' +
+            '<div class="space-y-1.5 pt-2 border-t border-[#e5e5e5]">' +
+                '<div class="flex items-center justify-between text-[11px] font-semibold text-[#737373]">' +
+                    '<span>Izquierda ' + leftW + '%</span>' +
+                    '<span>Centro ' + centerW + '%</span>' +
+                    '<span>Derecha ' + rightW + '%</span>' +
+                '</div>' +
+                '<div class="h-2 w-full bg-[#f5f5f5] rounded-full overflow-hidden flex border border-[#e5e5e5]">' +
+                    '<div style="width: ' + leftW + '%" class="bg-[#737373]"></div>' +
+                    '<div style="width: ' + centerW + '%" class="bg-[#0a0a0a]"></div>' +
+                    '<div style="width: ' + rightW + '%" class="bg-[#a3a3a3]"></div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="flex items-center justify-between text-xs pt-1">' +
+                '<span class="text-[#737373] text-[11px]">' + (c.last_seen_at ? new Date(c.last_seen_at).toLocaleTimeString('es-CL', {hour:'2-digit', minute:'2-digit'}) + ' hrs' : 'Hoy') + '</span>' +
+                '<button onclick="openClusterModal(' + c.id + ')" class="shadcn-button-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1">Comparar Coberturas <i data-lucide="arrow-right" class="w-3 h-3"></i></button>' +
+            '</div>' +
+        '</div>';
     }).join('');
+
     safeCreateIcons();
 }
 
 function filterCategory(cat) {
     currentCategory = cat;
     document.querySelectorAll('.cat-pill').forEach(function(btn) {
-        btn.className = 'cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-900 text-slate-400 hover:text-white border border-slate-800';
+        btn.className = 'cat-pill shadcn-button-secondary px-3 py-1 text-xs font-medium';
     });
     if (typeof event !== 'undefined' && event && event.target) {
-        event.target.className = 'cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold';
+        event.target.className = 'cat-pill shadcn-button-primary px-3 py-1 text-xs font-semibold';
     }
-    applyFilters();
+    renderClustersView();
 }
 
 function filterClusters() {
     var input = document.getElementById('cluster-search');
     if (input) currentSearch = input.value;
-    applyFilters();
+    renderClustersView();
 }
 
-function renderRoadmap2050() {
+function openClusterModal(clusterId) {
+    var modal = document.getElementById('cluster-modal');
+    var body = document.getElementById('modal-body');
+    if (!modal || !body) return;
+
+    modal.classList.remove('hidden');
+
     var snap = getSnapshot();
-    allRoadmapPhases = snap && snap.chile_2050_roadmap ? snap.chile_2050_roadmap : [];
-    var container = document.getElementById('roadmap-container');
-    if (!container) return;
+    var clusterDetail = (snap && snap.clusters_detail && snap.clusters_detail[String(clusterId)]) ? snap.clusters_detail[String(clusterId)] : null;
 
-    container.innerHTML = allRoadmapPhases.map(function(phase, idx) {
-        var milestonesHtml = (phase.milestones || []).map(function(m) {
-            return '<div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-start justify-between gap-3 text-xs"><div class="space-y-1"><div class="flex items-center gap-2"><span class="font-mono font-extrabold text-cyan-400 px-2.5 py-0.5 bg-cyan-950 rounded-lg border border-cyan-800">' + m.year + '</span><h5 class="font-bold text-white">' + m.title + '</h5></div></div><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap">' + m.status + '</span></div>';
-        }).join('');
+    if (!clusterDetail) {
+        var allClusters = snap && snap.clusters ? snap.clusters : [];
+        var c = allClusters.find(function(item) { return item.id === clusterId; }) || { title: 'Evento Fáctico', description: '', category: 'General' };
+        clusterDetail = {
+            title: c.title,
+            description: c.description,
+            category: c.category,
+            articles: [{ title: c.title, snippet: c.description, url: '#', source: { name: 'Medio Chileno', spectrum: 'centro', ownership: 'Empresa Periodística' } }]
+        };
+    }
 
-        return '<div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-4 border border-slate-800"><div class="flex items-center space-x-3"><div class="w-10 h-10 rounded-2xl bg-gradient-to-br ' + phase.color + ' flex items-center justify-center text-white font-black text-sm shadow-md">0' + (idx + 1) + '</div><div><h4 class="text-base sm:text-lg font-black text-white">' + phase.phase + '</h4><p class="text-xs text-slate-300 font-medium">' + phase.tagline + '</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">' + milestonesHtml + '</div></div>';
+    document.getElementById('modal-title').innerText = clusterDetail.title;
+    document.getElementById('modal-category').innerText = clusterDetail.category || 'General';
+
+    var articlesHtml = (clusterDetail.articles || []).map(function(a) {
+        return '<div class="p-3.5 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1.5 text-xs">' +
+            '<div class="flex items-center justify-between"><span class="font-bold text-[#0a0a0a]">' + a.source.name + '</span><span class="shadcn-badge bg-[#0a0a0a] text-white">' + a.source.spectrum.toUpperCase() + '</span></div>' +
+            '<h4 class="font-bold text-[#0a0a0a] text-sm leading-snug">' + a.title + '</h4>' +
+            '<p class="text-[#737373] text-xs">' + (a.snippet || '') + '</p>' +
+            '<div class="pt-2 flex justify-between items-center text-[#737373] text-[11px] border-t border-[#e5e5e5]"><span>Controlador: ' + a.source.ownership + '</span>' + (a.url && a.url !== '#' ? '<a href="' + a.url + '" target="_blank" class="text-[#0a0a0a] font-semibold underline flex items-center gap-1">Leer noticia original <i data-lucide="external-link" class="w-3 h-3"></i></a>' : '') + '</div>' +
+        '</div>';
     }).join('');
+
+    body.innerHTML = '<div class="space-y-4">' +
+        '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] space-y-1"><h4 class="text-[11px] font-bold text-[#0a0a0a] uppercase tracking-wider">Síntesis Fáctica de Estado:</h4><p class="text-[#171717] text-sm leading-relaxed">' + (clusterDetail.description || 'Evento en seguimiento.') + '</p></div>' +
+        '<div class="space-y-2.5"><h4 class="text-[11px] font-bold text-[#737373] uppercase tracking-wider">Despachos por Medio (' + (clusterDetail.articles || []).length + ' fuentes):</h4><div class="space-y-2.5">' + articlesHtml + '</div></div>' +
+    '</div>';
 
     safeCreateIcons();
 }
 
-function renderAuditPillars() {
-    var snap = getSnapshot();
-    allAuditPillars = snap && snap.national_audit ? snap.national_audit : [];
-    var container = document.getElementById('audit-pillars-container');
-    if (!container) return;
-
-    container.innerHTML = allAuditPillars.map(function(p, idx) {
-        var statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-950 text-rose-400 border border-rose-800">ESTADO CRÍTICO</span>';
-        if (p.status_level === 'grave') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-800">ESTADO GRAVE</span>';
-        if (p.status_level === 'moderado') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-400 border border-blue-800">ESTADO MODERADO</span>';
-
-        var dataKeys = Object.entries(p.chile_current_data || {});
-        var metricsHtml = dataKeys.map(function(pair) {
-            return '<div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800"><span class="text-[10px] uppercase font-bold text-slate-400 block">' + pair[0].replace(/_/g, ' ') + '</span><span class="text-xs font-mono font-bold text-white">' + pair[1] + '</span></div>';
-        }).join('');
-
-        var benchmarksHtml = (p.global_benchmarks || []).map(function(b) {
-            return '<div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5 text-xs"><div class="flex items-center justify-between text-cyan-400 font-bold"><span>' + b.country + '</span><span class="text-[10px] text-slate-400 font-mono">' + b.policy_model + '</span></div><p class="text-slate-300">' + b.historical_lesson + '</p><div class="text-[11px] text-emerald-400 pt-1 border-t border-slate-800"><strong>Aplicación en Chile:</strong> ' + b.applicability_chile + '</div></div>';
-        }).join('');
-
-        return '<div class="glass-panel p-6 sm:p-7 rounded-3xl space-y-5 border border-slate-800"><div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4"><div class="flex items-center space-x-3"><div class="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 font-bold">' + (idx + 1) + '</div><div><span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Pilar de Estado #' + (idx + 1) + '</span><h3 class="text-base sm:text-lg font-black text-white">' + p.title + '</h3></div></div>' + statusBadge + '</div><div class="space-y-2"><h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Diagnóstico Estructural:</h4><p class="text-xs sm:text-sm text-slate-200 leading-relaxed bg-slate-950 p-4 rounded-2xl border border-slate-800">' + p.diagnostic + '</p></div><div><h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Datos Duros Oficiales (Chile):</h4><div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">' + metricsHtml + '</div></div><div class="space-y-2.5"><h4 class="text-xs font-bold uppercase tracking-wider text-cyan-400">Experiencia Internacional & Solución Probada:</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + benchmarksHtml + '</div></div><div class="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-800/40 text-xs text-amber-200 flex items-start gap-2"><i data-lucide="alert-circle" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i><div><strong class="font-bold text-amber-300">Riesgo Crítico hacia 2030 si no se actúa:</strong><p class="text-slate-300 text-[11px] mt-0.5">' + p.future_risks_2030 + '</p></div></div><div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs text-cyan-200"><strong class="font-bold text-cyan-300 uppercase tracking-wider text-[11px] block mb-1">Recomendación Estratégica de la Presidenta IA:</strong><p class="text-slate-200 leading-relaxed">' + p.strategic_recommendation + '</p></div></div>';
-    }).join('');
-
-    safeCreateIcons();
-}
-
+// 9. ÁGORA CIUDADANA
 function renderCitizenProposals() {
     var container = document.getElementById('citizen-proposals-grid');
     if (!container) return;
 
     container.innerHTML = allProposals.map(function(p) {
-        return '<div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between space-y-3"><div class="space-y-1.5"><span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-cyan-400 border border-slate-700">' + p.pillar + '</span><h4 class="font-bold text-white text-sm leading-snug">' + p.title + '</h4><p class="text-slate-300 text-xs">' + p.desc + '</p><div class="text-[10px] text-slate-500">Por: ' + p.author + '</div></div><div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs"><button onclick="upvoteProposal(' + p.id + ')" class="px-3 py-1 bg-cyan-950 hover:bg-cyan-900 text-cyan-300 font-bold rounded-lg border border-cyan-800/60 flex items-center gap-1.5 transition"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> <span>' + p.votes + ' Votos</span></button><span class="text-emerald-400 text-[11px] font-semibold flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> En Revisión</span></div></div>';
+        return '<div class="shadcn-card p-5 flex flex-col justify-between space-y-3">' +
+            '<div class="space-y-1.5">' +
+                '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">' + p.pillar + '</span>' +
+                '<h4 class="font-bold text-[#0a0a0a] text-sm leading-snug">' + p.title + '</h4>' +
+                '<p class="text-[#737373] text-xs">' + p.desc + '</p>' +
+                '<div class="text-[10px] text-[#737373]">Por: ' + p.author + '</div>' +
+            '</div>' +
+            '<div class="flex items-center justify-between pt-2 border-t border-[#e5e5e5] text-xs">' +
+                '<button onclick="upvoteProposal(' + p.id + ')" class="shadcn-button-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1.5"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> <span>' + p.votes + ' Votos</span></button>' +
+                '<span class="text-[#0a0a0a] text-[11px] font-semibold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> En Revisión</span>' +
+            '</div>' +
+        '</div>';
     }).join('');
+
     safeCreateIcons();
 }
 
@@ -458,7 +779,7 @@ function submitCitizenProposal(e) {
     });
 
     resDiv.classList.remove('hidden');
-    resDiv.innerHTML = '<div class="text-emerald-400 font-bold">¡Propuesta Cívica publicada con éxito en el Ágora Nacional!</div>';
+    resDiv.innerHTML = '<div class="text-[#0a0a0a] font-bold text-xs">¡Propuesta Cívica publicada con éxito en el Ágora Nacional!</div>';
     
     setTimeout(function() {
         closeModal('proposal-modal');
@@ -468,48 +789,6 @@ function submitCitizenProposal(e) {
         renderCitizenProposals();
         switchTab('citizen');
     }, 1200);
-}
-
-function openClusterModal(clusterId) {
-    var modal = document.getElementById('cluster-modal');
-    var body = document.getElementById('modal-body');
-    if (!modal || !body) return;
-
-    modal.classList.remove('hidden');
-
-    var snap = getSnapshot();
-    var clusterDetail = (snap && snap.clusters_detail && snap.clusters_detail[String(clusterId)]) ? snap.clusters_detail[String(clusterId)] : null;
-
-    if (!clusterDetail) {
-        var c = allClusters.find(function(item) { return item.id === clusterId; }) || { title: 'Evento Fáctico', description: '', category: 'General' };
-        clusterDetail = {
-            title: c.title,
-            description: c.description,
-            category: c.category,
-            articles: [{ title: c.title, snippet: c.description, url: '#', source: { name: 'Medio Chileno', spectrum: 'centro', ownership: 'Empresa Periodística' } }]
-        };
-    }
-
-    document.getElementById('modal-title').innerText = clusterDetail.title;
-    document.getElementById('modal-category').innerText = clusterDetail.category || 'General';
-
-    var articlesHtml = (clusterDetail.articles || []).map(function(a) {
-        var badgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-        var spec = (a.source.spectrum || '').toLowerCase();
-        if (spec.indexOf('derecha') !== -1) badgeColor = 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-        if (spec.indexOf('izquierda') !== -1) badgeColor = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
-
-        return '<div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5 text-xs"><div class="flex items-center justify-between"><span class="font-bold text-cyan-400">' + a.source.name + '</span><span class="text-[10px] font-bold px-2 py-0.5 rounded border ' + badgeColor + '">' + a.source.spectrum.toUpperCase() + '</span></div><h4 class="font-bold text-white text-sm leading-snug">' + a.title + '</h4><p class="text-slate-300 text-xs">' + (a.snippet || '') + '</p><div class="pt-2 flex justify-between items-center text-slate-500 text-[11px] border-t border-slate-800"><span>Controlador: ' + a.source.ownership + '</span>' + (a.url && a.url !== '#' ? '<a href="' + a.url + '" target="_blank" class="text-cyan-400 hover:underline flex items-center gap-1 font-semibold">Leer noticia original <i data-lucide="external-link" class="w-3 h-3"></i></a>' : '') + '</div></div>';
-    }).join('');
-
-    body.innerHTML = '<div class="space-y-4"><div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1"><h4 class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Síntesis Fáctica de Estado:</h4><p class="text-slate-200 text-sm leading-relaxed">' + (clusterDetail.description || 'Evento en seguimiento.') + '</p></div><div class="space-y-2.5"><h4 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Despachos por Medio de Comunicación (' + (clusterDetail.articles || []).length + ' fuentes):</h4><div class="space-y-2.5">' + articlesHtml + '</div></div></div>';
-
-    safeCreateIcons();
-}
-
-function closeModal(id) {
-    var el = document.getElementById(id);
-    if (el) el.classList.add('hidden');
 }
 
 function openArcoModal() {
@@ -524,17 +803,19 @@ function submitArcoForm(e) {
     var fakeTicket = 'ARCO-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 
     resDiv.classList.remove('hidden');
-    resDiv.innerHTML = '<div class="text-emerald-400 font-bold text-sm mb-1 flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4"></i> Solicitud Registrada</div><div class="text-slate-300">Ticket ID: <strong class="font-mono text-cyan-400">' + fakeTicket + '</strong></div><div class="text-slate-400 text-[11px] mt-1">Plazo legal: 30 días corridos según Ley N° 21.719. Se ha notificado al Delegado de Protección de Datos.</div>';
+    resDiv.innerHTML = '<div class="text-[#0a0a0a] font-bold text-sm mb-1 flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4"></i> Solicitud Registrada</div><div class="text-[#737373]">Ticket ID: <strong class="font-mono text-[#0a0a0a]">' + fakeTicket + '</strong></div><div class="text-[#737373] text-[11px] mt-1">Plazo legal: 30 días corridos según Ley N° 21.719. Se ha notificado al Delegado de Protección de Datos.</div>';
     document.getElementById('arco-form').reset();
     safeCreateIcons();
 }
 
-function refreshData() {
-    location.reload();
+function closeModal(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
 }
 
+// 10. SWITCH TABS
 function switchTab(tabId) {
-    var tabs = ['cadena', 'leyes', 'foda', 'clusters', 'roadmap', 'audit', 'citizen'];
+    var tabs = ['balance', 'regiones', 'matriz', 'leyes', 'cadena', 'clusters', 'citizen'];
     tabs.forEach(function(t) {
         var view = document.getElementById('view-' + t);
         var btn = document.getElementById('tab-btn-' + t);
@@ -542,29 +823,31 @@ function switchTab(tabId) {
         
         if (t === tabId) {
             view.classList.remove('hidden');
-            btn.className = 'px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap';
+            btn.className = 'shadcn-button-primary px-4 py-2 text-xs font-semibold shadow-sm flex items-center space-x-1.5 whitespace-nowrap';
         } else {
             view.classList.add('hidden');
-            btn.className = 'px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap';
+            btn.className = 'shadcn-button-secondary px-4 py-2 text-xs font-medium flex items-center space-x-1.5 whitespace-nowrap';
         }
     });
 
-    if (tabId === 'cadena') {
-        setTimeout(renderStatecraftRadar, 60);
+    if (tabId === 'balance') {
+        setTimeout(renderFiscalCharts, 60);
     }
     safeCreateIcons();
 }
 
+// 11. INICIALIZADOR UNIVERSAL
 function renderAllViews() {
     try {
         renderEconomicIndicators();
-        renderCadenaNacional();
+        renderNationalBalanceView();
+        renderRegionsAuditView();
+        renderRegionalMatrixTable();
         renderLegislativeBills();
-        renderStrategyFodaView();
+        renderCadenaNacional();
         renderClustersView();
-        renderRoadmap2050();
-        renderAuditPillars();
         renderCitizenProposals();
+        runSimulation();
         safeCreateIcons();
     } catch (e) {
         console.error('Error rendering views:', e);
@@ -575,7 +858,8 @@ if (typeof window !== 'undefined') {
     window.renderAllViews = renderAllViews;
     window.switchTab = switchTab;
     window.selectRegion = selectRegion;
-    window.toggleFodaScope = toggleFodaScope;
+    window.switchToRegion = switchToRegion;
+    window.sortMatrix = sortMatrix;
     window.runSimulation = runSimulation;
     window.openClusterModal = openClusterModal;
     window.closeModal = closeModal;
@@ -584,7 +868,6 @@ if (typeof window !== 'undefined') {
     window.upvoteProposal = upvoteProposal;
     window.openArcoModal = openArcoModal;
     window.submitArcoForm = submitArcoForm;
-    window.refreshData = refreshData;
     window.filterCategory = filterCategory;
     window.filterClusters = filterClusters;
 }
@@ -593,11 +876,10 @@ if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
             renderAllViews();
-            runSimulation();
         });
     } else {
         renderAllViews();
-        runSimulation();
     }
 }
+
 
