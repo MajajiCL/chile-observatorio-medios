@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-[#070b14] text-slate-100">
+<html lang="es" class="h-full bg-[#080d1a] text-slate-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,16 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            cyan: '#00f0ff',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            violet: '#8b5cf6',
+                            blue: '#3b82f6'
+                        }
                     }
                 }
             }
@@ -28,51 +38,52 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .glass-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 15, 30, 0.7) 100%);
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.92) 0%, rgba(15, 23, 42, 0.85) 100%);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(51, 65, 85, 0.4);
+            border: 1px solid rgba(51, 65, 85, 0.55);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .glass-card:hover {
-            border-color: rgba(6, 182, 212, 0.45);
+        .glass-panel:hover {
+            border-color: rgba(0, 240, 255, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75);
         }
-        .hero-glow {
-            background: radial-gradient(circle at 50% -20%, rgba(6, 182, 212, 0.18), transparent 70%);
+        .glow-accent {
+            box-shadow: 0 0 20px -3px rgba(0, 240, 255, 0.35);
         }
         .spectrum-bar { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #070b14; }
+        ::-webkit-scrollbar-track { background: #080d1a; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
-<body class="h-full flex flex-col bg-[#070b14] selection:bg-cyan-500 selection:text-white">
+<body class="h-full flex flex-col bg-[#080d1a] selection:bg-cyan-500 selection:text-white">
 
-    <!-- TOP TICKER: INDICADORES DEL BANCO CENTRAL -->
-    <header class="border-b border-slate-800/80 bg-slate-950/95 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 backdrop-blur-md">
+    <!-- TOP TICKER BAR: INDICADORES DEL BANCO CENTRAL -->
+    <header class="border-b border-slate-800/90 bg-slate-950/95 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="flex items-center space-x-3">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-950/90 text-emerald-400 border border-emerald-800/60 shadow-sm">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> BANCO CENTRAL EN VIVO
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-950 text-emerald-300 border border-emerald-700 shadow-sm">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> BANCO CENTRAL DE CHILE
             </span>
-            <span class="text-slate-400 hidden md:inline font-medium">Indicadores Oficiales:</span>
+            <span class="text-slate-400 hidden lg:inline font-semibold">Indicadores Oficiales del Día:</span>
         </div>
-        <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto text-slate-300 py-0.5">
+        <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto text-slate-200 py-0.5 font-medium">
             <!-- Dynamic Ticker -->
         </div>
         <div class="flex items-center space-x-3 text-slate-400 text-xs">
-            <a href="https://github.com/MajajiCL/chile-observatorio-medios" target="_blank" class="hover:text-white flex items-center gap-1 transition">
+            <a href="https://github.com/MajajiCL/chile-observatorio-medios" target="_blank" class="hover:text-white flex items-center gap-1 font-semibold transition">
                 <i data-lucide="github" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">GitHub</span>
             </a>
-            <button onclick="openArcoModal()" class="hover:text-cyan-400 underline decoration-slate-700 transition flex items-center gap-1">
-                <i data-lucide="shield" class="w-3.5 h-3.5 text-cyan-400"></i> Ley 21.719
+            <button onclick="openArcoModal()" class="text-cyan-400 hover:text-cyan-300 underline decoration-slate-700 transition flex items-center gap-1 font-semibold">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Ley 21.719
             </button>
         </div>
     </header>
 
-    <!-- HERO: GUÍA DE ESTADO & CADENA NACIONAL CIUDADANA -->
-    <div class="border-b border-slate-800/80 hero-glow px-6 py-8">
+    <!-- HERO HEADER: INTELIGENCIA CÍVICA -->
+    <div class="border-b border-slate-800/80 bg-gradient-to-b from-slate-900/90 via-[#0b1329]/80 to-transparent px-6 py-8">
         <div class="max-w-7xl mx-auto space-y-6">
             
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -80,46 +91,47 @@
                     <div class="flex items-center space-x-2.5">
                         <span class="text-3xl">🇨🇱</span>
                         <span class="text-xs uppercase tracking-widest font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                            Plataforma de Inteligencia Cívica & Guía de Estado
+                            Observatorio Cívico & Guía de Estado
                         </span>
                     </div>
                     <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                        Presidenta IA de Chile: La Guía del Ciudadano para Construir el Futuro
+                        Presidenta IA de Chile: Tu Guía Diaria para Comprender y Construir el País
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                        Una inteligencia de Estado basada en <strong>ciencia, datos duros y lecciones históricas de los países desarrollados</strong>, que te explica día a día qué está pasando en Chile, cómo te afectan las leyes en el Congreso y cuál es la hoja de ruta hacia el 2050.
+                        Inteligencia de Estado basada en <strong>ciencia, datos oficiales y lecciones históricas internacionales</strong>. Analiza las noticias sin sesgo partidista, traduce los proyectos de ley del Congreso y proyecta la hoja de ruta hacia el 2050.
                     </p>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3">
-                    <button onclick="switchTab('citizen')" class="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-white rounded-xl text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition">
-                        <i data-lucide="lightbulb" class="w-4 h-4"></i> <span>Aportar una Propuesta</span>
+                    <button onclick="openCitizenProposalModal()" class="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-white rounded-xl text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition">
+                        <i data-lucide="lightbulb" class="w-4 h-4 text-amber-300"></i> <span>Aportar una Propuesta</span>
                     </button>
-                    <button onclick="refreshData()" class="px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-2">
+                    <button onclick="refreshData()" class="px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-2 shadow-sm">
                         <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> <span>Actualizar</span>
                     </button>
                 </div>
             </div>
 
-            <!-- TABS NAVIGATION: INTUITIVA Y CLARA -->
-            <div class="flex items-center bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800/90 text-xs sm:text-sm overflow-x-auto gap-1">
+            <!-- TABS NAVIGATION: COLORES VIBRANTES Y SELECCIÓN INTUITIVA -->
+            <div class="flex items-center bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 text-xs sm:text-sm overflow-x-auto gap-1 shadow-inner">
                 <button onclick="switchTab('cadena')" id="tab-btn-cadena" class="px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="radio" class="w-4 h-4 text-amber-300"></i> <span>1. Cadena Nacional Diaria</span>
+                    <i data-lucide="radio" class="w-4 h-4 text-amber-300"></i> <span>1. Cadena Nacional</span>
                 </button>
-                <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
                     <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i> <span>2. Leyes & Congreso</span>
-                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-950 text-emerald-300 font-bold">5</span>
+                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-950 text-emerald-300 font-bold border border-emerald-800">5 Leyes</span>
                 </button>
-                <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>3. Hoja de Ruta 2050</span>
+                <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>3. Noticias & Espectro</span>
+                    <span id="badge-clusters-count" class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-bold">49</span>
                 </button>
-                <button onclick="switchTab('audit')" id="tab-btn-audit" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>4. Auditoría 7 Pilares</span>
+                <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>4. Hoja de Ruta 2050</span>
                 </button>
-                <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>5. Noticias & Sesgos</span>
+                <button onclick="switchTab('audit')" id="tab-btn-audit" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>5. Auditoría 7 Pilares</span>
                 </button>
-                <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="px-4 py-2.5 rounded-xl font-semibold transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
                     <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>6. Ágora Ciudadana</span>
                 </button>
             </div>
@@ -127,17 +139,16 @@
         </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN APP CONTAINER -->
     <main class="flex-1 max-w-7xl mx-auto w-full p-6 space-y-8">
 
-        <!-- TAB 1: CADENA NACIONAL CIUDADANA (EL RESUMEN EN 3 MINUTOS) -->
+        <!-- TAB 1: CADENA NACIONAL CIUDADANA -->
         <section id="view-cadena" class="space-y-6">
             
-            <!-- TARJETA PRINCIPAL DEL DÍA -->
-            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-cyan-500/30 space-y-6 bg-gradient-to-br from-slate-900/90 via-[#0d1627]/90 to-slate-950">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-cyan-500/30 space-y-6 bg-gradient-to-br from-slate-900/95 via-[#0d172e]/90 to-slate-950">
                 <div class="flex items-center justify-between flex-wrap gap-3">
                     <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-white font-bold text-lg">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 text-white font-bold text-lg">
                             <i data-lucide="radio" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -145,12 +156,12 @@
                             <h2 class="text-lg sm:text-xl font-black text-white" id="cadena-title">Cadena Nacional Ciudadana: El Estado de Chile Hoy</h2>
                         </div>
                     </div>
-                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 font-mono">3 minutos de lectura</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-700 font-mono">3 minutos de lectura</span>
                 </div>
 
-                <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/90 space-y-2">
+                <div class="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
                     <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                        <i data-lucide="sparkles" class="w-4 h-4"></i> El Hecho Central de la Jornada:
+                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> El Diagnóstico Central del Día:
                     </span>
                     <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium" id="cadena-headline">
                         <!-- Headline -->
@@ -163,36 +174,36 @@
                 </div>
 
                 <!-- FRASE DE ESTADO -->
-                <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs sm:text-sm text-cyan-200 italic leading-relaxed text-center" id="cadena-quote">
+                <div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/50 text-xs sm:text-sm text-cyan-200 italic leading-relaxed text-center font-medium" id="cadena-quote">
                     <!-- Quote -->
                 </div>
             </div>
 
-            <!-- RADAR DE EQUILIBRIO DE LA REPÚBLICA & SIMULADOR -->
+            <!-- RADAR DE DESAFÍOS & SIMULADOR PROSPECTIVO -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="glass-card p-6 rounded-3xl space-y-4">
+                <div class="glass-panel p-6 rounded-3xl space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="text-sm font-bold text-white flex items-center gap-2">
                             <i data-lucide="activity" class="w-4 h-4 text-cyan-400"></i>
-                            Termómetro de Desafíos de Chile (Frente a la OCDE)
+                            Radar de Desafíos de Chile (Frente a la OCDE)
                         </h3>
                         <span class="text-[11px] font-mono text-slate-400">INE / Banco Central / OCDE</span>
                     </div>
                     <div id="chart-statecraft-radar" class="h-72 w-full"></div>
                 </div>
 
-                <div class="glass-card p-6 rounded-3xl space-y-4">
+                <div class="glass-panel p-6 rounded-3xl space-y-4">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
-                        Simulador de Políticas Públicas (Decisión A vs. Decisión B)
+                        Simulador de Decisiones: ¿Qué pasa si...?
                     </h3>
-                    <p class="text-xs text-slate-400">¿Qué pasa si tomamos una decisión cortoplacista frente a una política basada en evidencia internacional?</p>
+                    <p class="text-xs text-slate-400">Compara el impacto a 10 años de tomar una decisión cortoplacista vs. una política de Estado basada en ciencia:</p>
                     
                     <div class="space-y-3 text-xs">
                         <div>
-                            <label class="block text-slate-300 font-semibold mb-1">Selecciona el Dilema Nacional:</label>
+                            <label class="block text-slate-300 font-semibold mb-1">Dilema de Política Pública:</label>
                             <select id="simulator-select" onchange="runSimulation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                                <option value="carceles">Seguridad: ¿Cárceles tradicionales masivas vs. Modelo noruego de inhibición y reinserción?</option>
+                                <option value="carceles">Seguridad: ¿Mega-cárceles tradicionales vs. Modelo noruego de inhibición y reinserción?</option>
                                 <option value="salud">Salud: ¿Subsidiar bonos privados vs. Pabellones 24/7 y alta resolución en CESFAM?</option>
                                 <option value="agua">Agua: ¿Camiones aljibe por décadas vs. Red estatal de desalinizadoras solares?</option>
                                 <option value="educacion">Educación: ¿Títulos tradicionales saturados vs. Educación técnica dual (Litio/Energía)?</option>
@@ -207,61 +218,29 @@
 
         </section>
 
-        <!-- TAB 2: PROYECTOS DE LEY & CONGRESO EN VIVO -->
+        <!-- TAB 2: PROYECTOS DE LEY & CONGRESO -->
         <section id="view-leyes" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-800/40 text-xs text-slate-300 flex items-start space-x-3">
+            <div class="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-800/50 text-xs text-slate-300 flex items-start space-x-3">
                 <i data-lucide="book-marked" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
                 <div class="space-y-1">
-                    <strong class="font-bold text-white text-sm">Termómetro Legislativo: Las Leyes que definen el Futuro de Chile</strong>
-                    <p class="text-slate-400">
-                        La Presidenta IA audita los principales proyectos de ley que se debaten en el Senado y la Cámara de Diputadas y Diputados, traduciéndolos a un lenguaje directo: <strong>qué propone la ley, los riesgos, qué dice la evidencia internacional y cómo impacta en tu vida diaria</strong>.
+                    <strong class="font-bold text-white text-sm">Termómetro Legislativo: Leyes Explicadas con Peras y Manzanas</strong>
+                    <p class="text-slate-300">
+                        La Presidenta IA audita los proyectos de ley clave en el Congreso y te explica: <strong>qué propone, los riesgos, la evidencia internacional y cómo impacta en tu bolsillo y tu barrio</strong>.
                     </p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 gap-6" id="legislative-bills-container">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 3: HOJA DE RUTA CHILE 2026 - 2050 -->
-        <section id="view-roadmap" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-purple-950/20 border border-purple-800/40 text-xs text-slate-300 space-y-1">
-                <h3 class="font-bold text-white text-sm flex items-center gap-2">
-                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i>
-                    La Hoja de Ruta de Estado (Chile 2026 - 2050)
-                </h3>
-                <p class="text-slate-400">
-                    Los países que lograron el desarrollo (Singapur, Noruega, Irlanda, Corea del Sur) lo hicieron con un plan inquebrantable a 25 años. Esta es la proyección de metas e hitos concretos para llevar a Chile al Top 15 de desarrollo humano hacia 2050.
-                </p>
-            </div>
-
-            <div class="space-y-6" id="roadmap-container">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 4: AUDITORÍA DE 7 PILARES -->
-        <section id="view-audit" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3 text-xs text-slate-300">
-                <i data-lucide="info" class="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5"></i>
-                <div>
-                    <strong class="font-bold text-white text-sm">Auditoría Transversal de los 7 Pilares de la República</strong>
-                    <p class="text-slate-400 mt-0.5">Diagnóstico exhaustivo de las dificultades estructurales de Chile combinando datos duros nacionales con soluciones probadas en otros países.</p>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 gap-6" id="audit-pillars-container">
                 <!-- Injected dynamically -->
             </div>
         </section>
 
-        <!-- TAB 5: NOTICIAS & SESGOS MEDIÁTICOS -->
+        <!-- TAB 3: NOTICIAS & ESPECTRO MEDIÁTICO -->
         <section id="view-clusters" class="space-y-4 hidden">
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div class="relative min-w-[260px] flex-1">
                     <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                    <input type="text" id="cluster-search" placeholder="Buscar por tema, ministro o palabra clave..." oninput="filterClusters()" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+                    <input type="text" id="cluster-search" placeholder="Buscar por tema, ministro o palabra clave..." oninput="filterClusters()" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500">
                 </div>
                 <div class="flex items-center gap-1.5 overflow-x-auto text-xs pb-1" id="category-pills">
                     <button onclick="filterCategory('all')" class="cat-pill px-3 py-1 rounded-full font-medium transition bg-slate-800 text-cyan-400 border border-cyan-500/30 font-bold">Todos</button>
@@ -277,16 +256,48 @@
             </div>
         </section>
 
+        <!-- TAB 4: HOJA DE RUTA 2050 -->
+        <section id="view-roadmap" class="space-y-6 hidden">
+            <div class="p-4 rounded-2xl bg-purple-950/30 border border-purple-800/50 text-xs text-slate-300 space-y-1">
+                <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i>
+                    Hoja de Ruta de Estado: El Plan 2026 - 2050
+                </h3>
+                <p class="text-slate-300">
+                    Metas e hitos claros para llevar a Chile al Top 15 del Índice de Desarrollo Humano (IDH) en 25 años.
+                </p>
+            </div>
+
+            <div class="space-y-6" id="roadmap-container">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 5: AUDITORÍA 7 PILARES -->
+        <section id="view-audit" class="space-y-6 hidden">
+            <div class="p-4 rounded-2xl bg-blue-950/30 border border-blue-800/50 flex items-start space-x-3 text-xs text-slate-300">
+                <i data-lucide="info" class="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5"></i>
+                <div>
+                    <strong class="font-bold text-white text-sm">Auditoría Transversal de los 7 Pilares de Chile</strong>
+                    <p class="text-slate-300 mt-0.5">Diagnóstico exhaustivo de las dificultades estructurales de Chile con datos oficiales y benchmarks internacionales.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6" id="audit-pillars-container">
+                <!-- Injected dynamically -->
+            </div>
+        </section>
+
         <!-- TAB 6: ÁGORA CIUDADANA -->
         <section id="view-citizen" class="space-y-6 hidden">
-            <div class="glass-card p-6 rounded-3xl space-y-4">
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
                 <div class="flex items-center justify-between flex-wrap gap-3">
                     <div>
                         <h3 class="text-base font-bold text-white flex items-center gap-2">
                             <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
                             Ágora Cívica: Deliberación & Propuestas de la Ciudadanía
                         </h3>
-                        <p class="text-xs text-slate-400 mt-1">Plantea soluciones con datos y vota las iniciativas prioritarias para que sean elevadas a la discusión nacional.</p>
+                        <p class="text-xs text-slate-400 mt-1">Plantea soluciones con datos y vota las iniciativas prioritarias de la comunidad.</p>
                     </div>
                     <button onclick="openCitizenProposalModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-xl text-xs flex items-center gap-1.5 transition">
                         <i data-lucide="plus" class="w-4 h-4"></i> Nueva Propuesta
@@ -301,9 +312,9 @@
 
     </main>
 
-    <!-- MODAL DETALLE NOTICIA MULTI-PERSPECTIVA -->
+    <!-- MODAL DETALLE MULTI-PERSPECTIVA -->
     <div id="cluster-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col overflow-hidden border border-slate-700 shadow-2xl bg-[#0b1120]">
+        <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col overflow-hidden border border-slate-700 shadow-2xl bg-[#0b1120]">
             <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
                 <div>
                     <span id="modal-category" class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Categoría</span>
@@ -327,7 +338,7 @@
 
     <!-- MODAL PROPUESTA CIUDADANA -->
     <div id="proposal-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 class="text-sm font-bold text-white flex items-center space-x-2">
                     <i data-lucide="lightbulb" class="w-4 h-4 text-amber-400"></i>
@@ -367,7 +378,7 @@
 
     <!-- MODAL DERECHOS ARCO (LEY 21.719) -->
     <div id="arco-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4 bg-[#0b1120]">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 class="text-sm font-bold text-white flex items-center space-x-2">
                     <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>

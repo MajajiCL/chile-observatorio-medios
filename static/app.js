@@ -40,21 +40,26 @@ let allProposals = [
 
 let currentCategory = 'all';
 let currentSearch = '';
-let dataSnapshot = window.OBSERVATORIO_SNAPSHOT || null;
+let dataSnapshot = (typeof window !== 'undefined' && window.OBSERVATORIO_SNAPSHOT) ? window.OBSERVATORIO_SNAPSHOT : null;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    if (!dataSnapshot) {
-        try {
-            const res = await fetch('./data/snapshot.json');
-            if (res.ok) dataSnapshot = await res.json();
-        } catch (e) {
-            console.log('Modo API');
-        }
-    }
+function renderEconomicIndicators() {
+    const container = document.getElementById("economic-ticker");
+    if (!container) return;
 
-    renderAllViews();
-    runSimulation();
-});
+    let indicators = dataSnapshot && dataSnapshot.economic_indicators ? dataSnapshot.economic_indicators : [
+        { code: "UF", name: "Unidad de Fomento", value: 40875.09, unit: "CLP" },
+        { code: "DOLAR", name: "Dólar Observado", value: 933.40, unit: "CLP" },
+        { code: "EURO", name: "Euro", value: 1084.21, unit: "CLP" },
+        { code: "IPC", name: "IPC Mensual", value: -0.2, unit: "%" },
+        { code: "UTM", name: "UTM", value: 71721.00, unit: "CLP" }
+    ];
+
+    container.innerHTML = indicators.map(ind => {
+        const isClp = ind.unit === "$" || ind.unit === "CLP";
+        const formatted = ind.value ? ind.value.toLocaleString("es-CL", { minimumFractionDigits: ind.unit === "%" ? 1 : 2, maximumFractionDigits: 2 }) : "-";
+        return `<div class="flex items-center space-x-1.5 whitespace-nowrap"><span class="text-slate-400 font-bold text-[11px]">${ind.code}:</span><span class="text-emerald-400 font-mono font-extrabold text-xs">${isClp ? "$" : ""}${formatted} ${ind.unit === "%" ? "%" : ""}</span></div>`;
+    }).join("");
+}
 
 function renderAllViews() {
     renderEconomicIndicators();
@@ -87,6 +92,54 @@ function switchTab(tabId) {
         setTimeout(renderStatecraftRadar, 60);
     }
     if (window.lucide) lucide.createIcons();
+}
+
+function renderStatecraftRadar() {
+    const chartDom = document.getElementById("chart-statecraft-radar");
+    if (!chartDom || typeof echarts === 'undefined') return;
+    
+    const myChart = echarts.init(chartDom, "dark", { backgroundColor: "transparent" });
+    const option = {
+        tooltip: { trigger: "axis" },
+        radar: {
+            indicator: [
+                { name: "Seguridad & Cárceles", max: 100 },
+                { name: "Salud & Listas Espera", max: 100 },
+                { name: "Educación & Futuro", max: 100 },
+                { name: "Equidad Municipal / Calles", max: 100 },
+                { name: "Productividad & Litio/Cobre", max: 100 },
+                { name: "Agua & Clima", max: 100 },
+                { name: "Probidad & Estado", max: 100 }
+            ],
+            shape: "polygon",
+            splitNumber: 4,
+            axisName: { color: "#94a3b8", fontSize: 10, fontWeight: "bold" },
+            splitLine: { lineStyle: { color: "rgba(51, 65, 85, 0.4)" } },
+            splitArea: { show: false },
+            axisLine: { lineStyle: { color: "rgba(51, 65, 85, 0.5)" } }
+        },
+        series: [
+            {
+                name: "Auditoría Nacional",
+                type: "radar",
+                data: [
+                    {
+                        value: [38, 42, 50, 40, 58, 35, 65],
+                        name: "Nivel Actual de Desempeño (Chile)",
+                        itemStyle: { color: "#f43f5e" },
+                        areaStyle: { color: "rgba(244, 63, 94, 0.3)" }
+                    },
+                    {
+                        value: [85, 90, 88, 85, 88, 92, 90],
+                        name: "Meta Benchmark OCDE",
+                        itemStyle: { color: "#00f0ff" },
+                        areaStyle: { color: "rgba(0, 240, 255, 0.2)" }
+                    }
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option);
 }
 
 function renderCadenaNacional() {
@@ -508,4 +561,17 @@ function submitArcoForm(e) {
 
 function refreshData() {
     location.reload();
+}
+
+if (typeof document !== 'undefined') {
+    document.addEventListener("DOMContentLoaded", async () => {
+        if (!dataSnapshot) {
+            try {
+                const res = await fetch("./data/snapshot.json");
+                if (res.ok) dataSnapshot = await res.json();
+            } catch (e) {}
+        }
+        renderAllViews();
+        runSimulation();
+    });
 }

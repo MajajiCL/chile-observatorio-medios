@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+﻿import os
+
+HTML_CODE = """<!DOCTYPE html>
 <html lang="es" class="h-full bg-[#080d1a] text-slate-100">
 <head>
     <meta charset="UTF-8">
@@ -434,3 +436,14 @@
     <script src="./app.js"></script>
 </body>
 </html>
+"""
+
+base_dir = r"C:\Users\mandr\.gemini\antigravity\scratch\chile-observatorio-medios"
+
+with open(os.path.join(base_dir, "index.html"), "w", encoding="utf-8") as f:
+    f.write(HTML_CODE)
+
+with open(os.path.join(base_dir, "static", "index.html"), "w", encoding="utf-8") as f:
+    f.write(HTML_CODE)
+
+print("Vibrant index.html escrito con éxito.")
