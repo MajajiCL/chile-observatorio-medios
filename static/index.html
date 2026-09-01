@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatorio de Medios de Chile 🇨🇱 | Información Pública Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ECharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        spectrum: {
+                            left: '#ef4444',
+                            center: '#f59e0b',
+                            right: '#3b82f6',
+                            institutional: '#10b981',
+                            independent: '#8b5cf6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.4);
+        }
+        .spectrum-bar {
+            transition: width 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- TOP TICKER: Indicadores Macroeconómicos en Vivo -->
+    <header class="border-b border-slate-800 bg-slate-900/90 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 backdrop-blur">
+        <div class="flex items-center space-x-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-900/40 text-red-400 border border-red-800/50">
+                <span class="w-1.5 h-1.5 mr-1.5 bg-red-500 rounded-full animate-pulse"></span> EN VIVO
+            </span>
+            <span class="text-slate-400 font-medium">Indicadores Oficiales Chile:</span>
+        </div>
+        <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto text-slate-300">
+            <span class="animate-pulse text-slate-500">Cargando indicadores del Banco Central...</span>
+        </div>
+        <div class="text-slate-400">
+            <a href="#arco-modal" onclick="openArcoModal()" class="hover:text-cyan-400 underline decoration-slate-600 transition">Transparencia & Ley 21.719</a>
+        </div>
+    </header>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="border-b border-slate-800 bg-slate-900/50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i data-lucide="radio" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+                        Observatorio de Medios de Chile
+                    </h1>
+                    <p class="text-xs text-slate-400">Plataforma de Observabilidad, Análisis de Sesgo y Puntos Ciegos</p>
+                </div>
+            </div>
+
+            <!-- TABS -->
+            <div class="flex items-center bg-slate-800/80 p-1 rounded-xl border border-slate-700/60 text-sm">
+                <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-1.5 rounded-lg font-medium transition bg-cyan-600 text-white shadow-sm flex items-center space-x-2">
+                    <i data-lucide="layers" class="w-4 h-4"></i> <span>Agenda del Día</span>
+                </button>
+                <button onclick="switchTab('blindspots')" id="tab-btn-blindspots" class="px-4 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center space-x-2">
+                    <i data-lucide="eye-off" class="w-4 h-4 text-amber-400"></i> <span>Puntos Ciegos</span>
+                </button>
+                <button onclick="switchTab('sources')" id="tab-btn-sources" class="px-4 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center space-x-2">
+                    <i data-lucide="building-2" class="w-4 h-4"></i> <span>Malla de Propiedad</span>
+                </button>
+                <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="px-4 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center space-x-2">
+                    <i data-lucide="pie-chart" class="w-4 h-4"></i> <span>Pluralidad</span>
+                </button>
+            </div>
+
+            <button onclick="triggerSync()" class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-sm border border-slate-700 transition">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i> <span>Sincronizar Feeds</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="flex-1 max-w-7xl mx-auto w-full p-6 space-y-6">
+
+        <!-- STATS BAR -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="stats-container">
+            <div class="glass-panel p-4 rounded-2xl">
+                <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+                    <span>Fuentes Monitoreadas</span>
+                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i>
+                </div>
+                <div class="text-2xl font-bold text-white mt-1" id="stat-sources">-</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Nacionales, Regionales y Oficiales</div>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl">
+                <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+                    <span>Noticias Indexadas</span>
+                    <i data-lucide="file-text" class="w-4 h-4 text-blue-400"></i>
+                </div>
+                <div class="text-2xl font-bold text-white mt-1" id="stat-articles">-</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Deduplicadas & Sanitizadas</div>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl">
+                <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+                    <span>Eventos Fácticos</span>
+                    <i data-lucide="network" class="w-4 h-4 text-emerald-400"></i>
+                </div>
+                <div class="text-2xl font-bold text-white mt-1" id="stat-clusters">-</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Clusters Multiperspectiva</div>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl">
+                <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+                    <span>Puntos Ciegos Activos</span>
+                    <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                </div>
+                <div class="text-2xl font-bold text-amber-400 mt-1" id="stat-blindspots">-</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Asimetrías de Cobertura</div>
+            </div>
+        </div>
+
+        <!-- TAB 1: CLUSTERS / AGENDA DEL DIA -->
+        <section id="view-clusters" class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-cyan-400"></i>
+                    <h2 class="text-lg font-bold text-white">Eventos de la Agenda Nacional</h2>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input type="text" id="cluster-search" placeholder="Buscar por tema o autoridad..." oninput="filterClusters()" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+                </div>
+            </div>
+            <div id="clusters-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 2: PUNTOS CIEGOS -->
+        <section id="view-blindspots" class="space-y-4 hidden">
+            <div class="p-4 rounded-2xl bg-amber-950/30 border border-amber-800/40 text-amber-200 text-sm flex items-start space-x-3">
+                <i data-lucide="info" class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                <div>
+                    <strong class="font-semibold">¿Qué es un Punto Ciego (Blindspot)?</strong>
+                    <p class="text-xs text-amber-300/80 mt-1">Ocurre cuando un suceso de alto interés público es cubierto ampliamente por medios situados en un sector ideológico pero recibe cobertura nula o mínima en el sector opuesto, generando cámaras de eco informativas.</p>
+                </div>
+            </div>
+            <div id="blindspots-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- TAB 3: MALLA DE PROPIEDAD -->
+        <section id="view-sources" class="space-y-4 hidden">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+                    <span>Directorio de Transparencia & Propiedad de Medios</span>
+                </h2>
+            </div>
+            <div id="sources-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- TAB 4: ANALITICA Y PLURALIDAD -->
+        <section id="view-analytics" class="space-y-6 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 rounded-2xl">
+                    <h3 class="text-sm font-semibold text-slate-200 mb-4 flex items-center space-x-2">
+                        <i data-lucide="gauge" class="w-4 h-4 text-cyan-400"></i>
+                        <span>Índice de Pluralidad Mediática Nacional</span>
+                    </h3>
+                    <div id="chart-plurality" class="h-64 w-full"></div>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl">
+                    <h3 class="text-sm font-semibold text-slate-200 mb-4 flex items-center space-x-2">
+                        <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+                        <span>Entidades y Autoridades Más Mencionadas</span>
+                    </h3>
+                    <div id="entities-container" class="space-y-3 text-sm">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DETALLE DE EVENTO MULTIPERSPECTIVA -->
+    <div id="cluster-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col overflow-hidden border border-slate-700 shadow-2xl">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/80">
+                <div>
+                    <span id="modal-category" class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Categoría</span>
+                    <h3 id="modal-title" class="text-lg font-bold text-white mt-1">Título del Evento Fáctico</h3>
+                </div>
+                <button onclick="closeModal('cluster-modal')" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-6 text-sm" id="modal-body">
+                <!-- Dynamic Content -->
+            </div>
+
+            <div class="p-4 border-t border-slate-800 bg-slate-900/60 text-xs text-slate-400 flex items-center justify-between">
+                <span>Conforme al Art. 71B Ley N° 17.336 (Derecho de Cita y Enlaces Originales)</span>
+                <button onclick="closeModal('cluster-modal')" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DERECHOS ARCO (LEY 21.719) -->
+    <div id="arco-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="lock" class="w-5 h-5 text-cyan-400"></i>
+                    <span>Portal de Derechos ARCO (Ley N° 21.719)</span>
+                </h3>
+                <button onclick="closeModal('arco-modal')" class="text-slate-400 hover:text-white">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-400">
+                La Ley N° 21.719 garantiza el derecho de toda persona a solicitar el <strong>Acceso, Rectificación, Supresión u Oposición</strong> de datos personales. Este observatorio enmascara preventivamente identificadores privados.
+            </p>
+            <form id="arco-form" onsubmit="submitArcoForm(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Tipo de Derecho</label>
+                    <select id="arco-type" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200">
+                        <option value="supresion">Supresión / Eliminación de datos personales</option>
+                        <option value="rectificacion">Rectificación de datos erróneos</option>
+                        <option value="acceso">Acceso / Información de tratamiento</option>
+                        <option value="oposicion">Oposición al tratamiento</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Correo Electrónico de Contacto</label>
+                    <input type="email" id="arco-email" required placeholder="correo@ejemplo.cl" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Identificador o Nombre Objeto de Solicitud</label>
+                    <input type="text" id="arco-target" required placeholder="RUT o Nombre completo" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Detalle del Fundamento</label>
+                    <textarea id="arco-desc" rows="3" required placeholder="Explique brevemente su solicitud..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200"></textarea>
+                </div>
+                <button type="submit" class="w-full py-2 bg-cyan-600 hover:bg-cyan-500 font-semibold text-white rounded-lg transition text-xs">
+                    Ingresar Solicitud Formal
+                </button>
+            </form>
+            <div id="arco-result" class="text-xs p-3 rounded-lg bg-slate-900 hidden"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <p>Observatorio de Información Pública Digital de Chile 🇨🇱 • Plataforma de Auditoría Cívica y Metodología Abierta</p>
+        <p class="mt-1">Cumplimiento estricto con las Leyes N° 21.719 (Datos Personales), N° 21.459 (Ciberseguridad) y N° 17.336 (Propiedad Intelectual).</p>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script src="/static/app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

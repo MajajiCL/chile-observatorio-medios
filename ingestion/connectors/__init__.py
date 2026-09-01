@@ -1,0 +1,4 @@
+﻿# Package connectors
+from ingestion.connectors.economic_indicators import EconomicIndicatorConnector
+from ingestion.connectors.diario_oficial import DiarioOficialConnector
+from ingestion.connectors.congreso import CongresoConnector

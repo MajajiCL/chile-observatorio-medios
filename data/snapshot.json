@@ -1,0 +1,2278 @@
+{
+  "generated_at": "2026-09-01T09:59:19",
+  "stats": {
+    "sources_count": 17,
+    "articles_indexed_count": 53,
+    "clusters_active_count": 49,
+    "blindspots_detected_count": 0
+  },
+  "economic_indicators": [
+    {
+      "code": "UF",
+      "name": "Unidad de Fomento (UF)",
+      "value": 40875.09,
+      "unit": "CLP",
+      "date": "2026-09-01T04:00:00",
+      "source": "Banco Central de Chile"
+    },
+    {
+      "code": "DOLAR",
+      "name": "Dólar Observado",
+      "value": 933.4,
+      "unit": "CLP",
+      "date": "2026-09-01T04:00:00",
+      "source": "Banco Central de Chile"
+    },
+    {
+      "code": "EURO",
+      "name": "Euro",
+      "value": 1084.21,
+      "unit": "CLP",
+      "date": "2026-09-01T04:00:00",
+      "source": "Banco Central de Chile"
+    },
+    {
+      "code": "IPC",
+      "name": "Índice de Precios al Consumidor (IPC)",
+      "value": -0.2,
+      "unit": "%",
+      "date": "2025-12-01T03:00:00",
+      "source": "Instituto Nacional de Estadísticas (INE)"
+    },
+    {
+      "code": "UTM",
+      "name": "Unidad Tributaria Mensual (UTM)",
+      "value": 71721.0,
+      "unit": "CLP",
+      "date": "2026-09-01T04:00:00",
+      "source": "Servicio de Impuestos Internos (SII)"
+    },
+    {
+      "code": "IMACEC",
+      "name": "Imacec",
+      "value": 2.4,
+      "unit": "%",
+      "date": "2026-06-01T04:00:00",
+      "source": "Banco Central de Chile"
+    },
+    {
+      "code": "TPM",
+      "name": "Tasa de Política Monetaria (TPM)",
+      "value": 4.5,
+      "unit": "%",
+      "date": "2026-09-01T04:00:00",
+      "source": "Banco Central de Chile"
+    }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "slug": "la-tercera",
+      "name": "La Tercera",
+      "url": "https://www.latercera.com",
+      "spectrum": "centro-derecha",
+      "category": "prensa-tradicional",
+      "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)",
+      "ownership_type": "conglomerado-privado",
+      "funding_model": "suscripcion-publicidad",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 18
+    },
+    {
+      "id": 2,
+      "slug": "emol",
+      "name": "Emol (El Mercurio Online)",
+      "url": "https://www.emol.com",
+      "spectrum": "derecha",
+      "category": "prensa-tradicional",
+      "ownership": "Empresa El Mercurio S.A.P. (Familia Edwards)",
+      "ownership_type": "conglomerado-privado",
+      "funding_model": "publicidad-suscripcion",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 0
+    },
+    {
+      "id": 3,
+      "slug": "biobiochile",
+      "name": "BioBioChile",
+      "url": "https://www.biobiochile.cl",
+      "spectrum": "centro",
+      "category": "prensa-tradicional",
+      "ownership": "Bío-Bío Comunicaciones (Familia Mosciatti)",
+      "ownership_type": "grupo-familiar-independiente",
+      "funding_model": "publicidad",
+      "facticity_rating": "alta",
+      "region": "Nacional / Multirregional",
+      "total_articles": 0
+    },
+    {
+      "id": 4,
+      "slug": "cooperativa",
+      "name": "Radio Cooperativa",
+      "url": "https://www.cooperativa.cl",
+      "spectrum": "centro-izquierda",
+      "category": "prensa-tradicional",
+      "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)",
+      "ownership_type": "privado-independiente",
+      "funding_model": "publicidad",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 15
+    },
+    {
+      "id": 5,
+      "slug": "ciper",
+      "name": "CIPER Chile",
+      "url": "https://www.ciperchile.cl",
+      "spectrum": "investigacion-no-alineada",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)",
+      "ownership_type": "fundacion-sin-fines-de-lucro",
+      "funding_model": "socios-donaciones-fondos",
+      "facticity_rating": "muy-alta",
+      "region": "Nacional",
+      "total_articles": 5
+    },
+    {
+      "id": 6,
+      "slug": "el-mostrador",
+      "name": "El Mostrador",
+      "url": "https://www.elmostrador.cl",
+      "spectrum": "centro-izquierda",
+      "category": "prensa-digital-investigacion",
+      "ownership": "La Plaza S.A. (Germán Olmedo / Federico Joannon)",
+      "ownership_type": "empresa-periodistica-independiente",
+      "funding_model": "publicidad-socios",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 0
+    },
+    {
+      "id": 7,
+      "slug": "the-clinic",
+      "name": "The Clinic",
+      "url": "https://www.theclinic.cl",
+      "spectrum": "centro-izquierda",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)",
+      "ownership_type": "privado-independiente",
+      "funding_model": "publicidad",
+      "facticity_rating": "media-alta",
+      "region": "Nacional",
+      "total_articles": 5
+    },
+    {
+      "id": 8,
+      "slug": "ex-ante",
+      "name": "Ex-Ante",
+      "url": "https://www.ex-ante.cl",
+      "spectrum": "centro-derecha",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Ex-Ante SpA (Cristián Bofill)",
+      "ownership_type": "empresa-periodistica-independiente",
+      "funding_model": "suscripcion-publicidad",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 5
+    },
+    {
+      "id": 9,
+      "slug": "el-dinamo",
+      "name": "El Dínamo",
+      "url": "https://www.eldinamo.cl",
+      "spectrum": "centro",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Ediciones Giro País SpA (Sebastián Sichel y socios fundadores)",
+      "ownership_type": "privado-independiente",
+      "funding_model": "publicidad",
+      "facticity_rating": "media-alta",
+      "region": "Nacional",
+      "total_articles": 0
+    },
+    {
+      "id": 10,
+      "slug": "interferencia",
+      "name": "Interferencia",
+      "url": "https://interferencia.cl",
+      "spectrum": "izquierda",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Sociedad Periodística Interferencia SpA (Víctor Herrero)",
+      "ownership_type": "empresa-periodistica-independiente",
+      "funding_model": "suscripcion-socios",
+      "facticity_rating": "media-alta",
+      "region": "Nacional",
+      "total_articles": 5
+    },
+    {
+      "id": 11,
+      "slug": "el-ciudadano",
+      "name": "El Ciudadano",
+      "url": "https://www.elciudadano.com",
+      "spectrum": "izquierda",
+      "category": "prensa-digital-investigacion",
+      "ownership": "Sociedad Periodística El Ciudadano (Sebastián Larraín)",
+      "ownership_type": "colectivo-comunicacional",
+      "funding_model": "socios-publicidad-donaciones",
+      "facticity_rating": "media",
+      "region": "Nacional / Latinoamerica",
+      "total_articles": 0
+    },
+    {
+      "id": 12,
+      "slug": "t13",
+      "name": "Teletrece (T13)",
+      "url": "https://www.t13.cl",
+      "spectrum": "centro-derecha",
+      "category": "prensa-tradicional",
+      "ownership": "Canal 13 SpA (Grupo Luksic)",
+      "ownership_type": "conglomerado-privado",
+      "funding_model": "publicidad",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 0
+    },
+    {
+      "id": 13,
+      "slug": "24horas",
+      "name": "24 Horas (TVN)",
+      "url": "https://www.24horas.cl",
+      "spectrum": "institucional-oficial",
+      "category": "prensa-tradicional",
+      "ownership": "Televisión Nacional de Chile (Estado de Chile / Directorio Plural)",
+      "ownership_type": "empresa-publica-estatal",
+      "funding_model": "publicidad-fondos-publicos",
+      "facticity_rating": "alta",
+      "region": "Nacional",
+      "total_articles": 0
+    },
+    {
+      "id": 14,
+      "slug": "el-dia",
+      "name": "Diario El Día",
+      "url": "https://www.diarioeldia.cl",
+      "spectrum": "centro",
+      "category": "prensa-regional",
+      "ownership": "Empresa Periodística El Día (Familia Puga)",
+      "ownership_type": "regional-independiente",
+      "funding_model": "publicidad-impreso",
+      "facticity_rating": "alta",
+      "region": "Coquimbo / La Serena",
+      "total_articles": 0
+    },
+    {
+      "id": 15,
+      "slug": "el-pinguino",
+      "name": "El Pingüino (Magallanes)",
+      "url": "https://elpinguino.com",
+      "spectrum": "centro",
+      "category": "prensa-regional",
+      "ownership": "Patagónica Publicaciones S.A.",
+      "ownership_type": "regional-independiente",
+      "funding_model": "publicidad",
+      "facticity_rating": "media-alta",
+      "region": "Magallanes / Punta Arenas",
+      "total_articles": 0
+    },
+    {
+      "id": 16,
+      "slug": "senado-chile",
+      "name": "Senado de la República de Chile",
+      "url": "https://www.senado.cl",
+      "spectrum": "institucional-oficial",
+      "category": "fuente-oficial",
+      "ownership": "Poder Legislativo del Estado de Chile",
+      "ownership_type": "organo-constitucional",
+      "funding_model": "presupuesto-nacional",
+      "facticity_rating": "institucional",
+      "region": "Nacional / Valparaíso",
+      "total_articles": 0
+    },
+    {
+      "id": 17,
+      "slug": "prensa-presidencia",
+      "name": "Prensa Presidencia de la República",
+      "url": "https://prensa.presidencia.cl",
+      "spectrum": "institucional-oficial",
+      "category": "fuente-oficial",
+      "ownership": "Poder Ejecutivo del Estado de Chile",
+      "ownership_type": "organo-constitucional",
+      "funding_model": "presupuesto-nacional",
+      "facticity_rating": "institucional",
+      "region": "Nacional",
+      "total_articles": 0
+    }
+  ],
+  "clusters": [
+    {
+      "id": 49,
+      "title": "“República de Lemuria”: detienen a conductor que presentó documentación de país ficticio durante fiscalización en Lampa",
+      "description": "Tras las respectivas corroboraciones, se determinó que es un ciudadano chileno de 51 años sin antecedentes penales. Sin embargo, ahora será formalizado por una serie de delitos, como usurpación de identidad.",
+      "category": "General",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T09:59:19",
+      "last_seen_at": "2026-09-01T09:59:19",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 48,
+      "title": "Trump abre la puerta a revisar postura de EE.UU. sobre la soberanía de las islas Malvinas",
+      "description": "El mandatario estadounidense aseguró que “siempre” evalúa este tipo de posiciones. La posibilidad de un giro de Washington ya había surgido en abril, en medio de sus diferencias con Londres por la guerra contra Irán.",
+      "category": "General",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T09:25:44",
+      "last_seen_at": "2026-09-01T09:25:44",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 47,
+      "title": "Chile sucumbió ante República Dominicana por las Clasificatorias de baloncesto",
+      "description": "<p><strong>La selección chilena de baloncesto continuó su camino en las Clasificatorias para Catar 2027 con una derrota frente a República Dominicana</strong> en el Palacio de los Deportes de Santo Domingo, capital del país caribeño.</p>\n<p>El elenco dominicano se impuso a \"La Roja cestera\" con un <strong>claro marcador de 101-66</strong> este lunes.</p>\n<p>Andrés Feliz, escolta que milita en Real Madrid, lideró a su equipo con 17 puntos, tres rebotes y tres asistencias; en un partido que contó un <strong>inesperado corte de electricidad en pleno tercer cuarto</strong>, aunque se reanudó luego de algunos minutos.</p>\n<blockquote class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"es\">[VIDEO] Corte de luz paró el duelo de Chile y República Dominicana en las Clasificatorias de baloncesto <a href=\"https://t.co/vMWVlOkyUp\" rel=\"link a una nota absoluta 1\" target=\"_blank\">https://t.co/vMWVlOkyUp</a> <a href=\"https://t.co/pv1eKFjIP8\" rel=\"link a una nota absoluta 3\" target=\"_blank\">pic.twitter.com/pv1eKFjIP8</a></p>\n— Cooperativa (@Cooperativa) <a href=\"https://x.com/Cooperativa/status/2094605353287618649?ref_src=twsrc%5Etfw\">September 1, 2026</a></blockquote>\n\n<p>Con este resultado <strong>Chile quedó último de su grupo en la zona americana con 10 puntos</strong>, por detrás de Colombia (11) y México (13), cuarto en la tabla que de momento clasifica a un repechaje.</p>\n<p>Brasil cierra el podio y la clasificación directa al Mundial con los mismos 14 puntos de República Dominicana, mientras Estados Unidos lidera con 15.</p>\n<p>En la próxima doble fecha Chile será local ante México, el 27 de diciembre y ante los dominicanos el día 30 de aquel mes.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T08:21:06",
+      "last_seen_at": "2026-09-01T08:21:06",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 46,
+      "title": "China niega falta de transparencia sobre la riada tras acusaciones de censura y bulos",
+      "description": "<p><strong>China defendió la transparencia de la información difundida acerca de la devastadora riada que golpeó la semana pasada la frontera entre Nepal y el Tíbet,</strong> en respuesta a las <a href=\"https://www.cooperativa.cl/noticias/mundo/asia/nepal/que-causo-la-tragica-riada-en-nepal/2026-08-26/161106.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">acusaciones de censura y desinformación sobre la catástrofe</a> en las redes sociales del país.</p>\n<p><strong>\"La información de China se publica de manera abierta, transparente y oportuna\",</strong> manifestó en rueda de prensa el portavoz del Ministerio chino de Exteriores Guo Jiakun, quien agregó que \"difamar maliciosamente y especular\" con el desastre \"no encontrará apoyo\".</p>\n<p>El vocero reaccionó de esta forma a una pregunta sobre la <strong>posible retirada de vídeos que muestran la destrucción del paso fronterizo de Gyirong</strong> y sobre acusaciones, atribuidas a grupos tibetanos en el extranjero, de que las autoridades estarían infravalorando las cifras de muertos y desaparecidos.</p>\n<p>El vocero no respondió específicamente a si las autoridades habían ordenado retirar esas imágenes ni aportó datos adicionales para responder a las dudas planteadas sobre el balance de víctimas.</p>\n<p>EFE comprobó este domingo que <strong>la grabación completa de una cámara de seguridad que muestra cómo la riada arrasa el complejo fronterizo no aparecía en búsquedas realizadas en Douyin</strong>, equivalente chino de TikTok, Xiaohongshu, similar a Instagram, y WeChat, una aplicación similar a Whatsapp, aunque sí podían encontrarse fragmentos, reconstrucciones animadas e imágenes de la devastación.</p>\n<p>La ausencia de la grabación completa no permite determinar si fue retirada por las plataformas o si sus sistemas de moderación y recomendación dificultan localizarla.</p>\n<p>Las declaraciones de Guo se producen después de que las <strong>autoridades chinas sancionaran administrativamente a un internauta por pu",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:59:30",
+      "last_seen_at": "2026-09-01T07:59:30",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 45,
+      "title": "Garnero disparó: Cuando no jugamos bien hay profundidad de análisis, otros sacan resultados y está todo bárbaro",
+      "description": "<p>Con su franqueza habitual, <strong>Daniel Garnero habló en conferencia de prensa tras la <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/la-uc-logro-un-batallado-triunfo-ante-o-higgins-y-recupero-el/2026-08-31/225326.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">victoria de Universidad Católica sobre O'Higgins</a></strong> que le permitió volver al segundo puesto de la Liga de Primera, haciendo frente con todo a las consultas respecto a los resultados en el torneo.</p>\n<p>\"<strong>Este es un juego que <em>perdés</em> dos partidos y a mí me echan a la mierda</strong>. Si <em>ganás</em>, <em>podés</em> corregir, <em>podés</em> mejorar. <strong>¿No hicimos el mejor partido? No hicimos el mejor partido</strong>. Le dimos al rival la posibilidad de que maneje el juego, ¿eso es un error? Sí, también.<strong> Tenemos que corregir, pero el resultado termina siendo muy importante</strong>\", señaló.</p>\n<p>Luego, le dio una tajante respuesta a la prensa: \"<strong>Me encanta cuando quieren analizar. Cuando no jugamos muy bien hay una profundidad de análisis terrible. En otros equipos, veo que cuando sacaban resultados está todo bárbaro</strong>. Estoy para analizar, analícenme todo\".</p>\n<p>De vuelta a lo que ocurrió en la cancha, Garnero admitió que \"no pudimos controlar el juego sobre todo en el segundo tiempo. Le dimos la posesión al rival y tuvimos pocos obstáculos. Una vez que recuperábamos el balón no éramos profundos, no le sacábamos el ritmo al juego, no manejamos el ritmo nosotros. Eso fue un error\".</p>\n<p>Por otro lado, valoró las actuaciones clave de Vicente Bernedo y Fernando Zampedri, puesto que más allá de que \"esto es un deporte de conjunto, obviamente que las individualidades son fundamentales\".</p>\n<p>\"<strong>En los niveles individuales estamos un poco bajos. Hoy el 'Vicho' (Bernedo) tuvo un gran partido, Fer (Zampedri) tuvo un gran partido, entonces tenemos que nivelar para arriba</strong>. Nosotros cuando logramos e",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:55:33",
+      "last_seen_at": "2026-09-01T07:55:33",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 44,
+      "title": "La ironía de Garnero tras el triunfo de la UC: “No jugamos bien y hacen análisis; en otros equipos ganan y está todo bárbaro”",
+      "description": "El técnico de Universidad Católica valora el resultado en el Claro Arena, pero remarca en que aún están lejos del nivel que espera.",
+      "category": "General",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:41:43",
+      "last_seen_at": "2026-09-01T07:41:43",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 43,
+      "title": "Renunció el secretario del Ejército de EE.UU. tras tensiones con el secretario de Guerra",
+      "description": "<p>El secretario del Ejército de Estados Unidos, <strong>Dan Driscoll, entregó su dimisión al presidente estadounidense, Donald Trump,</strong> tras meses de tensiones con el secretario de Guerra, Pete Hegseth, en torno a los cambios en el liderazgo de la agencia, según informó este lunes <em>The Wall Street Journal</em>.</p>\n<p>El diario anticipa que<strong> Driscoll deje el Pentágono \"en los próximos días\"</strong> y señaló que, con su salida, el Ejército carecerá de líderes civiles o militares confirmados por el Senado.</p>\n<p>No está claro si la Casa Blanca aceptó su dimisión ni quién lo puede reemplazar.</p>\n<p><strong>Driscoll había expresado al Gobierno de Trump su preocupación por la transformación y disposición del Ejército,</strong> y opinaba que Hegseth estaba perjudicando esos cometidos, \"específicamente despidiendo a los generales que eran sus responsables\", indicó<em> Fox News</em>, que citó fuentes conocedoras del asunto.</p>\n<p>Hegseth apartó de sus cargos recientemente a los generales Christopher Donahue y Randy George, así como al antiguo vicedirector del Ejército, James Mingus, y cubrió los puestos de estos dos últimos con un solo militar de alto rango, el general Christopher LaNeve, agregó.</p>\n<p>Una portavoz de la Casa Blanca, <strong>Anna Kelly, destacó a los medios el trabajo de Driscoll en \"operaciones militares históricas\"</strong>, su \"énfasis en la preparación y letalidad\", y las negociaciones entre Rusia y Ucrania.</p>\n<p>El Journal también indicó que el vicesecretario interino del Ejército, Dave Fitzgerald, que se ha centrado en atraer inversiones privadas para modernizar la tecnología de Defensa, también dejará su cargo esta semana.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:36:45",
+      "last_seen_at": "2026-09-01T07:36:45",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 42,
+      "title": "Diputados UDI piden a Kast desplegar las FF.AA. en la frontera sur ante nuevas rutas del narcotráfico",
+      "description": "Los diputados Mario Olavarría y Omar Sabat plantearon la necesidad de replicar lo ocurrido en la frontera norte de la mano de las Fuerzas Armadas ante las advertencias planteadas desde el Ministerio Público.",
+      "category": "Politica",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:10:30",
+      "last_seen_at": "2026-09-01T07:10:30",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 41,
+      "title": "Diputados opositores reúnen firmas para crear comisión investigadora por caso Cerimedo y esperan que se vote esta semana",
+      "description": "La instancia busca indagar eventuales mecanismos de contaminación digital de procesos electorales y determinar si existieron vínculos entre funcionarios públicos, cuentas de redes sociales y el entorno del consultor argentino.",
+      "category": "Politica",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T07:08:32",
+      "last_seen_at": "2026-09-01T07:08:32",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 40,
+      "title": "Araucanía: Carabineros incautó 10 pistolas contrabandeadas desde Argentina",
+      "description": "<p>El <strong>OS7 de Carabineros </strong>detuvo a dos hombres que ingresaron clandestinamente a la <strong>Región de La Araucanía</strong>, desde <strong>Argentina</strong>, <strong>10 pistolas</strong>: en su mayoría, con el <strong>número de serie borrado</strong>.</p>\n<p>\"Tenemos una incautación de <strong>10 pistolas, 21 cargadores, dinero extranjero, dinero nacional, celulares y un vehículo\"</strong>, dijo el <strong>general jefe de la IX Zona Policial, Miguel Herrera</strong>, que describió este procedimiento como \"<strong>la más grande incautación de armamento</strong> que se ha producido en la Región de La Araucanía\".</p>",
+      "category": "Pais",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T06:50:23",
+      "last_seen_at": "2026-09-01T06:50:23",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 39,
+      "title": "Nueva noche inspirada de Zampedri y Gómez sentencia: la UC alcanza a la U en la lucha del Chile 2 con un triunfo ante O’Higgins",
+      "description": "Universidad Católica vence por 3-2 al cuadro celeste en el Claro Arena e iguala los puntos de Universidad de Chile en la lucha por el cupo a la Copa Libertadores. Un doblete del Toro y un gol agónico de Martín Gómez marcaron una jornada donde las atajadas de Vicente Bernedo sostuvieron al cuadro estudiantil en su momento más complicado.",
+      "category": "General",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T06:44:11",
+      "last_seen_at": "2026-09-01T06:44:11",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 38,
+      "title": "Aprueban idea de legislar ley antibarricadas 2.0 tras discusión inmediata dispuesta por el gobierno",
+      "description": "La Comisión de Seguridad de la Cámara de Diputados, aprobó la idea de legislar por siete votos a favor, cinco en contra y una abstención.",
+      "category": "Nacional",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T06:12:57",
+      "last_seen_at": "2026-09-01T06:12:57",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 37,
+      "title": "Manuela Martelli ante los recortes en Cultura: \"Es una gran tragedia\"",
+      "description": "<p>La directora <strong>Manuela Martelli</strong> calificó como<strong> \"una gran tragedia\"</strong> los <a href=\"https://www.cooperativa.cl/noticias/magazine/personajes/daniel-munoz-por-los-recortes-a-la-derecha-no-le-interesa-la-cultura/2026-06-04/205444.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><strong>profundos recortes presupuestarios en el sector cultural</strong></a> por parte del Gobierno de <strong>José Antonio Kast</strong>, lamentando que en el Ejecutivo no exista una visión de que <strong>el cine nacional es \"una industria más\"</strong>.</p>\n<p>Al conversar con<strong> Cooperativa</strong> sobre su nueva película<strong> \"El Deshielo\"</strong>, elegida por la <strong>Academia de Cine de Chile</strong> para <a href=\"https://www.cooperativa.cl/noticias/magazine/cine/cine-chileno/el-deshielo-y-hangar-rojo-representaran-a-chile-en-los-oscar-y-los/2026-08-26/084912.html\" rel=\"link a una nota relativa 3\" target=\"_blank\">representar al país en los próximos<strong> Premios Oscar</strong></a>, abordó la compleja situación para la actividad artística creativa frente a los recortes en Cultura.</p>\n<p>\"<strong>Para mí es una gran tragedia</strong>, porque creo que tenemos mucho talento en Chile, que <strong>el cine es una tremenda vía para no solo hacernos conocer afuera, sino que también es una fuente de trabajo</strong>\", aseguró la cineasta que debutó tras las cámaras con \"1976\".</p>\n<p>Respecto a su actual obra, que describe como \"<strong>un pequeño 'Fitzcarraldo</strong>'\" en referencia a la dificultosa producción del citado largometraje de Werner Herzog, recalcó que esa descripción no es al azar, pues \"una película es una empresa, donde se junta el talento y el trabajo de mucha gente. La industria te da la posibilidad de desarrollarnos técnicamente también\".</p>\n<p>\"<strong>Me parece muy lamentable que no exista esa visión de saber que ahí hay mucho, que es una industria más</strong>\", expresó Martelli.</p>\n<h2><em><strong>Paulina Urrutia: El cine",
+      "category": "Economia",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T06:05:11",
+      "last_seen_at": "2026-09-01T06:05:11",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 36,
+      "title": "Niña de cinco años fue impactada por una bala mientras jugaba con sus primos",
+      "description": "<p>Una <strong>niña de cinco años</strong> de edad fue impactada en su pierna izquierda por una <strong>\"bala perdida\" </strong>en momentos en que jugaba junto a familiares en una cancha ubicada en la comuna de <strong>Cerro Navia.</strong></p>\n<p>El hecho ocurrió en la intersección de <strong>Las Torres </strong>con<strong> Mar de Chile </strong>y, según testigos, fue responsabilidad de delincuentes que dispararon en al menos 10 oportunidades desde un vehículo para luego huir a toda velocidad.</p>\n<p>La pequeña fue<strong> trasladada de urgencia hasta el Hospital Félix Bulnes</strong>, donde será intervenida para retirarle el proyectil.</p>\n<p>\"<strong>Mi hija en estos momentos se encuentra bien, está estable</strong>\", señaló su padre en el recinto asistencial.</p>\n<p>La niña \"estaba con sus primos jugando, y en el momento en que se estaban yendo, <strong>llegó un auto a efectuar disparos: uno de ésos le llegó directamente a la piernita y el otro le rozó la zapatilla\"</strong>, relató el progenitor.</p>\n<p>\"Por lo que nos dijo el cirujano, <strong>a la una de la madrugada entraría a pabellón para poder sacarle la bala que tiene alojada en el fémur</strong>\", añadió.</p>\n<p>El Equipo de Crimen Organizado y Homicidios (ECOH) de la Fiscalía ya realiza diligencias en el sector, donde, según vecinos, esta clase de hechos es recurrente.</p>",
+      "category": "Pais",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T06:04:07",
+      "last_seen_at": "2026-09-01T06:04:07",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 35,
+      "title": "Republicanos frenan unanimidad para despachar feriado del 17 de septiembre y comisión invitará a Quiroz y Mas",
+      "description": "La iniciativa busca sumar una jornada festiva a las celebraciones de Fiestas Patrias de este año, pero los reparos de parlamentarios oficialistas apuntan al eventual impacto económico de la medida y a la necesidad de escuchar a gremios y al Ejecutivo.",
+      "category": "Politica",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:55:09",
+      "last_seen_at": "2026-09-01T05:55:09",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 34,
+      "title": "Cayó el \"Indio Juan\", quien se fugó de la expenitenciaría disfrazado de gendarme",
+      "description": "<p>Tras permanecer más de seis meses prófugo de la justicia, <a href=\"https://www.cooperativa.cl/noticias/pais/judicial/carceles/expenitenciaria-gendarmeria-despliega-operativo-tras-detectar-falta-de/2026-02-25/221135.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><span><strong>Juan Flores Valenzuela</strong>,<strong> conocido bajo el alias de \"Indio Juan\"</strong></span></a>,<strong> fue detenido la tarde de este lunes en la Población La Bandera</strong>,<strong> en la capitalina comuna de San Ramón</strong>, en un operativo coordinado entre la Policía de Investigaciones (PDI) y el Ministerio Público.</p>\n<p>La búsqueda comenzó el pasado 25 de febrero, cuando este sujeto -en compañía de otro interno- <a href=\"https://www.cooperativa.cl/noticias/pais/judicial/carceles/fuga-en-la-ex-penitenciaria-fiscalia-indaga-posible-facilitacion-de/2026-02-26/183121.html\" rel=\"link a una nota relativa 3\" target=\"_blank\"><span><strong>logró escapar del Centro de Detención Preventiva Santiago Sur (ex Penitenciaría) tras conseguir indumentaria oficial</strong></span></a>.</p>\n<p>Las diligencias investigativas para dar con el paradero del criminal fueron <strong>dirigidas por el fiscal regional Metropolitano Occidente</strong>,<strong> Marcos Pastén</strong>, en coordinación directa con las unidades operativas de la Brigada de Investigaciones Policiales Especiales (BIPE).</p>\n<p>Pastén destacó que \"se estuvieron realizando intensas diligencias para reconstruir los circuitos que se habían utilizado desde la salida del centro penitenciario. Es así como se nos presentaron diversos puntos de interés y mediante técnicas de investigación como vigilancias, levantamiento de información, cámaras, pudimos nosotros detectar que se nos presentaba este lugar en la comuna de San Ramón como un punto de interés\".</p>\n<p>Tras su aprehensión en la Población La Bandera, <strong>el imputado fue trasladado de hasta las dependencias del cuartel del equipo especializado</strong>, lugar donde perman",
+      "category": "Pais",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:52:46",
+      "last_seen_at": "2026-09-01T05:52:46",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 33,
+      "title": "Comisión mixta logra acuerdo y destraba proyecto de reforma al sistema político",
+      "description": "La instancia zanjó por unanimidad la discrepancia sobre las exigencias que deberán incorporar los partidos en sus declaraciones de principios. La iniciativa deberá ser ahora revisada y votada por ambas cámaras.",
+      "category": "Politica",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:50:30",
+      "last_seen_at": "2026-09-01T05:50:30",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 32,
+      "title": "Capturan al “Indio Juan” tras seis meses prófugo: escapó de la ex Penitenciaría vestido como gendarme",
+      "description": "Juan Flores Valenzuela cumplía una condena de presidio perpetuo por el femicidio de su pareja ocurrido el año 2021 en Puente Alto.",
+      "category": "Nacional",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:46:45",
+      "last_seen_at": "2026-09-01T05:46:45",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 31,
+      "title": "Caso Bruma: Familiares valoran \"actitud\" del nuevo fiscal regional del Biobío",
+      "description": "<p>El <strong>nuevo fiscal regional del Biobío, Roberto Garrido</strong>, se reunió este lunes, por primera vez, con los <strong>familiares de los siete pescadores artesanales</strong> <strong>fallecidos</strong> luego de que su embarcación, \"<strong>Bruma\"</strong>, fuera impactada por el pesquero de alta mar <strong>\"Cobra\"</strong>, perteneciente a la empresa <strong>Blumar</strong>.</p>\n<p><a href=\"https://www.cooperativa.cl/noticias/pais/judicial/ministerio-publico/exfiscal-jefe-de-la-araucania-asumio-en-biobio-la-region-mas-compleja/2026-08-03/234044.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">Al asumir el cargo, a inicios de mes</a>, Garrido anunció que esclarecer lo acontecido la noche del <strong>30 de marzo de 2025</strong> en cercanías de la <strong>Isla Santa María </strong>sería una de sus prioridades iniciales. </p>\n<p>La cita de hoy fue, principalmente, de presentación, pero el persecutor adelantó que existe información nueva y diligencias importantes a desarrollar dentro de los próximos días; teniendo presente que en este caso no existe registro audiovisual, como mandata la ley a los barcos que tienen pilotaje automático.</p>\n<p><strong>Catalina Medel, vocera de las familiares</strong>, valoró, sobre todo, \"la actitud totalmente distinta\" que mostró hacia ellos el exjefe del Ministerio Público en La Araucanía.</p>\n<p>\"<strong>Pudimos hablar con él tranquilamente</strong>, tuvo disposición de escuchar a las familias y <strong>no se invalidó nada de lo que nosotros dijimos</strong>\", explicó.</p>\n<p>\"Nosotros (como deudos) consideramos todo importante (en esta investigación); entonces, si tenemos una duda o consulta, se la vamos a hacer saber al fiscal nuevo; y <strong>antes (con Marcela Cartagena) no podíamos tener como ese relajo de preguntarlo</strong>... Había una actitud en que, <strong>quizás, no se consideraba mucho </strong><strong>lo que nosotros decíamos\"</strong>, recordó Medel.</p>\n<p>Con el nuevo fiscal regional, \"esperamos tene",
+      "category": "Pais",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:10:06",
+      "last_seen_at": "2026-09-01T05:10:06",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 30,
+      "title": "Radiografía al nuevo votante chileno derriba mitos sobre su edad y nivel socioeconómico",
+      "description": "<p>Un <strong>estudio del <a href=\"https://www.cooperativa.cl/noticias/pais/organismos-del-estado/servel-es-el-organismo-electoral-mejor-evaluado-de-latinoamerica/2026-07-23/214657.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><span>Servicio Electoral (Servel)</span></a></strong> determinó que <strong>el perfil del nuevo votante chileno corresponde a un adulto joven de clase media urbana</strong> que, aunque comparte rasgos con el elector tradicional, <strong>destaca por su despolitización</strong>, <strong>su ausencia de militancia partidaria y su falta de habitualidad cívica</strong>.</p>\n<p>Los resultados corresponden al \"<strong>Nuevo Mapa Electoral: Participación y Perfiles de Votantes en Chile</strong>\", en el que el Servel, en conjunto con el Departamento de Estudios Políticos de la Facultad de Gobierno de la Universidad de Chile, presentó <strong>las principales estadísticas del período 2020-2025</strong>,<strong> considerado el ciclo electoral más exigente de la historia del país</strong>,<strong> con 16 votaciones</strong>.</p>\n<p>En entrevista este lunes con <strong>Lo Que Queda Del Día </strong>en<strong> Cooperativa</strong>, la <strong>consejera directiva del Servel y académica de la Universidad de Chile</strong><strong> María Cristina Escudero</strong> detalló que \"<strong>el nuevo votante se parece bastante al habitual</strong>, <strong>pero como en un espejo</strong>\".</p>\n<div class=\"marcoFoto\">\n<div><img alt=\"fotocontent_1\" height=\"auto\" src=\"https://www.cooperativa.cl/noticias/site/artic/20260831/imag/foto_0000000320260831210213.jpg\" width=\"auto\" />\n</div>\n<div class=\"piefoto\"><em>La consejera directiva del organismo, María Cristina Escudero, afirmó que el nuevo elector \"se parece bastante al votante habitual\" y su irrupción \"rompe un poco los mitos\" instalados en el debate público. (FOTO: ATON)</em></div>\n</div>\n<p>\"Por ejemplo, <strong>si (en el habitual) había una mayor votación por parte de las mujeres</strong>,<strong> el nuevo vota",
+      "category": "Pais",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:02:13",
+      "last_seen_at": "2026-09-01T05:02:13",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 29,
+      "title": "“Está bueno que sea una nueva alternativa aparte del Movistar Arena”: Las positivas reacciones de los vecinos ante el anuncio del Renca Arena",
+      "description": "<p>La Municipalidad de Renca y privados impulsan un recinto para conciertos en el sector poniente de la comuna, con capacidad para 22 mil personas. Vecinos valoran la iniciativa, aunque algunos plantean dudas por el impacto en la tranquilidad y el flujo de público.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/esta-bueno-que-sea-una-nueva-alternativa-aparte-del-movistar-arena-las-positivas-reacciones-de-los-vecinos-ante-el-anuncio-del-renca-arena/\">&#8220;Está bueno que sea una nueva alternativa aparte del Movistar Arena&#8221;: Las positivas reacciones de los vecinos ante el anuncio del Renca Arena</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T05:00:00",
+      "last_seen_at": "2026-09-01T05:00:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 28,
+      "title": "Tras denuncia de Otakin: Bombero de servicentro fue detenido por estafa",
+      "description": "<p><strong>Carabineros detuvo al bombero del servicentro de Hualpén</strong>, Región del Biobío, <a href=\"https://www.cooperativa.cl/noticias/magazine/personajes/otakin-denuncio-presunta-estafa-en-bencinera-me-quisieron-cag/2026-08-31/171815.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">denunciado por estafa por el anti-influencer <strong>Rodrigo Fernández</strong></a>, mejor conocido como <strong>Otakin</strong>.</p>\n<p>El creador de contenido ocupó su cuenta de la red social Instagram para denunciar una presunta estafa que sufrió en la bencinera de la compañía <strong>Aramco</strong>, donde acusó a uno de los trabajadores de <strong>haberle cobrado 30 mil pesos de bencina sin haberle cargado el combustible</strong>.</p>\n<p>Otakin encaró al bombero al dar cuenta de que <strong>el tanque de su vehículo seguía vacío</strong>, además de asegurar que el trabajador<strong> le entregó una boleta de un cobro por la cifra mencionada que no calzaba con el horario de la carga</strong>.</p>\n<p><strong>La figura de redes sociales llamó a Carabineros y el bombero fue detenido por realizar \"un proceso irregular de carga, configurándose el delito de estafa\"</strong>, explicó el mayor <strong>Cristian Jones Benavente</strong>, de la Cuarta Comisaría de Carabineros de Hualpén, en un video compartido por el propio creador de contenido.</p>\n<p>Por su parte, desde <strong>Aramco</strong>, mediante un comunicado enviado al medio penquista <em>Sabes</em>, <strong>lamentaron lo sucedido y condenaron el actuar del trabajador denunciado</strong>, señalando que la compañía tomará contacto directo con Otakin para resolver la situación.</p>\n<blockquote class=\"instagram-media\">\n<div>\n<div>\n<div></div>\n<div>\n<div></div>\n<div></div>\n</div>\n</div>\n<div></div>\n<div></div>\n<div>\n<div>Ver esta publicación en Instagram</div>\n</div>\n<p><a href=\"https://www.instagram.com/reel/DcuV5emtsGN/?utm_source=ig_embed&amp;utm_campaign=loading\" target=\"_blank\">Una publicación compartida por OTAKIN (@otak",
+      "category": "Economia",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:47:23",
+      "last_seen_at": "2026-09-01T04:47:23",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 24,
+      "title": "Shinkansen y su apuesta por lanzar el Pix chileno: “No queremos un proyecto donde esté restringido quiénes se sientan en la mesa”",
+      "description": "La compañía trabaja en su proyecto de pagos inmediatos que competirá con el que están alistando los bancos. El cofundador de la empresa, Francisco Larraín, explica que el sistema que lanzarán será completamente abierto para quienes quieren participar. Además, estima que \"el sistema de pagos inmediatos no puede ser un traje a la medida del CCA\".",
+      "category": "Pulso",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:40:00",
+      "last_seen_at": "2026-09-01T04:40:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 25,
+      "title": "Retail mediano reorienta estrategia de créditos hacia clientes menos riesgosos",
+      "description": "En sus estados financieros correspondientes al segundo cuarto del ejercicio, ABC detalló que reconfiguró la cartera de crédito hacia clientes de \"mejor perfil\", producto de lo cual su base de clientes es 16% menor.  La estrategia de Hites también se enfocó en reducir el riesgo, en tanto Tricot apuntó a mayores filtros para nuevos clientes.",
+      "category": "Pulso",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:40:00",
+      "last_seen_at": "2026-09-01T04:40:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 26,
+      "title": "Expertos que integran el comité del PIB tendencial anticipan alza para 2027 por efecto de la megarreforma",
+      "description": "Los economistas que participaron en el Comité de Expertos del PIB tendencial anticipan que el escenario para el próximo año será levemente mejor con un PIB tendencial que esté entre 2,7% y 2,8%. Además, para el cobre de largo plazo se espera que esté sobre US$6 la libra.",
+      "category": "Pulso",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:40:00",
+      "last_seen_at": "2026-09-01T04:40:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 27,
+      "title": "La producción de cobre entre enero y julio de este año llega a su nivel más bajo desde 2003",
+      "description": "En los primeros siete meses del año se produjeron 2,9 millones de toneladas de cobre. Así, el ejercicio no es promisorio para este año, donde Cochilco prevé una baja de 2,6%, hasta 5,27 millones de toneladas.",
+      "category": "Pulso",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:40:00",
+      "last_seen_at": "2026-09-01T04:40:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 23,
+      "title": "Informe internacional sobre politización académica en Humanidades irrumpe en debate por cambios al Fondecyt 2027",
+      "description": "Un estudio elaborado por una comisión de universidades norteamericanas concluyó que existen señales de deterioro de los estándares académicos en distintas áreas de las humanidades y ciencias sociales. En Chile, expertos señalan que una revisión de este tipo podría ser útil, pero no constituye una metodología replicable sobre una eventual politización de la academia.",
+      "category": "Nacional",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:38:46",
+      "last_seen_at": "2026-09-01T04:38:46",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 22,
+      "title": "Las inéditas medidas de protección que pidió el SLEP para docentes del I. Nacional tras graves amenazas",
+      "description": "“Solicito medidas inmediatas de protección para profesionales, funcionarios, directivos, estudiantes, testigos y comunidad educativa del Instituto Nacional, incluyendo evaluación de riesgo, enlace policial, vigilancia, control…",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:37:42",
+      "last_seen_at": "2026-09-01T04:37:42",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 21,
+      "title": "Tres de cada cuatro profesionales tienen dificultades para conciliar trabajo y familia: la principal razón es no lograr desconectarse",
+      "description": "<p>El estudio, elaborado con 3.908 respuestas de profesionales en 14 países de Latinoamérica, revela que la mayor dificultad para compatibilizar la vida laboral y familiar es desconectarse fuera de horario. Lo que más ayuda a conciliar, en cambio, es el trabajo remoto o híbrido, un derecho que en Chile la Ley de Conciliación resguarda especialmente para quienes tienen tareas de cuidado.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/tres-de-cada-cuatro-profesionales-tienen-dificultades-para-conciliar-trabajo-y-familia-la-principal-razon-es-no-lograr-desconectarse/\">Tres de cada cuatro profesionales tienen dificultades para conciliar trabajo y familia: la principal razón es no lograr desconectarse</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:34:49",
+      "last_seen_at": "2026-09-01T04:34:49",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 20,
+      "title": "Kast agenda visita oficial a La Paz: El salto político con Bolivia y la primera reunión de los altos mandos policiales",
+      "description": "Este lunes se reunieron en La Paz los altos mandos policiales de ambos países para abordar la agenda de seguridad y en los días siguientes…",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:16:22",
+      "last_seen_at": "2026-09-01T04:16:22",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 19,
+      "title": "Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/radar-31-08-2026/\">Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:14:09",
+      "last_seen_at": "2026-09-01T04:14:09",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 0.0
+      }
+    },
+    {
+      "id": 18,
+      "title": "Aires de Primavera, Nosotros v/s Ellos",
+      "description": "Es importante apoyar lo que valientemente hicieron Vodanovic y Bellolio. Porque se dan cuenta que hay tareas que requieren un nosotros más grande que el…",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:11:26",
+      "last_seen_at": "2026-09-01T04:11:26",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 17,
+      "title": "Jugaba en una plaza: niña de 5 años queda herida de gravedad tras balacera en Cerro Navia",
+      "description": "La menor se encontraba en el recinto de juegos cuando recibió un impacto de bala en una de sus piernas, por lo que fue trasladada a un recinto hospitalario, donde debió ser intervenida quirúrgicamente. Investigación quedó en manos de la PDI y del equipo ECOH de la Fiscalía.",
+      "category": "General",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:05:07",
+      "last_seen_at": "2026-09-01T04:05:07",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 16,
+      "title": "Codelco: El círculo de hierro de Jorge Gómez y los ejecutivos de Collahuasi que fichó",
+      "description": "Jorge Gómez, presidente ejecutivo de Codelco, comienza a marcar su sello en la cuprera. Seis vicepresidencias tendrán nuevos liderazgos y cuatro de ellos trabajaron junto…",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T04:01:33",
+      "last_seen_at": "2026-09-01T04:01:33",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 15,
+      "title": "Datos personales, otra bomba para el empleo",
+      "description": "El propósito de la nueva ley de protección de datos es loable: resguardar a las personas ante una tecnología que puede ser muy invasiva. Pero…",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T03:41:56",
+      "last_seen_at": "2026-09-01T03:41:56",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 14,
+      "title": "Sin Ricky Martin: Menudo celebra 50 años con una gira que reúne a siete exintegrantes",
+      "description": "<p><strong>Siete exintegrantes de Menudo se reunirán en una gira con motivo del 50 aniversario del legendario grupo puertorriqueño</strong>, que arrancará en octubre en California y terminará en diciembre en Puerto Rico con sus canciones adaptadas a las voces adultas de sus antiguos miembros, pero que, aseguraron en entrevista con <em>EFE</em>, <strong>mantienen el sonido que los caracterizó</strong>.</p>\n<p>Creado en 1977 por el productor Edgardo Díaz, este grupo se convirtió en uno de los mayores fenómenos de la música popular latinoamericana, especialmente durante la década de 1980.</p>\n<p>Por sus filas pasaron artistas como<strong> Ricky Martin</strong>, quien se incorporó en 1984 junto con<strong> Draco Rosa</strong>, aunque<strong> ninguno de los dos participará en esta gira</strong>.</p>\n<h2><em><strong>\"Súbete a mi moto\"</strong></em></h2>\n<p><strong>Ralphy Rodríguez</strong>, de 53 años y miembro de 1986 a 1987, recordó que la banda tuvo \"un repertorio de cientos de canciones\" entre 1979 y 1991, y que por ello tuvieron \"muchas reuniones eligiendo primero cuáles canciones vamos a cantar y luego quién va a cantar cada canción\".</p>\n<p>El criterio fue, según <strong>Raymond Acevedo</strong> (1985-1988), \"por sentimiento\" y por la época de cada uno en la agrupación.</p>\n<p>Entre las imprescindibles,<strong> Roy Rosselló</strong> (1983-1986) citó \"Súbete a mi moto\", que canta <strong>René Farrait</strong> (1979-1982), y este sumó \"Claridad\", para él \"la clásica\" del grupo.</p>\n<p><strong>\"Las canciones se adaptan a nuestros tonos ahora de hombre\"</strong>, explicó Acevedo. \"Suena a Menudo porque son las mismas voces\", dijo el cantante de 54 años.</p>\n<p><strong>\"No todas las canciones de Menudo eran melodías muy altas (...) solamente lo bajamos un tonito\"</strong>, precisó Rodríguez.</p>\n<p>Por su parte,<strong> Robert Avellanet</strong> (1988-1991) apuntó que el único que canta en la misma tonalidad de entonces es <strong>Sergio Blass</strong> (1986-1990), porq",
+      "category": "Economia",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T03:35:48",
+      "last_seen_at": "2026-09-01T03:35:48",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 13,
+      "title": "Granja de bots de Cerimedo impulsa comisión investigadora en la Cámara para esclarecer su eventual participación en procesos electorales en Chile",
+      "description": "<p>La iniciativa, impulsada por el diputado PPD José Montalva, reunió las 62 firmas necesarias y deberá ser votada esta semana en la Cámara. La comisión busca esclarecer los eventuales vínculos de Fernando Cerimedo con procesos electorales en Chile, en medio de las dudas sobre su relación con el entorno de José Antonio Kast.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/granja-de-bots-de-cerimedo-impulsa-comision-investigadora-en-la-camara-para-esclarecer-su-eventual-participacion-en-procesos-electorales-en-chile/\">Granja de bots de Cerimedo impulsa comisión investigadora en la Cámara para esclarecer su eventual participación en procesos electorales en Chile</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T03:23:05",
+      "last_seen_at": "2026-09-01T03:23:05",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 12,
+      "title": "Rompen rejas y montan verdaderos “bares”: cómo operan los ambulantes que Santiago no logra erradicar del Movistar Arena",
+      "description": "<p>En los últimos años la situación que se vive en la salida del Movistar Arena para días de conciertos con comerciantes irregulares se ha agravado, derivando en la instalación de verdaderos bares ambulantes. Em la Municipalidad de Santiago aseguran que la situación supera sus facultades y que requiere apoyo de las policías para fiscalizar y controlar el área.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/rompen-rejas-y-montan-verdaderos-bares-como-operan-los-ambulantes-que-santiago-no-logra-erradicar-del-movistar-arena/\">Rompen rejas y montan verdaderos “bares”: cómo operan los ambulantes que Santiago no logra erradicar del Movistar Arena</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T03:00:00",
+      "last_seen_at": "2026-09-01T03:00:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 11,
+      "title": "Preocupación entre los fans: Lionel Richie fue hospitalizado tras concierto",
+      "description": "<p>El cantante <strong>Lionel Richie</strong> ha generado preocupación entre sus fans al conocerse que<strong> fue hospitalizado tras un concierto durante este fin de semana</strong>.</p>\n<p>De acuerdo con lo informado por el medio <em>TMZ</em>, <strong>el intérprete de \"Hello\" fue ingresado a la unidad de cuidados intensivos (UCI) de un hospital de St. Louis, Misuri</strong>, luego de un show realizado el sábado en la misma ciudad.</p>\n<p>Fuentes cercanas al artista señalaron que <strong>Richie acudió al recinto de salud por iniciativa propia para someterse a algunos exámenes</strong>, con los médicos dando cuenta de la posibilidad de <strong>una leve deshidratación</strong>.</p>\n<p><strong>Se espera que el músico sea dado de alta este martes</strong>, pero múltiples asistentes al show del sábado en el anfiteatro The Muny -Teatro de la Ópera Municipal de St. Luis- dieron cuenta de que <strong>Richie tuvo algunas dificultades durante la parte final de su presentación</strong>.</p>\n<p>Incluso, pidió a su equipo que le trajera un taburete para sentarse mientras interpretaba su última canción de la noche, \"All Night Long (All Night)\".</p>\n<p></p>\n<p>No es la primera vez que el cantante sufre problemas en un show en los últimos meses, ya que <strong><a href=\"https://www.cooperativa.cl/noticias/magazine/musica/lionel-richie-sufrio-problemas-de-salud-en-el-escenario-y-suspendio-su/2026-06-25/132022.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">en junio pasado tuvo que suspender un concierto</a> a minutos de haberse iniciado tras experimentar problemas de salud en el escenario</strong>.</p>",
+      "category": "Economia",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T02:45:23",
+      "last_seen_at": "2026-09-01T02:45:23",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 10,
+      "title": "La millonaria transformación que prepara Mall Curicó: más de 70 nuevos locales y una apertura proyectada para 2028",
+      "description": "<p>El centro comercial casi duplicará su oferta de tiendas y se construirán cerca de 42.000 metros cuadrados, más de 70 nuevos locales y 400 estacionamientos subterráneos adicionales. Las obras partirían en 2027 y el mall abriría su ampliación en la segunda mitad de 2028.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/la-millonaria-transformacion-que-prepara-mall-curico-mas-de-70-nuevos-locales-y-una-apertura-proyectada-para-2028/\">La millonaria transformación que prepara Mall Curicó: más de 70 nuevos locales y una apertura proyectada para 2028</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T02:45:00",
+      "last_seen_at": "2026-09-01T02:45:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 9,
+      "title": "Ingresos fiscales registran su mayor alza en el año gracias a tributación minera y gasto público se contrae en julio",
+      "description": "De acuerdo al informe de la Dirección de Presupuestos (Dipres) los ingresos fiscales subieron 15,8%, mientras el gasto público cayó 0,7%.",
+      "category": "Pulso",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T02:40:53",
+      "last_seen_at": "2026-09-01T02:40:53",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 8,
+      "title": "Protagonizada por Bad Bunny: Residente inició el rodaje de su primera película",
+      "description": "<p>El artista puertorriqueño <strong>René Pérez</strong>, mejor conocido como <strong>Residente</strong>, comenzó la filmación de su primera película, <strong>\"PORTO RICO\"</strong>, protagonizada por su colega Bad Bunny y con un elenco que incluye a actores de la talla de <strong>Viggo Mortensen, Edward Norton y Javier Bardem</strong>.</p>\n<p>Así lo dejó saber este lunes Residente en una historia en su cuenta de Instagram, donde publica la claqueta e incluye en ella que están filmando la primera escena, bajo la dirección del artista y su director de fotografía <strong>Anthony Dod Mantle</strong>, conocido por sus trabajos en \"Slumdog Millionaire\" (2008) y \"Snowden\" (2016).</p>\n<p><strong>\"He soñado con hacer una película sobre mi país desde que era niño. La verdadera historia de Puerto Rico siempre ha estado rodeada de controversia\"</strong>, afirmó en un comunicado Residente en febrero pasado, cuando se anunció la filmación.</p>\n<p><strong>'PORTO RICO'</strong>, coescrita entre Residente y el guionista ganador del Premio Oscar <strong>Alexander Dinelaris</strong> (\"Birdman\"), es un western caribeño inspirado en hechos reales que aborda la compleja historia colonial de Puerto Rico a través de una mirada visualmente intensa.</p>\n<div class=\"marcoFoto\">\n<div><img alt=\"fotocontent_1\" height=\"auto\" src=\"https://www.cooperativa.cl/noticias/site/artic/20260831/imag/foto_0000000220260831181510.png\" width=\"auto\" />\n</div>\n<div class=\"piefoto\">La publicación de Residente anunciando el inicio del rodaje.</div>\n</div>\n<p><strong>\"Esta película es una reafirmación de quiénes somos, contada con la intensidad y la honestidad que nuestra historia merece\"</strong>, comentó Residente, ganador de 34 premios Grammy y Latin Grammy, que ha desarrollado también una carrera como actor en In the Summers\" y \"Frank &amp; Louis\".</p>\n<p><strong>El largometraje, a pesar de que está centrado en los orígenes de Puerto Rico, se filma en República Dominicana</strong> debido a una controversia entr",
+      "category": "Economia",
+      "article_count": 1,
+      "first_seen_at": "2026-09-01T02:15:10",
+      "last_seen_at": "2026-09-01T02:15:10",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 5,
+      "title": "Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/imagenes-historicas-ineditas-las-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-aviones-hawker-hunter/\">Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "article_count": 2,
+      "first_seen_at": "2026-08-31T19:05:51",
+      "last_seen_at": "2026-09-01T00:37:19",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 0.0
+      }
+    },
+    {
+      "id": 7,
+      "title": "Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/corte-de-talca-sanciona-a-conservador-najle-por-emitir-certificados-que-permitieron-vender-inmuebles-embargados/\">Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T21:33:57",
+      "last_seen_at": "2026-08-31T21:33:57",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 0.0
+      }
+    },
+    {
+      "id": 6,
+      "title": "Gobierno y partidos socializan agenda de seguridad y acuerdan bajar a urgencia simple reforma constitucional",
+      "description": "El ministro de la Segpres, junto a sus pares Claudio Alvarado y Martín Arrau, recibió este domingo en la noche a los timoneles del oficialismo para coordinar la agenda de seguridad del gobierno y en particular abordar la discusión por la reforma constitucional que ha tensionado al sector y se apuesta se radique solamente en la comisión de Constitución del Senado.",
+      "category": "Politica",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T21:30:00",
+      "last_seen_at": "2026-08-31T21:30:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 1.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 3,
+      "title": "<a href=\"https://interferencia.cl/articulos/cop17-el-mundo-no-logra-un-acuerdo-contra-la-sequia-y-posterga-la-agenda-de-sociedad-civil\">COP17: el mundo no logra un acuerdo contra la sequía y posterga la agenda de sociedad civil en la restauración de la tierra</a>",
+      "description": "<img alt=\"\" class=\"img-responsive\" height=\"469\" src=\"https://interferencia.cl/sites/default/files/styles/article/public/captura_de_pantalla_2026-08-30_a_las_10.08.16_p.m.png?itok=c_S0xi52&amp;c=c248545f372e1972b78ca30a65b86fbf\" width=\"900\" />\n<p>Mientras las sequías y los incendios arrecian con cada vez mayor fuerza en gran parte del mundo, los países dejaron ir una nueva oportunidad para crear acuerdos que enfrenten este fenómeno. La&nbsp;Conferencia de las Partes de la Convención de las Naciones Unidas por la Tierra y contra la Desertificación (COP17)&nbsp;no logró acuerdos entre todos sus integrantes y decidió postergar dos años más los debates sobre esta problemática mundial.</p><p>Las tensiones políticas y la falta de acuerdos no solo se reflejaron en esta decisión, pues desde el inicio de la COP17 pasó algo extraordinario que alteró el diálogo.&nbsp;Estados Unidos objetó desde el inicio la inclusión de temas relevantes para pueblos indígenas, comunidades locales, mujeres y jóvenes en la agenda oficial.</p><p>Pese a que estos sectores de la sociedad civil tuvieron un nivel de participación importante en la COP17,&nbsp;su agenda quedó relegada y pospuesta para la próxima cumbre sobre desertificación, la COP18,dejando en pausa avances en mecanismos que han trabajado para la gestión de la tierra y el agua, así como para la resiliencia contra la sequía.</p><p>Esto también se tradujo en algunos acuerdos que&nbsp;omitieron el lenguaje que reconoce la perspectiva de género y el enfoque de derechos de pueblos indígenas&nbsp;en decisiones finales, algo que contradice directamente el discurso de la convención, que oficialmente reconoce la importancia de estos sectores para la restauración del territorio.</p><p>Mongabay Latam<a href=\"https://es.mongabay.com/2026/08/cop17-sequia-acuerdo-sociedad-civil-restauracion-tierra/\">&nbsp;</a>rescata algunas de las principales decisiones que marcan el rumbo para combatir la degradación de la tierra, aumentar la resiliencia contra la",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T14:00:00",
+      "last_seen_at": "2026-08-31T14:00:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 4,
+      "title": "<a href=\"https://interferencia.cl/articulos/si-no-hay-justicia-hay-funa\">Si no hay justicia, hay funa</a>",
+      "description": "<img alt=\"Visita espontánea a la fiscalía de Krefeld \" class=\"img-responsive\" height=\"469\" src=\"https://interferencia.cl/sites/default/files/styles/article/public/foto7318_sta.jpg?itok=LqvfyZtu&amp;c=19aafe0651f7653cc5985aff097a8d0a\" title=\"Visita espontánea a la fiscalía de Krefeld \" width=\"900\" />\n<p>La actividad tiene lugar frente a un edificio donde reside Hartmut Hopp (82). Hopp fue médico y director del hospital de Colonia Dignidad, aquella comunidad sectaria alemana fundada en Chile en 1961, en la que la violencia sexual y los trabajos forzados formaban parte del día a día de muchos de sus residentes. Durante la dictadura (1973-1990), los líderes del grupo, encabezado por el predicador laico alemán Paul Schäfer, colaboraron estrechamente con la Dirección de Inteligencia Nacional (DINA), que secuestró a presas y presos&nbsp; políticos, trasladándolos a aquel recinto alejado al pie de los Andes, donde los torturó y asesinó a unos cien de ellos. Su destino sigue sin esclarecerse, al día de hoy continúan desaparecidos.</p><p><strong>Que hablen</strong></p><p>Hopp era la mano derecha de Paul Schäfer, se le considera haber sido el nexo de Colonia Dignidad con la DINA y era quien mantenía estrechos contactos con su jefe, Manuel Contreras. Bianca Schmolze, responsable de derechos humanos en la organización humanitaria Medizinische Flüchtlingshilfe (MFH) Bochum, afirma que Hopp dispone de información clave para esclarecer el paradero de los desaparecidos. “Hablen por fin y cuenten todo lo que saben sobre los presos políticos, los desaparecidos y los asesinados”, exige Schmolze, dirigiéndose a Hopp y a otros ex dirigentes de la Colonia Dignidad que se han sustraído de las investigaciones de la justicia chilena y que actualmente viven impunemente en Alemania.</p><p>Bajo el lema “la Justicia sana”, el centro psicosocial MFH de Bochum aboga por el esclarecimiento de los crímenes contra los derechos humanos y exige la instalación de una comisión de la verdad sobre la Colon",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T14:00:00",
+      "last_seen_at": "2026-08-31T14:00:00",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    },
+    {
+      "id": 2,
+      "title": "Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/ley-lafkenche-y-el-teatro-del-absurdo-cuatro-ecmpo-rechazados-en-los-lagos/\">Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T12:02:05",
+      "last_seen_at": "2026-08-31T12:02:05",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 0.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 0.0
+      }
+    },
+    {
+      "id": 1,
+      "title": "Resumen: Colo Colo se escapó en el liderato en una fecha empañada por grave incidente en Coquimbo",
+      "description": "<p>Este fin de semana se disputó gran parte de la <strong>fecha 21 de la Liga de Primera</strong>, que quedó marcada por la goleada del líder <strong>Colo Colo</strong>, que se escapó en la cima tras la derrota de la U, y por los<a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/huachipato/duelo-de-coquimbo-y-huachipato-fue-suspendido-por-lanzamiento-de-bombas/2026-08-30/221022.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><strong> graves incidentes en el partido de Coquimbo y Huachipato</strong></a>, que terminó suspendido por la agresión con bombas de ruido al arquero <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/christian-bravo-fue-trasladado-a-un-centro-asistencial-por-bomba-de/2026-08-30/220246.html\" rel=\"link a una nota relativa 3\" target=\"_blank\"><strong>Christian Bravo.</strong></a></p>\n<p>El cuadro albo fue local en el Estadio Monumental y celebró con <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/super-lider-colo-colo-aplasto-a-audax-italiano-y-estiro-a-16-puntos-su/2026-08-30/193926.html\" rel=\"link a una nota relativa 6\" target=\"_blank\"><strong>un contundente 5-1 sobre Audax Italiano,</strong></a> con <strong>Javier Correa y Leandro Hernández</strong> como principales figuras. </p>\n<p>El equipo dirigido por Fernando Ortiz llegó a<strong> 12 partidos sin perder en la Liga</strong> y suma<strong> 52 puntos, 16 más que Universidad de Chile,</strong> faltando nueve fechas por disputar en el Campeonato Nacional.</p>\n<p><a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/la-u-sumo-un-nuevo-tropiezo-en-la-liga-tras-perder-ante-universidad-de/2026-08-30/171723.html\" rel=\"link a una nota relativa 10\" target=\"_blank\"><strong>Los azules, por su lado, perdieron en esta misma jornada, por 2-1 en su visita a Universidad de Concepción.</strong></a></p>\n<p>Los pupilos de <strong>Fernando Gago no pudieron levantarse tras la derrota que sufrieron la semana pasada en el ",
+      "category": "Portada",
+      "article_count": 1,
+      "first_seen_at": "2026-08-31T04:50:23",
+      "last_seen_at": "2026-08-31T04:50:23",
+      "blindspot": {
+        "is_blindspot": false,
+        "side": "insufficient_sources",
+        "left_pct": 1.0,
+        "center_pct": 0.0,
+        "right_pct": 0.0,
+        "divergence_score": 1.0
+      }
+    }
+  ],
+  "clusters_detail": {
+    "49": {
+      "id": 49,
+      "title": "“República de Lemuria”: detienen a conductor que presentó documentación de país ficticio durante fiscalización en Lampa",
+      "description": "Tras las respectivas corroboraciones, se determinó que es un ciudadano chileno de 51 años sin antecedentes penales. Sin embargo, ahora será formalizado por una serie de delitos, como usurpación de identidad.",
+      "category": "General",
+      "articles": [
+        {
+          "id": 1,
+          "title": "“República de Lemuria”: detienen a conductor que presentó documentación de país ficticio durante fiscalización en Lampa",
+          "url": "https://www.latercera.com/nacional/noticia/republica-de-lemuria-detienen-a-conductor-que-presento-documentacion-de-pais-ficticio-durante-fiscalizacion-en-lampa/",
+          "snippet": "Tras las respectivas corroboraciones, se determinó que es un ciudadano chileno de 51 años sin antecedentes penales. Sin embargo, ahora será formalizado por una serie de delitos, como usurpación de identidad....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "48": {
+      "id": 48,
+      "title": "Trump abre la puerta a revisar postura de EE.UU. sobre la soberanía de las islas Malvinas",
+      "description": "El mandatario estadounidense aseguró que “siempre” evalúa este tipo de posiciones. La posibilidad de un giro de Washington ya había surgido en abril, en medio de sus diferencias con Londres por la guerra contra Irán.",
+      "category": "General",
+      "articles": [
+        {
+          "id": 2,
+          "title": "Trump abre la puerta a revisar postura de EE.UU. sobre la soberanía de las islas Malvinas",
+          "url": "https://www.latercera.com/mundo/noticia/trump-abre-la-puerta-a-revisar-postura-de-eeuu-sobre-la-soberania-de-las-islas-malvinas/",
+          "snippet": "El mandatario estadounidense aseguró que “siempre” evalúa este tipo de posiciones. La posibilidad de un giro de Washington ya había surgido en abril, en medio de sus diferencias con Londres por la guerra contra Irán....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "47": {
+      "id": 47,
+      "title": "Chile sucumbió ante República Dominicana por las Clasificatorias de baloncesto",
+      "description": "<p><strong>La selección chilena de baloncesto continuó su camino en las Clasificatorias para Catar 2027 con una derrota frente a República Dominicana</strong> en el Palacio de los Deportes de Santo Domingo, capital del país caribeño.</p>\n<p>El elenco dominicano se impuso a \"La Roja cestera\" con un <strong>claro marcador de 101-66</strong> este lunes.</p>\n<p>Andrés Feliz, escolta que milita en Real Madrid, lideró a su equipo con 17 puntos, tres rebotes y tres asistencias; en un partido que contó un <strong>inesperado corte de electricidad en pleno tercer cuarto</strong>, aunque se reanudó luego de algunos minutos.</p>\n<blockquote class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"es\">[VIDEO] Corte de luz paró el duelo de Chile y República Dominicana en las Clasificatorias de baloncesto <a href=\"https://t.co/vMWVlOkyUp\" rel=\"link a una nota absoluta 1\" target=\"_blank\">https://t.co/vMWVlOkyUp</a> <a href=\"https://t.co/pv1eKFjIP8\" rel=\"link a una nota absoluta 3\" target=\"_blank\">pic.twitter.com/pv1eKFjIP8</a></p>\n— Cooperativa (@Cooperativa) <a href=\"https://x.com/Cooperativa/status/2094605353287618649?ref_src=twsrc%5Etfw\">September 1, 2026</a></blockquote>\n\n<p>Con este resultado <strong>Chile quedó último de su grupo en la zona americana con 10 puntos</strong>, por detrás de Colombia (11) y México (13), cuarto en la tabla que de momento clasifica a un repechaje.</p>\n<p>Brasil cierra el podio y la clasificación directa al Mundial con los mismos 14 puntos de República Dominicana, mientras Estados Unidos lidera con 15.</p>\n<p>En la próxima doble fecha Chile será local ante México, el 27 de diciembre y ante los dominicanos el día 30 de aquel mes.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 8,
+          "title": "Chile sucumbió ante República Dominicana por las Clasificatorias de baloncesto",
+          "url": "https://www.cooperativa.cl/noticias/deportes/baloncesto/seleccion/chile-sucumbio-ante-republica-dominicana-por-las-clasificatorias-de/2026-09-01/002106.html",
+          "snippet": "La selección chilena de baloncesto continuó su camino en las Clasificatorias para Catar 2027 con una derrota frente a República Dominicana en el Palacio de los Deportes de Santo Domingo, capital del país caribeño.\n\nEl elenco dominicano se impuso a \"L...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "46": {
+      "id": 46,
+      "title": "China niega falta de transparencia sobre la riada tras acusaciones de censura y bulos",
+      "description": "<p><strong>China defendió la transparencia de la información difundida acerca de la devastadora riada que golpeó la semana pasada la frontera entre Nepal y el Tíbet,</strong> en respuesta a las <a href=\"https://www.cooperativa.cl/noticias/mundo/asia/nepal/que-causo-la-tragica-riada-en-nepal/2026-08-26/161106.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">acusaciones de censura y desinformación sobre la catástrofe</a> en las redes sociales del país.</p>\n<p><strong>\"La información de China se publica de manera abierta, transparente y oportuna\",</strong> manifestó en rueda de prensa el portavoz del Ministerio chino de Exteriores Guo Jiakun, quien agregó que \"difamar maliciosamente y especular\" con el desastre \"no encontrará apoyo\".</p>\n<p>El vocero reaccionó de esta forma a una pregunta sobre la <strong>posible retirada de vídeos que muestran la destrucción del paso fronterizo de Gyirong</strong> y sobre acusaciones, atribuidas a grupos tibetanos en el extranjero, de que las autoridades estarían infravalorando las cifras de muertos y desaparecidos.</p>\n<p>El vocero no respondió específicamente a si las autoridades habían ordenado retirar esas imágenes ni aportó datos adicionales para responder a las dudas planteadas sobre el balance de víctimas.</p>\n<p>EFE comprobó este domingo que <strong>la grabación completa de una cámara de seguridad que muestra cómo la riada arrasa el complejo fronterizo no aparecía en búsquedas realizadas en Douyin</strong>, equivalente chino de TikTok, Xiaohongshu, similar a Instagram, y WeChat, una aplicación similar a Whatsapp, aunque sí podían encontrarse fragmentos, reconstrucciones animadas e imágenes de la devastación.</p>\n<p>La ausencia de la grabación completa no permite determinar si fue retirada por las plataformas o si sus sistemas de moderación y recomendación dificultan localizarla.</p>\n<p>Las declaraciones de Guo se producen después de que las <strong>autoridades chinas sancionaran administrativamente a un internauta por pu",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 6,
+          "title": "China niega falta de transparencia sobre la riada tras acusaciones de censura y bulos",
+          "url": "https://www.cooperativa.cl/noticias/mundo/china/china-niega-falta-de-transparencia-sobre-la-riada-tras-acusaciones-de/2026-08-31/235930.html",
+          "snippet": "China defendió la transparencia de la información difundida acerca de la devastadora riada que golpeó la semana pasada la frontera entre Nepal y el Tíbet, en respuesta a las acusaciones de censura y desinformación sobre la catástrofe en las redes soc...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "45": {
+      "id": 45,
+      "title": "Garnero disparó: Cuando no jugamos bien hay profundidad de análisis, otros sacan resultados y está todo bárbaro",
+      "description": "<p>Con su franqueza habitual, <strong>Daniel Garnero habló en conferencia de prensa tras la <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/la-uc-logro-un-batallado-triunfo-ante-o-higgins-y-recupero-el/2026-08-31/225326.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">victoria de Universidad Católica sobre O'Higgins</a></strong> que le permitió volver al segundo puesto de la Liga de Primera, haciendo frente con todo a las consultas respecto a los resultados en el torneo.</p>\n<p>\"<strong>Este es un juego que <em>perdés</em> dos partidos y a mí me echan a la mierda</strong>. Si <em>ganás</em>, <em>podés</em> corregir, <em>podés</em> mejorar. <strong>¿No hicimos el mejor partido? No hicimos el mejor partido</strong>. Le dimos al rival la posibilidad de que maneje el juego, ¿eso es un error? Sí, también.<strong> Tenemos que corregir, pero el resultado termina siendo muy importante</strong>\", señaló.</p>\n<p>Luego, le dio una tajante respuesta a la prensa: \"<strong>Me encanta cuando quieren analizar. Cuando no jugamos muy bien hay una profundidad de análisis terrible. En otros equipos, veo que cuando sacaban resultados está todo bárbaro</strong>. Estoy para analizar, analícenme todo\".</p>\n<p>De vuelta a lo que ocurrió en la cancha, Garnero admitió que \"no pudimos controlar el juego sobre todo en el segundo tiempo. Le dimos la posesión al rival y tuvimos pocos obstáculos. Una vez que recuperábamos el balón no éramos profundos, no le sacábamos el ritmo al juego, no manejamos el ritmo nosotros. Eso fue un error\".</p>\n<p>Por otro lado, valoró las actuaciones clave de Vicente Bernedo y Fernando Zampedri, puesto que más allá de que \"esto es un deporte de conjunto, obviamente que las individualidades son fundamentales\".</p>\n<p>\"<strong>En los niveles individuales estamos un poco bajos. Hoy el 'Vicho' (Bernedo) tuvo un gran partido, Fer (Zampedri) tuvo un gran partido, entonces tenemos que nivelar para arriba</strong>. Nosotros cuando logramos e",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 9,
+          "title": "Garnero disparó: Cuando no jugamos bien hay profundidad de análisis, otros sacan resultados y está todo bárbaro",
+          "url": "https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/garnero-disparo-cuando-no-jugamos-bien-hay-profundidad-de-analisis/2026-08-31/235533.html",
+          "snippet": "Con su franqueza habitual, Daniel Garnero habló en conferencia de prensa tras la victoria de Universidad Católica sobre O'Higgins que le permitió volver al segundo puesto de la Liga de Primera, haciendo frente con todo a las consultas respecto a los ...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "44": {
+      "id": 44,
+      "title": "La ironía de Garnero tras el triunfo de la UC: “No jugamos bien y hacen análisis; en otros equipos ganan y está todo bárbaro”",
+      "description": "El técnico de Universidad Católica valora el resultado en el Claro Arena, pero remarca en que aún están lejos del nivel que espera.",
+      "category": "General",
+      "articles": [
+        {
+          "id": 5,
+          "title": "La ironía de Garnero tras el triunfo de la UC: “No jugamos bien y hacen análisis; en otros equipos ganan y está todo bárbaro”",
+          "url": "https://www.latercera.com/el-deportivo/noticia/la-autocritica-de-garnero-tras-el-triunfo-de-la-uc-este-equipo-reacciona-ante-la-adversidad-pero-no-es-esa-nuestra-idea/",
+          "snippet": "El técnico de Universidad Católica valora el resultado en el Claro Arena, pero remarca en que aún están lejos del nivel que espera....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "43": {
+      "id": 43,
+      "title": "Renunció el secretario del Ejército de EE.UU. tras tensiones con el secretario de Guerra",
+      "description": "<p>El secretario del Ejército de Estados Unidos, <strong>Dan Driscoll, entregó su dimisión al presidente estadounidense, Donald Trump,</strong> tras meses de tensiones con el secretario de Guerra, Pete Hegseth, en torno a los cambios en el liderazgo de la agencia, según informó este lunes <em>The Wall Street Journal</em>.</p>\n<p>El diario anticipa que<strong> Driscoll deje el Pentágono \"en los próximos días\"</strong> y señaló que, con su salida, el Ejército carecerá de líderes civiles o militares confirmados por el Senado.</p>\n<p>No está claro si la Casa Blanca aceptó su dimisión ni quién lo puede reemplazar.</p>\n<p><strong>Driscoll había expresado al Gobierno de Trump su preocupación por la transformación y disposición del Ejército,</strong> y opinaba que Hegseth estaba perjudicando esos cometidos, \"específicamente despidiendo a los generales que eran sus responsables\", indicó<em> Fox News</em>, que citó fuentes conocedoras del asunto.</p>\n<p>Hegseth apartó de sus cargos recientemente a los generales Christopher Donahue y Randy George, así como al antiguo vicedirector del Ejército, James Mingus, y cubrió los puestos de estos dos últimos con un solo militar de alto rango, el general Christopher LaNeve, agregó.</p>\n<p>Una portavoz de la Casa Blanca, <strong>Anna Kelly, destacó a los medios el trabajo de Driscoll en \"operaciones militares históricas\"</strong>, su \"énfasis en la preparación y letalidad\", y las negociaciones entre Rusia y Ucrania.</p>\n<p>El Journal también indicó que el vicesecretario interino del Ejército, Dave Fitzgerald, que se ha centrado en atraer inversiones privadas para modernizar la tecnología de Defensa, también dejará su cargo esta semana.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 10,
+          "title": "Renunció el secretario del Ejército de EE.UU. tras tensiones con el secretario de Guerra",
+          "url": "https://www.cooperativa.cl/noticias/mundo/ee-uu/gobierno/renuncio-el-secretario-del-ejercito-de-ee-uu-tras-tensiones-con-el/2026-08-31/233645.html",
+          "snippet": "El secretario del Ejército de Estados Unidos, Dan Driscoll, entregó su dimisión al presidente estadounidense, Donald Trump, tras meses de tensiones con el secretario de Guerra, Pete Hegseth, en torno a los cambios en el liderazgo de la agencia, según...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "42": {
+      "id": 42,
+      "title": "Diputados UDI piden a Kast desplegar las FF.AA. en la frontera sur ante nuevas rutas del narcotráfico",
+      "description": "Los diputados Mario Olavarría y Omar Sabat plantearon la necesidad de replicar lo ocurrido en la frontera norte de la mano de las Fuerzas Armadas ante las advertencias planteadas desde el Ministerio Público.",
+      "category": "Politica",
+      "articles": [
+        {
+          "id": 31,
+          "title": "Diputados UDI piden a Kast desplegar las FF.AA. en la frontera sur ante nuevas rutas del narcotráfico",
+          "url": "https://www.latercera.com/politica/noticia/diputados-udi-piden-a-kast-desplegar-las-ffaa-en-la-frontera-sur-ante-nuevas-rutas-del-narcotrafico/",
+          "snippet": "Los diputados Mario Olavarría y Omar Sabat plantearon la necesidad de replicar lo ocurrido en la frontera norte de la mano de las Fuerzas Armadas ante las advertencias planteadas desde el Ministerio Público....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "41": {
+      "id": 41,
+      "title": "Diputados opositores reúnen firmas para crear comisión investigadora por caso Cerimedo y esperan que se vote esta semana",
+      "description": "La instancia busca indagar eventuales mecanismos de contaminación digital de procesos electorales y determinar si existieron vínculos entre funcionarios públicos, cuentas de redes sociales y el entorno del consultor argentino.",
+      "category": "Politica",
+      "articles": [
+        {
+          "id": 32,
+          "title": "Diputados opositores reúnen firmas para crear comisión investigadora por caso Cerimedo y esperan que se vote esta semana",
+          "url": "https://www.latercera.com/politica/noticia/diputados-reunen-firmas-para-crear-comision-investigadora-por-caso-cerimedo-y-esperan-que-se-vote-esta-semana/",
+          "snippet": "La instancia busca indagar eventuales mecanismos de contaminación digital de procesos electorales y determinar si existieron vínculos entre funcionarios públicos, cuentas de redes sociales y el entorno del consultor argentino....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "40": {
+      "id": 40,
+      "title": "Araucanía: Carabineros incautó 10 pistolas contrabandeadas desde Argentina",
+      "description": "<p>El <strong>OS7 de Carabineros </strong>detuvo a dos hombres que ingresaron clandestinamente a la <strong>Región de La Araucanía</strong>, desde <strong>Argentina</strong>, <strong>10 pistolas</strong>: en su mayoría, con el <strong>número de serie borrado</strong>.</p>\n<p>\"Tenemos una incautación de <strong>10 pistolas, 21 cargadores, dinero extranjero, dinero nacional, celulares y un vehículo\"</strong>, dijo el <strong>general jefe de la IX Zona Policial, Miguel Herrera</strong>, que describió este procedimiento como \"<strong>la más grande incautación de armamento</strong> que se ha producido en la Región de La Araucanía\".</p>",
+      "category": "Pais",
+      "articles": [
+        {
+          "id": 27,
+          "title": "Araucanía: Carabineros incautó 10 pistolas contrabandeadas desde Argentina",
+          "url": "https://www.cooperativa.cl/noticias/pais/policial/araucania-carabineros-incauto-10-pistolas-contrabandeadas-desde/2026-08-31/225023.html",
+          "snippet": "El OS7 de Carabineros detuvo a dos hombres que ingresaron clandestinamente a la Región de La Araucanía , desde Argentina , 10 pistolas : en su mayoría, con el número de serie borrado .\n\n\"Tenemos una incautación de 10 pistolas, 21 cargadores, dinero e...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "39": {
+      "id": 39,
+      "title": "Nueva noche inspirada de Zampedri y Gómez sentencia: la UC alcanza a la U en la lucha del Chile 2 con un triunfo ante O’Higgins",
+      "description": "Universidad Católica vence por 3-2 al cuadro celeste en el Claro Arena e iguala los puntos de Universidad de Chile en la lucha por el cupo a la Copa Libertadores. Un doblete del Toro y un gol agónico de Martín Gómez marcaron una jornada donde las atajadas de Vicente Bernedo sostuvieron al cuadro estudiantil en su momento más complicado.",
+      "category": "General",
+      "articles": [
+        {
+          "id": 4,
+          "title": "Nueva noche inspirada de Zampedri y Gómez sentencia: la UC alcanza a la U en la lucha del Chile 2 con un triunfo ante O’Higgins",
+          "url": "https://www.latercera.com/el-deportivo/noticia/nueva-noche-inspirada-de-zampedri-y-gomez-sentencia-la-uc-alcanza-a-la-u-en-la-lucha-del-chile-2-con-un-triunfo-ante-ohiggins/",
+          "snippet": "Universidad Católica vence por 3-2 al cuadro celeste en el Claro Arena e iguala los puntos de Universidad de Chile en la lucha por el cupo a la Copa Libertadores. Un doblete del Toro y un gol agónico de Martín Gómez marcaron una jornada donde las ata...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "38": {
+      "id": 38,
+      "title": "Aprueban idea de legislar ley antibarricadas 2.0 tras discusión inmediata dispuesta por el gobierno",
+      "description": "La Comisión de Seguridad de la Cámara de Diputados, aprobó la idea de legislar por siete votos a favor, cinco en contra y una abstención.",
+      "category": "Nacional",
+      "articles": [
+        {
+          "id": 42,
+          "title": "Aprueban idea de legislar ley antibarricadas 2.0 tras discusión inmediata dispuesta por el gobierno",
+          "url": "https://www.latercera.com/nacional/noticia/aprueban-idea-de-legislar-ley-antibarricadas-20-tras-discusion-inmediata-dispuesta-por-el-gobierno/",
+          "snippet": "La Comisión de Seguridad de la Cámara de Diputados, aprobó la idea de legislar por siete votos a favor, cinco en contra y una abstención....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "37": {
+      "id": 37,
+      "title": "Manuela Martelli ante los recortes en Cultura: \"Es una gran tragedia\"",
+      "description": "<p>La directora <strong>Manuela Martelli</strong> calificó como<strong> \"una gran tragedia\"</strong> los <a href=\"https://www.cooperativa.cl/noticias/magazine/personajes/daniel-munoz-por-los-recortes-a-la-derecha-no-le-interesa-la-cultura/2026-06-04/205444.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><strong>profundos recortes presupuestarios en el sector cultural</strong></a> por parte del Gobierno de <strong>José Antonio Kast</strong>, lamentando que en el Ejecutivo no exista una visión de que <strong>el cine nacional es \"una industria más\"</strong>.</p>\n<p>Al conversar con<strong> Cooperativa</strong> sobre su nueva película<strong> \"El Deshielo\"</strong>, elegida por la <strong>Academia de Cine de Chile</strong> para <a href=\"https://www.cooperativa.cl/noticias/magazine/cine/cine-chileno/el-deshielo-y-hangar-rojo-representaran-a-chile-en-los-oscar-y-los/2026-08-26/084912.html\" rel=\"link a una nota relativa 3\" target=\"_blank\">representar al país en los próximos<strong> Premios Oscar</strong></a>, abordó la compleja situación para la actividad artística creativa frente a los recortes en Cultura.</p>\n<p>\"<strong>Para mí es una gran tragedia</strong>, porque creo que tenemos mucho talento en Chile, que <strong>el cine es una tremenda vía para no solo hacernos conocer afuera, sino que también es una fuente de trabajo</strong>\", aseguró la cineasta que debutó tras las cámaras con \"1976\".</p>\n<p>Respecto a su actual obra, que describe como \"<strong>un pequeño 'Fitzcarraldo</strong>'\" en referencia a la dificultosa producción del citado largometraje de Werner Herzog, recalcó que esa descripción no es al azar, pues \"una película es una empresa, donde se junta el talento y el trabajo de mucha gente. La industria te da la posibilidad de desarrollarnos técnicamente también\".</p>\n<p>\"<strong>Me parece muy lamentable que no exista esa visión de saber que ahí hay mucho, que es una industria más</strong>\", expresó Martelli.</p>\n<h2><em><strong>Paulina Urrutia: El cine",
+      "category": "Economia",
+      "articles": [
+        {
+          "id": 36,
+          "title": "Manuela Martelli ante los recortes en Cultura: \"Es una gran tragedia\"",
+          "url": "https://www.cooperativa.cl/noticias/magazine/cine/cine-chileno/manuela-martelli-ante-los-recortes-en-cultura-es-una-gran-tragedia/2026-08-31/220511.html",
+          "snippet": "La directora Manuela Martelli calificó como \"una gran tragedia\" los profundos recortes presupuestarios en el sector cultural por parte del Gobierno de José Antonio Kast , lamentando que en el Ejecutivo no exista una visión de que el cine nacional es ...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "36": {
+      "id": 36,
+      "title": "Niña de cinco años fue impactada por una bala mientras jugaba con sus primos",
+      "description": "<p>Una <strong>niña de cinco años</strong> de edad fue impactada en su pierna izquierda por una <strong>\"bala perdida\" </strong>en momentos en que jugaba junto a familiares en una cancha ubicada en la comuna de <strong>Cerro Navia.</strong></p>\n<p>El hecho ocurrió en la intersección de <strong>Las Torres </strong>con<strong> Mar de Chile </strong>y, según testigos, fue responsabilidad de delincuentes que dispararon en al menos 10 oportunidades desde un vehículo para luego huir a toda velocidad.</p>\n<p>La pequeña fue<strong> trasladada de urgencia hasta el Hospital Félix Bulnes</strong>, donde será intervenida para retirarle el proyectil.</p>\n<p>\"<strong>Mi hija en estos momentos se encuentra bien, está estable</strong>\", señaló su padre en el recinto asistencial.</p>\n<p>La niña \"estaba con sus primos jugando, y en el momento en que se estaban yendo, <strong>llegó un auto a efectuar disparos: uno de ésos le llegó directamente a la piernita y el otro le rozó la zapatilla\"</strong>, relató el progenitor.</p>\n<p>\"Por lo que nos dijo el cirujano, <strong>a la una de la madrugada entraría a pabellón para poder sacarle la bala que tiene alojada en el fémur</strong>\", añadió.</p>\n<p>El Equipo de Crimen Organizado y Homicidios (ECOH) de la Fiscalía ya realiza diligencias en el sector, donde, según vecinos, esta clase de hechos es recurrente.</p>",
+      "category": "Pais",
+      "articles": [
+        {
+          "id": 28,
+          "title": "Niña de cinco años fue impactada por una bala mientras jugaba con sus primos",
+          "url": "https://www.cooperativa.cl/noticias/pais/policial/nina-de-cinco-anos-fue-impactada-por-una-bala-mientras-jugaba-con-sus/2026-08-31/220407.html",
+          "snippet": "Una niña de cinco años de edad fue impactada en su pierna izquierda por una \"bala perdida\" en momentos en que jugaba junto a familiares en una cancha ubicada en la comuna de Cerro Navia.\n\nEl hecho ocurrió en la intersección de Las Torres con Mar de C...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "35": {
+      "id": 35,
+      "title": "Republicanos frenan unanimidad para despachar feriado del 17 de septiembre y comisión invitará a Quiroz y Mas",
+      "description": "La iniciativa busca sumar una jornada festiva a las celebraciones de Fiestas Patrias de este año, pero los reparos de parlamentarios oficialistas apuntan al eventual impacto económico de la medida y a la necesidad de escuchar a gremios y al Ejecutivo.",
+      "category": "Politica",
+      "articles": [
+        {
+          "id": 34,
+          "title": "Republicanos frenan unanimidad para despachar feriado del 17 de septiembre y comisión invitará a Quiroz y Mas",
+          "url": "https://www.latercera.com/politica/noticia/republicanos-frenan-unanimidad-para-despachar-feriado-del-17-de-septiembre-y-comision-citara-a-quiroz-y-mas/",
+          "snippet": "La iniciativa busca sumar una jornada festiva a las celebraciones de Fiestas Patrias de este año, pero los reparos de parlamentarios oficialistas apuntan al eventual impacto económico de la medida y a la necesidad de escuchar a gremios y al Ejecutivo...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "34": {
+      "id": 34,
+      "title": "Cayó el \"Indio Juan\", quien se fugó de la expenitenciaría disfrazado de gendarme",
+      "description": "<p>Tras permanecer más de seis meses prófugo de la justicia, <a href=\"https://www.cooperativa.cl/noticias/pais/judicial/carceles/expenitenciaria-gendarmeria-despliega-operativo-tras-detectar-falta-de/2026-02-25/221135.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><span><strong>Juan Flores Valenzuela</strong>,<strong> conocido bajo el alias de \"Indio Juan\"</strong></span></a>,<strong> fue detenido la tarde de este lunes en la Población La Bandera</strong>,<strong> en la capitalina comuna de San Ramón</strong>, en un operativo coordinado entre la Policía de Investigaciones (PDI) y el Ministerio Público.</p>\n<p>La búsqueda comenzó el pasado 25 de febrero, cuando este sujeto -en compañía de otro interno- <a href=\"https://www.cooperativa.cl/noticias/pais/judicial/carceles/fuga-en-la-ex-penitenciaria-fiscalia-indaga-posible-facilitacion-de/2026-02-26/183121.html\" rel=\"link a una nota relativa 3\" target=\"_blank\"><span><strong>logró escapar del Centro de Detención Preventiva Santiago Sur (ex Penitenciaría) tras conseguir indumentaria oficial</strong></span></a>.</p>\n<p>Las diligencias investigativas para dar con el paradero del criminal fueron <strong>dirigidas por el fiscal regional Metropolitano Occidente</strong>,<strong> Marcos Pastén</strong>, en coordinación directa con las unidades operativas de la Brigada de Investigaciones Policiales Especiales (BIPE).</p>\n<p>Pastén destacó que \"se estuvieron realizando intensas diligencias para reconstruir los circuitos que se habían utilizado desde la salida del centro penitenciario. Es así como se nos presentaron diversos puntos de interés y mediante técnicas de investigación como vigilancias, levantamiento de información, cámaras, pudimos nosotros detectar que se nos presentaba este lugar en la comuna de San Ramón como un punto de interés\".</p>\n<p>Tras su aprehensión en la Población La Bandera, <strong>el imputado fue trasladado de hasta las dependencias del cuartel del equipo especializado</strong>, lugar donde perman",
+      "category": "Pais",
+      "articles": [
+        {
+          "id": 29,
+          "title": "Cayó el \"Indio Juan\", quien se fugó de la expenitenciaría disfrazado de gendarme",
+          "url": "https://www.cooperativa.cl/noticias/pais/policial/cayo-el-indio-juan-quien-se-fugo-de-la-expenitenciaria-disfrazado-de/2026-08-31/215246.html",
+          "snippet": "Tras permanecer más de seis meses prófugo de la justicia, Juan Flores Valenzuela , conocido bajo el alias de \"Indio Juan\" , fue detenido la tarde de este lunes en la Población La Bandera , en la capitalina comuna de San Ramón , en un operativo coordi...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "33": {
+      "id": 33,
+      "title": "Comisión mixta logra acuerdo y destraba proyecto de reforma al sistema político",
+      "description": "La instancia zanjó por unanimidad la discrepancia sobre las exigencias que deberán incorporar los partidos en sus declaraciones de principios. La iniciativa deberá ser ahora revisada y votada por ambas cámaras.",
+      "category": "Politica",
+      "articles": [
+        {
+          "id": 33,
+          "title": "Comisión mixta logra acuerdo y destraba proyecto de reforma al sistema político",
+          "url": "https://www.latercera.com/politica/noticia/comision-mixta-logra-acuerdo-y-destraba-proyecto-de-reforma-al-sistema-politico/",
+          "snippet": "La instancia zanjó por unanimidad la discrepancia sobre las exigencias que deberán incorporar los partidos en sus declaraciones de principios. La iniciativa deberá ser ahora revisada y votada por ambas cámaras....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "32": {
+      "id": 32,
+      "title": "Capturan al “Indio Juan” tras seis meses prófugo: escapó de la ex Penitenciaría vestido como gendarme",
+      "description": "Juan Flores Valenzuela cumplía una condena de presidio perpetuo por el femicidio de su pareja ocurrido el año 2021 en Puente Alto.",
+      "category": "Nacional",
+      "articles": [
+        {
+          "id": 41,
+          "title": "Capturan al “Indio Juan” tras seis meses prófugo: escapó de la ex Penitenciaría vestido como gendarme",
+          "url": "https://www.latercera.com/nacional/noticia/capturan-al-indio-juan-tras-seis-meses-profugo-escapo-de-la-ex-penitenciaria-vestido-como-gendarme/",
+          "snippet": "Juan Flores Valenzuela cumplía una condena de presidio perpetuo por el femicidio de su pareja ocurrido el año 2021 en Puente Alto....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "31": {
+      "id": 31,
+      "title": "Caso Bruma: Familiares valoran \"actitud\" del nuevo fiscal regional del Biobío",
+      "description": "<p>El <strong>nuevo fiscal regional del Biobío, Roberto Garrido</strong>, se reunió este lunes, por primera vez, con los <strong>familiares de los siete pescadores artesanales</strong> <strong>fallecidos</strong> luego de que su embarcación, \"<strong>Bruma\"</strong>, fuera impactada por el pesquero de alta mar <strong>\"Cobra\"</strong>, perteneciente a la empresa <strong>Blumar</strong>.</p>\n<p><a href=\"https://www.cooperativa.cl/noticias/pais/judicial/ministerio-publico/exfiscal-jefe-de-la-araucania-asumio-en-biobio-la-region-mas-compleja/2026-08-03/234044.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">Al asumir el cargo, a inicios de mes</a>, Garrido anunció que esclarecer lo acontecido la noche del <strong>30 de marzo de 2025</strong> en cercanías de la <strong>Isla Santa María </strong>sería una de sus prioridades iniciales. </p>\n<p>La cita de hoy fue, principalmente, de presentación, pero el persecutor adelantó que existe información nueva y diligencias importantes a desarrollar dentro de los próximos días; teniendo presente que en este caso no existe registro audiovisual, como mandata la ley a los barcos que tienen pilotaje automático.</p>\n<p><strong>Catalina Medel, vocera de las familiares</strong>, valoró, sobre todo, \"la actitud totalmente distinta\" que mostró hacia ellos el exjefe del Ministerio Público en La Araucanía.</p>\n<p>\"<strong>Pudimos hablar con él tranquilamente</strong>, tuvo disposición de escuchar a las familias y <strong>no se invalidó nada de lo que nosotros dijimos</strong>\", explicó.</p>\n<p>\"Nosotros (como deudos) consideramos todo importante (en esta investigación); entonces, si tenemos una duda o consulta, se la vamos a hacer saber al fiscal nuevo; y <strong>antes (con Marcela Cartagena) no podíamos tener como ese relajo de preguntarlo</strong>... Había una actitud en que, <strong>quizás, no se consideraba mucho </strong><strong>lo que nosotros decíamos\"</strong>, recordó Medel.</p>\n<p>Con el nuevo fiscal regional, \"esperamos tene",
+      "category": "Pais",
+      "articles": [
+        {
+          "id": 26,
+          "title": "Caso Bruma: Familiares valoran \"actitud\" del nuevo fiscal regional del Biobío",
+          "url": "https://www.cooperativa.cl/noticias/pais/region-del-biobio/caso-bruma-familiares-valoran-actitud-del-nuevo-fiscal-regional-del/2026-08-31/211006.html",
+          "snippet": "El nuevo fiscal regional del Biobío, Roberto Garrido , se reunió este lunes, por primera vez, con los familiares de los siete pescadores artesanales fallecidos luego de que su embarcación, \" Bruma\" , fuera impactada por el pesquero de alta mar \"Cobra...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "30": {
+      "id": 30,
+      "title": "Radiografía al nuevo votante chileno derriba mitos sobre su edad y nivel socioeconómico",
+      "description": "<p>Un <strong>estudio del <a href=\"https://www.cooperativa.cl/noticias/pais/organismos-del-estado/servel-es-el-organismo-electoral-mejor-evaluado-de-latinoamerica/2026-07-23/214657.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><span>Servicio Electoral (Servel)</span></a></strong> determinó que <strong>el perfil del nuevo votante chileno corresponde a un adulto joven de clase media urbana</strong> que, aunque comparte rasgos con el elector tradicional, <strong>destaca por su despolitización</strong>, <strong>su ausencia de militancia partidaria y su falta de habitualidad cívica</strong>.</p>\n<p>Los resultados corresponden al \"<strong>Nuevo Mapa Electoral: Participación y Perfiles de Votantes en Chile</strong>\", en el que el Servel, en conjunto con el Departamento de Estudios Políticos de la Facultad de Gobierno de la Universidad de Chile, presentó <strong>las principales estadísticas del período 2020-2025</strong>,<strong> considerado el ciclo electoral más exigente de la historia del país</strong>,<strong> con 16 votaciones</strong>.</p>\n<p>En entrevista este lunes con <strong>Lo Que Queda Del Día </strong>en<strong> Cooperativa</strong>, la <strong>consejera directiva del Servel y académica de la Universidad de Chile</strong><strong> María Cristina Escudero</strong> detalló que \"<strong>el nuevo votante se parece bastante al habitual</strong>, <strong>pero como en un espejo</strong>\".</p>\n<div class=\"marcoFoto\">\n<div><img alt=\"fotocontent_1\" height=\"auto\" src=\"https://www.cooperativa.cl/noticias/site/artic/20260831/imag/foto_0000000320260831210213.jpg\" width=\"auto\" />\n</div>\n<div class=\"piefoto\"><em>La consejera directiva del organismo, María Cristina Escudero, afirmó que el nuevo elector \"se parece bastante al votante habitual\" y su irrupción \"rompe un poco los mitos\" instalados en el debate público. (FOTO: ATON)</em></div>\n</div>\n<p>\"Por ejemplo, <strong>si (en el habitual) había una mayor votación por parte de las mujeres</strong>,<strong> el nuevo vota",
+      "category": "Pais",
+      "articles": [
+        {
+          "id": 30,
+          "title": "Radiografía al nuevo votante chileno derriba mitos sobre su edad y nivel socioeconómico",
+          "url": "https://www.cooperativa.cl/noticias/pais/politica/elecciones/radiografia-al-nuevo-votante-chileno-derriba-mitos-sobre-su-edad-y-nivel/2026-08-31/210213.html",
+          "snippet": "Un estudio del Servicio Electoral (Servel) determinó que el perfil del nuevo votante chileno corresponde a un adulto joven de clase media urbana que, aunque comparte rasgos con el elector tradicional, destaca por su despolitización , su ausencia de m...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "29": {
+      "id": 29,
+      "title": "“Está bueno que sea una nueva alternativa aparte del Movistar Arena”: Las positivas reacciones de los vecinos ante el anuncio del Renca Arena",
+      "description": "<p>La Municipalidad de Renca y privados impulsan un recinto para conciertos en el sector poniente de la comuna, con capacidad para 22 mil personas. Vecinos valoran la iniciativa, aunque algunos plantean dudas por el impacto en la tranquilidad y el flujo de público.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/esta-bueno-que-sea-una-nueva-alternativa-aparte-del-movistar-arena-las-positivas-reacciones-de-los-vecinos-ante-el-anuncio-del-renca-arena/\">&#8220;Está bueno que sea una nueva alternativa aparte del Movistar Arena&#8221;: Las positivas reacciones de los vecinos ante el anuncio del Renca Arena</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 49,
+          "title": "“Está bueno que sea una nueva alternativa aparte del Movistar Arena”: Las positivas reacciones de los vecinos ante el anuncio del Renca Arena",
+          "url": "https://www.theclinic.cl/2026/08/31/esta-bueno-que-sea-una-nueva-alternativa-aparte-del-movistar-arena-las-positivas-reacciones-de-los-vecinos-ante-el-anuncio-del-renca-arena/",
+          "snippet": "La Municipalidad de Renca y privados impulsan un recinto para conciertos en el sector poniente de la comuna, con capacidad para 22 mil personas. Vecinos valoran la iniciativa, aunque algunos plantean dudas por el impacto en la tranquilidad y el flujo...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 7,
+            "name": "The Clinic",
+            "slug": "the-clinic",
+            "spectrum": "centro-izquierda",
+            "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)"
+          }
+        }
+      ]
+    },
+    "28": {
+      "id": 28,
+      "title": "Tras denuncia de Otakin: Bombero de servicentro fue detenido por estafa",
+      "description": "<p><strong>Carabineros detuvo al bombero del servicentro de Hualpén</strong>, Región del Biobío, <a href=\"https://www.cooperativa.cl/noticias/magazine/personajes/otakin-denuncio-presunta-estafa-en-bencinera-me-quisieron-cag/2026-08-31/171815.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">denunciado por estafa por el anti-influencer <strong>Rodrigo Fernández</strong></a>, mejor conocido como <strong>Otakin</strong>.</p>\n<p>El creador de contenido ocupó su cuenta de la red social Instagram para denunciar una presunta estafa que sufrió en la bencinera de la compañía <strong>Aramco</strong>, donde acusó a uno de los trabajadores de <strong>haberle cobrado 30 mil pesos de bencina sin haberle cargado el combustible</strong>.</p>\n<p>Otakin encaró al bombero al dar cuenta de que <strong>el tanque de su vehículo seguía vacío</strong>, además de asegurar que el trabajador<strong> le entregó una boleta de un cobro por la cifra mencionada que no calzaba con el horario de la carga</strong>.</p>\n<p><strong>La figura de redes sociales llamó a Carabineros y el bombero fue detenido por realizar \"un proceso irregular de carga, configurándose el delito de estafa\"</strong>, explicó el mayor <strong>Cristian Jones Benavente</strong>, de la Cuarta Comisaría de Carabineros de Hualpén, en un video compartido por el propio creador de contenido.</p>\n<p>Por su parte, desde <strong>Aramco</strong>, mediante un comunicado enviado al medio penquista <em>Sabes</em>, <strong>lamentaron lo sucedido y condenaron el actuar del trabajador denunciado</strong>, señalando que la compañía tomará contacto directo con Otakin para resolver la situación.</p>\n<blockquote class=\"instagram-media\">\n<div>\n<div>\n<div></div>\n<div>\n<div></div>\n<div></div>\n</div>\n</div>\n<div></div>\n<div></div>\n<div>\n<div>Ver esta publicación en Instagram</div>\n</div>\n<p><a href=\"https://www.instagram.com/reel/DcuV5emtsGN/?utm_source=ig_embed&amp;utm_campaign=loading\" target=\"_blank\">Una publicación compartida por OTAKIN (@otak",
+      "category": "Economia",
+      "articles": [
+        {
+          "id": 37,
+          "title": "Tras denuncia de Otakin: Bombero de servicentro fue detenido por estafa",
+          "url": "https://www.cooperativa.cl/noticias/magazine/personajes/tras-denuncia-de-otakin-bombero-de-servicentro-fue-detenido-por-estafa/2026-08-31/204723.html",
+          "snippet": "Carabineros detuvo al bombero del servicentro de Hualpén , Región del Biobío, denunciado por estafa por el anti-influencer Rodrigo Fernández , mejor conocido como Otakin .\n\nEl creador de contenido ocupó su cuenta de la red social Instagram para denun...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "24": {
+      "id": 24,
+      "title": "Shinkansen y su apuesta por lanzar el Pix chileno: “No queremos un proyecto donde esté restringido quiénes se sientan en la mesa”",
+      "description": "La compañía trabaja en su proyecto de pagos inmediatos que competirá con el que están alistando los bancos. El cofundador de la empresa, Francisco Larraín, explica que el sistema que lanzarán será completamente abierto para quienes quieren participar. Además, estima que \"el sistema de pagos inmediatos no puede ser un traje a la medida del CCA\".",
+      "category": "Pulso",
+      "articles": [
+        {
+          "id": 44,
+          "title": "Shinkansen y su apuesta por lanzar el Pix chileno: “No queremos un proyecto donde esté restringido quiénes se sientan en la mesa”",
+          "url": "https://www.latercera.com/pulso/noticia/shinkansen-y-su-apuesta-por-lanzar-el-pix-chileno-no-queremos-un-proyecto-donde-este-restringido-quienes-se-sientan-en-la-mesa/",
+          "snippet": "La compañía trabaja en su proyecto de pagos inmediatos que competirá con el que están alistando los bancos. El cofundador de la empresa, Francisco Larraín, explica que el sistema que lanzarán será completamente abierto para quienes quieren participar...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "25": {
+      "id": 25,
+      "title": "Retail mediano reorienta estrategia de créditos hacia clientes menos riesgosos",
+      "description": "En sus estados financieros correspondientes al segundo cuarto del ejercicio, ABC detalló que reconfiguró la cartera de crédito hacia clientes de \"mejor perfil\", producto de lo cual su base de clientes es 16% menor.  La estrategia de Hites también se enfocó en reducir el riesgo, en tanto Tricot apuntó a mayores filtros para nuevos clientes.",
+      "category": "Pulso",
+      "articles": [
+        {
+          "id": 45,
+          "title": "Retail mediano reorienta estrategia de créditos hacia clientes menos riesgosos",
+          "url": "https://www.latercera.com/pulso/noticia/retail-mediano-reorienta-estrategia-de-creditos-hacia-clientes-menos-riesgosos/",
+          "snippet": "En sus estados financieros correspondientes al segundo cuarto del ejercicio, ABC detalló que reconfiguró la cartera de crédito hacia clientes de \"mejor perfil\", producto de lo cual su base de clientes es 16% menor. La estrategia de Hites también se e...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "26": {
+      "id": 26,
+      "title": "Expertos que integran el comité del PIB tendencial anticipan alza para 2027 por efecto de la megarreforma",
+      "description": "Los economistas que participaron en el Comité de Expertos del PIB tendencial anticipan que el escenario para el próximo año será levemente mejor con un PIB tendencial que esté entre 2,7% y 2,8%. Además, para el cobre de largo plazo se espera que esté sobre US$6 la libra.",
+      "category": "Pulso",
+      "articles": [
+        {
+          "id": 46,
+          "title": "Expertos que integran el comité del PIB tendencial anticipan alza para 2027 por efecto de la megarreforma",
+          "url": "https://www.latercera.com/pulso/noticia/expertos-que-integran-el-comite-del-pib-tendencial-anticipan-alza-para-2027-por-efecto-de-la-megarreforma/",
+          "snippet": "Los economistas que participaron en el Comité de Expertos del PIB tendencial anticipan que el escenario para el próximo año será levemente mejor con un PIB tendencial que esté entre 2,7% y 2,8%. Además, para el cobre de largo plazo se espera que esté...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "27": {
+      "id": 27,
+      "title": "La producción de cobre entre enero y julio de este año llega a su nivel más bajo desde 2003",
+      "description": "En los primeros siete meses del año se produjeron 2,9 millones de toneladas de cobre. Así, el ejercicio no es promisorio para este año, donde Cochilco prevé una baja de 2,6%, hasta 5,27 millones de toneladas.",
+      "category": "Pulso",
+      "articles": [
+        {
+          "id": 47,
+          "title": "La producción de cobre entre enero y julio de este año llega a su nivel más bajo desde 2003",
+          "url": "https://www.latercera.com/pulso/noticia/la-produccion-de-cobre-entre-enero-y-julio-de-este-ano-llega-a-su-nivel-mas-bajo-desde-2003/",
+          "snippet": "En los primeros siete meses del año se produjeron 2,9 millones de toneladas de cobre. Así, el ejercicio no es promisorio para este año, donde Cochilco prevé una baja de 2,6%, hasta 5,27 millones de toneladas....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "23": {
+      "id": 23,
+      "title": "Informe internacional sobre politización académica en Humanidades irrumpe en debate por cambios al Fondecyt 2027",
+      "description": "Un estudio elaborado por una comisión de universidades norteamericanas concluyó que existen señales de deterioro de los estándares académicos en distintas áreas de las humanidades y ciencias sociales. En Chile, expertos señalan que una revisión de este tipo podría ser útil, pero no constituye una metodología replicable sobre una eventual politización de la academia.",
+      "category": "Nacional",
+      "articles": [
+        {
+          "id": 43,
+          "title": "Informe internacional sobre politización académica en Humanidades irrumpe en debate por cambios al Fondecyt 2027",
+          "url": "https://www.latercera.com/nacional/noticia/informe-internacional-sobre-politizacion-academica-en-humanidades-irrumpe-en-debate-por-cambios-al-fondecyt-2027/",
+          "snippet": "Un estudio elaborado por una comisión de universidades norteamericanas concluyó que existen señales de deterioro de los estándares académicos en distintas áreas de las humanidades y ciencias sociales. En Chile, expertos señalan que una revisión de es...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "22": {
+      "id": 22,
+      "title": "Las inéditas medidas de protección que pidió el SLEP para docentes del I. Nacional tras graves amenazas",
+      "description": "“Solicito medidas inmediatas de protección para profesionales, funcionarios, directivos, estudiantes, testigos y comunidad educativa del Instituto Nacional, incluyendo evaluación de riesgo, enlace policial, vigilancia, control…",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 11,
+          "title": "Las inéditas medidas de protección que pidió el SLEP para docentes del I. Nacional tras graves amenazas",
+          "url": "https://www.ex-ante.cl/nacional/las-ineditas-medidas-de-proteccion-que-pidio-el-instituto-nacional-para-sus-docentes-tras-graves-amenazas/",
+          "snippet": "“Solicito medidas inmediatas de protección para profesionales, funcionarios, directivos, estudiantes, testigos y comunidad educativa del Instituto Nacional, incluyendo evaluación de riesgo, enlace policial, vigilancia, control…...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 8,
+            "name": "Ex-Ante",
+            "slug": "ex-ante",
+            "spectrum": "centro-derecha",
+            "ownership": "Ex-Ante SpA (Cristián Bofill)"
+          }
+        }
+      ]
+    },
+    "21": {
+      "id": 21,
+      "title": "Tres de cada cuatro profesionales tienen dificultades para conciliar trabajo y familia: la principal razón es no lograr desconectarse",
+      "description": "<p>El estudio, elaborado con 3.908 respuestas de profesionales en 14 países de Latinoamérica, revela que la mayor dificultad para compatibilizar la vida laboral y familiar es desconectarse fuera de horario. Lo que más ayuda a conciliar, en cambio, es el trabajo remoto o híbrido, un derecho que en Chile la Ley de Conciliación resguarda especialmente para quienes tienen tareas de cuidado.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/tres-de-cada-cuatro-profesionales-tienen-dificultades-para-conciliar-trabajo-y-familia-la-principal-razon-es-no-lograr-desconectarse/\">Tres de cada cuatro profesionales tienen dificultades para conciliar trabajo y familia: la principal razón es no lograr desconectarse</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 50,
+          "title": "Tres de cada cuatro profesionales tienen dificultades para conciliar trabajo y familia: la principal razón es no lograr desconectarse",
+          "url": "https://www.theclinic.cl/2026/08/31/tres-de-cada-cuatro-profesionales-tienen-dificultades-para-conciliar-trabajo-y-familia-la-principal-razon-es-no-lograr-desconectarse/",
+          "snippet": "El estudio, elaborado con 3.908 respuestas de profesionales en 14 países de Latinoamérica, revela que la mayor dificultad para compatibilizar la vida laboral y familiar es desconectarse fuera de horario. Lo que más ayuda a conciliar, en cambio, es el...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 7,
+            "name": "The Clinic",
+            "slug": "the-clinic",
+            "spectrum": "centro-izquierda",
+            "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)"
+          }
+        }
+      ]
+    },
+    "20": {
+      "id": 20,
+      "title": "Kast agenda visita oficial a La Paz: El salto político con Bolivia y la primera reunión de los altos mandos policiales",
+      "description": "Este lunes se reunieron en La Paz los altos mandos policiales de ambos países para abordar la agenda de seguridad y en los días siguientes…",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 12,
+          "title": "Kast agenda visita oficial a La Paz: El salto político con Bolivia y la primera reunión de los altos mandos policiales",
+          "url": "https://www.ex-ante.cl/internacional/kast-agenda-visita-oficial-a-la-paz-el-salto-politico-con-bolivia-y-la-primera-reunion-de-los-altos-mandos-policiales/",
+          "snippet": "Este lunes se reunieron en La Paz los altos mandos policiales de ambos países para abordar la agenda de seguridad y en los días siguientes…...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 8,
+            "name": "Ex-Ante",
+            "slug": "ex-ante",
+            "spectrum": "centro-derecha",
+            "ownership": "Ex-Ante SpA (Cristián Bofill)"
+          }
+        }
+      ]
+    },
+    "19": {
+      "id": 19,
+      "title": "Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/radar-31-08-2026/\">Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "articles": [
+        {
+          "id": 21,
+          "title": "Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez",
+          "url": "https://www.ciperchile.cl/2026/08/31/radar-31-08-2026/?utm_source=rss&utm_medium=rss&utm_campaign=radar-31-08-2026",
+          "snippet": "La entrada Presidente Kast asegura que conoce a Cerimedo pero que nunca lo contrató; exministra Steinert desiste de solicitud de reconsideración ante Contraloría, y gobierno presenta agenda de fortalecimiento de protección a la niñez se publicó prime...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 5,
+            "name": "CIPER Chile",
+            "slug": "ciper",
+            "spectrum": "investigacion-no-alineada",
+            "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)"
+          }
+        }
+      ]
+    },
+    "18": {
+      "id": 18,
+      "title": "Aires de Primavera, Nosotros v/s Ellos",
+      "description": "Es importante apoyar lo que valientemente hicieron Vodanovic y Bellolio. Porque se dan cuenta que hay tareas que requieren un nosotros más grande que el…",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 13,
+          "title": "Aires de Primavera, Nosotros v/s Ellos",
+          "url": "https://www.ex-ante.cl/opinion/aires-de-primavera-nosotros-ellos/",
+          "snippet": "Es importante apoyar lo que valientemente hicieron Vodanovic y Bellolio. Porque se dan cuenta que hay tareas que requieren un nosotros más grande que el…...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 8,
+            "name": "Ex-Ante",
+            "slug": "ex-ante",
+            "spectrum": "centro-derecha",
+            "ownership": "Ex-Ante SpA (Cristián Bofill)"
+          }
+        }
+      ]
+    },
+    "17": {
+      "id": 17,
+      "title": "Jugaba en una plaza: niña de 5 años queda herida de gravedad tras balacera en Cerro Navia",
+      "description": "La menor se encontraba en el recinto de juegos cuando recibió un impacto de bala en una de sus piernas, por lo que fue trasladada a un recinto hospitalario, donde debió ser intervenida quirúrgicamente. Investigación quedó en manos de la PDI y del equipo ECOH de la Fiscalía.",
+      "category": "General",
+      "articles": [
+        {
+          "id": 3,
+          "title": "Jugaba en una plaza: niña de 5 años queda herida de gravedad tras balacera en Cerro Navia",
+          "url": "https://www.latercera.com/nacional/noticia/nina-de-5-anos-herida-de-gravedad-producto-de-balacera-en-cerro-navia/",
+          "snippet": "La menor se encontraba en el recinto de juegos cuando recibió un impacto de bala en una de sus piernas, por lo que fue trasladada a un recinto hospitalario, donde debió ser intervenida quirúrgicamente. Investigación quedó en manos de la PDI y del equ...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "16": {
+      "id": 16,
+      "title": "Codelco: El círculo de hierro de Jorge Gómez y los ejecutivos de Collahuasi que fichó",
+      "description": "Jorge Gómez, presidente ejecutivo de Codelco, comienza a marcar su sello en la cuprera. Seis vicepresidencias tendrán nuevos liderazgos y cuatro de ellos trabajaron junto…",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 14,
+          "title": "Codelco: El círculo de hierro de Jorge Gómez y los ejecutivos de Collahuasi que fichó",
+          "url": "https://www.ex-ante.cl/negocios/ejecutivos-de-codelco-jorge-gomez/",
+          "snippet": "Jorge Gómez, presidente ejecutivo de Codelco, comienza a marcar su sello en la cuprera. Seis vicepresidencias tendrán nuevos liderazgos y cuatro de ellos trabajaron junto…...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 8,
+            "name": "Ex-Ante",
+            "slug": "ex-ante",
+            "spectrum": "centro-derecha",
+            "ownership": "Ex-Ante SpA (Cristián Bofill)"
+          }
+        }
+      ]
+    },
+    "15": {
+      "id": 15,
+      "title": "Datos personales, otra bomba para el empleo",
+      "description": "El propósito de la nueva ley de protección de datos es loable: resguardar a las personas ante una tecnología que puede ser muy invasiva. Pero…",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 15,
+          "title": "Datos personales, otra bomba para el empleo",
+          "url": "https://www.ex-ante.cl/afteroffice/datos-personales-bomba-para-el-empleo/",
+          "snippet": "El propósito de la nueva ley de protección de datos es loable: resguardar a las personas ante una tecnología que puede ser muy invasiva. Pero…...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 8,
+            "name": "Ex-Ante",
+            "slug": "ex-ante",
+            "spectrum": "centro-derecha",
+            "ownership": "Ex-Ante SpA (Cristián Bofill)"
+          }
+        }
+      ]
+    },
+    "14": {
+      "id": 14,
+      "title": "Sin Ricky Martin: Menudo celebra 50 años con una gira que reúne a siete exintegrantes",
+      "description": "<p><strong>Siete exintegrantes de Menudo se reunirán en una gira con motivo del 50 aniversario del legendario grupo puertorriqueño</strong>, que arrancará en octubre en California y terminará en diciembre en Puerto Rico con sus canciones adaptadas a las voces adultas de sus antiguos miembros, pero que, aseguraron en entrevista con <em>EFE</em>, <strong>mantienen el sonido que los caracterizó</strong>.</p>\n<p>Creado en 1977 por el productor Edgardo Díaz, este grupo se convirtió en uno de los mayores fenómenos de la música popular latinoamericana, especialmente durante la década de 1980.</p>\n<p>Por sus filas pasaron artistas como<strong> Ricky Martin</strong>, quien se incorporó en 1984 junto con<strong> Draco Rosa</strong>, aunque<strong> ninguno de los dos participará en esta gira</strong>.</p>\n<h2><em><strong>\"Súbete a mi moto\"</strong></em></h2>\n<p><strong>Ralphy Rodríguez</strong>, de 53 años y miembro de 1986 a 1987, recordó que la banda tuvo \"un repertorio de cientos de canciones\" entre 1979 y 1991, y que por ello tuvieron \"muchas reuniones eligiendo primero cuáles canciones vamos a cantar y luego quién va a cantar cada canción\".</p>\n<p>El criterio fue, según <strong>Raymond Acevedo</strong> (1985-1988), \"por sentimiento\" y por la época de cada uno en la agrupación.</p>\n<p>Entre las imprescindibles,<strong> Roy Rosselló</strong> (1983-1986) citó \"Súbete a mi moto\", que canta <strong>René Farrait</strong> (1979-1982), y este sumó \"Claridad\", para él \"la clásica\" del grupo.</p>\n<p><strong>\"Las canciones se adaptan a nuestros tonos ahora de hombre\"</strong>, explicó Acevedo. \"Suena a Menudo porque son las mismas voces\", dijo el cantante de 54 años.</p>\n<p><strong>\"No todas las canciones de Menudo eran melodías muy altas (...) solamente lo bajamos un tonito\"</strong>, precisó Rodríguez.</p>\n<p>Por su parte,<strong> Robert Avellanet</strong> (1988-1991) apuntó que el único que canta en la misma tonalidad de entonces es <strong>Sergio Blass</strong> (1986-1990), porq",
+      "category": "Economia",
+      "articles": [
+        {
+          "id": 38,
+          "title": "Sin Ricky Martin: Menudo celebra 50 años con una gira que reúne a siete exintegrantes",
+          "url": "https://www.cooperativa.cl/noticias/magazine/musica/sin-ricky-martin-menudo-celebra-50-anos-con-una-gira-que-reune-a-siete/2026-08-31/193548.html",
+          "snippet": "Siete exintegrantes de Menudo se reunirán en una gira con motivo del 50 aniversario del legendario grupo puertorriqueño , que arrancará en octubre en California y terminará en diciembre en Puerto Rico con sus canciones adaptadas a las voces adultas d...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "13": {
+      "id": 13,
+      "title": "Granja de bots de Cerimedo impulsa comisión investigadora en la Cámara para esclarecer su eventual participación en procesos electorales en Chile",
+      "description": "<p>La iniciativa, impulsada por el diputado PPD José Montalva, reunió las 62 firmas necesarias y deberá ser votada esta semana en la Cámara. La comisión busca esclarecer los eventuales vínculos de Fernando Cerimedo con procesos electorales en Chile, en medio de las dudas sobre su relación con el entorno de José Antonio Kast.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/granja-de-bots-de-cerimedo-impulsa-comision-investigadora-en-la-camara-para-esclarecer-su-eventual-participacion-en-procesos-electorales-en-chile/\">Granja de bots de Cerimedo impulsa comisión investigadora en la Cámara para esclarecer su eventual participación en procesos electorales en Chile</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 51,
+          "title": "Granja de bots de Cerimedo impulsa comisión investigadora en la Cámara para esclarecer su eventual participación en procesos electorales en Chile",
+          "url": "https://www.theclinic.cl/2026/08/31/granja-de-bots-de-cerimedo-impulsa-comision-investigadora-en-la-camara-para-esclarecer-su-eventual-participacion-en-procesos-electorales-en-chile/",
+          "snippet": "La iniciativa, impulsada por el diputado PPD José Montalva, reunió las 62 firmas necesarias y deberá ser votada esta semana en la Cámara. La comisión busca esclarecer los eventuales vínculos de Fernando Cerimedo con procesos electorales en Chile, en ...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 7,
+            "name": "The Clinic",
+            "slug": "the-clinic",
+            "spectrum": "centro-izquierda",
+            "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)"
+          }
+        }
+      ]
+    },
+    "12": {
+      "id": 12,
+      "title": "Rompen rejas y montan verdaderos “bares”: cómo operan los ambulantes que Santiago no logra erradicar del Movistar Arena",
+      "description": "<p>En los últimos años la situación que se vive en la salida del Movistar Arena para días de conciertos con comerciantes irregulares se ha agravado, derivando en la instalación de verdaderos bares ambulantes. Em la Municipalidad de Santiago aseguran que la situación supera sus facultades y que requiere apoyo de las policías para fiscalizar y controlar el área.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/rompen-rejas-y-montan-verdaderos-bares-como-operan-los-ambulantes-que-santiago-no-logra-erradicar-del-movistar-arena/\">Rompen rejas y montan verdaderos “bares”: cómo operan los ambulantes que Santiago no logra erradicar del Movistar Arena</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 52,
+          "title": "Rompen rejas y montan verdaderos “bares”: cómo operan los ambulantes que Santiago no logra erradicar del Movistar Arena",
+          "url": "https://www.theclinic.cl/2026/08/31/rompen-rejas-y-montan-verdaderos-bares-como-operan-los-ambulantes-que-santiago-no-logra-erradicar-del-movistar-arena/",
+          "snippet": "En los últimos años la situación que se vive en la salida del Movistar Arena para días de conciertos con comerciantes irregulares se ha agravado, derivando en la instalación de verdaderos bares ambulantes. Em la Municipalidad de Santiago aseguran que...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 7,
+            "name": "The Clinic",
+            "slug": "the-clinic",
+            "spectrum": "centro-izquierda",
+            "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)"
+          }
+        }
+      ]
+    },
+    "11": {
+      "id": 11,
+      "title": "Preocupación entre los fans: Lionel Richie fue hospitalizado tras concierto",
+      "description": "<p>El cantante <strong>Lionel Richie</strong> ha generado preocupación entre sus fans al conocerse que<strong> fue hospitalizado tras un concierto durante este fin de semana</strong>.</p>\n<p>De acuerdo con lo informado por el medio <em>TMZ</em>, <strong>el intérprete de \"Hello\" fue ingresado a la unidad de cuidados intensivos (UCI) de un hospital de St. Louis, Misuri</strong>, luego de un show realizado el sábado en la misma ciudad.</p>\n<p>Fuentes cercanas al artista señalaron que <strong>Richie acudió al recinto de salud por iniciativa propia para someterse a algunos exámenes</strong>, con los médicos dando cuenta de la posibilidad de <strong>una leve deshidratación</strong>.</p>\n<p><strong>Se espera que el músico sea dado de alta este martes</strong>, pero múltiples asistentes al show del sábado en el anfiteatro The Muny -Teatro de la Ópera Municipal de St. Luis- dieron cuenta de que <strong>Richie tuvo algunas dificultades durante la parte final de su presentación</strong>.</p>\n<p>Incluso, pidió a su equipo que le trajera un taburete para sentarse mientras interpretaba su última canción de la noche, \"All Night Long (All Night)\".</p>\n<p></p>\n<p>No es la primera vez que el cantante sufre problemas en un show en los últimos meses, ya que <strong><a href=\"https://www.cooperativa.cl/noticias/magazine/musica/lionel-richie-sufrio-problemas-de-salud-en-el-escenario-y-suspendio-su/2026-06-25/132022.html\" rel=\"link a una nota relativa 1\" target=\"_blank\">en junio pasado tuvo que suspender un concierto</a> a minutos de haberse iniciado tras experimentar problemas de salud en el escenario</strong>.</p>",
+      "category": "Economia",
+      "articles": [
+        {
+          "id": 39,
+          "title": "Preocupación entre los fans: Lionel Richie fue hospitalizado tras concierto",
+          "url": "https://www.cooperativa.cl/noticias/magazine/musica/preocupacion-entre-los-fans-lionel-richie-fue-hospitalizado-tras/2026-08-31/184523.html",
+          "snippet": "El cantante Lionel Richie ha generado preocupación entre sus fans al conocerse que fue hospitalizado tras un concierto durante este fin de semana .\n\nDe acuerdo con lo informado por el medio TMZ , el intérprete de \"Hello\" fue ingresado a la unidad de ...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "10": {
+      "id": 10,
+      "title": "La millonaria transformación que prepara Mall Curicó: más de 70 nuevos locales y una apertura proyectada para 2028",
+      "description": "<p>El centro comercial casi duplicará su oferta de tiendas y se construirán cerca de 42.000 metros cuadrados, más de 70 nuevos locales y 400 estacionamientos subterráneos adicionales. Las obras partirían en 2027 y el mall abriría su ampliación en la segunda mitad de 2028.</p>\n<p>The post <a href=\"https://www.theclinic.cl/2026/08/31/la-millonaria-transformacion-que-prepara-mall-curico-mas-de-70-nuevos-locales-y-una-apertura-proyectada-para-2028/\">La millonaria transformación que prepara Mall Curicó: más de 70 nuevos locales y una apertura proyectada para 2028</a> appeared first on <a href=\"https://www.theclinic.cl\">The Clinic</a>.</p>",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 53,
+          "title": "La millonaria transformación que prepara Mall Curicó: más de 70 nuevos locales y una apertura proyectada para 2028",
+          "url": "https://www.theclinic.cl/2026/08/31/la-millonaria-transformacion-que-prepara-mall-curico-mas-de-70-nuevos-locales-y-una-apertura-proyectada-para-2028/",
+          "snippet": "El centro comercial casi duplicará su oferta de tiendas y se construirán cerca de 42.000 metros cuadrados, más de 70 nuevos locales y 400 estacionamientos subterráneos adicionales. Las obras partirían en 2027 y el mall abriría su ampliación en la seg...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 7,
+            "name": "The Clinic",
+            "slug": "the-clinic",
+            "spectrum": "centro-izquierda",
+            "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)"
+          }
+        }
+      ]
+    },
+    "9": {
+      "id": 9,
+      "title": "Ingresos fiscales registran su mayor alza en el año gracias a tributación minera y gasto público se contrae en julio",
+      "description": "De acuerdo al informe de la Dirección de Presupuestos (Dipres) los ingresos fiscales subieron 15,8%, mientras el gasto público cayó 0,7%.",
+      "category": "Pulso",
+      "articles": [
+        {
+          "id": 48,
+          "title": "Ingresos fiscales registran su mayor alza en el año gracias a tributación minera y gasto público se contrae en julio",
+          "url": "https://www.latercera.com/pulso/noticia/ingresos-fiscales-registran-su-mayor-alza-en-el-ano-y-gasto-publico-se-contrae-en-julio/",
+          "snippet": "De acuerdo al informe de la Dirección de Presupuestos (Dipres) los ingresos fiscales subieron 15,8%, mientras el gasto público cayó 0,7%....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "8": {
+      "id": 8,
+      "title": "Protagonizada por Bad Bunny: Residente inició el rodaje de su primera película",
+      "description": "<p>El artista puertorriqueño <strong>René Pérez</strong>, mejor conocido como <strong>Residente</strong>, comenzó la filmación de su primera película, <strong>\"PORTO RICO\"</strong>, protagonizada por su colega Bad Bunny y con un elenco que incluye a actores de la talla de <strong>Viggo Mortensen, Edward Norton y Javier Bardem</strong>.</p>\n<p>Así lo dejó saber este lunes Residente en una historia en su cuenta de Instagram, donde publica la claqueta e incluye en ella que están filmando la primera escena, bajo la dirección del artista y su director de fotografía <strong>Anthony Dod Mantle</strong>, conocido por sus trabajos en \"Slumdog Millionaire\" (2008) y \"Snowden\" (2016).</p>\n<p><strong>\"He soñado con hacer una película sobre mi país desde que era niño. La verdadera historia de Puerto Rico siempre ha estado rodeada de controversia\"</strong>, afirmó en un comunicado Residente en febrero pasado, cuando se anunció la filmación.</p>\n<p><strong>'PORTO RICO'</strong>, coescrita entre Residente y el guionista ganador del Premio Oscar <strong>Alexander Dinelaris</strong> (\"Birdman\"), es un western caribeño inspirado en hechos reales que aborda la compleja historia colonial de Puerto Rico a través de una mirada visualmente intensa.</p>\n<div class=\"marcoFoto\">\n<div><img alt=\"fotocontent_1\" height=\"auto\" src=\"https://www.cooperativa.cl/noticias/site/artic/20260831/imag/foto_0000000220260831181510.png\" width=\"auto\" />\n</div>\n<div class=\"piefoto\">La publicación de Residente anunciando el inicio del rodaje.</div>\n</div>\n<p><strong>\"Esta película es una reafirmación de quiénes somos, contada con la intensidad y la honestidad que nuestra historia merece\"</strong>, comentó Residente, ganador de 34 premios Grammy y Latin Grammy, que ha desarrollado también una carrera como actor en In the Summers\" y \"Frank &amp; Louis\".</p>\n<p><strong>El largometraje, a pesar de que está centrado en los orígenes de Puerto Rico, se filma en República Dominicana</strong> debido a una controversia entr",
+      "category": "Economia",
+      "articles": [
+        {
+          "id": 40,
+          "title": "Protagonizada por Bad Bunny: Residente inició el rodaje de su primera película",
+          "url": "https://www.cooperativa.cl/noticias/magazine/cine/protagonizada-por-bad-bunny-residente-inicio-el-rodaje-de-su-primera/2026-08-31/181510.html",
+          "snippet": "El artista puertorriqueño René Pérez , mejor conocido como Residente , comenzó la filmación de su primera película, \"PORTO RICO\" , protagonizada por su colega Bad Bunny y con un elenco que incluye a actores de la talla de Viggo Mortensen, Edward Nort...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    },
+    "5": {
+      "id": 5,
+      "title": "Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/imagenes-historicas-ineditas-las-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-aviones-hawker-hunter/\">Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "articles": [
+        {
+          "id": 22,
+          "title": "VIDEO | Imágenes inéditas: fotos del ataque a La Moneda tomadas por la cámara de uno de los Hawker Hunter",
+          "url": "https://www.ciperchile.cl/2026/08/31/video-imagenes-ineditas-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-hawker-hunter/?utm_source=rss&utm_medium=rss&utm_campaign=video-imagenes-ineditas-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-hawker-hunter",
+          "snippet": "La entrada VIDEO | Imágenes inéditas: fotos del ataque a La Moneda tomadas por la cámara de uno de los Hawker Hunter se publicó primero en CIPER Chile ....",
+          "similarity_score": 0.766,
+          "source": {
+            "id": 5,
+            "name": "CIPER Chile",
+            "slug": "ciper",
+            "spectrum": "investigacion-no-alineada",
+            "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)"
+          }
+        },
+        {
+          "id": 24,
+          "title": "Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter",
+          "url": "https://www.ciperchile.cl/2026/08/31/imagenes-historicas-ineditas-las-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-aviones-hawker-hunter/?utm_source=rss&utm_medium=rss&utm_campaign=imagenes-historicas-ineditas-las-fotos-del-ataque-a-la-moneda-tomadas-por-la-camara-de-uno-de-los-aviones-hawker-hunter",
+          "snippet": "La entrada Imágenes históricas inéditas: las fotos del ataque a La Moneda tomadas por la cámara de uno de los aviones Hawker Hunter se publicó primero en CIPER Chile ....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 5,
+            "name": "CIPER Chile",
+            "slug": "ciper",
+            "spectrum": "investigacion-no-alineada",
+            "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)"
+          }
+        }
+      ]
+    },
+    "7": {
+      "id": 7,
+      "title": "Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/corte-de-talca-sanciona-a-conservador-najle-por-emitir-certificados-que-permitieron-vender-inmuebles-embargados/\">Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "articles": [
+        {
+          "id": 23,
+          "title": "Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados",
+          "url": "https://www.ciperchile.cl/2026/08/31/corte-de-talca-sanciona-a-conservador-najle-por-emitir-certificados-que-permitieron-vender-inmuebles-embargados/?utm_source=rss&utm_medium=rss&utm_campaign=corte-de-talca-sanciona-a-conservador-najle-por-emitir-certificados-que-permitieron-vender-inmuebles-embargados",
+          "snippet": "La entrada Corte de Talca sanciona a conservador Najle por emitir certificados que permitieron vender inmuebles embargados se publicó primero en CIPER Chile ....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 5,
+            "name": "CIPER Chile",
+            "slug": "ciper",
+            "spectrum": "investigacion-no-alineada",
+            "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)"
+          }
+        }
+      ]
+    },
+    "6": {
+      "id": 6,
+      "title": "Gobierno y partidos socializan agenda de seguridad y acuerdan bajar a urgencia simple reforma constitucional",
+      "description": "El ministro de la Segpres, junto a sus pares Claudio Alvarado y Martín Arrau, recibió este domingo en la noche a los timoneles del oficialismo para coordinar la agenda de seguridad del gobierno y en particular abordar la discusión por la reforma constitucional que ha tensionado al sector y se apuesta se radique solamente en la comisión de Constitución del Senado.",
+      "category": "Politica",
+      "articles": [
+        {
+          "id": 35,
+          "title": "Gobierno y partidos socializan agenda de seguridad y acuerdan bajar a urgencia simple reforma constitucional",
+          "url": "https://www.latercera.com/politica/noticia/el-pacto-que-se-sello-en-la-casa-de-garcia-gobierno-y-partidos-acuerdan-bajar-a-urgencia-simple-reforma-de-seguridad/",
+          "snippet": "El ministro de la Segpres, junto a sus pares Claudio Alvarado y Martín Arrau, recibió este domingo en la noche a los timoneles del oficialismo para coordinar la agenda de seguridad del gobierno y en particular abordar la discusión por la reforma cons...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 1,
+            "name": "La Tercera",
+            "slug": "la-tercera",
+            "spectrum": "centro-derecha",
+            "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)"
+          }
+        }
+      ]
+    },
+    "3": {
+      "id": 3,
+      "title": "<a href=\"https://interferencia.cl/articulos/cop17-el-mundo-no-logra-un-acuerdo-contra-la-sequia-y-posterga-la-agenda-de-sociedad-civil\">COP17: el mundo no logra un acuerdo contra la sequía y posterga la agenda de sociedad civil en la restauración de la tierra</a>",
+      "description": "<img alt=\"\" class=\"img-responsive\" height=\"469\" src=\"https://interferencia.cl/sites/default/files/styles/article/public/captura_de_pantalla_2026-08-30_a_las_10.08.16_p.m.png?itok=c_S0xi52&amp;c=c248545f372e1972b78ca30a65b86fbf\" width=\"900\" />\n<p>Mientras las sequías y los incendios arrecian con cada vez mayor fuerza en gran parte del mundo, los países dejaron ir una nueva oportunidad para crear acuerdos que enfrenten este fenómeno. La&nbsp;Conferencia de las Partes de la Convención de las Naciones Unidas por la Tierra y contra la Desertificación (COP17)&nbsp;no logró acuerdos entre todos sus integrantes y decidió postergar dos años más los debates sobre esta problemática mundial.</p><p>Las tensiones políticas y la falta de acuerdos no solo se reflejaron en esta decisión, pues desde el inicio de la COP17 pasó algo extraordinario que alteró el diálogo.&nbsp;Estados Unidos objetó desde el inicio la inclusión de temas relevantes para pueblos indígenas, comunidades locales, mujeres y jóvenes en la agenda oficial.</p><p>Pese a que estos sectores de la sociedad civil tuvieron un nivel de participación importante en la COP17,&nbsp;su agenda quedó relegada y pospuesta para la próxima cumbre sobre desertificación, la COP18,dejando en pausa avances en mecanismos que han trabajado para la gestión de la tierra y el agua, así como para la resiliencia contra la sequía.</p><p>Esto también se tradujo en algunos acuerdos que&nbsp;omitieron el lenguaje que reconoce la perspectiva de género y el enfoque de derechos de pueblos indígenas&nbsp;en decisiones finales, algo que contradice directamente el discurso de la convención, que oficialmente reconoce la importancia de estos sectores para la restauración del territorio.</p><p>Mongabay Latam<a href=\"https://es.mongabay.com/2026/08/cop17-sequia-acuerdo-sociedad-civil-restauracion-tierra/\">&nbsp;</a>rescata algunas de las principales decisiones que marcan el rumbo para combatir la degradación de la tierra, aumentar la resiliencia contra la",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 16,
+          "title": "<a href=\"https://interferencia.cl/articulos/cop17-el-mundo-no-logra-un-acuerdo-contra-la-sequia-y-posterga-la-agenda-de-sociedad-civil\">COP17: el mundo no logra un acuerdo contra la sequía y posterga la agenda de sociedad civil en la restauración de la tierra</a>",
+          "url": "https://interferencia.cl/%3Ca%20href%3D%22/articulos/cop17-el-mundo-no-logra-un-acuerdo-contra-la-sequia-y-posterga-la-agenda-de-sociedad-civil%22%3ECOP17%3A%20el%20mundo%20no%20logra%20un%20acuerdo%20contra%20la%20sequ%C3%ADa%20y%20posterga%20la%20agenda%20de%20sociedad%20civil%20en%20la%20restauraci%C3%B3n%20de%20la%20tierra%3C/a%3E",
+          "snippet": "Mientras las sequías y los incendios arrecian con cada vez mayor fuerza en gran parte del mundo, los países dejaron ir una nueva oportunidad para crear acuerdos que enfrenten este fenómeno. La Conferencia de las Partes de la Convención de las Nacione...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 10,
+            "name": "Interferencia",
+            "slug": "interferencia",
+            "spectrum": "izquierda",
+            "ownership": "Sociedad Periodística Interferencia SpA (Víctor Herrero)"
+          }
+        }
+      ]
+    },
+    "4": {
+      "id": 4,
+      "title": "<a href=\"https://interferencia.cl/articulos/si-no-hay-justicia-hay-funa\">Si no hay justicia, hay funa</a>",
+      "description": "<img alt=\"Visita espontánea a la fiscalía de Krefeld \" class=\"img-responsive\" height=\"469\" src=\"https://interferencia.cl/sites/default/files/styles/article/public/foto7318_sta.jpg?itok=LqvfyZtu&amp;c=19aafe0651f7653cc5985aff097a8d0a\" title=\"Visita espontánea a la fiscalía de Krefeld \" width=\"900\" />\n<p>La actividad tiene lugar frente a un edificio donde reside Hartmut Hopp (82). Hopp fue médico y director del hospital de Colonia Dignidad, aquella comunidad sectaria alemana fundada en Chile en 1961, en la que la violencia sexual y los trabajos forzados formaban parte del día a día de muchos de sus residentes. Durante la dictadura (1973-1990), los líderes del grupo, encabezado por el predicador laico alemán Paul Schäfer, colaboraron estrechamente con la Dirección de Inteligencia Nacional (DINA), que secuestró a presas y presos&nbsp; políticos, trasladándolos a aquel recinto alejado al pie de los Andes, donde los torturó y asesinó a unos cien de ellos. Su destino sigue sin esclarecerse, al día de hoy continúan desaparecidos.</p><p><strong>Que hablen</strong></p><p>Hopp era la mano derecha de Paul Schäfer, se le considera haber sido el nexo de Colonia Dignidad con la DINA y era quien mantenía estrechos contactos con su jefe, Manuel Contreras. Bianca Schmolze, responsable de derechos humanos en la organización humanitaria Medizinische Flüchtlingshilfe (MFH) Bochum, afirma que Hopp dispone de información clave para esclarecer el paradero de los desaparecidos. “Hablen por fin y cuenten todo lo que saben sobre los presos políticos, los desaparecidos y los asesinados”, exige Schmolze, dirigiéndose a Hopp y a otros ex dirigentes de la Colonia Dignidad que se han sustraído de las investigaciones de la justicia chilena y que actualmente viven impunemente en Alemania.</p><p>Bajo el lema “la Justicia sana”, el centro psicosocial MFH de Bochum aboga por el esclarecimiento de los crímenes contra los derechos humanos y exige la instalación de una comisión de la verdad sobre la Colon",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 17,
+          "title": "<a href=\"https://interferencia.cl/articulos/si-no-hay-justicia-hay-funa\">Si no hay justicia, hay funa</a>",
+          "url": "https://interferencia.cl/%3Ca%20href%3D%22/articulos/si-no-hay-justicia-hay-funa%22%3ESi%20no%20hay%20justicia%2C%20hay%20funa%3C/a%3E",
+          "snippet": "La actividad tiene lugar frente a un edificio donde reside Hartmut Hopp (82). Hopp fue médico y director del hospital de Colonia Dignidad, aquella comunidad sectaria alemana fundada en Chile en 1961, en la que la violencia sexual y los trabajos forza...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 10,
+            "name": "Interferencia",
+            "slug": "interferencia",
+            "spectrum": "izquierda",
+            "ownership": "Sociedad Periodística Interferencia SpA (Víctor Herrero)"
+          }
+        }
+      ]
+    },
+    "2": {
+      "id": 2,
+      "title": "Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos",
+      "description": "<p>La entrada <a href=\"https://www.ciperchile.cl/2026/08/31/ley-lafkenche-y-el-teatro-del-absurdo-cuatro-ecmpo-rechazados-en-los-lagos/\">Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos</a> se publicó primero en <a href=\"https://www.ciperchile.cl\">CIPER Chile</a>.</p>",
+      "category": "Investigaciones",
+      "articles": [
+        {
+          "id": 25,
+          "title": "Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos",
+          "url": "https://www.ciperchile.cl/2026/08/31/ley-lafkenche-y-el-teatro-del-absurdo-cuatro-ecmpo-rechazados-en-los-lagos/?utm_source=rss&utm_medium=rss&utm_campaign=ley-lafkenche-y-el-teatro-del-absurdo-cuatro-ecmpo-rechazados-en-los-lagos",
+          "snippet": "La entrada Ley Lafkenche y el teatro del absurdo: cuatro ECMPO rechazados en Los Lagos se publicó primero en CIPER Chile ....",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 5,
+            "name": "CIPER Chile",
+            "slug": "ciper",
+            "spectrum": "investigacion-no-alineada",
+            "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)"
+          }
+        }
+      ]
+    },
+    "1": {
+      "id": 1,
+      "title": "Resumen: Colo Colo se escapó en el liderato en una fecha empañada por grave incidente en Coquimbo",
+      "description": "<p>Este fin de semana se disputó gran parte de la <strong>fecha 21 de la Liga de Primera</strong>, que quedó marcada por la goleada del líder <strong>Colo Colo</strong>, que se escapó en la cima tras la derrota de la U, y por los<a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/huachipato/duelo-de-coquimbo-y-huachipato-fue-suspendido-por-lanzamiento-de-bombas/2026-08-30/221022.html\" rel=\"link a una nota relativa 1\" target=\"_blank\"><strong> graves incidentes en el partido de Coquimbo y Huachipato</strong></a>, que terminó suspendido por la agresión con bombas de ruido al arquero <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/christian-bravo-fue-trasladado-a-un-centro-asistencial-por-bomba-de/2026-08-30/220246.html\" rel=\"link a una nota relativa 3\" target=\"_blank\"><strong>Christian Bravo.</strong></a></p>\n<p>El cuadro albo fue local en el Estadio Monumental y celebró con <a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/super-lider-colo-colo-aplasto-a-audax-italiano-y-estiro-a-16-puntos-su/2026-08-30/193926.html\" rel=\"link a una nota relativa 6\" target=\"_blank\"><strong>un contundente 5-1 sobre Audax Italiano,</strong></a> con <strong>Javier Correa y Leandro Hernández</strong> como principales figuras. </p>\n<p>El equipo dirigido por Fernando Ortiz llegó a<strong> 12 partidos sin perder en la Liga</strong> y suma<strong> 52 puntos, 16 más que Universidad de Chile,</strong> faltando nueve fechas por disputar en el Campeonato Nacional.</p>\n<p><a href=\"https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/la-u-sumo-un-nuevo-tropiezo-en-la-liga-tras-perder-ante-universidad-de/2026-08-30/171723.html\" rel=\"link a una nota relativa 10\" target=\"_blank\"><strong>Los azules, por su lado, perdieron en esta misma jornada, por 2-1 en su visita a Universidad de Concepción.</strong></a></p>\n<p>Los pupilos de <strong>Fernando Gago no pudieron levantarse tras la derrota que sufrieron la semana pasada en el ",
+      "category": "Portada",
+      "articles": [
+        {
+          "id": 7,
+          "title": "Resumen: Colo Colo se escapó en el liderato en una fecha empañada por grave incidente en Coquimbo",
+          "url": "https://www.cooperativa.cl/noticias/deportes/futbol/liga-de-primera/resumen-colo-colo-se-escapo-en-el-liderato-en-una-fecha-empanada-por/2026-08-30/205023.html",
+          "snippet": "Este fin de semana se disputó gran parte de la fecha 21 de la Liga de Primera , que quedó marcada por la goleada del líder Colo Colo , que se escapó en la cima tras la derrota de la U, y por los graves incidentes en el partido de Coquimbo y Huachipat...",
+          "similarity_score": 1.0,
+          "source": {
+            "id": 4,
+            "name": "Radio Cooperativa",
+            "slug": "cooperativa",
+            "spectrum": "centro-izquierda",
+            "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)"
+          }
+        }
+      ]
+    }
+  },
+  "blindspots": [],
+  "entities": {
+    "people": [
+      "Gabriel Boric",
+      "José Antonio Kast"
+    ],
+    "institutions": [
+      "Carabineros de Chile",
+      "Codelco",
+      "Congreso Nacional",
+      "Contraloría General",
+      "Gobierno de Chile",
+      "Ministerio Público",
+      "Poder Judicial",
+      "Policía de Investigaciones (PDI)",
+      "Servel"
+    ],
+    "locations": [
+      "Antofagasta",
+      "Concepción",
+      "Copiapó",
+      "Coquimbo",
+      "La Serena",
+      "Puente Alto",
+      "Quillota",
+      "Región de Antofagasta",
+      "Región de Araucanía",
+      "Región de Biobío",
+      "Región de Coquimbo",
+      "Región de Los Lagos",
+      "Región de O'Higgins",
+      "Santiago",
+      "Talca"
+    ]
+  },
+  "plurality": {
+    "total_events": 49,
+    "balanced_events": 0,
+    "left_blindspots": 0,
+    "right_blindspots": 0,
+    "skewed_events": 0
+  }
+}

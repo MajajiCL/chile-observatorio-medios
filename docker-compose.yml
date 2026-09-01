@@ -1,0 +1,25 @@
+﻿version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: observatorio_chile_api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./observatorio.db
+      - ENVIRONMENT=production
+      - DEBUG=False
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  scheduler:
+    build: .
+    container_name: observatorio_chile_scheduler
+    command: python scheduler.py
+    environment:
+      - DATABASE_URL=sqlite:///./observatorio.db
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

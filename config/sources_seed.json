@@ -1,0 +1,348 @@
+[
+  {
+    "slug": "la-tercera",
+    "name": "La Tercera",
+    "url": "https://www.latercera.com",
+    "spectrum": "centro-derecha",
+    "category": "prensa-tradicional",
+    "ownership": "Consorcio Periodístico de Chile S.A. (Grupo Copesa - Álvaro Saieh)",
+    "ownership_type": "conglomerado-privado",
+    "funding_model": "suscripcion-publicidad",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "General",
+        "url": "https://www.latercera.com/arc/outboundfeeds/rss/?outputType=xml"
+      },
+      {
+        "category": "Politica",
+        "url": "https://www.latercera.com/arc/outboundfeeds/rss/category/politica/?outputType=xml"
+      },
+      {
+        "category": "Nacional",
+        "url": "https://www.latercera.com/arc/outboundfeeds/rss/category/nacional/?outputType=xml"
+      },
+      {
+        "category": "Pulso",
+        "url": "https://www.latercera.com/arc/outboundfeeds/rss/category/pulso/?outputType=xml"
+      }
+    ]
+  },
+  {
+    "slug": "emol",
+    "name": "Emol (El Mercurio Online)",
+    "url": "https://www.emol.com",
+    "spectrum": "derecha",
+    "category": "prensa-tradicional",
+    "ownership": "Empresa El Mercurio S.A.P. (Familia Edwards)",
+    "ownership_type": "conglomerado-privado",
+    "funding_model": "publicidad-suscripcion",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.emol.com/rss/portada.xml"
+      },
+      {
+        "category": "Nacional",
+        "url": "https://www.emol.com/rss/nacional.xml"
+      },
+      {
+        "category": "Economia",
+        "url": "https://www.emol.com/rss/economia.xml"
+      }
+    ]
+  },
+  {
+    "slug": "biobiochile",
+    "name": "BioBioChile",
+    "url": "https://www.biobiochile.cl",
+    "spectrum": "centro",
+    "category": "prensa-tradicional",
+    "ownership": "Bío-Bío Comunicaciones (Familia Mosciatti)",
+    "ownership_type": "grupo-familiar-independiente",
+    "funding_model": "publicidad",
+    "facticity_rating": "alta",
+    "region": "Nacional / Multirregional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.biobiochile.cl/feed"
+      },
+      {
+        "category": "Nacional",
+        "url": "https://www.biobiochile.cl/categoria/nacional/feed"
+      },
+      {
+        "category": "Economia",
+        "url": "https://www.biobiochile.cl/categoria/economia/feed"
+      }
+    ]
+  },
+  {
+    "slug": "cooperativa",
+    "name": "Radio Cooperativa",
+    "url": "https://www.cooperativa.cl",
+    "spectrum": "centro-izquierda",
+    "category": "prensa-tradicional",
+    "ownership": "Compañía Chilena de Comunicaciones (Familia Del Río)",
+    "ownership_type": "privado-independiente",
+    "funding_model": "publicidad",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.cooperativa.cl/noticias/site/tax/port/all/rss____1.xml"
+      },
+      {
+        "category": "Pais",
+        "url": "https://www.cooperativa.cl/noticias/site/tax/port/all/rss_3___1.xml"
+      },
+      {
+        "category": "Economia",
+        "url": "https://www.cooperativa.cl/noticias/site/tax/port/all/rss_4___1.xml"
+      }
+    ]
+  },
+  {
+    "slug": "ciper",
+    "name": "CIPER Chile",
+    "url": "https://www.ciperchile.cl",
+    "spectrum": "investigacion-no-alineada",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Fundación Centro de Investigación Periodística (Sin fines de lucro)",
+    "ownership_type": "fundacion-sin-fines-de-lucro",
+    "funding_model": "socios-donaciones-fondos",
+    "facticity_rating": "muy-alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Investigaciones",
+        "url": "https://www.ciperchile.cl/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "el-mostrador",
+    "name": "El Mostrador",
+    "url": "https://www.elmostrador.cl",
+    "spectrum": "centro-izquierda",
+    "category": "prensa-digital-investigacion",
+    "ownership": "La Plaza S.A. (Germán Olmedo / Federico Joannon)",
+    "ownership_type": "empresa-periodistica-independiente",
+    "funding_model": "publicidad-socios",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.elmostrador.cl/feed/"
+      },
+      {
+        "category": "Noticias",
+        "url": "https://www.elmostrador.cl/categoria/noticias/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "the-clinic",
+    "name": "The Clinic",
+    "url": "https://www.theclinic.cl",
+    "spectrum": "centro-izquierda",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Ediciones The Clinic (Patricio Fernández / Grupo Edición)",
+    "ownership_type": "privado-independiente",
+    "funding_model": "publicidad",
+    "facticity_rating": "media-alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.theclinic.cl/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "ex-ante",
+    "name": "Ex-Ante",
+    "url": "https://www.ex-ante.cl",
+    "spectrum": "centro-derecha",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Ex-Ante SpA (Cristián Bofill)",
+    "ownership_type": "empresa-periodistica-independiente",
+    "funding_model": "suscripcion-publicidad",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.ex-ante.cl/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "el-dinamo",
+    "name": "El Dínamo",
+    "url": "https://www.eldinamo.cl",
+    "spectrum": "centro",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Ediciones Giro País SpA (Sebastián Sichel y socios fundadores)",
+    "ownership_type": "privado-independiente",
+    "funding_model": "publicidad",
+    "facticity_rating": "media-alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.eldinamo.cl/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "interferencia",
+    "name": "Interferencia",
+    "url": "https://interferencia.cl",
+    "spectrum": "izquierda",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Sociedad Periodística Interferencia SpA (Víctor Herrero)",
+    "ownership_type": "empresa-periodistica-independiente",
+    "funding_model": "suscripcion-socios",
+    "facticity_rating": "media-alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://interferencia.cl/rss.xml"
+      }
+    ]
+  },
+  {
+    "slug": "el-ciudadano",
+    "name": "El Ciudadano",
+    "url": "https://www.elciudadano.com",
+    "spectrum": "izquierda",
+    "category": "prensa-digital-investigacion",
+    "ownership": "Sociedad Periodística El Ciudadano (Sebastián Larraín)",
+    "ownership_type": "colectivo-comunicacional",
+    "funding_model": "socios-publicidad-donaciones",
+    "facticity_rating": "media",
+    "region": "Nacional / Latinoamerica",
+    "rss_feeds": [
+      {
+        "category": "Chile",
+        "url": "https://www.elciudadano.com/category/chile/feed/"
+      }
+    ]
+  },
+  {
+    "slug": "t13",
+    "name": "Teletrece (T13)",
+    "url": "https://www.t13.cl",
+    "spectrum": "centro-derecha",
+    "category": "prensa-tradicional",
+    "ownership": "Canal 13 SpA (Grupo Luksic)",
+    "ownership_type": "conglomerado-privado",
+    "funding_model": "publicidad",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Portada",
+        "url": "https://www.t13.cl/rss"
+      }
+    ]
+  },
+  {
+    "slug": "24horas",
+    "name": "24 Horas (TVN)",
+    "url": "https://www.24horas.cl",
+    "spectrum": "institucional-oficial",
+    "category": "prensa-tradicional",
+    "ownership": "Televisión Nacional de Chile (Estado de Chile / Directorio Plural)",
+    "ownership_type": "empresa-publica-estatal",
+    "funding_model": "publicidad-fondos-publicos",
+    "facticity_rating": "alta",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Nacional",
+        "url": "https://www.24horas.cl/nacional/rss"
+      }
+    ]
+  },
+  {
+    "slug": "el-dia",
+    "name": "Diario El Día",
+    "url": "https://www.diarioeldia.cl",
+    "spectrum": "centro",
+    "category": "prensa-regional",
+    "ownership": "Empresa Periodística El Día (Familia Puga)",
+    "ownership_type": "regional-independiente",
+    "funding_model": "publicidad-impreso",
+    "facticity_rating": "alta",
+    "region": "Coquimbo / La Serena",
+    "rss_feeds": [
+      {
+        "category": "Regional",
+        "url": "https://www.diarioeldia.cl/feed"
+      }
+    ]
+  },
+  {
+    "slug": "el-pinguino",
+    "name": "El Pingüino (Magallanes)",
+    "url": "https://elpinguino.com",
+    "spectrum": "centro",
+    "category": "prensa-regional",
+    "ownership": "Patagónica Publicaciones S.A.",
+    "ownership_type": "regional-independiente",
+    "funding_model": "publicidad",
+    "facticity_rating": "media-alta",
+    "region": "Magallanes / Punta Arenas",
+    "rss_feeds": [
+      {
+        "category": "Regional",
+        "url": "https://elpinguino.com/rss"
+      }
+    ]
+  },
+  {
+    "slug": "senado-chile",
+    "name": "Senado de la República de Chile",
+    "url": "https://www.senado.cl",
+    "spectrum": "institucional-oficial",
+    "category": "fuente-oficial",
+    "ownership": "Poder Legislativo del Estado de Chile",
+    "ownership_type": "organo-constitucional",
+    "funding_model": "presupuesto-nacional",
+    "facticity_rating": "institucional",
+    "region": "Nacional / Valparaíso",
+    "rss_feeds": [
+      {
+        "category": "Noticias",
+        "url": "https://www.senado.cl/rss/noticias.xml"
+      }
+    ]
+  },
+  {
+    "slug": "prensa-presidencia",
+    "name": "Prensa Presidencia de la República",
+    "url": "https://prensa.presidencia.cl",
+    "spectrum": "institucional-oficial",
+    "category": "fuente-oficial",
+    "ownership": "Poder Ejecutivo del Estado de Chile",
+    "ownership_type": "organo-constitucional",
+    "funding_model": "presupuesto-nacional",
+    "facticity_rating": "institucional",
+    "region": "Nacional",
+    "rss_feeds": [
+      {
+        "category": "Comunicados",
+        "url": "https://prensa.presidencia.cl/rss.aspx"
+      }
+    ]
+  }
+]
