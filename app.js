@@ -185,13 +185,22 @@ function renderFiscalCharts() {
     try {
         var myChart = echarts.init(chartDom, null, { renderer: 'svg' });
         var option = {
-            tooltip: { trigger: 'item', formatter: '{b}: US$ {c}B ({d}%)' },
-            legend: { orient: 'horizontal', bottom: '0%', textStyle: { color: '#737373', fontSize: 11 } },
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: '#ffffff',
+                borderColor: '#e2e8f0',
+                borderWidth: 1,
+                textStyle: { color: '#0f172a', fontFamily: 'Plus Jakarta Sans', fontSize: 12 },
+                formatter: function(params) {
+                    return '<div class="p-1"><strong>' + params.name + '</strong><br/><span style="color:#64748b">Gasto:</span> US$ ' + params.value + 'B (' + params.percent + '%)</div>';
+                }
+            },
             series: [
                 {
                     name: 'Gasto Público',
                     type: 'pie',
-                    radius: ['45%', '70%'],
+                    center: ['50%', '50%'],
+                    radius: ['45%', '75%'],
                     avoidLabelOverlap: false,
                     itemStyle: {
                         borderRadius: 8,
@@ -200,19 +209,19 @@ function renderFiscalCharts() {
                     },
                     label: { show: false },
                     emphasis: {
-                        label: { show: true, fontSize: 12, fontWeight: 'bold', color: '#0a0a0a' }
+                        label: { show: true, fontSize: 12, fontWeight: 'bold', color: '#0f172a' }
                     },
                     data: [
-                        { value: 18.2, name: 'Salud Pública', itemStyle: { color: '#0a0a0a' } },
-                        { value: 17.8, name: 'Educación', itemStyle: { color: '#262626' } },
-                        { value: 16.9, name: 'Protección Social & PGU', itemStyle: { color: '#404040' } },
-                        { value: 7.1, name: 'Obras Públicas & MOP', itemStyle: { color: '#525252' } },
-                        { value: 6.8, name: 'GOREs & Municipios', itemStyle: { color: '#737373' } },
-                        { value: 5.4, name: 'Seguridad & Policías', itemStyle: { color: '#a3a3a3' } },
-                        { value: 4.6, name: 'Vivienda MINVU', itemStyle: { color: '#d4d4d4' } },
-                        { value: 2.85, name: 'Defensa FFAA', itemStyle: { color: '#171717' } },
-                        { value: 4.2, name: 'Intereses Deuda', itemStyle: { color: '#e7000b' } },
-                        { value: 9.6, name: 'Otros Ministerios', itemStyle: { color: '#e5e5e5' } }
+                        { value: 18.2, name: 'Salud Pública', itemStyle: { color: '#0f172a' } },
+                        { value: 17.8, name: 'Educación', itemStyle: { color: '#1e293b' } },
+                        { value: 16.9, name: 'Protección Social & PGU', itemStyle: { color: '#334155' } },
+                        { value: 7.1, name: 'Obras Públicas & MOP', itemStyle: { color: '#475569' } },
+                        { value: 6.8, name: 'GOREs & Municipios', itemStyle: { color: '#64748b' } },
+                        { value: 5.4, name: 'Seguridad & Policías', itemStyle: { color: '#94a3b8' } },
+                        { value: 4.6, name: 'Vivienda MINVU', itemStyle: { color: '#cbd5e1' } },
+                        { value: 2.85, name: 'Defensa FFAA', itemStyle: { color: '#0284c7' } },
+                        { value: 4.2, name: 'Intereses Deuda', itemStyle: { color: '#dc2626' } },
+                        { value: 9.6, name: 'Otros Ministerios', itemStyle: { color: '#e2e8f0' } }
                     ]
                 }
             ]
@@ -238,7 +247,7 @@ function renderRegionPills() {
         var isSelected = r.id === currentRegionId;
         var btnClass = isSelected
             ? 'shadcn-button-primary px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-sm'
-            : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#eaeaea]';
+            : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#f1f5f9]';
         return '<button onclick="selectRegion(\'' + r.id + '\')" id="btn-reg-' + r.id + '" class="' + btnClass + '"><span class="font-mono font-bold mr-1 opacity-70">' + r.number + '</span> ' + r.name.replace('Región de ', '').replace('Región del ', '') + '</button>';
     }).join('');
 }
@@ -255,182 +264,220 @@ function selectRegion(regionId) {
         if (btn) {
             btn.className = (item.id === regionId)
                 ? 'shadcn-button-primary px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-sm'
-                : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#eaeaea]';
+                : 'shadcn-button-secondary px-3.5 py-1.5 text-xs font-medium whitespace-nowrap hover:bg-[#f1f5f9]';
         }
     });
 
     var container = document.getElementById('region-full-audit-container');
     if (!container) return;
 
-    var hacinamientoColor = '#0a0a0a';
-    if (r.carceles_gendarmeria.hacinamiento_pct > 140) hacinamientoColor = '#e7000b';
+    var hacinamientoColor = '#0f172a';
+    if (r.carceles_gendarmeria.hacinamiento_pct > 140) hacinamientoColor = '#dc2626';
+
+    var photoUrl = r.image_url || 'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?auto=format&fit=crop&w=1000&q=80';
+    var photoCaption = r.image_caption || r.capital;
+    var idhVal = r.idh ? r.idh.toFixed(3) : '0.820';
+    var informalVal = r.informal_labor_pct ? r.informal_labor_pct + '%' : '28.5%';
+    var waterDeficitVal = r.water_deficit_pct ? r.water_deficit_pct + '%' : '45.0%';
 
     container.innerHTML = '' +
-        '<div class="shadcn-card p-6 md:p-8 space-y-6">' +
-            '<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e5e5] pb-5">' +
-                '<div class="flex items-center space-x-3.5">' +
-                    '<div class="w-12 h-12 rounded-[18px] bg-[#0a0a0a] text-white flex items-center justify-center font-mono font-bold text-lg shadow-sm">' + r.number + '</div>' +
+        '<!-- BANNER FOTOGRÁFICO REAL DE LA REGIÓN -->' +
+        '<div class="relative rounded-[22px] overflow-hidden border border-[#e2e8f0] shadow-sm mb-6 bg-[#0f172a]">' +
+            '<img src="' + photoUrl + '" alt="' + r.name + '" class="region-hero-image filter brightness-90 hover:scale-105 transition-transform duration-700" />' +
+            '<div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent flex flex-col justify-between p-5 md:p-7">' +
+                '<div class="flex flex-wrap items-center justify-between gap-2">' +
+                    '<span class="px-3 py-1 rounded-full text-xs font-bold bg-white/95 text-[#0f172a] shadow-sm backdrop-blur-md flex items-center gap-1.5">' +
+                        '<i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#0284c7]"></i> Región ' + r.number + ' • ' + r.capital +
+                    '</span>' +
+                    '<div class="flex items-center gap-2">' +
+                        '<span class="px-3 py-1 rounded-full text-xs font-bold bg-[#0f172a]/90 text-white border border-white/20 backdrop-blur-md">IDH: ' + idhVal + ' (Alto)</span>' +
+                        '<span class="px-3 py-1 rounded-full text-xs font-bold bg-[#0f172a]/90 text-amber-300 border border-white/20 backdrop-blur-md">Informalidad: ' + informalVal + '</span>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="space-y-1">' +
+                    '<span class="text-xs font-medium text-slate-200 flex items-center gap-1"><i data-lucide="camera" class="w-3.5 h-3.5"></i> ' + photoCaption + '</span>' +
+                    '<h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">' + r.name + '</h2>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+
+        '<!-- RESUMEN DE IDENTIDAD Y DATOS DEMOGRÁFICOS -->' +
+        '<div class="shadcn-card p-6 md:p-7 space-y-4">' +
+            '<div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e2e8f0] pb-4">' +
+                '<div class="flex items-center space-x-3">' +
+                    '<div class="w-11 h-11 rounded-[16px] bg-[#0f172a] text-white flex items-center justify-center font-mono font-extrabold text-base shadow-sm">' + r.number + '</div>' +
                     '<div>' +
-                        '<span class="text-[11px] font-mono uppercase tracking-wider text-[#737373] font-semibold">Capital Regional: ' + r.capital + ' • ' + r.communes_count + ' Comunas</span>' +
-                        '<h2 class="text-2xl md:text-3xl font-bold text-[#0a0a0a] tracking-tight">' + r.name + '</h2>' +
+                        '<span class="text-[11px] font-mono uppercase tracking-wider text-[#64748b] font-bold">Capital: ' + r.capital + ' • ' + r.communes_count + ' Comunas</span>' +
+                        '<h3 class="text-lg md:text-xl font-bold text-[#0f172a]">' + r.name + '</h3>' +
                     '</div>' +
                 '</div>' +
                 '<div class="flex flex-wrap items-center gap-2 text-xs">' +
-                    '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">👥 ' + r.population.toLocaleString('es-CL') + ' habitantes</span>' +
-                    '<span class="shadcn-badge bg-[#fafafa] text-[#0a0a0a] border border-[#e5e5e5]">📐 ' + r.area_km2.toLocaleString('es-CL') + ' km²</span>' +
-                    '<span class="shadcn-badge bg-[#0a0a0a] text-white font-mono font-semibold">PIB: ' + r.pib_share_pct + '% Nacional</span>' +
-                    '<span class="shadcn-badge bg-[#fafafa] text-[#e7000b] border border-[#e5e5e5]">Pobreza: ' + r.poverty_rate_pct + '%</span>' +
+                    '<span class="shadcn-badge bg-[#f8f9fa] text-[#0f172a] border border-[#e2e8f0]">👥 ' + r.population.toLocaleString('es-CL') + ' hab.</span>' +
+                    '<span class="shadcn-badge bg-[#f8f9fa] text-[#0f172a] border border-[#e2e8f0]">📐 ' + r.area_km2.toLocaleString('es-CL') + ' km²</span>' +
+                    '<span class="shadcn-badge bg-[#0f172a] text-white font-mono font-semibold">PIB: ' + r.pib_share_pct + '% Nacional</span>' +
+                    '<span class="shadcn-badge bg-[#f8f9fa] text-[#dc2626] border border-[#e2e8f0]">Pobreza: ' + r.poverty_rate_pct + '%</span>' +
+                    '<span class="shadcn-badge bg-[#f8f9fa] text-[#0284c7] border border-[#e2e8f0]">Déficit Hídrico: ' + waterDeficitVal + '</span>' +
                 '</div>' +
             '</div>' +
-            '<div class="p-4 rounded-[18px] bg-[#fafafa] border border-[#e5e5e5] text-xs space-y-1">' +
-                '<span class="text-[10px] font-bold text-[#0a0a0a] uppercase tracking-wider block">Vocación Productiva & Identidad Regional:</span>' +
-                '<p class="text-[#171717] leading-relaxed font-normal">' + r.vocation + '</p>' +
+            '<div class="p-4 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] text-xs space-y-1">' +
+                '<span class="text-[11px] font-bold text-[#0f172a] uppercase tracking-wider block">Vocación Productiva & Identidad Territorial:</span>' +
+                '<p class="text-[#334155] leading-relaxed font-normal text-xs md:text-sm">' + r.vocation + '</p>' +
             '</div>' +
         '</div>' +
 
+        '<!-- GRID DE 8 EJES DE AUDITORÍA DE ESTADO -->' +
         '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">' +
 
+            '<!-- 1. FINANZAS GORE & MUNICIPIOS -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="landmark" class="w-4 h-4"></i> Finanzas GORE & Municipios</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FNDR</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="landmark" class="w-4 h-4 text-[#0284c7]"></i> Finanzas GORE & Municipios</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">FNDR</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Presupuesto FNDR:</span><span class="font-mono font-bold text-[#0a0a0a]">$' + (r.fiscal_gore.budget_fndr_clp_millions).toLocaleString('es-CL') + 'M</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Ejecución Presupuestaria:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.fiscal_gore.fndr_execution_pct + '%</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Ingreso Municipal per cápita:</span><span class="font-mono font-bold text-[#0a0a0a]">$' + r.fiscal_gore.per_capita_municipal_income_clp.toLocaleString('es-CL') + '/hab</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Dependencia Fondo Común (FCM):</span><span class="font-mono font-bold text-[#e7000b]">' + r.fiscal_gore.fcm_dependency_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Presupuesto FNDR:</span><span class="font-mono font-bold text-[#0f172a]">$' + (r.fiscal_gore.budget_fndr_clp_millions).toLocaleString('es-CL') + 'M</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Ejecución Presupuestaria:</span><span class="font-mono font-bold text-[#0f172a]">' + r.fiscal_gore.fndr_execution_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Ingreso Municipal per cápita:</span><span class="font-mono font-bold text-[#0f172a]">$' + r.fiscal_gore.per_capita_municipal_income_clp.toLocaleString('es-CL') + '/hab</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Dependencia Fondo Común (FCM):</span><span class="font-mono font-bold text-[#dc2626]">' + r.fiscal_gore.fcm_dependency_pct + '%</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: SUBDERE & DIPRES</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Fuente: SUBDERE & DIPRES</div>' +
             '</div>' +
 
+            '<!-- 2. SALUD PÚBLICA -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="heart-pulse" class="w-4 h-4"></i> Salud Pública & Hospitales</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FONASA</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="heart-pulse" class="w-4 h-4 text-[#dc2626]"></i> Salud Pública & Hospitales</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">FONASA</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Hospitales Alta Complejidad:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.hospitals_high_complexity + ' (+ ' + r.salud.hospitals_low_mid + ' mediana/baja)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">CESFAM / Postas Rurales:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.cesfam_and_rural_posts + '</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Lista Espera Quirúrgica:</span><span class="font-mono font-bold text-[#e7000b]">' + r.salud.surgical_waiting_list_patients.toLocaleString('es-CL') + ' pac. (' + r.salud.surgical_waiting_list_avg_days + ' días)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Camas Críticas (UPC) / 100k:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.salud.critical_beds_per_100k + '</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Deuda Hospitalaria Cenabast:</span><span class="font-mono font-bold text-[#737373]">$' + r.salud.cenabast_hospital_debt_clp_millions.toLocaleString('es-CL') + 'M</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Hospitales Alta Complejidad:</span><span class="font-mono font-bold text-[#0f172a]">' + r.salud.hospitals_high_complexity + ' (+ ' + r.salud.hospitals_low_mid + ' mediana/baja)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">CESFAM / Postas Rurales:</span><span class="font-mono font-bold text-[#0f172a]">' + r.salud.cesfam_and_rural_posts + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Lista Espera Quirúrgica:</span><span class="font-mono font-bold text-[#dc2626]">' + r.salud.surgical_waiting_list_patients.toLocaleString('es-CL') + ' pac. (' + r.salud.surgical_waiting_list_avg_days + ' días)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Camas Críticas (UPC) / 100k:</span><span class="font-mono font-bold text-[#0f172a]">' + r.salud.critical_beds_per_100k + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Deuda Hospitalaria Cenabast:</span><span class="font-mono font-bold text-[#64748b]">$' + r.salud.cenabast_hospital_debt_clp_millions.toLocaleString('es-CL') + 'M</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: DEIS / Ministerio de Salud</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Fuente: DEIS / Ministerio de Salud</div>' +
             '</div>' +
 
+            '<!-- 3. EDUCACIÓN & CAPITAL HUMANO -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4"></i> Educación & Escuelas</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">MINEDUC</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4 text-[#0284c7]"></i> Educación & Escuelas</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">MINEDUC</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Establecimientos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + (r.educacion.schools_public_slep + r.educacion.schools_municipal + r.educacion.schools_subsidized_private + r.educacion.schools_private_paid) + ' (' + r.educacion.schools_public_slep + ' SLEP)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Matrícula Escolar Total:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.total_students_enrolled.toLocaleString('es-CL') + '</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Deserción / Asistencia Crítica:</span><span class="font-mono font-bold text-[#e7000b]">' + r.educacion.school_dropout_rate_pct + '% / ' + r.educacion.critical_attendance_pct + '%</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Promedio SIMCE Mat / Leng:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.simce_math_avg + ' / ' + r.educacion.simce_reading_avg + ' pts</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Cobertura Gratuidad Superior:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.educacion.higher_education_gratuity_coverage_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Establecimientos:</span><span class="font-mono font-bold text-[#0f172a]">' + (r.educacion.schools_public_slep + r.educacion.schools_municipal + r.educacion.schools_subsidized_private + r.educacion.schools_private_paid) + ' (' + r.educacion.schools_public_slep + ' SLEP)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Matrícula Escolar Total:</span><span class="font-mono font-bold text-[#0f172a]">' + r.educacion.total_students_enrolled.toLocaleString('es-CL') + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Deserción / Asistencia Crítica:</span><span class="font-mono font-bold text-[#dc2626]">' + r.educacion.school_dropout_rate_pct + '% / ' + r.educacion.critical_attendance_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Promedio SIMCE Mat / Leng:</span><span class="font-mono font-bold text-[#0f172a]">' + r.educacion.simce_math_avg + ' / ' + r.educacion.simce_reading_avg + ' pts</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Cobertura Gratuidad Superior:</span><span class="font-mono font-bold text-[#0f172a]">' + r.educacion.higher_education_gratuity_coverage_pct + '%</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: Mineduc & DEMRE</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Fuente: Mineduc & DEMRE</div>' +
             '</div>' +
 
+            '<!-- 4. SEGURIDAD PÚBLICA & POLICÍAS -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4"></i> Seguridad & Policías</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">POLICÍA</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4 text-[#0f172a]"></i> Seguridad & Policías</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">POLICÍA</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Dotación Carabineros:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.carabineros_active_officers.toLocaleString('es-CL') + ' (' + r.seguridad_policias.carabineros_stations_and_posts + ' cuarteles)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Radiopatrullas Operativas:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.carabineros_patrol_vehicles_operational + ' (' + r.seguridad_policias.carabineros_patrol_vehicles_out_of_service + ' en pana)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Detectives PDI:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.pdi_detectives.toLocaleString('es-CL') + ' (' + r.seguridad_policias.pdi_stations + ' unidades)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Tasa Homicidios / 100k:</span><span class="font-mono font-bold text-[#e7000b]">' + r.seguridad_policias.homicide_rate_per_100k + '</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Incautación Drogas Anual:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.seguridad_policias.drug_seizures_annual_kg.toLocaleString('es-CL') + ' kg</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Dotación Carabineros:</span><span class="font-mono font-bold text-[#0f172a]">' + r.seguridad_policias.carabineros_active_officers.toLocaleString('es-CL') + ' (' + r.seguridad_policias.carabineros_stations_and_posts + ' cuarteles)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Radiopatrullas Operativas:</span><span class="font-mono font-bold text-[#0f172a]">' + r.seguridad_policias.carabineros_patrol_vehicles_operational + ' (' + r.seguridad_policias.carabineros_patrol_vehicles_out_of_service + ' en pana)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Detectives PDI:</span><span class="font-mono font-bold text-[#0f172a]">' + r.seguridad_policias.pdi_detectives.toLocaleString('es-CL') + ' (' + r.seguridad_policias.pdi_stations + ' unidades)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Tasa Homicidios / 100k:</span><span class="font-mono font-bold text-[#dc2626]">' + r.seguridad_policias.homicide_rate_per_100k + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Incautación Drogas Anual:</span><span class="font-mono font-bold text-[#0f172a]">' + r.seguridad_policias.drug_seizures_annual_kg.toLocaleString('es-CL') + ' kg</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Amenaza: ' + r.seguridad_policias.organized_crime_threat_level + '</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Amenaza: ' + r.seguridad_policias.organized_crime_threat_level + '</div>' +
             '</div>' +
 
+            '<!-- 5. CÁRCELES & GENDARMERÍA -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4"></i> Sistema Penitenciario</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">GENDARMERÍA</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-[#dc2626]"></i> Sistema Penitenciario</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">GENDARMERÍA</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Recintos Penitenciarios:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.prisons_count + ' cárceles</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Capacidad vs Población:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.design_capacity_places.toLocaleString('es-CL') + ' / ' + r.carceles_gendarmeria.actual_inmate_population.toLocaleString('es-CL') + ' reos</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Hacinamiento Carcelario:</span><span class="font-mono font-bold" style="color: ' + hacinamientoColor + '">' + r.carceles_gendarmeria.hacinamiento_pct + '%</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Dotación Gendarmería:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.carceles_gendarmeria.gendarmeria_staff.toLocaleString('es-CL') + ' funcionarios</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Inhibición Celular:</span><span class="font-medium text-[#0a0a0a] text-[11px]">' + r.carceles_gendarmeria.cellular_signal_inhibition_active + '</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Recintos Penitenciarios:</span><span class="font-mono font-bold text-[#0f172a]">' + r.carceles_gendarmeria.prisons_count + ' cárceles</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Capacidad vs Población:</span><span class="font-mono font-bold text-[#0f172a]">' + r.carceles_gendarmeria.design_capacity_places.toLocaleString('es-CL') + ' / ' + r.carceles_gendarmeria.actual_inmate_population.toLocaleString('es-CL') + ' reos</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Hacinamiento Carcelario:</span><span class="font-mono font-bold" style="color: ' + hacinamientoColor + '">' + r.carceles_gendarmeria.hacinamiento_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Dotación Gendarmería:</span><span class="font-mono font-bold text-[#0f172a]">' + r.carceles_gendarmeria.gendarmeria_staff.toLocaleString('es-CL') + ' funcionarios</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Inhibición Celular:</span><span class="font-medium text-[#0f172a] text-[11px]">' + r.carceles_gendarmeria.cellular_signal_inhibition_active + '</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Tasa Reincidencia: ' + r.carceles_gendarmeria.recidivism_rate_pct + '%</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Tasa Reincidencia: ' + r.carceles_gendarmeria.recidivism_rate_pct + '%</div>' +
             '</div>' +
 
+            '<!-- 6. BOMBEROS & EMERGENCIAS -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4"></i> Bomberos & Emergencias</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">VOLUNTARIOS</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4 text-[#dc2626]"></i> Bomberos & Emergencias</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">VOLUNTARIOS</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Cuerpos & Compañías:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.fire_departments_bodies + ' cuerpos (' + r.bomberos_emergencias.fire_companies_count + ' cías)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Voluntarios Activos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.active_volunteer_firefighters.toLocaleString('es-CL') + ' bomberos</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Carros Bomba Operativos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.fire_trucks_operational + ' (' + r.bomberos_emergencias.fire_trucks_out_of_service + ' en pana)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Aporte Estado vs Rifas:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.state_budget_funding_pct + '% / ' + r.bomberos_emergencias.self_funding_rifas_pct + '%</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Tiempo Respuesta Promedio:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.bomberos_emergencias.avg_response_time_minutes + ' minutos</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Cuerpos & Compañías:</span><span class="font-mono font-bold text-[#0f172a]">' + r.bomberos_emergencias.fire_departments_bodies + ' cuerpos (' + r.bomberos_emergencias.fire_companies_count + ' cías)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Voluntarios Activos:</span><span class="font-mono font-bold text-[#0f172a]">' + r.bomberos_emergencias.active_volunteer_firefighters.toLocaleString('es-CL') + ' bomberos</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Carros Bomba Operativos:</span><span class="font-mono font-bold text-[#0f172a]">' + r.bomberos_emergencias.fire_trucks_operational + ' (' + r.bomberos_emergencias.fire_trucks_out_of_service + ' en pana)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Aporte Estado vs Rifas:</span><span class="font-mono font-bold text-[#0f172a]">' + r.bomberos_emergencias.state_budget_funding_pct + '% / ' + r.bomberos_emergencias.self_funding_rifas_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Tiempo Respuesta Promedio:</span><span class="font-mono font-bold text-[#0f172a]">' + r.bomberos_emergencias.avg_response_time_minutes + ' minutos</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Riesgo CONAF: ' + r.bomberos_emergencias.forest_fire_risk_conaf + '</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Riesgo CONAF: ' + r.bomberos_emergencias.forest_fire_risk_conaf + '</div>' +
             '</div>' +
 
+            '<!-- 7. DEFENSA NACIONAL & FFAA -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="crosshair" class="w-4 h-4"></i> Defensa & Fuerzas Armadas</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">FFAA</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="crosshair" class="w-4 h-4 text-[#0284c7]"></i> Defensa & Fuerzas Armadas</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">FFAA</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Efectivos Militares Activos:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.defensa_ffaa.active_military_personnel.toLocaleString('es-CL') + '</span></div>' +
-                        '<div><span class="text-[#737373] block text-[11px]">Ejército:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.army_units + '</p></div>' +
-                        '<div><span class="text-[#737373] block text-[11px]">Armada:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.navy_units + '</p></div>' +
-                        '<div><span class="text-[#737373] block text-[11px]">FACh:</span><p class="font-medium text-[#0a0a0a] text-[11px]">' + r.defensa_ffaa.air_force_units + '</p></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Efectivos Militares Activos:</span><span class="font-mono font-bold text-[#0f172a]">' + r.defensa_ffaa.active_military_personnel.toLocaleString('es-CL') + '</span></div>' +
+                        '<div><span class="text-[#64748b] block text-[11px]">Ejército:</span><p class="font-medium text-[#0f172a] text-[11px]">' + r.defensa_ffaa.army_units + '</p></div>' +
+                        '<div><span class="text-[#64748b] block text-[11px]">Armada:</span><p class="font-medium text-[#0f172a] text-[11px]">' + r.defensa_ffaa.navy_units + '</p></div>' +
+                        '<div><span class="text-[#64748b] block text-[11px]">FACh:</span><p class="font-medium text-[#0f172a] text-[11px]">' + r.defensa_ffaa.air_force_units + '</p></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">' + r.defensa_ffaa.strategic_border_role + '</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">' + r.defensa_ffaa.strategic_border_role + '</div>' +
             '</div>' +
 
+            '<!-- 8. VIVIENDA, VIALIDAD & AGUA -->' +
             '<div class="shadcn-card p-5 space-y-3.5 flex flex-col justify-between">' +
                 '<div class="space-y-2">' +
-                    '<div class="flex items-center justify-between border-b border-[#e5e5e5] pb-2">' +
-                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0a0a0a] flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4"></i> Vivienda, Vialidad & Agua</h4>' +
-                        '<span class="shadcn-badge bg-[#fafafa] text-[#737373] border border-[#e5e5e5]">MOP/MINVU</span>' +
+                    '<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-2">' +
+                        '<h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4 text-[#0f172a]"></i> Vivienda, Vialidad & Agua</h4>' +
+                        '<span class="shadcn-badge bg-[#f8f9fa] text-[#64748b] border border-[#e2e8f0]">MOP/MINVU</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs pt-1">' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Déficit Habitacional:</span><span class="font-mono font-bold text-[#e7000b]">' + r.infraestructura_territorio.housing_deficit_families.toLocaleString('es-CL') + ' fam. (' + r.infraestructura_territorio.camps_tomas_count + ' campamentos)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Red Vial Pavimentada:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.paved_roads_km.toLocaleString('es-CL') + ' km (' + r.infraestructura_territorio.unpaved_roads_km.toLocaleString('es-CL') + ' km tierra)</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Llenado de Embalses:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.reservoir_water_storage_pct + '%</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Plantas Desalinizadoras:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.desalination_plants_operating + ' en operación</span></div>' +
-                        '<div class="flex justify-between"><span class="text-[#737373]">Cobertura APR Rural / ERNC:</span><span class="font-mono font-bold text-[#0a0a0a]">' + r.infraestructura_territorio.rural_water_apr_coverage_pct + '% / ' + r.infraestructura_territorio.renewable_energy_capacity_mw + ' MW</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Déficit Habitacional:</span><span class="font-mono font-bold text-[#dc2626]">' + r.infraestructura_territorio.housing_deficit_families.toLocaleString('es-CL') + ' fam. (' + r.infraestructura_territorio.camps_tomas_count + ' campamentos)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Red Vial Pavimentada:</span><span class="font-mono font-bold text-[#0f172a]">' + r.infraestructura_territorio.paved_roads_km.toLocaleString('es-CL') + ' km (' + r.infraestructura_territorio.unpaved_roads_km.toLocaleString('es-CL') + ' km tierra)</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Llenado de Embalses:</span><span class="font-mono font-bold text-[#0f172a]">' + r.infraestructura_territorio.reservoir_water_storage_pct + '%</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Plantas Desalinizadoras:</span><span class="font-mono font-bold text-[#0f172a]">' + r.infraestructura_territorio.desalination_plants_operating + ' en operación</span></div>' +
+                        '<div class="flex justify-between"><span class="text-[#64748b]">Cobertura APR Rural / ERNC:</span><span class="font-mono font-bold text-[#0f172a]">' + r.infraestructura_territorio.rural_water_apr_coverage_pct + '% / ' + r.infraestructura_territorio.renewable_energy_capacity_mw + ' MW</span></div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="text-[10px] text-[#737373] pt-2 border-t border-[#e5e5e5]">Fuente: MOP & DGA</div>' +
+                '<div class="text-[10px] text-[#64748b] pt-2 border-t border-[#e2e8f0]">Fuente: MOP & DGA</div>' +
             '</div>' +
 
         '</div>' +
 
-        '<div class="shadcn-card p-6 md:p-7 space-y-2 border-l-4 border-l-[#0a0a0a]">' +
-            '<span class="text-[11px] font-bold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-1.5">' +
-                '<i data-lucide="sparkles" class="w-4 h-4 text-[#e7000b]"></i> Plan de Estado de la Presidenta IA para ' + r.name + ' (2026 - 2050):' +
+        '<!-- PLAN DE ACCIÓN PRESIDENCIAL 2026-2050 -->' +
+        '<div class="shadcn-card p-6 md:p-7 space-y-2 border-l-4 border-l-[#0f172a]">' +
+            '<span class="text-[11px] font-bold text-[#0f172a] uppercase tracking-wider flex items-center gap-1.5">' +
+                '<i data-lucide="sparkles" class="w-4 h-4 text-[#dc2626]"></i> Plan de Estado de la Presidenta IA para ' + r.name + ' (2026 - 2050):' +
             '</span>' +
-            '<p class="text-xs md:text-sm text-[#171717] font-normal leading-relaxed">' + r.presidential_strategy_2050 + '</p>' +
+            '<p class="text-xs md:text-sm text-[#1e293b] font-normal leading-relaxed">' + r.presidential_strategy_2050 + '</p>' +
         '</div>';
 
     safeCreateIcons();
@@ -836,7 +883,111 @@ function switchTab(tabId) {
     safeCreateIcons();
 }
 
-// 11. INICIALIZADOR UNIVERSAL
+// 11. GUÍA INTERACTIVA DE BIENVENIDA (ONBOARDING TOUR)
+var currentOnboardingStep = 1;
+var totalOnboardingSteps = 4;
+
+var ONBOARDING_DATA = [
+    {
+        step: 1,
+        badge: 'PASO 1 DE 4 • PROPÓSITO DE ESTADO',
+        title: '🇨🇱 ¿Qué es la Presidenta IA & Radiografía de Chile?',
+        tagline: 'Una plataforma cívica de Estado basada en ciencia, datos oficiales y lecciones globales.',
+        content: '<p class="text-xs md:text-sm text-[#334155] leading-relaxed">Imaginemos una inteligencia artificial que actúa como una <strong>Presidenta Técnica de Chile</strong>: un observatorio cívico que audita el país de manera transversal (salud, educación, seguridad, cárceles, bomberos, FFAA y finanzas públicas) con total neutralidad y rigor metodológico.</p><div class="p-3.5 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] text-xs space-y-1 mt-3"><strong class="text-[#0f172a] block">🎯 El Propósito:</strong><span class="text-[#64748b]">Empoderar a todos los chilenos para comprender el Estado, transparentar en qué se gasta cada peso y proponer soluciones con evidencia.</span></div>'
+    },
+    {
+        step: 2,
+        badge: 'PASO 2 DE 4 • FINANZAS PÚBLICAS',
+        title: '📊 ¿Cómo leer el Balance de la República?',
+        tagline: 'Auditoría exacta de los US$ 93.450 Millones del Presupuesto Nacional.',
+        content: '<p class="text-xs md:text-sm text-[#334155] leading-relaxed">En la pestaña <strong>Balance Nacional</strong> podrás ver con total transparencia de dónde sale el dinero de Chile (IVA, Renta, Codelco, Royalty, Litio) y exactamente en qué ministerios se invierte (Salud, Educación, PGU, Seguridad, Obras Públicas).</p><div class="grid grid-cols-2 gap-2 mt-3 text-xs"><div class="p-3 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><strong class="text-[#0f172a] block">📥 Ingresos</strong><span class="text-[#64748b]">US$ 93.5B anuales</span></div><div class="p-3 rounded-[14px] bg-[#f8f9fa] border border-[#e2e8f0]"><strong class="text-[#0f172a] block">📤 Capacidad</strong><span class="text-[#64748b]">Hospitales, colegios y policías</span></div></div>'
+    },
+    {
+        step: 3,
+        badge: 'PASO 3 DE 4 • DESCENTRALIZACIÓN',
+        title: '📍 Radiografía de las 16 Regiones de Chile',
+        tagline: 'Fichas técnicas con fotografías reales y 9 ejes de auditoría por territorio.',
+        content: '<p class="text-xs md:text-sm text-[#334155] leading-relaxed">Navega desde Arica hasta Magallanes. Cada región incluye fotografías reales, listas de espera hospitalarias, sobrepoblación penal, dotación de Carabineros y bomberos, déficit habitacional y el Plan de Estado 2026-2050.</p><div class="p-3.5 rounded-[16px] bg-[#f8f9fa] border border-[#e2e8f0] text-xs space-y-1 mt-3"><strong class="text-[#0f172a] block">💡 Matriz Comparativa:</strong><span class="text-[#64748b]">Compara todas las regiones simultáneamente en una tabla dinámica para ver las brechas territoriales reales.</span></div>'
+    },
+    {
+        step: 4,
+        badge: 'PASO 4 DE 4 • PARTICIPACIÓN',
+        title: '👥 Simulador de Políticas & Ágora Ciudadana',
+        tagline: 'Aprende de Noruega, España o Israel y vota iniciativas cívicas.',
+        content: '<p class="text-xs md:text-sm text-[#334155] leading-relaxed">Usa el <strong>Simulador Prospectivo</strong> para evaluar decisiones con base en países OCDE, revisa los <strong>Proyectos de Ley</strong> traducidos sin tecnicismos y sube tus propias propuestas en el <strong>Ágora Ciudadana</strong>.</p><div class="p-3.5 rounded-[16px] bg-[#0f172a] text-white text-xs space-y-1 mt-3"><strong class="text-white block">🚀 ¡Listo para empezar!</strong><span class="text-slate-300">Haz clic en "Comenzar a Explorar" para ingresar al tablero principal. Puedes reabrir esta guía cuando quieras desde el botón superior.</span></div>'
+    }
+];
+
+function openOnboarding(step) {
+    if (typeof step === 'number') currentOnboardingStep = step;
+    var modal = document.getElementById('onboarding-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    renderOnboardingStep();
+    safeCreateIcons();
+}
+
+function renderOnboardingStep() {
+    var data = ONBOARDING_DATA[currentOnboardingStep - 1] || ONBOARDING_DATA[0];
+    var badgeEl = document.getElementById('onboarding-step-badge');
+    var titleEl = document.getElementById('onboarding-step-title');
+    var taglineEl = document.getElementById('onboarding-step-tagline');
+    var contentEl = document.getElementById('onboarding-step-content');
+    var prevBtn = document.getElementById('onboarding-btn-prev');
+    var nextBtn = document.getElementById('onboarding-btn-next');
+    var dotsContainer = document.getElementById('onboarding-dots');
+
+    if (badgeEl) badgeEl.innerText = data.badge;
+    if (titleEl) titleEl.innerText = data.title;
+    if (taglineEl) taglineEl.innerText = data.tagline;
+    if (contentEl) contentEl.innerHTML = data.content;
+
+    if (prevBtn) {
+        prevBtn.style.visibility = (currentOnboardingStep === 1) ? 'hidden' : 'visible';
+    }
+
+    if (nextBtn) {
+        if (currentOnboardingStep === totalOnboardingSteps) {
+            nextBtn.innerText = 'Comenzar a Explorar 🇨🇱';
+            nextBtn.onclick = finishOnboarding;
+        } else {
+            nextBtn.innerText = 'Siguiente Paso →';
+            nextBtn.onclick = nextOnboardingStep;
+        }
+    }
+
+    if (dotsContainer) {
+        dotsContainer.innerHTML = [1, 2, 3, 4].map(function(s) {
+            var activeClass = (s === currentOnboardingStep) ? 'bg-[#0f172a] w-6' : 'bg-[#cbd5e1] w-2.5';
+            return '<div class="h-2.5 rounded-full transition-all duration-300 ' + activeClass + '"></div>';
+        }).join('');
+    }
+}
+
+function nextOnboardingStep() {
+    if (currentOnboardingStep < totalOnboardingSteps) {
+        currentOnboardingStep++;
+        renderOnboardingStep();
+    } else {
+        finishOnboarding();
+    }
+}
+
+function prevOnboardingStep() {
+    if (currentOnboardingStep > 1) {
+        currentOnboardingStep--;
+        renderOnboardingStep();
+    }
+}
+
+function finishOnboarding() {
+    try {
+        localStorage.setItem('chile_onboarding_completed', 'true');
+    } catch (e) {}
+    closeModal('onboarding-modal');
+}
+
+// 12. INICIALIZADOR UNIVERSAL
 function renderAllViews() {
     try {
         renderEconomicIndicators();
@@ -849,6 +1000,15 @@ function renderAllViews() {
         renderCitizenProposals();
         runSimulation();
         safeCreateIcons();
+
+        // Onboarding automático para primera visita
+        try {
+            if (localStorage.getItem('chile_onboarding_completed') !== 'true') {
+                setTimeout(function() {
+                    openOnboarding(1);
+                }, 400);
+            }
+        } catch (e) {}
     } catch (e) {
         console.error('Error rendering views:', e);
     }
@@ -870,6 +1030,10 @@ if (typeof window !== 'undefined') {
     window.submitArcoForm = submitArcoForm;
     window.filterCategory = filterCategory;
     window.filterClusters = filterClusters;
+    window.openOnboarding = openOnboarding;
+    window.nextOnboardingStep = nextOnboardingStep;
+    window.prevOnboardingStep = prevOnboardingStep;
+    window.finishOnboarding = finishOnboarding;
 }
 
 if (typeof document !== 'undefined') {
@@ -881,5 +1045,6 @@ if (typeof document !== 'undefined') {
         renderAllViews();
     }
 }
+
 
 

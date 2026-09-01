@@ -3576,7 +3576,12 @@
         "rural_water_apr_coverage_pct": 62.5,
         "renewable_energy_capacity_mw": 240
       },
-      "presidential_strategy_2050": "Construcción de la Planta Desalinizadora de Arica para regadío solar de Azapa/Lluta, blindaje fronterizo biométrico y modernización del Complejo Portuario Arica hacia el sur de Perú y Bolivia."
+      "presidential_strategy_2050": "Construcción de la Planta Desalinizadora de Arica para regadío solar de Azapa/Lluta, blindaje fronterizo biométrico y modernización del Complejo Portuario Arica hacia el sur de Perú y Bolivia.",
+      "image_url": "https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Morro de Arica y Altiplano de Parinacota",
+      "idh": 0.812,
+      "informal_labor_pct": 33.4,
+      "water_deficit_pct": 78.5
     },
     {
       "id": "tarapaca",
@@ -3668,7 +3673,12 @@
         "rural_water_apr_coverage_pct": 58.0,
         "renewable_energy_capacity_mw": 890
       },
-      "presidential_strategy_2050": "Polo logístico del Corredor Bioceánico Capricornio hacia Brasil, erradicación y radicación de campamentos en Alto Hospicio y digitalización 4.0 de ZOFRI."
+      "presidential_strategy_2050": "Polo logístico del Corredor Bioceánico Capricornio hacia Brasil, erradicación y radicación de campamentos en Alto Hospicio y digitalización 4.0 de ZOFRI.",
+      "image_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Costa de Iquique, Duna Dragón y Salitrera Humberstone",
+      "idh": 0.825,
+      "informal_labor_pct": 31.8,
+      "water_deficit_pct": 82.0
     },
     {
       "id": "antofagasta",
@@ -3760,7 +3770,12 @@
         "rural_water_apr_coverage_pct": 68.0,
         "renewable_energy_capacity_mw": 5200
       },
-      "presidential_strategy_2050": "Instituto de Tecnologías Limpias (ITL), producción de cátodos de litio y baterías, red de hospitales oncológicos del norte y 100% de agua industrial proveniente del mar."
+      "presidential_strategy_2050": "Instituto de Tecnologías Limpias (ITL), producción de cátodos de litio y baterías, red de hospitales oncológicos del norte y 100% de agua industrial proveniente del mar.",
+      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Monumento Natural La Portada y Salares de Atacama",
+      "idh": 0.864,
+      "informal_labor_pct": 22.1,
+      "water_deficit_pct": 88.0
     },
     {
       "id": "atacama",
@@ -3852,7 +3867,12 @@
         "rural_water_apr_coverage_pct": 65.0,
         "renewable_energy_capacity_mw": 3100
       },
-      "presidential_strategy_2050": "Intervención integral de emergencia en la infraestructura escolar del SLEP Atacama, defensa fluvial/aluvional definitiva en el Río Copiapó y planta de recuperación de tierras raras desde relaves mineros."
+      "presidential_strategy_2050": "Intervención integral de emergencia en la infraestructura escolar del SLEP Atacama, defensa fluvial/aluvional definitiva en el Río Copiapó y planta de recuperación de tierras raras desde relaves mineros.",
+      "image_url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Desierto Florido y Bahía Inglesa",
+      "idh": 0.81,
+      "informal_labor_pct": 27.6,
+      "water_deficit_pct": 74.0
     },
     {
       "id": "coquimbo",
@@ -3944,7 +3964,12 @@
         "rural_water_apr_coverage_pct": 61.0,
         "renewable_energy_capacity_mw": 2650
       },
-      "presidential_strategy_2050": "Construcción prioritaria de la Planta Desalinizadora de Coquimbo-La Serena y Limarí, tranvía interurbano La Serena-Coquimbo y entrega de los nuevos hospitales de alta complejidad."
+      "presidential_strategy_2050": "Construcción prioritaria de la Planta Desalinizadora de Coquimbo-La Serena y Limarí, tranvía interurbano La Serena-Coquimbo y entrega de los nuevos hospitales de alta complejidad.",
+      "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Valle del Elqui y Bahía de Coquimbo-La Serena",
+      "idh": 0.804,
+      "informal_labor_pct": 29.5,
+      "water_deficit_pct": 85.2
     },
     {
       "id": "valparaiso",
@@ -4036,7 +4061,12 @@
         "rural_water_apr_coverage_pct": 74.0,
         "renewable_energy_capacity_mw": 1450
       },
-      "presidential_strategy_2050": "Plan anti-incendios de reconstrucción resiliente en cerros, Tren Rápido Santiago-Valparaíso, Mega-Puerto Exterior de San Antonio y planta desalinizadora para el Valle de Aconcagua."
+      "presidential_strategy_2050": "Plan anti-incendios de reconstrucción resiliente en cerros, Tren Rápido Santiago-Valparaíso, Mega-Puerto Exterior de San Antonio y planta desalinizadora para el Valle de Aconcagua.",
+      "image_url": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Cerros y Ascensores Tradicionales de Valparaíso (Patrimonio UNESCO)",
+      "idh": 0.835,
+      "informal_labor_pct": 28.1,
+      "water_deficit_pct": 62.0
     },
     {
       "id": "metropolitana",
@@ -4128,7 +4158,12 @@
         "rural_water_apr_coverage_pct": 82.0,
         "renewable_energy_capacity_mw": 1100
       },
-      "presidential_strategy_2050": "Reforma del Fondo Común Municipal para igualar inversión barrial, expansión de Metro Líneas 7, 8 y 9 con electromovilidad total, y blindaje de la cuenca del Maipo ante el cambio climático."
+      "presidential_strategy_2050": "Reforma del Fondo Común Municipal para igualar inversión barrial, expansión de Metro Líneas 7, 8 y 9 con electromovilidad total, y blindaje de la cuenca del Maipo ante el cambio climático.",
+      "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Palacio de La Moneda y Cordillera de Los Andes en Santiago",
+      "idh": 0.874,
+      "informal_labor_pct": 25.4,
+      "water_deficit_pct": 48.0
     },
     {
       "id": "ohiggins",
@@ -4220,7 +4255,12 @@
         "rural_water_apr_coverage_pct": 78.0,
         "renewable_energy_capacity_mw": 1820
       },
-      "presidential_strategy_2050": "Tren de cercanías EFE Santiago-Rancagua-San Fernando, tecnificación de regadío en secano costero y fortalecimiento de la Escuela de Medicina de la Universidad de O'Higgins."
+      "presidential_strategy_2050": "Tren de cercanías EFE Santiago-Rancagua-San Fernando, tecnificación de regadío en secano costero y fortalecimiento de la Escuela de Medicina de la Universidad de O'Higgins.",
+      "image_url": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Valle Vitivinícola de Colchagua y Campamento Minero Sewell",
+      "idh": 0.798,
+      "informal_labor_pct": 29.8,
+      "water_deficit_pct": 42.0
     },
     {
       "id": "maule",
@@ -4312,7 +4352,12 @@
         "rural_water_apr_coverage_pct": 72.0,
         "renewable_energy_capacity_mw": 2950
       },
-      "presidential_strategy_2050": "Defensa fluvial definitiva de cuencas de los ríos Maule y Mataquito, pavimentación de 600 km de caminos rurales en Linares y Cauquenes, y centro de I+D agroalimentario en Curicó."
+      "presidential_strategy_2050": "Defensa fluvial definitiva de cuencas de los ríos Maule y Mataquito, pavimentación de 600 km de caminos rurales en Linares y Cauquenes, y centro de I+D agroalimentario en Curicó.",
+      "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Reserva Nacional Radal Siete Tazas y Cuenca del Maule",
+      "idh": 0.772,
+      "informal_labor_pct": 34.2,
+      "water_deficit_pct": 38.0
     },
     {
       "id": "nuble",
@@ -4404,7 +4449,12 @@
         "rural_water_apr_coverage_pct": 64.0,
         "renewable_energy_capacity_mw": 980
       },
-      "presidential_strategy_2050": "Construcción definitiva del Embalse La Punilla y Zapallar para 70.000 ha de riego, nuevo Hospital Regional de Ñuble y subsidio masivo de aislación térmica para erradicar el humo de leña."
+      "presidential_strategy_2050": "Construcción definitiva del Embalse La Punilla y Zapallar para 70.000 ha de riego, nuevo Hospital Regional de Ñuble y subsidio masivo de aislación térmica para erradicar el humo de leña.",
+      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Valle de Itata y Termas Cordilleranas de Chillán",
+      "idh": 0.768,
+      "informal_labor_pct": 35.6,
+      "water_deficit_pct": 32.0
     },
     {
       "id": "biobio",
@@ -4496,7 +4546,12 @@
         "rural_water_apr_coverage_pct": 76.0,
         "renewable_energy_capacity_mw": 4800
       },
-      "presidential_strategy_2050": "Plan de Reindustrialización Verde tras el cierre de Huachipato, extensión del Biotrén a Lota y Penco, y plan integral de seguridad e inversión en la Provincia de Arauco."
+      "presidential_strategy_2050": "Plan de Reindustrialización Verde tras el cierre de Huachipato, extensión del Biotrén a Lota y Penco, y plan integral de seguridad e inversión en la Provincia de Arauco.",
+      "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Río Biobío, Bahía de Talcahuano y Universidad de Concepción",
+      "idh": 0.815,
+      "informal_labor_pct": 27.8,
+      "water_deficit_pct": 28.0
     },
     {
       "id": "araucania",
@@ -4588,7 +4643,12 @@
         "rural_water_apr_coverage_pct": 59.0,
         "renewable_energy_capacity_mw": 2100
       },
-      "presidential_strategy_2050": "Plan de Paz, Seguridad y Desarrollo Integral con presencia disuasiva en rutas críticas, restitución de tierras condicionada a proyectos agroproductivos sustentables y pavimentación masiva en Malleco."
+      "presidential_strategy_2050": "Plan de Paz, Seguridad y Desarrollo Integral con presencia disuasiva en rutas críticas, restitución de tierras condicionada a proyectos agroproductivos sustentables y pavimentación masiva en Malleco.",
+      "image_url": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Volcán Villarrica, Lago y Bosques Milenarios de Araucarias",
+      "idh": 0.76,
+      "informal_labor_pct": 36.8,
+      "water_deficit_pct": 25.0
     },
     {
       "id": "los_rios",
@@ -4680,7 +4740,12 @@
         "rural_water_apr_coverage_pct": 74.0,
         "renewable_energy_capacity_mw": 1420
       },
-      "presidential_strategy_2050": "Protección legal y restauración de los humedales urbanos de Valdivia, modernización del Puerto de Corral y consolidación del transporte público fluvial ecológico."
+      "presidential_strategy_2050": "Protección legal y restauración de los humedales urbanos de Valdivia, modernización del Puerto de Corral y consolidación del transporte público fluvial ecológico.",
+      "image_url": "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Costanera y Ríos Navegables de Valdivia",
+      "idh": 0.812,
+      "informal_labor_pct": 28.4,
+      "water_deficit_pct": 15.0
     },
     {
       "id": "los_lagos",
@@ -4772,7 +4837,12 @@
         "rural_water_apr_coverage_pct": 71.0,
         "renewable_energy_capacity_mw": 1650
       },
-      "presidential_strategy_2050": "Puesta en marcha del Puente Chacao con doble vía Ruta 5 Chiloé, protección estricta de las turberas y pomponales, y bioseguridad genómica sustentable para la salmonicultura."
+      "presidential_strategy_2050": "Puesta en marcha del Puente Chacao con doble vía Ruta 5 Chiloé, protección estricta de las turberas y pomponales, y bioseguridad genómica sustentable para la salmonicultura.",
+      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Volcán Osorno, Lago Llanquihue y Archipiélago de Chiloé",
+      "idh": 0.806,
+      "informal_labor_pct": 29.1,
+      "water_deficit_pct": 12.0
     },
     {
       "id": "aysen",
@@ -4864,7 +4934,12 @@
         "rural_water_apr_coverage_pct": 84.0,
         "renewable_energy_capacity_mw": 180
       },
-      "presidential_strategy_2050": "Pavimentación continua de la Carretera Austral, subsidio de calefacción distrital limpia en Coyhaique para erradicar el humo y fortalecimiento del Hospital Regional con telemedicina 24/7."
+      "presidential_strategy_2050": "Pavimentación continua de la Carretera Austral, subsidio de calefacción distrital limpia en Coyhaique para erradicar el humo y fortalecimiento del Hospital Regional con telemedicina 24/7.",
+      "image_url": "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Santuario de la Naturaleza Capillas de Mármol y Carretera Austral",
+      "idh": 0.82,
+      "informal_labor_pct": 24.5,
+      "water_deficit_pct": 5.0
     },
     {
       "id": "magallanes",
@@ -4956,7 +5031,12 @@
         "rural_water_apr_coverage_pct": 91.0,
         "renewable_energy_capacity_mw": 320
       },
-      "presidential_strategy_2050": "Polo global de Hidrógeno Verde y Combustibles Sintéticos en Cabo Negro, Centro Antártico Internacional (CAI) en Punta Arenas y formación dual de 10.000 técnicos en energías limpias."
+      "presidential_strategy_2050": "Polo global de Hidrógeno Verde y Combustibles Sintéticos en Cabo Negro, Centro Antártico Internacional (CAI) en Punta Arenas y formación dual de 10.000 técnicos en energías limpias.",
+      "image_url": "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?auto=format&fit=crop&w=1000&q=80",
+      "image_caption": "Parque Nacional Torres del Paine y Estrecho de Magallanes",
+      "idh": 0.858,
+      "informal_labor_pct": 19.8,
+      "water_deficit_pct": 0.0
     }
   ]
 }

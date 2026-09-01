@@ -1,99 +1,130 @@
-/* shadcn/ui & Geist - Estilos Institucionales de Estado de Chile */
-@import url('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.css');
-@import url('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.css');
+/* Estilos Institucionales de Estado de Chile - Plus Jakarta Sans & High-Contrast Design */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
   /* Colors */
-  --color-canvas: #f5f5f5;
+  --color-canvas: #f8f9fa;
   --color-paper: #ffffff;
-  --color-surface-alt: #fafafa;
-  --color-ink: #0a0a0a;
-  --color-ink-soft: #171717;
-  --color-mid-gray: #737373;
-  --color-hairline: #e5e5e5;
-  --color-ember: #e7000b;
+  --color-surface-alt: #f1f3f5;
+  --color-ink: #0f172a;
+  --color-ink-soft: #1e293b;
+  --color-mid-gray: #64748b;
+  --color-hairline: #e2e8f0;
+  --color-ember: #dc2626;
+  --color-brand: #0284c7;
 
   /* Typography */
-  --font-geist: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Shadows */
-  --shadow-subtle: 0 0 0 1px rgba(23, 23, 23, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
-  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.03), 0 12px 24px -4px rgba(0, 0, 0, 0.04);
+  /* Shadows & Elevation */
+  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-geist);
+  font-family: var(--font-main);
   background-color: var(--color-canvas);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.012em;
 }
 
-/* Componentes shadcn/ui */
+/* Componentes shadcn / Clean Institutional */
 .shadcn-card {
   background-color: var(--color-paper);
   border: 1px solid var(--color-hairline);
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: var(--shadow-card);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shadcn-card:hover {
-  border-color: #d4d4d4;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
 }
 
 .shadcn-button-primary {
   background-color: var(--color-ink);
-  color: #fafafa;
-  border-radius: 18px;
-  font-weight: 500;
-  transition: all 0.15s ease;
+  color: #ffffff;
+  border-radius: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.18s ease;
 }
 
 .shadcn-button-primary:hover {
-  background-color: var(--color-ink-soft);
+  background-color: #334155;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.15);
 }
 
 .shadcn-button-secondary {
-  background-color: var(--color-canvas);
+  background-color: #ffffff;
   color: var(--color-ink);
   border: 1px solid var(--color-hairline);
-  border-radius: 18px;
-  font-weight: 500;
-  transition: all 0.15s ease;
+  border-radius: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.18s ease;
 }
 
 .shadcn-button-secondary:hover {
-  background-color: #ebebeb;
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .shadcn-badge {
-  border-radius: 18px;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: 500;
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .shadcn-input {
-  background-color: var(--color-canvas);
+  background-color: #ffffff;
   border: 1px solid var(--color-hairline);
-  border-radius: 18px;
+  border-radius: 14px;
   color: var(--color-ink);
-  font-size: 14px;
+  font-size: 13px;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .shadcn-input:focus {
-  background-color: #ffffff;
   border-color: var(--color-ink);
-  box-shadow: 0 0 0 1px var(--color-ink);
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1);
+}
+
+/* Imagen Hero y Fotografía de Regiones */
+.region-hero-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 768px) {
+  .region-hero-image {
+    height: 280px;
+  }
+}
+
+/* Efectos visuales de fondo y tarjetas */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 /* Scrollbar refinada */
@@ -103,14 +134,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-canvas);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a3a3a3;
+  background: #94a3b8;
 }
+
