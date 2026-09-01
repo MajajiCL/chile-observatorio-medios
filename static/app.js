@@ -58,66 +58,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function renderAllViews() {
     renderEconomicIndicators();
-    renderPresidentialBriefing();
+    renderCadenaNacional();
+    renderLegislativeBills();
+    renderRoadmap2050();
     renderAuditPillars();
-    renderBenchmarksGrid();
     renderClustersView();
-    renderBlindspotsView();
-    renderSourcesView();
     renderCitizenProposals();
     if (window.lucide) lucide.createIcons();
 }
 
-function renderStatecraftRadar() {
-    const chartDom = document.getElementById('chart-statecraft-radar');
-    if (!chartDom || !window.echarts) return;
-    
-    const myChart = echarts.init(chartDom, 'dark', { backgroundColor: 'transparent' });
-    const option = {
-        tooltip: { trigger: 'axis' },
-        radar: {
-            indicator: [
-                { name: 'Seguridad & Cárceles', max: 100 },
-                { name: 'Salud & Listas Espera', max: 100 },
-                { name: 'Educación & Futuro', max: 100 },
-                { name: 'Equidad Municipal / Calles', max: 100 },
-                { name: 'Productividad & Litio/Cobre', max: 100 },
-                { name: 'Agua & Clima', max: 100 },
-                { name: 'Probidad & Estado', max: 100 }
-            ],
-            shape: 'polygon',
-            splitNumber: 4,
-            axisName: { color: '#94a3b8', fontSize: 10, fontWeight: 'bold' },
-            splitLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.4)' } },
-            splitArea: { show: false },
-            axisLine: { lineStyle: { color: 'rgba(51, 65, 85, 0.5)' } }
-        },
-        series: [
-            {
-                name: 'Auditoría Nacional',
-                type: 'radar',
-                data: [
-                    {
-                        value: [38, 42, 50, 40, 58, 35, 65],
-                        name: 'Nivel Actual de Desempeño (Chile)',
-                        itemStyle: { color: '#ef4444' },
-                        areaStyle: { color: 'rgba(239, 68, 68, 0.25)' }
-                    },
-                    {
-                        value: [85, 90, 88, 85, 88, 92, 90],
-                        name: 'Meta Benchmark OCDE / Países Desarrollados',
-                        itemStyle: { color: '#06b6d4' },
-                        areaStyle: { color: 'rgba(6, 182, 212, 0.15)' }
-                    }
-                ]
-            }
-        ]
-    };
-    myChart.setOption(option);
-}
-
 function switchTab(tabId) {
-    const tabs = ['presidencia', 'audit', 'benchmarks', 'clusters', 'blindspots', 'sources', 'citizen'];
+    const tabs = ['cadena', 'leyes', 'roadmap', 'audit', 'clusters', 'citizen'];
     tabs.forEach(t => {
         const view = document.getElementById('view-' + t);
         const btn = document.getElementById('tab-btn-' + t);
@@ -132,69 +83,161 @@ function switchTab(tabId) {
         }
     });
 
-    if (tabId === 'presidencia') {
+    if (tabId === 'cadena') {
         setTimeout(renderStatecraftRadar, 60);
     }
     if (window.lucide) lucide.createIcons();
 }
 
-function renderEconomicIndicators() {
-    const container = document.getElementById('economic-ticker');
-    if (!container) return;
-
-    let indicators = dataSnapshot && dataSnapshot.economic_indicators ? dataSnapshot.economic_indicators : [
-        { code: 'UF', name: 'Unidad de Fomento', value: 40875.09, unit: 'CLP' },
-        { code: 'DOLAR', name: 'Dólar Observado', value: 933.40, unit: 'CLP' },
-        { code: 'EURO', name: 'Euro', value: 1084.21, unit: 'CLP' },
-        { code: 'IPC', name: 'IPC Mensual', value: -0.2, unit: '%' },
-        { code: 'UTM', name: 'UTM', value: 71721.00, unit: 'CLP' }
-    ];
-
-    container.innerHTML = indicators.map(ind => {
-        const isClp = ind.unit === '$' || ind.unit === 'CLP';
-        const formatted = ind.value ? ind.value.toLocaleString('es-CL', { minimumFractionDigits: ind.unit === '%' ? 1 : 2, maximumFractionDigits: 2 }) : '-';
-        return '<div class="flex items-center space-x-1.5 whitespace-nowrap"><span class="text-slate-400 font-semibold text-[11px]">' + ind.code + ':</span><span class="text-emerald-400 font-mono font-bold text-xs">' + (isClp ? '$' : '') + formatted + ' ' + (ind.unit === '%' ? '%' : '') + '</span></div>';
-    }).join('');
-}
-
-function renderPresidentialBriefing() {
-    const briefing = (dataSnapshot && dataSnapshot.presidential_briefing) ? dataSnapshot.presidential_briefing : {
-        title: 'Mensaje de Estado: Diagnóstico Sistémico y Prospectiva Nacional',
-        date: '1 de Septiembre, 2026',
-        core_principles: [
-            '1. Desconexión de la trifulca coyuntural: El progreso no se mide en cuñas televisivas, sino en indicadores de vida verificables.',
-            '2. Evidencia y ciencia como único árbitro: Las políticas públicas deben fundamentarse en datos del Banco Central, INE, OCDE y ciencia aplicada.',
-            '3. Aprendizaje histórico internacional: Ningún problema chileno es inédito; las soluciones probadas en Noruega, Singapur, Países Bajos y Estonia marcan el camino.'
+function renderCadenaNacional() {
+    const c = (dataSnapshot && dataSnapshot.cadena_nacional) ? dataSnapshot.cadena_nacional : {
+        title: "Cadena Nacional Ciudadana: El Estado de Chile hoy 1 de Septiembre de 2026",
+        executive_headline: "La economía muestra estabilidad con inflación controlada (-0.2% mensual), mientras el debate en el Congreso se concentra en la Reforma Previsional y la urgencia de destrabar inversiones hídricas en el norte chico.",
+        key_takeaways_for_citizens: [
+            { icon: "wallet", topic: "Para tu Bolsillo", text: "La UF se mantiene en $40.875 y el Dólar en $933. La caída de la inflación alivia el costo de los alimentos básicos este mes." },
+            { icon: "shield", topic: "Para tu Seguridad", text: "Prioridad máxima en el Senado para la Ley de Inteligencia y control fronterizo. La Presidenta IA recomienda vigilar la inversión efectiva en patrullaje comunal." },
+            { icon: "heart-pulse", topic: "Para tu Salud", text: "El Ministerio de Salud evalúa extender el horario de pabellones los sábados para acelerar cirugías retrasadas en hospitales regionales." }
         ],
-        strategic_summary: 'Chile posee una posición macroeconómica e institucional privilegiada en América Latina, pero enfrenta cuellos de botella críticos en seguridad penitenciaria, listas de espera en salud, estancamiento de la productividad y estrés hídrico. Resolverlos exige abandonar el cortoplacismo electoral y ejecutar reformas estructurales con métricas de 10 a 20 años.',
-        urgent_priorities: [
-            'Reforma Penitenciaria y Aislamiento de Crimen Organizado',
-            'Uso 24/7 de Pabellones Quirúrgicos y Telemedicina en CESFAM',
-            'Estrategia Nacional de Desalinización Multipropósito',
-            'Ley Anti-Permisología y Foco en I+D de Cobre y Litio',
-            'Redistribución Efectiva del Fondo Común Municipal para Calles y Seguridad'
-        ]
+        president_quote: "«Un país no se construye peleando por quién grita más fuerte en el matinal, sino midiendo rigurosamente cada peso público y aprendiendo con humildad de los que ya resolvieron estos problemas en el mundo.»"
     };
 
-    const titleEl = document.getElementById('briefing-title');
-    const dateEl = document.getElementById('briefing-date');
-    const summaryEl = document.getElementById('briefing-summary');
-    const principlesEl = document.getElementById('briefing-principles');
-    const prioritiesEl = document.getElementById('briefing-priorities');
+    const titleEl = document.getElementById("cadena-title");
+    const headlineEl = document.getElementById("cadena-headline");
+    const quoteEl = document.getElementById("cadena-quote");
+    const takeawaysEl = document.getElementById("cadena-takeaways");
 
-    if (titleEl) titleEl.innerText = briefing.title;
-    if (dateEl) dateEl.innerText = briefing.date;
-    if (summaryEl) summaryEl.innerHTML = '<p class="leading-relaxed"><strong class="text-white font-semibold">Diagnóstico General:</strong> ' + briefing.strategic_summary + '</p>';
+    if (titleEl) titleEl.innerText = c.title;
+    if (headlineEl) headlineEl.innerText = c.executive_headline;
+    if (quoteEl) quoteEl.innerText = c.president_quote;
 
-    if (principlesEl) {
-        principlesEl.innerHTML = (briefing.core_principles || []).map(p => '<div class="p-3 rounded-xl bg-slate-900 border border-slate-800 leading-snug"><span class="text-slate-200">' + p + '</span></div>').join('');
-    }
-
-    if (prioritiesEl) {
-        prioritiesEl.innerHTML = (briefing.urgent_priorities || []).map(pri => '<span class="px-3 py-1 rounded-xl text-xs font-semibold bg-cyan-950 text-cyan-300 border border-cyan-700/60 flex items-center gap-1.5 shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> ' + pri + '</span>').join('');
+    if (takeawaysEl) {
+        takeawaysEl.innerHTML = (c.key_takeaways_for_citizens || []).map(t => `
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+                <div class="flex items-center space-x-2 text-cyan-400 font-bold text-xs">
+                    <i data-lucide="${t.icon || 'check'}" class="w-4 h-4 text-cyan-400"></i>
+                    <span>${t.topic}</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">${t.text}</p>
+            </div>
+        `).join("");
     }
 
     setTimeout(renderStatecraftRadar, 50);
+}
+
+function renderLegislativeBills() {
+    allLegislativeBills = (dataSnapshot && dataSnapshot.legislative_bills) ? dataSnapshot.legislative_bills : [];
+    const container = document.getElementById("legislative-bills-container");
+    if (!container) return;
+
+    container.innerHTML = allLegislativeBills.map((b, idx) => `
+        <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-5 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-950/90 border border-emerald-800/60 flex items-center justify-center text-emerald-400 font-bold">
+                        ${idx + 1}
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold">${b.bulletin_number}</span>
+                            <span class="text-[10px] font-semibold px-2 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">${b.status}</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-black text-white mt-0.5">${b.title}</h3>
+                    </div>
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-800 flex items-center gap-1">
+                    <i data-lucide="flame" class="w-3 h-3 text-amber-400"></i> ${b.urgency}
+                </span>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-xs sm:text-sm text-slate-200">
+                <strong class="text-slate-400 block text-[11px] uppercase tracking-wider mb-1">Resumen del Proyecto:</strong>
+                ${b.summary}
+            </div>
+
+            <!-- EXPLICADO CON MANZANAS: CÓMO TE AFECTA A TI -->
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-cyan-950/40 to-blue-950/30 border border-cyan-800/40 text-xs space-y-1.5">
+                <div class="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="user-check" class="w-4 h-4 text-cyan-400"></i>
+                    <span>¿Cómo te afecta a ti en tu vida diaria?</span>
+                </div>
+                <p class="text-slate-200 leading-relaxed">${b.ai_president_breakdown.como_te_afecta_a_ti}</p>
+            </div>
+
+            <!-- LO POSITIVO VS LOS RIESGOS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-800/40 space-y-1">
+                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                        <i data-lucide="check-circle" class="w-3 h-3"></i> Lo Positivo:
+                    </span>
+                    <p class="text-slate-300">${b.ai_president_breakdown.lo_positivo}</p>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-800/40 space-y-1">
+                    <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                        <i data-lucide="alert-triangle" class="w-3 h-3"></i> Los Riesgos & Desafíos:
+                    </span>
+                    <p class="text-slate-300">${b.ai_president_breakdown.los_riesgos}</p>
+                </div>
+            </div>
+
+            <!-- CONTRASTE POLÍTICO & EVIDENCIA -->
+            <div class="pt-3 border-t border-slate-800/80 grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-slate-400">
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                    <strong class="text-slate-300 block mb-0.5">Postura Oficialismo:</strong>
+                    ${b.political_debate.oficialismo}
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                    <strong class="text-slate-300 block mb-0.5">Postura Oposición:</strong>
+                    ${b.political_debate.oposicion}
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400">
+                    <strong class="text-emerald-300 block mb-0.5">Evidencia Técnica / OCDE:</strong>
+                    ${b.political_debate.evidencia_tecnica}
+                </div>
+            </div>
+        </div>
+    `).join("");
+
+    if (window.lucide) lucide.createIcons();
+}
+
+function renderRoadmap2050() {
+    allRoadmapPhases = (dataSnapshot && dataSnapshot.chile_2050_roadmap) ? dataSnapshot.chile_2050_roadmap : [];
+    const container = document.getElementById("roadmap-container");
+    if (!container) return;
+
+    container.innerHTML = allRoadmapPhases.map((phase, idx) => {
+        const milestonesHtml = (phase.milestones || []).map(m => `
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-start justify-between gap-3 text-xs">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono font-bold text-cyan-400 px-2 py-0.5 bg-cyan-950 rounded border border-cyan-800/50">${m.year}</span>
+                        <h5 class="font-bold text-white">${m.title}</h5>
+                    </div>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700 whitespace-nowrap">${m.status}</span>
+            </div>
+        `).join("");
+
+        return `
+            <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-4 border border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${phase.color} flex items-center justify-center text-white font-black text-sm shadow-md">
+                        0${idx + 1}
+                    </div>
+                    <div>
+                        <h4 class="text-base sm:text-lg font-black text-white">${phase.phase}</h4>
+                        <p class="text-xs text-slate-400">${phase.tagline}</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                    ${milestonesHtml}
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    if (window.lucide) lucide.createIcons();
 }
 
 const SIMULATION_DATA = {

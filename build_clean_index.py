@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+﻿import os
+
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="es" class="h-full bg-[#070b14] text-slate-100">
 <head>
     <meta charset="UTF-8">
@@ -423,3 +425,14 @@
     <script src="./app.js"></script>
 </body>
 </html>
+"""
+
+base_dir = r"C:\Users\mandr\.gemini\antigravity\scratch\chile-observatorio-medios"
+
+with open(os.path.join(base_dir, "index.html"), "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
+
+with open(os.path.join(base_dir, "static", "index.html"), "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
+
+print("index.html generado exitosamente con el diseño intuitivo.")

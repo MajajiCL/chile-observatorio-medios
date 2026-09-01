@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" class="h-full bg-[#070b14] text-slate-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presidenta IA & Observatorio de Estado de Chile 🇨🇱 | Inteligencia de Políticas Públicas & Auditoría Nacional</title>
+    <title>Presidenta IA & Guía de Estado de Chile 🇨🇱 | Inteligencia Cívica, Leyes & Visión 2050</title>
     <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +21,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#ecfeff',
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            600: '#0891b2',
-                            900: '#164e63',
-                        }
                     }
                 }
             }
@@ -49,7 +40,7 @@
             box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
         }
         .hero-glow {
-            background: radial-gradient(circle at 50% -20%, rgba(6, 182, 212, 0.15), transparent 70%);
+            background: radial-gradient(circle at 50% -20%, rgba(6, 182, 212, 0.18), transparent 70%);
         }
         .spectrum-bar { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -62,17 +53,17 @@
     <!-- TOP TICKER: INDICADORES DEL BANCO CENTRAL -->
     <header class="border-b border-slate-800/80 bg-slate-950/95 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="flex items-center space-x-3">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-950/90 text-emerald-400 border border-emerald-800/60 shadow-sm">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> DATOS BANCO CENTRAL
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-950/90 text-emerald-400 border border-emerald-800/60 shadow-sm">
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> BANCO CENTRAL EN VIVO
             </span>
-            <span class="text-slate-400 hidden md:inline font-medium">Indicadores Oficiales Chile:</span>
+            <span class="text-slate-400 hidden md:inline font-medium">Indicadores Oficiales:</span>
         </div>
         <div id="economic-ticker" class="flex items-center space-x-6 overflow-x-auto text-slate-300 py-0.5">
             <!-- Dynamic Ticker -->
         </div>
         <div class="flex items-center space-x-3 text-slate-400 text-xs">
             <a href="https://github.com/MajajiCL/chile-observatorio-medios" target="_blank" class="hover:text-white flex items-center gap-1 transition">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Código Abierto</span>
+                <i data-lucide="github" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">GitHub</span>
             </a>
             <button onclick="openArcoModal()" class="hover:text-cyan-400 underline decoration-slate-700 transition flex items-center gap-1">
                 <i data-lucide="shield" class="w-3.5 h-3.5 text-cyan-400"></i> Ley 21.719
@@ -80,118 +71,112 @@
         </div>
     </header>
 
-    <!-- HERO HEADER: PRESIDENTA IA & GABINETE DE ESTADO -->
-    <div class="border-b border-slate-800/80 hero-glow px-6 py-6 sm:py-8">
+    <!-- HERO: GUÍA DE ESTADO & CADENA NACIONAL CIUDADANA -->
+    <div class="border-b border-slate-800/80 hero-glow px-6 py-8">
         <div class="max-w-7xl mx-auto space-y-6">
             
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div class="space-y-2">
                     <div class="flex items-center space-x-2.5">
-                        <span class="text-2xl">🇨🇱</span>
+                        <span class="text-3xl">🇨🇱</span>
                         <span class="text-xs uppercase tracking-widest font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                            Gabinete de Inteligencia Estratégica & Auditoría Nacional
+                            Plataforma de Inteligencia Cívica & Guía de Estado
                         </span>
                     </div>
                     <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                        Presidenta IA de Chile: Gobernanza Basada en Ciencia & Benchmarks Mundiales
+                        Presidenta IA de Chile: La Guía del Ciudadano para Construir el Futuro
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                        Un sistema de inteligencia de Estado que audita la realidad de Chile en 7 pilares críticos (cárceles, salud, educación, municipios, economía, agua y probidad), cruzando la coyuntura noticiosa con <strong>las lecciones históricas de desarrollo internacional (Noruega, Singapur, Países Bajos, Estonia, Israel)</strong> para proyectar decisiones a 10, 20 y 30 años.
+                        Una inteligencia de Estado basada en <strong>ciencia, datos duros y lecciones históricas de los países desarrollados</strong>, que te explica día a día qué está pasando en Chile, cómo te afectan las leyes en el Congreso y cuál es la hoja de ruta hacia el 2050.
                     </p>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3">
-                    <button onclick="openCitizenProposalModal()" class="px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-white rounded-xl text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition">
-                        <i data-lucide="plus-circle" class="w-4 h-4"></i> <span>Aportar Propuesta Cívica</span>
+                    <button onclick="switchTab('citizen')" class="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-white rounded-xl text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition">
+                        <i data-lucide="lightbulb" class="w-4 h-4"></i> <span>Aportar una Propuesta</span>
                     </button>
-                    <button onclick="refreshData()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-2">
+                    <button onclick="refreshData()" class="px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-2">
                         <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> <span>Actualizar</span>
                     </button>
                 </div>
             </div>
 
-            <!-- TABS NAVIGATION -->
+            <!-- TABS NAVIGATION: INTUITIVA Y CLARA -->
             <div class="flex items-center bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800/90 text-xs sm:text-sm overflow-x-auto gap-1">
-                <button onclick="switchTab('presidencia')" id="tab-btn-presidencia" class="px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="crown" class="w-4 h-4 text-amber-300"></i> <span>Gabinete de Estado IA</span>
+                <button onclick="switchTab('cadena')" id="tab-btn-cadena" class="px-4 py-2.5 rounded-xl font-bold transition bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="radio" class="w-4 h-4 text-amber-300"></i> <span>1. Cadena Nacional Diaria</span>
+                </button>
+                <button onclick="switchTab('leyes')" id="tab-btn-leyes" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i> <span>2. Leyes & Congreso</span>
+                    <span class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-950 text-emerald-300 font-bold">5</span>
+                </button>
+                <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i> <span>3. Hoja de Ruta 2050</span>
                 </button>
                 <button onclick="switchTab('audit')" id="tab-btn-audit" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="clipboard-check" class="w-4 h-4 text-emerald-400"></i> <span>Auditoría de 7 Pilares</span>
-                </button>
-                <button onclick="switchTab('benchmarks')" id="tab-btn-benchmarks" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> <span>Benchmarks Mundiales</span>
+                    <i data-lucide="clipboard-check" class="w-4 h-4 text-blue-400"></i> <span>4. Auditoría 7 Pilares</span>
                 </button>
                 <button onclick="switchTab('clusters')" id="tab-btn-clusters" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i> <span>Agenda & Noticias</span>
-                    <span id="badge-clusters-count" class="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300">49</span>
-                </button>
-                <button onclick="switchTab('blindspots')" id="tab-btn-blindspots" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="eye-off" class="w-4 h-4 text-amber-400"></i> <span>Puntos Ciegos</span>
-                </button>
-                <button onclick="switchTab('sources')" id="tab-btn-sources" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="building-2" class="w-4 h-4 text-purple-400"></i> <span>Malla de Medios</span>
+                    <i data-lucide="newspaper" class="w-4 h-4 text-cyan-400"></i> <span>5. Noticias & Sesgos</span>
                 </button>
                 <button onclick="switchTab('citizen')" id="tab-btn-citizen" class="px-4 py-2.5 rounded-xl font-medium transition text-slate-400 hover:text-white flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>Colaboración Ciudadana</span>
+                    <i data-lucide="users" class="w-4 h-4 text-rose-400"></i> <span>6. Ágora Ciudadana</span>
                 </button>
             </div>
 
         </div>
     </div>
 
-    <!-- MAIN APP WRAPPER -->
+    <!-- MAIN CONTAINER -->
     <main class="flex-1 max-w-7xl mx-auto w-full p-6 space-y-8">
 
-        <!-- TAB 0: GABINETE DE ESTADO & BRIEFING DE LA PRESIDENTA IA -->
-        <section id="view-presidencia" class="space-y-6">
+        <!-- TAB 1: CADENA NACIONAL CIUDADANA (EL RESUMEN EN 3 MINUTOS) -->
+        <section id="view-cadena" class="space-y-6">
             
-            <!-- BRIEFING HERO CARD -->
-            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-cyan-500/30 relative overflow-hidden space-y-5 bg-gradient-to-br from-slate-900/90 via-[#0d1627]/90 to-slate-950">
+            <!-- TARJETA PRINCIPAL DEL DÍA -->
+            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-cyan-500/30 space-y-6 bg-gradient-to-br from-slate-900/90 via-[#0d1627]/90 to-slate-950">
                 <div class="flex items-center justify-between flex-wrap gap-3">
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-white font-bold text-lg">
-                            <i data-lucide="bot" class="w-6 h-6"></i>
+                            <i data-lucide="radio" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">Dictamen Oficial • Inteligencia de Estado</span>
-                            <h2 class="text-lg sm:text-xl font-black text-white" id="briefing-title">Mensaje de Estado: Diagnóstico Sistémico y Prospectiva Nacional</h2>
+                            <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">Transmisión Matutina de la Presidenta IA</span>
+                            <h2 class="text-lg sm:text-xl font-black text-white" id="cadena-title">Cadena Nacional Ciudadana: El Estado de Chile Hoy</h2>
                         </div>
                     </div>
-                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 font-mono" id="briefing-date">1 de Septiembre, 2026</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 font-mono">3 minutos de lectura</span>
                 </div>
 
-                <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/90 space-y-3">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                        <i data-lucide="compass" class="w-4 h-4"></i> Principios Rectores de la Presidenta Guía:
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300" id="briefing-principles">
-                        <!-- Rendered dynamically -->
-                    </div>
-                </div>
-
-                <div class="space-y-2 text-xs sm:text-sm text-slate-200 leading-relaxed" id="briefing-summary">
-                    <!-- Summary text -->
-                </div>
-
-                <div class="pt-4 border-t border-slate-800/80 space-y-3">
-                    <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2">
-                        <i data-lucide="check-square" class="w-4 h-4"></i> Prioridades Urgentes de Estado (Agenda 2026-2035):
+                <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/90 space-y-2">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> El Hecho Central de la Jornada:
                     </span>
-                    <div class="flex flex-wrap gap-2" id="briefing-priorities">
-                        <!-- Priority Badges -->
-                    </div>
+                    <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium" id="cadena-headline">
+                        <!-- Headline -->
+                    </p>
+                </div>
+
+                <!-- 3 TARJETAS CLAVE: BOLSILLO, SEGURIDAD, SALUD -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="cadena-takeaways">
+                    <!-- Dynamic Takeaways -->
+                </div>
+
+                <!-- FRASE DE ESTADO -->
+                <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-800/40 text-xs sm:text-sm text-cyan-200 italic leading-relaxed text-center" id="cadena-quote">
+                    <!-- Quote -->
                 </div>
             </div>
 
-            <!-- RADAR DE EQUILIBRIO SISTÉMICO & SIMULADOR -->
+            <!-- RADAR DE EQUILIBRIO DE LA REPÚBLICA & SIMULADOR -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="glass-card p-6 rounded-3xl space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="text-sm font-bold text-white flex items-center gap-2">
                             <i data-lucide="activity" class="w-4 h-4 text-cyan-400"></i>
-                            Radar de Salud y Desafíos de la República
+                            Termómetro de Desafíos de Chile (Frente a la OCDE)
                         </h3>
-                        <span class="text-[11px] font-mono text-slate-400">Métricas INE / OCDE / Banco Central</span>
+                        <span class="text-[11px] font-mono text-slate-400">INE / Banco Central / OCDE</span>
                     </div>
                     <div id="chart-statecraft-radar" class="h-72 w-full"></div>
                 </div>
@@ -199,18 +184,18 @@
                 <div class="glass-card p-6 rounded-3xl space-y-4">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
-                        Simulador Prospectivo de Impacto (Decisión A vs. Decisión B)
+                        Simulador de Políticas Públicas (Decisión A vs. Decisión B)
                     </h3>
-                    <p class="text-xs text-slate-400">Selecciona una política pública para simular su impacto proyectado a 10 años según evidencia internacional:</p>
+                    <p class="text-xs text-slate-400">¿Qué pasa si tomamos una decisión cortoplacista frente a una política basada en evidencia internacional?</p>
                     
                     <div class="space-y-3 text-xs">
                         <div>
-                            <label class="block text-slate-300 font-semibold mb-1">Dilema de Política Pública:</label>
+                            <label class="block text-slate-300 font-semibold mb-1">Selecciona el Dilema Nacional:</label>
                             <select id="simulator-select" onchange="runSimulation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                                <option value="carceles">Seguridad: ¿Construir mega-cárceles punitivas vs. Modelo de normalización modular + Inhibición digital?</option>
-                                <option value="salud">Salud: ¿Subsidiar demanda privada vs. Alta resolución diagnóstica 24/7 en CESFAM?</option>
-                                <option value="agua">Agua: ¿Repartir camiones aljibe vs. Red estatal de desalinizadoras multipropósito?</option>
-                                <option value="educacion">Educación: ¿Financiamiento tradicional vs. Educación técnica dual ligada a Minería/Energía?</option>
+                                <option value="carceles">Seguridad: ¿Cárceles tradicionales masivas vs. Modelo noruego de inhibición y reinserción?</option>
+                                <option value="salud">Salud: ¿Subsidiar bonos privados vs. Pabellones 24/7 y alta resolución en CESFAM?</option>
+                                <option value="agua">Agua: ¿Camiones aljibe por décadas vs. Red estatal de desalinizadoras solares?</option>
+                                <option value="educacion">Educación: ¿Títulos tradicionales saturados vs. Educación técnica dual (Litio/Energía)?</option>
                             </select>
                         </div>
                         <div id="simulator-output" class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-slate-300">
@@ -219,15 +204,50 @@
                     </div>
                 </div>
             </div>
+
         </section>
 
-        <!-- TAB 1: AUDITORÍA DE 7 PILARES NACIONALES -->
+        <!-- TAB 2: PROYECTOS DE LEY & CONGRESO EN VIVO -->
+        <section id="view-leyes" class="space-y-6 hidden">
+            <div class="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-800/40 text-xs text-slate-300 flex items-start space-x-3">
+                <i data-lucide="book-marked" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <div class="space-y-1">
+                    <strong class="font-bold text-white text-sm">Termómetro Legislativo: Las Leyes que definen el Futuro de Chile</strong>
+                    <p class="text-slate-400">
+                        La Presidenta IA audita los principales proyectos de ley que se debaten en el Senado y la Cámara de Diputadas y Diputados, traduciéndolos a un lenguaje directo: <strong>qué propone la ley, los riesgos, qué dice la evidencia internacional y cómo impacta en tu vida diaria</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6" id="legislative-bills-container">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 3: HOJA DE RUTA CHILE 2026 - 2050 -->
+        <section id="view-roadmap" class="space-y-6 hidden">
+            <div class="p-4 rounded-2xl bg-purple-950/20 border border-purple-800/40 text-xs text-slate-300 space-y-1">
+                <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                    <i data-lucide="milestone" class="w-4 h-4 text-purple-400"></i>
+                    La Hoja de Ruta de Estado (Chile 2026 - 2050)
+                </h3>
+                <p class="text-slate-400">
+                    Los países que lograron el desarrollo (Singapur, Noruega, Irlanda, Corea del Sur) lo hicieron con un plan inquebrantable a 25 años. Esta es la proyección de metas e hitos concretos para llevar a Chile al Top 15 de desarrollo humano hacia 2050.
+                </p>
+            </div>
+
+            <div class="space-y-6" id="roadmap-container">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 4: AUDITORÍA DE 7 PILARES -->
         <section id="view-audit" class="space-y-6 hidden">
             <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3 text-xs text-slate-300">
                 <i data-lucide="info" class="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5"></i>
                 <div>
-                    <strong class="font-bold text-white text-sm">Auditoría Transversal de la República</strong>
-                    <p class="text-slate-400 mt-0.5">Diagnóstico exhaustivo de las dificultades estructurales de Chile en 7 frentes estratégicos, combinando datos duros nacionales con las lecciones aprendidas de otros países que superaron estas mismas crisis.</p>
+                    <strong class="font-bold text-white text-sm">Auditoría Transversal de los 7 Pilares de la República</strong>
+                    <p class="text-slate-400 mt-0.5">Diagnóstico exhaustivo de las dificultades estructurales de Chile combinando datos duros nacionales con soluciones probadas en otros países.</p>
                 </div>
             </div>
             
@@ -236,24 +256,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: BENCHMARKS MUNDIALES & LECCIONES HISTÓRICAS -->
-        <section id="view-benchmarks" class="space-y-6 hidden">
-            <div class="p-4 rounded-2xl bg-blue-950/20 border border-blue-800/40 text-xs text-slate-300 space-y-1">
-                <h3 class="font-bold text-white text-sm flex items-center gap-2">
-                    <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
-                    Matriz de Aprendizaje Histórico Comparado
-                </h3>
-                <p class="text-slate-400">
-                    Ningún problema que enfrenta Chile es 100% inédito en la historia de la humanidad. Aquí se analiza cómo naciones como Noruega, Singapur, Países Bajos, Estonia, Israel o Irlanda lograron transformarse y cómo sus soluciones se aplican con rigor a nuestra realidad.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="benchmarks-grid">
-                <!-- Injected dynamically -->
-            </div>
-        </section>
-
-        <!-- TAB 3: AGENDA Y NOTICIAS CON FILTROS -->
+        <!-- TAB 5: NOTICIAS & SESGOS MEDIÁTICOS -->
         <section id="view-clusters" class="space-y-4 hidden">
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div class="relative min-w-[260px] flex-1">
@@ -274,21 +277,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: PUNTOS CIEGOS -->
-        <section id="view-blindspots" class="space-y-4 hidden">
-            <div id="blindspots-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 5: MALLA DE MEDIOS -->
-        <section id="view-sources" class="space-y-4 hidden">
-            <div id="sources-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 6: COLABORACIÓN CIUDADANA -->
+        <!-- TAB 6: ÁGORA CIUDADANA -->
         <section id="view-citizen" class="space-y-6 hidden">
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <div class="flex items-center justify-between flex-wrap gap-3">
@@ -297,14 +286,14 @@
                             <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
                             Ágora Cívica: Deliberación & Propuestas de la Ciudadanía
                         </h3>
-                        <p class="text-xs text-slate-400 mt-1">El conocimiento colectivo de los chilenos es el mayor activo del país. Plantea soluciones con datos y vota las iniciativas prioritarias.</p>
+                        <p class="text-xs text-slate-400 mt-1">Plantea soluciones con datos y vota las iniciativas prioritarias para que sean elevadas a la discusión nacional.</p>
                     </div>
                     <button onclick="openCitizenProposalModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-xl text-xs flex items-center gap-1.5 transition">
                         <i data-lucide="plus" class="w-4 h-4"></i> Nueva Propuesta
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs" id="citizen-proposals-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs" id="citizen-proposals-grid">
                     <!-- Injected dynamically -->
                 </div>
             </div>
@@ -312,7 +301,7 @@
 
     </main>
 
-    <!-- MODAL DETALLE MULTI-PERSPECTIVA -->
+    <!-- MODAL DETALLE NOTICIA MULTI-PERSPECTIVA -->
     <div id="cluster-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="glass-card w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col overflow-hidden border border-slate-700 shadow-2xl bg-[#0b1120]">
             <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
@@ -362,11 +351,11 @@
                 </div>
                 <div>
                     <label class="block text-slate-300 font-medium mb-1">Título de la Propuesta</label>
-                    <input type="text" id="prop-title" required placeholder="Ej: Red de desalinizadoras multipropósito en Coquimbo" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+                    <input type="text" id="prop-title" required placeholder="Ej: Red de desalinizadoras solares en Coquimbo" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-medium mb-1">Fundamento & Evidencia Internacional</label>
-                    <textarea id="prop-desc" rows="3" required placeholder="Explica cómo esta medida resuelve un problema real basándote en datos o experiencias..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
+                    <label class="block text-slate-300 font-medium mb-1">Fundamento & Evidencia</label>
+                    <textarea id="prop-desc" rows="3" required placeholder="Explica cómo esta medida resuelve un problema real basándote en datos..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
                 </div>
                 <button type="submit" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-lg transition text-xs shadow-md shadow-cyan-600/20">
                     Publicar en el Ágora Cívica
@@ -403,11 +392,11 @@
                 </div>
                 <div>
                     <label class="block text-slate-300 font-medium mb-1">Identificador o Nombre Solicitado</label>
-                    <input type="text" id="arco-target" required placeholder="Ej: RUT o Nombre de persona natural" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+                    <input type="text" id="arco-target" required placeholder="Ej: RUT o Nombre" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200">
                 </div>
                 <div>
                     <label class="block text-slate-300 font-medium mb-1">Fundamento</label>
-                    <textarea id="arco-desc" rows="3" required placeholder="Fundamento breve de la solicitud..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
+                    <textarea id="arco-desc" rows="3" required placeholder="Fundamento breve..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200"></textarea>
                 </div>
                 <button type="submit" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 font-bold text-white rounded-lg transition text-xs">
                     Emitir Ticket Formal de Cumplimiento
@@ -420,16 +409,16 @@
     <!-- FOOTER -->
     <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 space-y-2">
         <div class="flex items-center justify-center space-x-2 text-slate-400 font-semibold">
-            <span>🇨🇱 Presidenta IA & Gabinete de Inteligencia de Estado</span>
+            <span>🇨🇱 Presidenta IA & Plataforma de Inteligencia Cívica</span>
             <span>•</span>
-            <span>Auditoría Cívica & Metodología Abierta</span>
+            <span>Auditoría de Estado & Metodología Abierta</span>
         </div>
         <p class="max-w-xl mx-auto text-slate-500 text-[11px]">
             Conforme a las Leyes N° 21.719 (Datos Personales), N° 21.459 (Ciberseguridad) y N° 17.336 (Propiedad Intelectual).
         </p>
     </footer>
 
-    <!-- CARGA DE DATOS & LOGICA CLIENTE -->
+    <!-- SCRIPTS UNIVERSALES -->
     <script src="./data.js"></script>
     <script src="./app.js"></script>
 </body>
