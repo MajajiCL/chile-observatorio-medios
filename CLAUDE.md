@@ -36,6 +36,8 @@ pipeline/
   02_motor.py         Calcula pares y brechas                        -> data/app/
   03_geo.py           Proyecta la geometría a paths SVG              -> data/app/mapa.json
   06_hallazgos.py     Detector de anomalías                          -> data/app/hallazgos.json
+  07_manzanas.py      216.341 manzanas del Censo 2024 (ArcGIS)       -> data/manzanas_raw/
+  08_manzanas_build.py  Simplifica y parte por comuna                -> data/app/manzana/
   04_indicadores.py   Refresca UF, dólar, IPC... (lo diario)         -> data/app/indicadores.json
 ```
 
@@ -107,6 +109,19 @@ Van marcados `context_only` y se pintan por valor.
 El par rojo-verde es indistinguible en deuteranopía, el daltonismo más común.
 En un mapa donde el color *es* el dato, eso no es un detalle de estilo.
 
+**Las manzanas se sirven por comuna, nunca completas.**
+Son 216.341 polígonos: unos 400 MB en bruto. Se descargan a `data/manzanas_raw/`
+(no versionado) y `08` los reduce a ~200 KB por comuna. El sitio carga el
+archivo de una sola comuna, al pulsar «ver cuadra por cuadra». Tres reducciones
+lo hacen posible: 9 indicadores derivados en vez de 27 campos crudos, geometría
+en metros simplificada con Douglas-Peucker a 3 m, y partición por comuna. Aquí
+sí se puede simplificar cada polígono por separado —a diferencia de las comunas—
+porque entre manzanas hay calles, no bordes compartidos.
+
+**Los indicadores de manzana son porcentajes, no conteos.**
+Cada uno va sobre su denominador correcto (hogares censados o población). Un
+conteo absoluto por manzana solo mide el tamaño de la manzana.
+
 **El código de comuna se rellena a 5 dígitos, siempre.**
 El GeoJSON de BCN lo entrega como entero, así que Iquique llega como `1101`,
 mientras las fuentes estadísticas usan `01101`. Sin `zfill(5)`, las **206 comunas
@@ -168,6 +183,11 @@ DIPRES, efemérides BCN y datos regionales de salud y cárceles que Chile Abiert
 
 ---
 
+> ⚖️ Los datos del Censo 2024 son **CC BY-SA 4.0**: obligan a citar al INE, a
+> declarar las modificaciones y a distribuir las obras derivadas bajo la misma
+> licencia. Ver `DATOS.md`, que además detalla qué no se debe hacer con datos a
+> nivel de manzana (reidentificación).
+
 ## 5. Fuentes
 
 Todas verificadas en vivo, ninguna citada de memoria.
@@ -181,7 +201,7 @@ Todas verificadas en vivo, ninguna citada de memoria.
 | SINIM / SUBDERE | Ruralidad, Fondo Común Municipal, ejecución presupuestaria |
 | CEAD | Delitos por 100.000 habitantes 2024 |
 | CPLT | Transparencia municipal 2025 |
-| INE Censo 2024 | 180 series comunales: discapacidad, hacinamiento, servicios básicos, fecundidad, envejecimiento, vivienda |
+| INE Censo 2024 | 180 series comunales + 216.341 manzanas con 213 campos (vía servicio de Esri Chile) |
 | BCN | Geometría comunal y regional |
 
 ⚠️ La documentación de Chile Abierto dice 349 comunas; la API devuelve **345**, y
@@ -192,10 +212,12 @@ infinito). Las 345 calzan exactamente con el GeoJSON de BCN.
 
 ## 6. Pendiente
 
-- [ ] **Bajar a manzana censal**: el INE publicó la base manzana-entidad del Censo
-      2024 con 189 variables, pero solo desde su portal de geodatos (ArcGIS), sin
-      URL directa ni API — no se puede automatizar. Requiere descarga manual una
-      vez; el pipeline ya está preparado para recibirla.
+- [ ] **Capa «manzanas-entidades»**: 28.415 registros con nombres de localidades,
+      aldeas y caseríos (`NOM_LOCALIDAD`, `NOM_ENTIDAD`, `TIPO_CATEGORIA`) en la
+      capa 1 del mismo servicio. Es el nivel «pueblo a pueblo» del mundo rural,
+      que las manzanas urbanas no cubren.
+- [ ] **Buscador por manzana** y detector de anomalías a esa escala: hoy el
+      detector solo mira el nivel comunal.
 - [ ] **Incertidumbre explícita**: CASEN tiene error muestral; publicar el intervalo, no solo el punto.
 - [ ] **Quién tiene la palanca**: enlazar cada indicador con su responsable (municipio / ministerio) y su norma en BCN LeyChile. Es lo que convierte un número en una acción.
 - [ ] **Tendencia**: hoy solo hay nivel. Una comuna pobre que mejora tres años seguidos es otra historia que una estancada.

@@ -50,10 +50,22 @@
   <div class="mapcol">
     <nav class="layers" id="layers" aria-label="Capas del mapa"></nav>
 
-    <div class="question">
+    <div class="question" id="question">
       <h1 id="q-title">—</h1>
       <p id="q-sub">—</p>
     </div>
+
+    <div class="mzbar" id="mzbar" hidden>
+      <div>
+        <div class="tit" id="mz-tit">—</div>
+        <div class="sub" id="mz-sub">—</div>
+      </div>
+      <label class="sr-only" for="mz-capa">Indicador por manzana</label>
+      <select id="mz-capa"></select>
+      <button class="volver" id="mz-volver">← Volver al mapa nacional</button>
+    </div>
+
+    <div class="mzstage" id="mzstage"><div class="mzwrap" id="mzwrap"></div></div>
 
     <div class="mapstage" id="stage">
       <div class="tramos" id="tramos"></div>

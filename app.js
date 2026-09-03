@@ -20,6 +20,10 @@
   var nodos = {};             // code comuna -> [elementos SVG]
   var fichaCache = {};
   var HALLAZGOS = null;
+  var MZ_CAPAS = null;
+  var mzDatos = null;
+  var mzCapa = 'hac';
+  var mzCache = {};
   var vistaHallazgos = false;
 
   var $ = function (id) { return document.getElementById(id); };
@@ -334,6 +338,120 @@
     p.appendChild(box);
   }
 
+  /* ---------- vista de manzanas ----------
+     El cuarto nivel de zoom. A escala comunal Chile parece dos paises; a escala
+     de manzana se ve que dentro de una misma comuna hay cuadras sin agua de red
+     a metros de cuadras con fibra optica. Los archivos se cargan solo al entrar
+     a una comuna: el pais entero pesaria cientos de megabytes. */
+
+  var RAMPA_MAL = ['--g-neg-1', '--g-neg-2', '--g-neg-3', '--g-neg-4'];
+  var RAMPA_BIEN = ['--g-pos-1', '--g-pos-2', '--g-pos-3', '--g-pos-4'];
+
+  function escalaManzana(valores) {
+    /* Cortes por cuantiles y no en tramos fijos: la mayoria de las manzanas
+       marca cero en carencias y una escala lineal las pintaria todas iguales. */
+    var v = valores.filter(function (x) {
+      return x !== null && x !== undefined && !isNaN(x);
+    }).sort(function (a, b) { return a - b; });
+    if (v.length < 8) return null;
+    var cortes = [];
+    for (var i = 1; i < 8; i++) cortes.push(v[Math.floor(v.length * i / 8)]);
+    return cortes;
+  }
+
+  function colorManzana(v, cortes, dir) {
+    if (v === null || v === undefined || isNaN(v) || !cortes) return cssVar('--g-null');
+    var i = 0;
+    while (i < cortes.length && v > cortes[i]) i++;
+    if (i < 2) return cssVar('--g-zero');
+    var idx = Math.min(3, Math.floor((i - 2) / 1.6));
+    return cssVar(dir === 'menos' ? RAMPA_MAL[idx] : RAMPA_BIEN[idx]);
+  }
+
+  function capaManzanaActual() {
+    var cs = (MZ_CAPAS && MZ_CAPAS.capas) || [];
+    for (var i = 0; i < cs.length; i++) if (cs[i].k === mzCapa) return cs[i];
+    return cs[0];
+  }
+
+  function pintarManzanas() {
+    if (!mzDatos) return;
+    var capa = capaManzanaActual();
+    if (!capa) return;
+
+    var vals = mzDatos.mz.map(function (m) { return m[mzCapa]; });
+    var cortes = escalaManzana(vals);
+
+    var wrap = $('mzwrap');
+    wrap.textContent = '';
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + mzDatos.w + ' ' + mzDatos.h);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Manzanas censales de la comuna');
+
+    mzDatos.mz.forEach(function (m) {
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', m.d);
+      p.setAttribute('class', 'mz');
+      p.setAttribute('fill', colorManzana(m[mzCapa], cortes, capa.dir));
+      var t = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      var val = m[mzCapa];
+      var txt = (val === undefined || val === null)
+        ? capa.n + ': sin dato'
+        : capa.n + ': ' + String(val).replace('.', ',') + (capa.u === '%' ? '%' : ' ' + capa.u);
+      t.textContent = txt + '  |  ' + m.p + ' hab., ' + m.h + ' hogares';
+      p.appendChild(t);
+      svg.appendChild(p);
+    });
+    wrap.appendChild(svg);
+
+    var conDato = vals.filter(function (x) {
+      return x !== undefined && x !== null;
+    }).length;
+    $('mz-sub').textContent =
+      mzDatos.mz.length.toLocaleString('es-CL') + ' manzanas · ' +
+      conDato.toLocaleString('es-CL') + ' con dato · ' + capa.n +
+      ' · Censo 2024 (INE)';
+
+    $('lg-lo').textContent = capa.dir === 'menos' ? 'Sin el problema' : 'Menor';
+    $('lg-hi').textContent = capa.dir === 'menos' ? 'Más afectado' : 'Mayor';
+  }
+
+  function abrirManzanas(code) {
+    var meta = indexComunas[code];
+    if (!meta || !MZ_CAPAS) return;
+
+    var mostrar = function (d) {
+      mzDatos = d;
+      $('mz-tit').textContent = meta.n;
+      $('mzbar').hidden = false;
+      $('mzstage').classList.add('on');
+      $('stage').classList.add('off');
+      $('layers').hidden = true;
+      $('question').hidden = true;
+      pintarManzanas();
+    };
+
+    if (mzCache[code]) { mostrar(mzCache[code]); return; }
+    fetch('./data/app/manzana/' + encodeURIComponent(code) + '.json')
+      .then(function (r) { if (!r.ok) throw new Error('sin manzanas'); return r.json(); })
+      .then(function (d) { mzCache[code] = d; mostrar(d); })
+      .catch(function () {
+        $('panel').appendChild(nota(
+          'Esta comuna todavía no tiene el detalle por manzana disponible.'));
+      });
+  }
+
+  function cerrarManzanas() {
+    mzDatos = null;
+    $('mzbar').hidden = true;
+    $('mzstage').classList.remove('on');
+    $('stage').classList.remove('off');
+    $('layers').hidden = false;
+    $('question').hidden = false;
+    aplicarCapa();
+  }
+
   /* ---------- panel: hallazgos ---------- */
   function panelHallazgos() {
     var p = $('panel');
@@ -459,6 +577,15 @@
         p.appendChild(nota('Comuna pequeña: la brecha se muestra contraída hacia cero porque con esta población el indicador es estadísticamente inestable. Sin contraer sería ' +
           (g.z > 0 ? '+' : '') + g.z.toFixed(2) + 'σ.'));
       }
+    }
+
+    // acceso al detalle por manzana
+    if (MZ_CAPAS) {
+      var bm = document.createElement('button');
+      bm.className = 'layer-btn destacado';
+      bm.textContent = 'Ver ' + f.n + ' cuadra por cuadra';
+      bm.setAttribute('data-manzana', f.c);
+      p.appendChild(bm);
     }
 
     // grupo de pares
@@ -639,9 +766,17 @@
     });
 
     $('panel').addEventListener('click', function (e) {
+      var mz = e.target.closest('[data-manzana]');
+      if (mz) { abrirManzanas(mz.getAttribute('data-manzana')); return; }
       var b = e.target.closest('[data-c]');
       if (!b) return;
       abrirComuna(b.getAttribute('data-c'));
+    });
+
+    $('mz-volver').addEventListener('click', cerrarManzanas);
+    $('mz-capa').addEventListener('change', function (e) {
+      mzCapa = e.target.value;
+      pintarManzanas();
     });
 
     var q = $('q');
@@ -714,6 +849,22 @@
     $('loading').classList.add('off');
 
     // Opcional: si el workflow diario aun no ha corrido, el sitio funciona igual.
+    fetch('./data/app/manzana_capas.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.capas || !d.capas.length) return;
+        MZ_CAPAS = d;
+        var sel = $('mz-capa');
+        d.capas.forEach(function (c) {
+          var o = document.createElement('option');
+          o.value = c.k;
+          o.textContent = c.n;
+          sel.appendChild(o);
+        });
+        mzCapa = d.capas[0].k;
+      })
+      .catch(function () { /* sin detalle de manzana, el resto funciona igual */ });
+
     fetch('./data/app/hallazgos.json')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (h) {
