@@ -30,7 +30,7 @@ TRAMOS = [
 ]
 
 # Comunas insulares que se dibujan en recuadro propio.
-INSULARES = {"5201": "Rapa Nui", "5104": "Juan Fernandez"}
+INSULARES = {"05201": "Rapa Nui", "05104": "Juan Fernandez"}
 
 ANCHO = 300.0     # ancho util de cada tramo en unidades del viewBox
 MARGEN = 12.0
@@ -124,9 +124,13 @@ def main():
     reg = leer_topo(os.path.join(GEO, "regiones.topo.json"))
     print(f"{len(com)} comunas y {len(reg)} regiones leidas del topojson")
 
+    # El GeoJSON de BCN trae el codigo como entero, asi que Iquique llega como
+    # 1101; las fuentes estadisticas lo usan con relleno a cinco digitos (01101).
+    # Sin normalizar, las 206 comunas de las regiones 1 a 9 no cruzan con ningun
+    # dato y el mapa las pinta como "sin informacion" sin avisar de nada.
     por_codigo = {}
     for f in com:
-        cc = str(f["props"].get("cod_comuna"))
+        cc = str(f["props"].get("cod_comuna")).zfill(5)
         por_codigo[cc] = f
 
     salida = {"tramos": [], "insulares": [], "regiones": {}}
@@ -140,7 +144,7 @@ def main():
         fx, fy, w, h = encuadrar(sel)
         comunas = []
         for f in sel:
-            cc = str(f["props"]["cod_comuna"])
+            cc = str(f["props"]["cod_comuna"]).zfill(5)
             d = hacer_path(f["rings"], fx, fy)
             if not d:
                 continue

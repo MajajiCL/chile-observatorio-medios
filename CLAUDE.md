@@ -31,11 +31,15 @@ Esa es la diferencia entre publicar datos y producir un diagnóstico.
 
 ```
 pipeline/
-  01_ingesta.py       Descarga 70 indicadores x 345 comunas de Chile Abierto -> data/raw/
-  02_motor.py         Calcula pares y brechas                                -> data/app/
-  03_geo.py           Proyecta la geometría a paths SVG                      -> data/app/mapa.json
-  04_indicadores.py   Refresca UF, dólar, IPC... (lo diario)                 -> data/app/indicadores.json
+  01_ingesta.py       70 indicadores x 345 comunas de Chile Abierto  -> data/raw/
+  05_censo.py         180 series del Censo 2024 (INE)                -> data/raw/
+  02_motor.py         Calcula pares y brechas                        -> data/app/
+  03_geo.py           Proyecta la geometría a paths SVG              -> data/app/mapa.json
+  06_hallazgos.py     Detector de anomalías                          -> data/app/hallazgos.json
+  04_indicadores.py   Refresca UF, dólar, IPC... (lo diario)         -> data/app/indicadores.json
 ```
+
+Orden: `01` y `05` (fuentes) → `02` → `03` → `06`. Total: **250 indicadores**.
 
 Para regenerar todo desde cero:
 
@@ -103,6 +107,26 @@ Van marcados `context_only` y se pintan por valor.
 El par rojo-verde es indistinguible en deuteranopía, el daltonismo más común.
 En un mapa donde el color *es* el dato, eso no es un detalle de estilo.
 
+**El código de comuna se rellena a 5 dígitos, siempre.**
+El GeoJSON de BCN lo entrega como entero, así que Iquique llega como `1101`,
+mientras las fuentes estadísticas usan `01101`. Sin `zfill(5)`, las **206 comunas
+de las regiones 1 a 9** no cruzan con ningún dato y el mapa las pinta como "sin
+información" sin error de consola ni aviso alguno. Ocurrió y estuvo publicado.
+Al tocar el pipeline, verificar siempre que el cruce dé 345 de 345.
+
+**El detector de anomalías excluye los rasgos de identidad.**
+Religión, pueblos originarios, afrodescendencia y lenguas quedan fuera por
+decisión de diseño, no por límite técnico. Que los Kawésqar estén en Magallanes
+o los afrodescendientes de Azapa en Arica no es una anomalía: es su territorio.
+Tratarlo como desviación da hallazgos vacíos —el patrón es geografía histórica
+conocida— e insinúa que la presencia de un pueblo en su propia tierra es algo
+que hay que explicar. El detector busca problemas sobre los que se puede actuar.
+
+**Los conteos absolutos se normalizan por población antes de buscar anomalías.**
+Si no, el detector "descubre" que Puente Alto tiene muchos votos y que Las Condes
+recauda mucho, que es solo decir que son comunas grandes y ricas. Se normaliza
+por defecto y se exceptúa una lista de unidades ya relativas, nunca al revés.
+
 **Cada dato muestra su fecha real.**
 CASEN es 2022, PAES 2024, CEAD 2024; solo UF, dólar y TPM cambian a diario — y el
 IPC que devuelve mindicador puede tener meses. Presentarlos juntos bajo un
@@ -157,6 +181,7 @@ Todas verificadas en vivo, ninguna citada de memoria.
 | SINIM / SUBDERE | Ruralidad, Fondo Común Municipal, ejecución presupuestaria |
 | CEAD | Delitos por 100.000 habitantes 2024 |
 | CPLT | Transparencia municipal 2025 |
+| INE Censo 2024 | 180 series comunales: discapacidad, hacinamiento, servicios básicos, fecundidad, envejecimiento, vivienda |
 | BCN | Geometría comunal y regional |
 
 ⚠️ La documentación de Chile Abierto dice 349 comunas; la API devuelve **345**, y
@@ -167,6 +192,10 @@ infinito). Las 345 calzan exactamente con el GeoJSON de BCN.
 
 ## 6. Pendiente
 
+- [ ] **Bajar a manzana censal**: el INE publicó la base manzana-entidad del Censo
+      2024 con 189 variables, pero solo desde su portal de geodatos (ArcGIS), sin
+      URL directa ni API — no se puede automatizar. Requiere descarga manual una
+      vez; el pipeline ya está preparado para recibirla.
 - [ ] **Incertidumbre explícita**: CASEN tiene error muestral; publicar el intervalo, no solo el punto.
 - [ ] **Quién tiene la palanca**: enlazar cada indicador con su responsable (municipio / ministerio) y su norma en BCN LeyChile. Es lo que convierte un número en una acción.
 - [ ] **Tendencia**: hoy solo hay nivel. Una comuna pobre que mejora tres años seguidos es otra historia que una estancada.

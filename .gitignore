@@ -15,3 +15,6 @@ data/geo_raw/
 
 # Salidas de herramientas locales
 .playwright-mcp/
+
+# Planillas originales del Censo 2024: se rebajan a series en data/raw/
+data/censo_2024/

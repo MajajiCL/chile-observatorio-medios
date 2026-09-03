@@ -19,6 +19,8 @@
   var catalogo = {};          // code indicador -> metadatos
   var nodos = {};             // code comuna -> [elementos SVG]
   var fichaCache = {};
+  var HALLAZGOS = null;
+  var vistaHallazgos = false;
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -200,7 +202,7 @@
     src.appendChild(document.createTextNode(' · datos ' + capa.year));
 
     marcarSeleccion();
-    if (!seleccion) panelPais();
+    if (!seleccion && !vistaHallazgos) panelPais();
   }
 
   function pintarEscala() {
@@ -332,8 +334,68 @@
     p.appendChild(box);
   }
 
+  /* ---------- panel: hallazgos ---------- */
+  function panelHallazgos() {
+    var p = $('panel');
+    p.textContent = '';
+
+    var hd = document.createElement('div');
+    hd.className = 'panel-hd';
+    var eb = document.createElement('div'); eb.className = 'eyebrow';
+    eb.textContent = 'Revisión automática';
+    var h2 = document.createElement('h2'); h2.textContent = 'Qué se sale de lo esperado';
+    var mt = document.createElement('div'); mt.className = 'meta';
+    mt.textContent = HALLAZGOS.revisadas.toLocaleString('es-CL') + ' cifras revisadas · ' +
+      HALLAZGOS.sobre_umbral.toLocaleString('es-CL') + ' se apartan más de ' +
+      HALLAZGOS.umbral_z + 'σ · se muestran las ' + HALLAZGOS.hallazgos.length + ' más relevantes';
+    hd.appendChild(eb); hd.appendChild(h2); hd.appendChild(mt);
+    p.appendChild(hd);
+
+    var box = document.createElement('div');
+    box.className = 'rows';
+    HALLAZGOS.hallazgos.forEach(function (h) {
+      var b = document.createElement('button');
+      b.className = 'hz';
+      b.setAttribute('data-c', h.comuna);
+
+      var top = document.createElement('div'); top.className = 'hz-top';
+      var nm = document.createElement('span'); nm.className = 'hz-com'; nm.textContent = h.nombre;
+      var tg = document.createElement('span');
+      tg.className = 'hz-tag ' + h.tipo;
+      tg.textContent = h.tipo === 'atipico' ? 'atípico'
+        : (h.z > 0 ? '+' : '') + h.z.toFixed(1) + 'σ';
+      top.appendChild(nm); top.appendChild(tg);
+
+      var ind = document.createElement('div'); ind.className = 'hz-ind';
+      ind.textContent = h.ind_nombre;
+
+      var cif = document.createElement('div'); cif.className = 'hz-cif';
+      var vb = document.createElement('b');
+      vb.textContent = fmt(h.valor, h.unit) + (h.unit && h.unit !== '%' ? ' ' + h.unit : '');
+      cif.appendChild(vb);
+      cif.appendChild(document.createTextNode('   ·   esperado ' + fmt(h.esperado, h.unit)));
+
+      var src = document.createElement('div'); src.className = 'hz-src';
+      src.textContent = h.region + ' · ' + h.fuente + ' · ' + h.year;
+
+      b.appendChild(top); b.appendChild(ind); b.appendChild(cif); b.appendChild(src);
+      box.appendChild(b);
+    });
+    p.appendChild(box);
+
+    p.appendChild(nota(
+      'El sistema recorre cada indicador en cada comuna y compara con lo que predice su contexto. ' +
+      'Se descartan los indicadores que el modelo apenas explica, las desviaciones se contraen según la población ' +
+      'y se limita a dos hallazgos por comuna para que un solo caso raro no copie la lista. ' +
+      'Los rasgos de identidad —religión, pueblos originarios, afrodescendencia— quedan fuera a propósito: ' +
+      'describen a una comuna, no señalan un problema.'
+    ));
+  }
+
   /* ---------- panel: ficha de comuna ---------- */
   function abrirComuna(code) {
+    vistaHallazgos = false;
+    pintarBotonesCapa();
     seleccion = code;
     if (fichaCache[code]) { pintarFicha(fichaCache[code]); return; }
 
@@ -519,12 +581,22 @@
   function pintarBotonesCapa() {
     var nav = $('layers');
     nav.textContent = '';
+
+    if (HALLAZGOS && HALLAZGOS.hallazgos && HALLAZGOS.hallazgos.length) {
+      var hb = document.createElement('button');
+      hb.className = 'layer-btn destacado';
+      hb.textContent = 'Hallazgos (' + HALLAZGOS.hallazgos.length + ')';
+      hb.setAttribute('data-hallazgos', '1');
+      hb.setAttribute('aria-pressed', vistaHallazgos ? 'true' : 'false');
+      nav.appendChild(hb);
+    }
+
     CORE.layers.forEach(function (c, i) {
       var b = document.createElement('button');
       b.className = 'layer-btn';
       b.textContent = c.label;
       b.setAttribute('data-i', i);
-      b.setAttribute('aria-pressed', i === capaActiva ? 'true' : 'false');
+      b.setAttribute('aria-pressed', (!vistaHallazgos && i === capaActiva) ? 'true' : 'false');
       nav.appendChild(b);
     });
   }
@@ -534,6 +606,17 @@
     $('layers').addEventListener('click', function (e) {
       var b = e.target.closest('.layer-btn');
       if (!b) return;
+
+      if (b.getAttribute('data-hallazgos')) {
+        vistaHallazgos = true;
+        seleccion = null; pares = [];
+        marcarSeleccion();
+        pintarBotonesCapa();
+        panelHallazgos();
+        return;
+      }
+
+      vistaHallazgos = false;
       capaActiva = parseInt(b.getAttribute('data-i'), 10);
       pintarBotonesCapa();
       aplicarCapa();
@@ -631,6 +714,13 @@
     $('loading').classList.add('off');
 
     // Opcional: si el workflow diario aun no ha corrido, el sitio funciona igual.
+    fetch('./data/app/hallazgos.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (h) {
+        if (h && h.hallazgos && h.hallazgos.length) { HALLAZGOS = h; pintarBotonesCapa(); }
+      })
+      .catch(function () { /* el mapa funciona igual sin hallazgos */ });
+
     fetch('./data/app/indicadores.json')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(pintarTicker)
