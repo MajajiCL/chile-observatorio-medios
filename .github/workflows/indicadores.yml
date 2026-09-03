@@ -1,0 +1,41 @@
+name: Indicadores diarios
+
+# Solo refresca UF, dolar, euro, UTM, IPC, Imacec y TPM: son los unicos datos
+# del sitio que cambian a diario. El resto (CASEN, PAES, CEAD) se actualiza
+# cuando su organismo publica, no todos los dias.
+on:
+  schedule:
+    - cron: '30 12 * * 1-5'   # 08:30 en Chile continental (UTC-4), dias habiles
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: indicadores
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Consultar mindicador.cl
+        run: python pipeline/04_indicadores.py
+
+      - name: Publicar si cambio
+        run: |
+          if [[ -z "$(git status --porcelain data/app/indicadores.json)" ]]; then
+            echo "Sin cambios que publicar."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/app/indicadores.json
+          git commit -m "chore(datos): indicadores economicos al $(date -u +%Y-%m-%d)"
+          git push

@@ -1,0 +1,15 @@
+{
+  "name": "Brecha Territorial · Observatorio Cívico de Chile",
+  "short_name": "Brecha Territorial",
+  "description": "Mapa de las 345 comunas de Chile por brecha respecto a lo que su contexto predice.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F4F6F7",
+  "theme_color": "#F4F6F7",
+  "lang": "es-CL",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

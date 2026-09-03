@@ -1,140 +1,186 @@
-# 🇨🇱 HANDOFF & GUÍA MAESTRA PARA CLAUDE CODE
-## Proyecto: Presidenta IA & Radiografía de Estado de Chile (Suite Cívica Profesional 2026)
+# Brecha Territorial — Observatorio Cívico de Chile
 
-> **Destinatario**: Claude Code / Mateo Ávila / Majaji  
-> **Fecha de entrega**: Septiembre 2026  
-> **Estado**: En producción activa en GitHub Pages  
-> **URL Producción**: [https://majajicl.github.io/chile-observatorio-medios/](https://majajicl.github.io/chile-observatorio-medios/)  
-> **Repositorio**: [https://github.com/MajajiCL/chile-observatorio-medios](https://github.com/MajajiCL/chile-observatorio-medios)  
-> **Rama principal**: `main`
+> **Producción**: https://majajicl.github.io/chile-observatorio-medios/
+> **Repositorio**: https://github.com/MajajiCL/chile-observatorio-medios (rama `main`)
+> **Local**: `C:\Users\mandr\.gemini\antigravity\scratch\chile-observatorio-medios`
+> también accesible como `D:\CLAUDIOPRO\_appdata\gemini\antigravity\scratch\chile-observatorio-medios`
+> (es el **mismo directorio**: el scratch de Antigravity está enlazado dentro de `D:\CLAUDIOPRO`)
 
 ---
 
-## 1. Contexto & Visión del Proyecto
+## 1. Qué es y qué NO es
 
-Este proyecto es un **Observatorio Cívico y Radiografía 360° del Estado de Chile**. Nació con el objetivo de dotar a la ciudadanía de una herramienta institucional, analítica y sin sesgos políticos, basada en **datos oficiales de 11 ministerios y organismos autónomos**, simuladores macroeconómicos y memoria histórica republicana.
+Un mapa de las 345 comunas de Chile coloreado por **brecha**: cuánto se aparta cada
+comuna del resultado que predicen su propio tamaño, ruralidad, ingreso y pobreza.
 
-### Principios Fundamentales del Proyecto
-1. **100% Fuentes Verificadas**: Cada cifra, dotación policial, cama crítica, tiempo de espera en pabellón o hito histórico tiene obligatoriamente su enlace a organismos oficiales (DIPRES, Banco Central, DEIS/Minsal, CEAD/SPD, Gendarmería, Mineduc, Bomberos, BCN LeyChile, INE).
-2. **Cero Sesgo / Análisis Factual**: Presentación objetiva con argumentos a favor, en contra y evidencia técnica internacional (OCDE, Banco Mundial).
-3. **Usabilidad Móvil Estricta**: La web debe verse y funcionar de manera impecable en teléfonos móviles (sin scrolls horizontales, navegación flex-wrap o barra fija inferior, fuentes legibles).
-4. **Cumplimiento Legal Chileno**: Incorporación activa de la **Ley N° 21.719** (Protección de Datos Personales y derechos ARCO) y **Ley N° 21.459** (Delitos Informáticos y Ciberseguridad).
+**No es un ranking.** Esa es la decisión de producto entera, y conviene entender por qué.
+
+El puntaje PAES de una comuna se explica en un 51% solo por su contexto
+socioeconómico. Publicar la tabla ordenada por puntaje produce siempre el mismo
+podio — Vitacura, Lo Barnechea, Las Condes — que no informa sobre educación sino
+sobre riqueza. Ordenar por brecha, en cambio, pone primero a **San Nicolás**
+(Ñuble): un liceo rural que no selecciona alumnos, educa al 80% de los más
+vulnerables de su zona y aun así obtiene 106 puntos más de lo que su contexto
+predice. Está noveno en la tabla nacional; primero por brecha.
+
+Esa es la diferencia entre publicar datos y producir un diagnóstico.
 
 ---
 
-## 2. Arquitectura Técnica & Estructura de Archivos
-
-El proyecto está diseñado con **Vanilla Web Architecture** de altísimo rendimiento y cero dependencias de compilación complejas para facilitar su despliegue estático universal en GitHub Pages y compatibilidad con `file://`.
+## 2. Cómo se construye
 
 ```
-chile-observatorio-medios/
-├── index.html                   # Interfaz principal completa (9 vistas + modales + mobile nav)
-├── style.css                    # Estilos CSS, variables de diseño, @media print
-├── app.js                       # Lógica de la Suite Profesional (Asistente, Simulador, Comparador)
-├── data.js                      # window.OBSERVATORIO_SNAPSHOT (16 regiones, presupuesto, efemérides)
-├── static/                      # Espejo idéntico para despliegues estáticos y sync de GH Pages
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js
-│   └── data.js
-├── data/
-│   ├── snapshot.json            # JSON crudo del balance nacional, regiones y proyectos
-│   └── state_audit_complete.json# Auditoría completa de 16 regiones con dotaciones y fotos
-├── CLAUDE.md                    # Este archivo de referencia técnica
-└── HANDOFF_CLAUDE.md
+pipeline/
+  01_ingesta.py       Descarga 70 indicadores x 345 comunas de Chile Abierto -> data/raw/
+  02_motor.py         Calcula pares y brechas                                -> data/app/
+  03_geo.py           Proyecta la geometría a paths SVG                      -> data/app/mapa.json
+  04_indicadores.py   Refresca UF, dólar, IPC... (lo diario)                 -> data/app/indicadores.json
 ```
 
-### Librerías en Uso (vía CDN)
-- **CSS**: Tailwind CSS CDN + estilos personalizados en `style.css`.
-- **Tipografía**: **Montserrat** (`wght@300..900`) para textos y títulos, y **JetBrains Mono** para cifras y métricas.
-- **Gráficos**: Apache ECharts `5.4.3`.
-- **Iconos**: Lucide Icons (`window.lucide.createIcons()`).
-
-> ⚠️ **REGLA CRÍTICA DE SINCRONIZACIÓN**:  
-> Cada vez que modifiques archivos en la raíz (`index.html`, `style.css`, `app.js`, `data.js`), debes copiarlos a la carpeta `static/` antes de hacer commit. De lo contrario, GitHub Pages o entornos estáticos pueden quedar desfasados.
-
----
-
-## 3. Decisiones de Diseño & Playbook (Mateo Ávila / Majaji)
-
-1. **Tipografía Oficial**: Se usa **Montserrat** para toda la interfaz (a petición explícita del usuario tras descartar fuentes genéricas o condensadas).
-2. **Fotografía Real de Regiones**: Cada una de las 16 regiones cuenta con fotos de alta resolución de paisajes y ciudades chilenas reales (Costanera Center, Valparaíso cerros, Morro de Arica, Torres del Paine, etc.) con captions identificando el lugar.
-3. **Cero Barras de Desplazamiento Horizontales Innecesarias**: En móviles, no se deben forzar overflow horizontales con barras de scroll; se prefieren grids elásticos (`grid-cols-2 sm:grid-cols-4 lg:grid-cols-8`) o botones flex-wrap.
-4. **Resiliencia ante Fallos**: Manejo de imágenes con `onerror` de respaldo y llamadas defensivas a `safeCreateIcons()` para evitar errores si Lucide o ECharts demoran en cargar.
-
----
-
-## 4. Los 6 Módulos Profesionales Activos
-
-1. **🤖 Asistente Cívico IA («Pregúntale a la Presidenta IA»)**:
-   - Botón flotante `#btn-open-assistant` y atajo `Ctrl + K`.
-   - Motor RAG local en `app.js` (`queryCivicAssistant(userPrompt)`) que parsea intenciones sobre seguridad, salud, dotación de Carabineros, cárceles, presupuesto fiscal o efemérides en cualquiera de las 16 regiones.
-   - Cita fuentes verificadas con enlaces directos.
-
-2. **⚖️ Comparador Cara a Cara 1 vs 1 (Región vs Región)**:
-   - Contenedor `#region-comparator-container`. Permite enfrentar 2 regiones y despliega badges de semáforo ("Mejor" o "Mayor Estrés") en Demora de Cirugías, Homicidios, Hacinamiento Penal, Dependencia FCM, Déficit Hídrico, IDH y PIB.
-
-3. **🎛️ Simulador Fiscal Interactivo («Si tú fueras Presidente»)**:
-   - Contenedor `#interactive-budget-simulator-container`. Sliders para Salud, Educación, Seguridad, Obras Públicas, Ciencia/Litio y Burocracia/Asesores.
-   - Algoritmo en tiempo real que calcula déficit proyectado sobre el PIB, impacto en el EMBI (Riesgo País), empleos generados y dictamen del Consejo Fiscal Autónomo (CFA).
-
-4. **🗺️ Mapa Vectorial de Calor (Heatmap Territorial)**:
-   - Contenedor `#vector-heatmap-container`. Permite conmutar capas térmicas: *Déficit Hídrico*, *Hacinamiento Penal*, *Tasa de Homicidios* y *Dependencia Fondo Común Municipal*.
-
-5. **📄 Exportador Ejecutivo PDF & CSV de Datos Abiertos**:
-   - Función `exportRegionalReportPDF()` con `@media print` en `style.css` que oculta barras de navegación, botones y modales, imprimiendo una ficha ejecutiva limpia de la región seleccionada.
-   - Función `exportDataCSV()` que descarga `chile_auditoria_16_regiones_2026.csv` con BOM UTF-8.
-
-6. **📜 Calendario de Efemérides & Memoria Centenaria (1926-2026)**:
-   - Catálogo de hitos históricos de Enero a Diciembre con filtro dinámico por mes. Cada hito incluye enlace a su texto legal en la **Biblioteca del Congreso Nacional (BCN LeyChile)**.
-   - Comparativa de 1 siglo de evolución en pobreza infantil, analfabetismo, salud y electrificación.
-
----
-
-## 5. Roadmap Prioritario para Claude Code
-
-Claude Code, enfócate en los siguientes tres ejes prioritarios:
-
-### Eje 1: Interfaz & Experiencia de Usuario (UI/UX)
-- [ ] **Mapa Geográfico SVG Interactivo**: Reemplazar o complementar la grilla del Heatmap con un mapa vectorial SVG interactivo de la silueta de Chile (de Arica a Magallanes y Antártica), con zoom territorial (Norte Grande, Norte Chico, Centro, Sur, Austral) y coloreado coroplético dinámico.
-- [ ] **Dark Mode Toggle**: Implementar selector de tema Claro / Oscuro institucional con persistencia en `localStorage` y soporte para `prefers-color-scheme`.
-- [ ] **Micro-animaciones Suaves**: Mejorar transiciones entre pestañas con animaciones de opacidad y desplazamiento usando clases de Tailwind / CSS.
-- [ ] **PWA (Progressive Web App)**: Añadir `manifest.json` y Service Worker básico para que los usuarios puedan "Instalar" la app en la pantalla de inicio de sus teléfonos Android/iOS y consultarla sin conexión.
-
-### Eje 2: Nuevos Complementos & Enriquecimiento de Datos
-- [ ] **Conector API Mindicador / Banco Central**: Crear script en GitHub Actions (`.github/workflows/update_indicators.yml`) con cron diario que consulte la API del Banco Central o Mindicador.cl para refrescar automáticamente el Dólar, UF, UTM, Imacec y Cobre en `data/snapshot.json`.
-- [ ] **Desglose Comunal**: Ampliar la auditoría regional a las 346 comunas de Chile (SINIM Subdere), permitiendo buscar cualquier municipalidad para ver sus ingresos y dotación.
-- [ ] **Ágora Ciudadana con Backend / Supabase / GitHub Issues**: Actualmente las propuestas se guardan en `localStorage`. Sería potente conectar las propuestas a GitHub Discussions o Supabase para que sean colaborativas y persistentes entre usuarios reales.
-
-### Eje 3: Seguridad, Hardening & Cumplimiento Legal
-- [ ] **Sanitización de Entradas (DOMPurify)**: En el Asistente Cívico y en el formulario del Ágora, asegurar que todo texto ingresado pase por sanitización estricta antes de insertarse en el DOM (prevención de XSS reflejado/almacenado).
-- [ ] **Cabeceras de Seguridad (CSP & Permissions Policy)**: Configurar `<meta http-equiv="Content-Security-Policy">` restringiendo fuentes permitidas de scripts, estilos, fuentes e imágenes.
-- [ ] **Validación de Esquema de Datos**: Incorporar validación defensiva en `data.js` para asegurar que si un indicador viene nulo (`null` o `undefined`), nunca rompa la ejecución de gráficos ni de la tabla.
-- [ ] **Auditoría de Privacidad Ley N° 21.719**: Enriquecer el modal de derechos ARCO con envío de correo formal (ej. vía Formspree / endpoint serverless cifrado) para dar cumplimiento al plazo de 15 días hábiles que exige la ley chilena.
-
----
-
-## 6. Comandos Clave de Trabajo
+Para regenerar todo desde cero:
 
 ```bash
-# Probar sintaxis JS
-node --check app.js
-node --check static/app.js
-
-# Probar funcionamiento sin navegador (mock test)
-node -e "const fs = require('fs'); global.window = global; global.document = { getElementById: () => ({ innerHTML: '' }), addEventListener: () => {} }; eval(fs.readFileSync('data.js','utf8')); eval(fs.readFileSync('app.js','utf8')); console.log('OK');"
-
-# Sincronizar archivos raíz hacia static/
-copy index.html static\index.html
-copy style.css static\style.css
-copy app.js static\app.js
-copy data.js static\data.js
-
-# Commits y despliegue a GitHub Pages
-git add .
-git commit -m "feat(ui): tu descripción aquí"
-git push origin main
+python pipeline/01_ingesta.py     # ~2 min (respeta el límite de 60 req/min)
+python pipeline/02_motor.py
+python pipeline/03_geo.py         # requiere data/geo/*.topo.json (ver abajo)
 ```
 
+### Regenerar la geometría
+
+`data/geo_raw/` **no está versionado**: son 19 MB que el pipeline reduce a 246 KB.
+Si hace falta rehacerlos:
+
+```bash
+mkdir -p data/geo_raw
+for i in $(seq 1 16); do
+  curl -sL "https://raw.githubusercontent.com/caracena/chile-geojson/master/$i.geojson" \
+       -o "data/geo_raw/$i.geojson"
+done
+
+npx -y mapshaper "data/geo_raw/*.geojson" combine-files -merge-layers force \
+  -filter-fields cod_comuna,Comuna,codregion,Region,Provincia \
+  -filter-islands min-area=6km2 \
+  -simplify visvalingam weighted keep-shapes percentage=4% -clean \
+  -o format=topojson data/geo/comunas.topo.json
+
+npx -y mapshaper "data/geo_raw/*.geojson" combine-files -merge-layers force \
+  -filter-islands min-area=20km2 -dissolve codregion copy-fields=Region \
+  -simplify visvalingam weighted keep-shapes percentage=8% -clean \
+  -o format=topojson data/geo/regiones.topo.json
+```
+
+Usar **mapshaper y no un simplificador propio**: preserva la topología compartida.
+Simplificar cada polígono por separado deja huecos y solapes entre comunas vecinas,
+que en un coroplético se ven como agujeros blancos.
+
 ---
-*Documento preparado por Antigravity para continuidad inmediata con Claude Code.*
+
+## 3. Decisiones que no se deben revertir sin entenderlas
+
+**La geometría se proyecta en el build, no en el navegador.**
+`03_geo.py` emite cadenas `d` de SVG ya proyectadas. Por eso el sitio no carga
+d3-geo ni topojson-client: cero dependencias, y la CSP puede ser estricta.
+
+**Chile se dibuja en tres tramos lado a lado.**
+El país mide 4.300 km de largo por unos 200 de ancho. En una sola proyección, es
+una línea vertical donde ninguna comuna del norte alcanza un píxel. Rapa Nui y
+Juan Fernández van en recuadros aparte: están a 3.500 km de la costa y, incluidos
+en el encuadre, comprimirían el continente a un cuarto del ancho.
+
+**Las brechas se contraen por población.**
+Una tasa "por 100.000 habitantes" calculada sobre una comuna de 600 personas se
+mueve por azar. Sin contraer, los extremos de cualquier ranking los ocupan siempre
+las comunas más chicas — el error exacto que este proyecto le reprocha a los
+rankings. El residuo se pondera por `pob/(pob+k)`, con `k` = mediana de población
+comunal. La ficha muestra el valor sin contraer cuando difiere mucho.
+
+**Un indicador de contexto no tiene brecha.**
+Pobreza, ingreso, ruralidad, población y densidad son predictores. Calcular su
+brecha da R²=1,00 y no significa nada: es predecir la pobreza con la pobreza.
+Van marcados `context_only` y se pintan por valor.
+
+**La escala de color es verde-azulado ↔ púrpura, no rojo-verde.**
+El par rojo-verde es indistinguible en deuteranopía, el daltonismo más común.
+En un mapa donde el color *es* el dato, eso no es un detalle de estilo.
+
+**Cada dato muestra su fecha real.**
+CASEN es 2022, PAES 2024, CEAD 2024; solo UF, dólar y TPM cambian a diario — y el
+IPC que devuelve mindicador puede tener meses. Presentarlos juntos bajo un
+"actualizado hoy" destruiría la credibilidad, que es el producto.
+
+**La CSP no admite `'unsafe-inline'` en estilos.**
+Por eso ningún color se escribe como atributo `style` dentro de `innerHTML`. Los
+colores del mapa van como atributo de presentación SVG (`fill`) y el resto se
+aplica por CSSOM tras insertar el nodo. Si algo deja de pintarse, revisar esto
+antes que nada.
+
+---
+
+## 4. Estructura
+
+```
+index.html                 Una sola vista: el mapa es la página
+style.css                  Sistema visual (Montserrat + JetBrains Mono)
+app.js                     Pintado, capas, buscador, fichas. Sin dependencias
+manifest.json, icon.svg    Instalable como app
+data/app/
+  mapa.json                Paths SVG proyectados (511 KB)
+  core.json                Comunas, catálogo de 70 indicadores, 6 capas (150 KB)
+  indicadores.json         Económicos diarios
+  comuna/<código>.json     345 fichas, cargadas al hacer clic (~5 KB c/u)
+data/raw/                  Respaldo crudo de Chile Abierto: sostiene cada cifra
+data/geo/                  TopoJSON simplificado
+.github/workflows/         Actualización diaria de indicadores económicos
+```
+
+Los archivos del sitio anterior (`data.js`, `data/snapshot.json`,
+`data/state_audit_complete.json`) se conservan a propósito: contienen presupuesto
+DIPRES, efemérides BCN y datos regionales de salud y cárceles que Chile Abierto
+**no** cubre. Son el insumo de futuras capas.
+
+> No hay carpeta `static/`. GitHub Pages sirve desde la raíz (`source: main /`),
+> así que ese espejo eran 460 KB duplicados que nunca se sirvieron. Se eliminó.
+> **No volver a crearlo.**
+
+---
+
+## 5. Fuentes
+
+Todas verificadas en vivo, ninguna citada de memoria.
+
+| Fuente | Qué aporta |
+|---|---|
+| [Chile Abierto](https://chileabierto.cl/api) | 70 indicadores × 345 comunas, sin autenticación, 60 req/min |
+| [mindicador.cl](https://mindicador.cl/api) | UF, dólar, euro, UTM, IPC, Imacec, TPM |
+| DEMRE / MINEDUC | PAES 2024 por comuna |
+| CASEN / MIDESO | Pobreza comunal 2022, ingreso mediano 2024 |
+| SINIM / SUBDERE | Ruralidad, Fondo Común Municipal, ejecución presupuestaria |
+| CEAD | Delitos por 100.000 habitantes 2024 |
+| CPLT | Transparencia municipal 2025 |
+| BCN | Geometría comunal y regional |
+
+⚠️ La documentación de Chile Abierto dice 349 comunas; la API devuelve **345**, y
+además **ignora los parámetros `limit` y `page`** (paginar provoca un bucle
+infinito). Las 345 calzan exactamente con el GeoJSON de BCN.
+
+---
+
+## 6. Pendiente
+
+- [ ] **Incertidumbre explícita**: CASEN tiene error muestral; publicar el intervalo, no solo el punto.
+- [ ] **Quién tiene la palanca**: enlazar cada indicador con su responsable (municipio / ministerio) y su norma en BCN LeyChile. Es lo que convierte un número en una acción.
+- [ ] **Tendencia**: hoy solo hay nivel. Una comuna pobre que mejora tres años seguidos es otra historia que una estancada.
+- [ ] **Modelo más fino**: la regresión es lineal y falla en la cola alta (Vitacura aparece "sobre lo esperado" por eso). Conviene revisar la forma funcional.
+- [ ] **Comparador de pares** en pantalla, no solo el listado de comunas comparables.
+- [ ] Recuperar del sitio anterior lo que valga: simulador fiscal, efemérides BCN, exportación CSV/PDF.
+
+---
+
+## 7. Comandos
+
+```bash
+node --check app.js                       # sintaxis
+python -m http.server 4173                # servidor local
+python pipeline/04_indicadores.py         # refrescar económicos a mano
+git add . && git commit -m "..." && git push origin main   # despliega Pages
+```

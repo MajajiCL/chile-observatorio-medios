@@ -1,0 +1,56 @@
+{
+ "fetched_at": "2026-09-03T05:21:27+00:00",
+ "source": "mindicador.cl",
+ "source_url": "https://mindicador.cl",
+ "indicators": [
+  {
+   "code": "uf",
+   "name": "Unidad de fomento (UF)",
+   "value": 40877.73,
+   "unit": "Pesos",
+   "date": "2026-09-03"
+  },
+  {
+   "code": "dolar",
+   "name": "Dólar observado",
+   "value": 936.32,
+   "unit": "Pesos",
+   "date": "2026-09-03"
+  },
+  {
+   "code": "euro",
+   "name": "Euro",
+   "value": 1084.83,
+   "unit": "Pesos",
+   "date": "2026-09-03"
+  },
+  {
+   "code": "utm",
+   "name": "Unidad Tributaria Mensual (UTM)",
+   "value": 71721,
+   "unit": "Pesos",
+   "date": "2026-09-01"
+  },
+  {
+   "code": "ipc",
+   "name": "Indice de Precios al Consumidor (IPC)",
+   "value": -0.2,
+   "unit": "Porcentaje",
+   "date": "2025-12-01"
+  },
+  {
+   "code": "imacec",
+   "name": "Imacec",
+   "value": -1.5,
+   "unit": "Porcentaje",
+   "date": "2026-07-01"
+  },
+  {
+   "code": "tpm",
+   "name": "Tasa Política Monetaria (TPM)",
+   "value": 4.5,
+   "unit": "Porcentaje",
+   "date": "2026-09-03"
+  }
+ ]
+}

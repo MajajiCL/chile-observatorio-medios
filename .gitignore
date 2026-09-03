@@ -8,3 +8,10 @@ env/
 venv/
 *.log
 generate_seed.py
+
+# Geometria en bruto: 19 MB que el pipeline reduce a 246 KB.
+# Se vuelve a descargar con pipeline/03_geo.py, no se versiona.
+data/geo_raw/
+
+# Salidas de herramientas locales
+.playwright-mcp/
