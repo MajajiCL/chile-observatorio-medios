@@ -24,6 +24,10 @@
   var mzDatos = null;
   var mzCapa = 'hac';
   var mzCache = {};
+  var RURAL_CAPAS = null;
+  var ruralCache = {};
+  var mzModo = 'urbano';
+  var mzComuna = null;
   var vistaHallazgos = false;
 
   var $ = function (id) { return document.getElementById(id); };
@@ -418,10 +422,129 @@
   }
 
   function abrirManzanas(code) {
-    var meta = indexComunas[code];
-    if (!meta || !MZ_CAPAS) return;
+    if (!MZ_CAPAS && !RURAL_CAPAS) return;
+    mostrarEscala(code, 'urbano');         // si no hay ciudad, cae al campo solo
+  }
 
-    var mostrar = function (d) {
+  function cerrarManzanas() {
+    mzDatos = null;
+    mzComuna = null;
+    $('mzbar').hidden = true;
+    $('mzstage').classList.remove('on');
+    $('stage').classList.remove('off');
+    $('layers').hidden = false;
+    $('question').hidden = false;
+    aplicarCapa();
+  }
+
+  /* ---------- capa rural ----------
+     Las manzanas cubren la ciudad; esto cubre el resto del pais: caserios,
+     comunidades indigenas, fundos, asentamientos mineros y pesqueros. Van en
+     archivo aparte porque un fundo mide kilometros y una manzana cien metros:
+     en un mismo encuadre la ciudad quedaria reducida a un punto. */
+
+  function capaRuralActual() {
+    var cs = (RURAL_CAPAS && RURAL_CAPAS.capas) || [];
+    for (var i = 0; i < cs.length; i++) if (cs[i].k === mzCapa) return cs[i];
+    return cs[0];
+  }
+
+  function pintarRural() {
+    if (!mzDatos || !mzDatos.ent) return;
+    var capa = capaRuralActual();
+    if (!capa) return;
+
+    var vals = mzDatos.ent.map(function (e) { return e[mzCapa]; });
+    var cortes = escalaManzana(vals);
+
+    var wrap = $('mzwrap');
+    wrap.textContent = '';
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + mzDatos.w + ' ' + mzDatos.h);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Entidades rurales de la comuna');
+
+    mzDatos.ent.forEach(function (e) {
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', e.d);
+      p.setAttribute('class', 'ent');
+      p.setAttribute('fill', colorManzana(e[mzCapa], cortes, capa.dir));
+      var t = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      var val = e[mzCapa];
+      var nombre = e.e || e.l || 'Sin nombre';
+      if (e.l && e.e && e.l !== e.e) nombre = e.e + ' (' + e.l + ')';
+      t.textContent = nombre + (e.t ? '  ·  ' + e.t : '') + '\n' +
+        capa.n + ': ' + ((val === undefined || val === null)
+          ? 'sin dato'
+          : String(val).replace('.', ',') + (capa.u === '%' ? '%' : ' ' + capa.u)) +
+        '  ·  ' + e.p + ' hab., ' + e.h + ' hogares';
+      p.appendChild(t);
+      svg.appendChild(p);
+    });
+    wrap.appendChild(svg);
+
+    var conNombre = mzDatos.ent.filter(function (e) {
+      return e.e && e.e !== 'Indeterminada';
+    }).length;
+    $('mz-sub').textContent =
+      mzDatos.ent.length.toLocaleString('es-CL') + ' entidades rurales · ' +
+      conNombre.toLocaleString('es-CL') + ' con nombre propio · ' + capa.n +
+      ' · Censo 2024 (INE)';
+
+    $('lg-lo').textContent = capa.dir === 'menos' ? 'Sin el problema' : 'Menor';
+    $('lg-hi').textContent = capa.dir === 'menos' ? 'Más afectado' : 'Mayor';
+  }
+
+  function llenarSelectorCapas() {
+    var fuente = (mzModo === 'rural' ? RURAL_CAPAS : MZ_CAPAS);
+    var sel = $('mz-capa');
+    sel.textContent = '';
+    if (!fuente) return;
+    fuente.capas.forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c.k;
+      o.textContent = c.n;
+      sel.appendChild(o);
+    });
+    // conserva el indicador si existe en la otra escala; si no, el primero
+    var hay = fuente.capas.some(function (c) { return c.k === mzCapa; });
+    if (!hay) mzCapa = fuente.capas[0].k;
+    sel.value = mzCapa;
+  }
+
+  function marcarModo() {
+    var btns = $('mz-modo').querySelectorAll('button');
+    [].forEach.call(btns, function (b) {
+      var m = b.getAttribute('data-modo');
+      b.setAttribute('aria-pressed', m === mzModo ? 'true' : 'false');
+      var cat = m === 'rural' ? RURAL_CAPAS : MZ_CAPAS;
+      var hay = !!cat && (!cat.comunas || !mzComuna || cat.comunas.indexOf(mzComuna) >= 0);
+      b.disabled = !hay;
+      b.title = hay ? '' : (m === 'rural'
+        ? 'Esta comuna no tiene población rural censada'
+        : 'Esta comuna no tiene manzanas urbanas censadas');
+    });
+  }
+
+  function cargarEscala(code, modo) {
+    var cache = modo === 'rural' ? ruralCache : mzCache;
+    var carpeta = modo === 'rural' ? 'rural' : 'manzana';
+    var catalogoEscala = modo === 'rural' ? RURAL_CAPAS : MZ_CAPAS;
+    // Sin catalogo no hay con que pintar. Falla aqui, en vez de dejar en
+    // pantalla la escala anterior con el boton de la nueva ya marcado.
+    if (!catalogoEscala) return Promise.reject(new Error('escala no disponible'));
+    if (cache[code]) return Promise.resolve(cache[code]);
+    return fetch('./data/app/' + carpeta + '/' + encodeURIComponent(code) + '.json')
+      .then(function (r) { if (!r.ok) throw new Error('sin datos'); return r.json(); })
+      .then(function (d) { cache[code] = d; return d; });
+  }
+
+  function mostrarEscala(code, modo, sinRespaldo) {
+    var meta = indexComunas[code];
+    if (!meta) return;
+    cargarEscala(code, modo).then(function (d) {
+      mzComuna = code;
+      mzModo = modo;
       mzDatos = d;
       $('mz-tit').textContent = meta.n;
       $('mzbar').hidden = false;
@@ -429,27 +552,27 @@
       $('stage').classList.add('off');
       $('layers').hidden = true;
       $('question').hidden = true;
-      pintarManzanas();
-    };
-
-    if (mzCache[code]) { mostrar(mzCache[code]); return; }
-    fetch('./data/app/manzana/' + encodeURIComponent(code) + '.json')
-      .then(function (r) { if (!r.ok) throw new Error('sin manzanas'); return r.json(); })
-      .then(function (d) { mzCache[code] = d; mostrar(d); })
-      .catch(function () {
-        $('panel').appendChild(nota(
-          'Esta comuna todavía no tiene el detalle por manzana disponible.'));
-      });
+      marcarModo();
+      llenarSelectorCapas();
+      if (modo === 'rural') pintarRural(); else pintarManzanas();
+    }).catch(function () {
+      if (sinRespaldo) {
+        // el usuario pidio explicitamente esta escala y no existe: se le dice,
+        // en vez de devolverlo en silencio a la que ya estaba viendo
+        $('mz-sub').textContent = modo === 'rural'
+          ? 'Esta comuna no tiene población rural censada: es urbana por completo.'
+          : 'Esta comuna no tiene manzanas urbanas censadas: su población es rural.';
+        marcarModo();   // mzModo no cambio, asi que el boton vuelve a su sitio
+        return;
+      }
+      // primera apertura: si no hay ciudad, se muestra el campo
+      mostrarEscala(code, modo === 'rural' ? 'urbano' : 'rural', true);
+    });
   }
 
-  function cerrarManzanas() {
-    mzDatos = null;
-    $('mzbar').hidden = true;
-    $('mzstage').classList.remove('on');
-    $('stage').classList.remove('off');
-    $('layers').hidden = false;
-    $('question').hidden = false;
-    aplicarCapa();
+  function cambiarEscala(modo) {
+    if (!mzComuna || modo === mzModo) return;
+    mostrarEscala(mzComuna, modo, true);
   }
 
   /* ---------- panel: hallazgos ---------- */
@@ -580,10 +703,10 @@
     }
 
     // acceso al detalle por manzana
-    if (MZ_CAPAS) {
+    if (MZ_CAPAS || RURAL_CAPAS) {
       var bm = document.createElement('button');
       bm.className = 'layer-btn destacado';
-      bm.textContent = 'Ver ' + f.n + ' cuadra por cuadra';
+      bm.textContent = 'Ver ' + f.n + ' en detalle: cuadras y campo';
       bm.setAttribute('data-manzana', f.c);
       p.appendChild(bm);
     }
@@ -776,7 +899,14 @@
     $('mz-volver').addEventListener('click', cerrarManzanas);
     $('mz-capa').addEventListener('change', function (e) {
       mzCapa = e.target.value;
-      pintarManzanas();
+      if (mzModo === 'rural') pintarRural(); else pintarManzanas();
+    });
+    $('mz-modo').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-modo]');
+      if (!b || !mzComuna) return;
+      var modo = b.getAttribute('data-modo');
+      if (modo === mzModo) return;
+      cambiarEscala(modo);
     });
 
     var q = $('q');
@@ -849,18 +979,16 @@
     $('loading').classList.add('off');
 
     // Opcional: si el workflow diario aun no ha corrido, el sitio funciona igual.
+    fetch('./data/app/rural_capas.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.capas && d.capas.length) RURAL_CAPAS = d; })
+      .catch(function () { /* sin capa rural, el resto funciona igual */ });
+
     fetch('./data/app/manzana_capas.json')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.capas || !d.capas.length) return;
         MZ_CAPAS = d;
-        var sel = $('mz-capa');
-        d.capas.forEach(function (c) {
-          var o = document.createElement('option');
-          o.value = c.k;
-          o.textContent = c.n;
-          sel.appendChild(o);
-        });
         mzCapa = d.capas[0].k;
       })
       .catch(function () { /* sin detalle de manzana, el resto funciona igual */ });

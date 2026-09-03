@@ -60,7 +60,11 @@
         <div class="tit" id="mz-tit">—</div>
         <div class="sub" id="mz-sub">—</div>
       </div>
-      <label class="sr-only" for="mz-capa">Indicador por manzana</label>
+      <div class="modo" id="mz-modo" role="group" aria-label="Escala del detalle">
+        <button type="button" data-modo="urbano" aria-pressed="true">Ciudad</button>
+        <button type="button" data-modo="rural" aria-pressed="false">Rural</button>
+      </div>
+      <label class="sr-only" for="mz-capa">Indicador</label>
       <select id="mz-capa"></select>
       <button class="volver" id="mz-volver">← Volver al mapa nacional</button>
     </div>

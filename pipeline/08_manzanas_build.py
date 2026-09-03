@@ -191,6 +191,7 @@ def main():
     with open(os.path.join(BASE, "data", "app", "manzana_capas.json"), "w", encoding="utf-8") as f:
         json.dump({
             "capas": cat,
+            "comunas": sorted(x[:-5] for x in os.listdir(OUT)),
             "fuente": "INE — Censo de Población y Vivienda 2024",
             "via": "Esri Chile · Microdatos Censo 2024",
             "licencia": "CC BY-SA 4.0",

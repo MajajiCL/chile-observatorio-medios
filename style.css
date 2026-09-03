@@ -308,6 +308,36 @@ body {
 }
 .mzbar .tit { font-size: 14px; font-weight: 700; letter-spacing: -.015em; }
 .mzbar .sub { font-size: 11.5px; color: var(--muted); }
+.modo {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-left: auto;
+}
+.modo button {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.modo button + button { border-left: 1px solid var(--rule); }
+.modo button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.modo button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Entidad rural: poligonos grandes y dispersos, trazo mas fino que en ciudad */
+.ent {
+  stroke: rgba(255, 255, 255, .5);
+  stroke-width: 6;
+  stroke-linejoin: round;
+  cursor: pointer;
+}
+.ent:hover { stroke: var(--ink); stroke-width: 14; }
+
 .mzbar select {
   font-family: var(--font);
   font-size: 12.5px;
@@ -317,7 +347,6 @@ body {
   border-radius: 8px;
   background: var(--paper);
   color: var(--ink);
-  margin-left: auto;
 }
 .mzbar .volver {
   background: none;

@@ -19,3 +19,4 @@ data/geo_raw/
 # Planillas originales del Censo 2024: se rebajan a series en data/raw/
 data/censo_2024/
 data/manzanas_raw/
+data/rural_raw/

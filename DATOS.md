@@ -13,7 +13,8 @@ cruza y los interpreta. Esa distinción importa para lo que sigue.
 **Producto:** Censo de Población y Vivienda 2024. **Año:** 2024.
 **Obtenido de:**
 - Resultados comunales: <https://censo2024.ine.gob.cl/estadisticas/>
-- Manzanas: servicio «Microdatos Censo 2024», publicado por Esri Chile a partir
+- Manzanas urbanas y entidades rurales: servicio «Microdatos Censo 2024»
+  (capas *Manzanas* y *Manzanas-entidades*), publicado por Esri Chile a partir
   de los resultados oficiales del INE.
 
 **Licencia:** [Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional
@@ -24,8 +25,11 @@ cruza y los interpreta. Esa distinción importa para lo que sigue.
 - De los 213 campos por manzana se seleccionaron 27 y de ellos se derivaron 9
   indicadores, expresados como porcentaje sobre su denominador correspondiente
   (hogares censados o población) en vez de conteos absolutos.
-- La geometría se reproyectó a metros y se simplificó con Douglas-Peucker a 3 m
-  de tolerancia, para poder servirla a un navegador. Las formas son aproximadas.
+- La geometría se reproyectó a metros y se simplificó con Douglas-Peucker: 3 m
+  de tolerancia en manzanas urbanas y 8 m en entidades rurales, para poder
+  servirla a un navegador. Las formas son aproximadas.
+- De las 28.415 entidades rurales se conservaron los nombres de localidad y
+  entidad y su categoría, más 10 indicadores derivados del mismo modo.
 - De las planillas comunales se extrajeron 180 series. Se descartó «Migración
   interna» por ser una matriz origen-destino y no una tabla de indicadores.
 - Se calcularon valores derivados —grupos de comunas comparables, residuos
@@ -74,6 +78,11 @@ En consecuencia, queda excluido de este proyecto:
 - **Usar los datos con fines no estadísticos** que vulneren el secreto
   estadístico.
 - **Atribuir al INE** análisis o conclusiones de este proyecto.
+
+La capa rural incluye «Comunidad Indígena» entre las categorías de asentamiento
+del INE. Es una clasificación territorial oficial y se muestra como tal —igual
+que caserío, fundo o asentamiento pesquero—, pero **no entra al detector de
+anomalías**: describe qué tipo de asentamiento es, no señala un problema.
 
 Los rasgos de identidad —religión, pueblos originarios, afrodescendencia,
 lenguas— están **excluidos del detector de anomalías** por decisión de diseño.

@@ -38,6 +38,7 @@ pipeline/
   06_hallazgos.py     Detector de anomalías                          -> data/app/hallazgos.json
   07_manzanas.py      216.341 manzanas del Censo 2024 (ArcGIS)       -> data/manzanas_raw/
   08_manzanas_build.py  Simplifica y parte por comuna                -> data/app/manzana/
+  09_rural.py         28.415 entidades rurales con nombre propio     -> data/app/rural/
   04_indicadores.py   Refresca UF, dólar, IPC... (lo diario)         -> data/app/indicadores.json
 ```
 
@@ -117,6 +118,13 @@ lo hacen posible: 9 indicadores derivados en vez de 27 campos crudos, geometría
 en metros simplificada con Douglas-Peucker a 3 m, y partición por comuna. Aquí
 sí se puede simplificar cada polígono por separado —a diferencia de las comunas—
 porque entre manzanas hay calles, no bordes compartidos.
+
+**La capa rural va en archivos aparte de las manzanas urbanas.**
+Un fundo mide kilómetros y una manzana cien metros. En un mismo encuadre la
+ciudad quedaría reducida a un punto ilegible, así que cada escala tiene su
+propio archivo y su propio `viewBox`, y la interfaz las conmuta con el botón
+Ciudad / Rural. La tolerancia de simplificación también difiere: 3 m en ciudad,
+8 m en el campo.
 
 **Los indicadores de manzana son porcentajes, no conteos.**
 Cada uno va sobre su denominador correcto (hogares censados o población). Un
@@ -201,7 +209,7 @@ Todas verificadas en vivo, ninguna citada de memoria.
 | SINIM / SUBDERE | Ruralidad, Fondo Común Municipal, ejecución presupuestaria |
 | CEAD | Delitos por 100.000 habitantes 2024 |
 | CPLT | Transparencia municipal 2025 |
-| INE Censo 2024 | 180 series comunales + 216.341 manzanas con 213 campos (vía servicio de Esri Chile) |
+| INE Censo 2024 | 180 series comunales, 216.341 manzanas urbanas y 28.415 entidades rurales con nombre (vía servicio de Esri Chile) |
 | BCN | Geometría comunal y regional |
 
 ⚠️ La documentación de Chile Abierto dice 349 comunas; la API devuelve **345**, y
@@ -212,10 +220,6 @@ infinito). Las 345 calzan exactamente con el GeoJSON de BCN.
 
 ## 6. Pendiente
 
-- [ ] **Capa «manzanas-entidades»**: 28.415 registros con nombres de localidades,
-      aldeas y caseríos (`NOM_LOCALIDAD`, `NOM_ENTIDAD`, `TIPO_CATEGORIA`) en la
-      capa 1 del mismo servicio. Es el nivel «pueblo a pueblo» del mundo rural,
-      que las manzanas urbanas no cubren.
 - [ ] **Buscador por manzana** y detector de anomalías a esa escala: hoy el
       detector solo mira el nivel comunal.
 - [ ] **Incertidumbre explícita**: CASEN tiene error muestral; publicar el intervalo, no solo el punto.
