@@ -1,28 +1,28 @@
 {
- "fetched_at": "2026-09-21T18:17:21+00:00",
+ "fetched_at": "2026-09-22T17:11:05+00:00",
  "source": "mindicador.cl",
  "source_url": "https://mindicador.cl",
  "indicators": [
   {
    "code": "uf",
    "name": "Unidad de fomento (UF)",
-   "value": 40983.58,
+   "value": 40991.75,
    "unit": "Pesos",
-   "date": "2026-09-21"
+   "date": "2026-09-22"
   },
   {
    "code": "dolar",
    "name": "Dólar observado",
-   "value": 958.42,
+   "value": 952,
    "unit": "Pesos",
-   "date": "2026-09-21"
+   "date": "2026-09-22"
   },
   {
    "code": "euro",
    "name": "Euro",
-   "value": 1099.86,
+   "value": 1091.74,
    "unit": "Pesos",
-   "date": "2026-09-21"
+   "date": "2026-09-22"
   },
   {
    "code": "utm",
@@ -50,7 +50,7 @@
    "name": "Tasa Política Monetaria (TPM)",
    "value": 4.5,
    "unit": "Porcentaje",
-   "date": "2026-09-21"
+   "date": "2026-09-22"
   }
  ]
 }
