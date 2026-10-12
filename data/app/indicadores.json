@@ -1,14 +1,14 @@
 {
- "fetched_at": "2026-10-09T18:28:09+00:00",
+ "fetched_at": "2026-10-12T21:22:29+00:00",
  "source": "mindicador.cl",
  "source_url": "https://mindicador.cl",
  "indicators": [
   {
    "code": "uf",
    "name": "Unidad de fomento (UF)",
-   "value": 41130.94,
+   "value": 41146.83,
    "unit": "Pesos",
-   "date": "2026-10-09"
+   "date": "2026-10-12"
   },
   {
    "code": "dolar",
